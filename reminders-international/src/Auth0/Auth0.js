@@ -29,8 +29,10 @@ class Auth0 extends Component {
 
   render() {
     const { isAuthenticated } = this.props.auth;
-    console.log("debugging...");
-    console.log(this.props.auth);
+    console.log("THIS")
+    console.log(this)
+    //console.log("debugging...");
+    //console.log(this.props.auth);
     return (
       <div>
         <Navbar fluid>
