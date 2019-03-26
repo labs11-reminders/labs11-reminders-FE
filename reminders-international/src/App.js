@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
-import { Users } from './components';
 import axios from 'axios';
 import { Route, withRouter, Router } from 'react-router-dom';
 
@@ -46,13 +44,10 @@ class App extends Component {
        console.log(err);
   });
    }
-
   
-
   componentDidMount() {
     this.getUsers();
     
-
   }
 */
  
