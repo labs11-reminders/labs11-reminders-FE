@@ -25,7 +25,7 @@ class App extends Component {
   if (/access_token|id_token|error/.test(location.hash)) {
     this.auth.handleAuthentication();
   }
-}
+ }
 
  
 /*
@@ -58,17 +58,18 @@ class App extends Component {
     console.log(this.state);
     
     return  (
-    <div className="App">
-     
+      <div className="App">
       
-      <Route path="/home" render={(props) => <Home auth={this.auth} {...props} />} />
-      <Route path="/callback" render={(props) => {
-          this.handleAuthentication(props);
-          return <Callback {...props} /> 
-        }}/>
-    </div>
-  );
-}
+        <Route exact path="/" render={(props) => <Auth0 auth={this.auth} {...props} />} />
+        <Route exact path="/home" render={(props) => <Home auth={this.auth} {...props} />} />
+        <Route exact path="/callback" render={(props) => {
+            this.handleAuthentication(props);
+            return <Callback {...props} /> 
+          }}/>
+        <Route exact path="/reminders" />
+      </div>
+    );
+  }
 
 }
 
