@@ -35,14 +35,14 @@ class Auth0 extends Component {
     //console.log(this.props.auth);
     return (
       <div>
-        <Navbar fluid>
-          <Navbar.Header>
+        <Navbar >
+          {/* <Navbar.Header> */}
             {/* <Navbar.Brand>
               <a href="">Reminders International</a>
             </Navbar.Brand> */}
             <Button
-              bsStyle="primary"
-              className="btn-margin"
+              // bsStyle="primary"
+              // className="btn-margin"
               onClick={this.goTo.bind(this, 'home')}
             >
               Home
@@ -50,9 +50,9 @@ class Auth0 extends Component {
             {
               !isAuthenticated() && (
                   <Button
-                    id="qsLoginBtn"
-                    bsStyle="primary"
-                    className="btn-margin"
+                    // id="qsLoginBtn"
+                    // bsStyle="primary"
+                    // className="btn-margin"
                     onClick={this.login.bind(this)}
                   >
                     Log In
@@ -62,17 +62,17 @@ class Auth0 extends Component {
             {
               isAuthenticated() && (
                   <Button
-                    id="qsLogoutBtn"
-                    bsStyle="primary"
-                    className="btn-margin"
+                    // id="qsLogoutBtn"
+                    // bsStyle="primary"
+                    // className="btn-margin"
                     onClick={this.logout.bind(this)}
                   >
                     Log Out
                   </Button>
                 )
             }
-          </Navbar.Header>
-        </Navbar>
+          {/* </Navbar.Header> */}
+        </Navbar> 
       </div>
     );
   }
