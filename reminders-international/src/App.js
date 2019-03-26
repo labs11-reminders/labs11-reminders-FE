@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, withRouter, Router } from 'react-router-dom';
+
+import Auth from './Auth0/Auth/Auth';
+import Callback from './Auth0/Callback/Callback';
+import Auth0 from './Auth0/Auth0';
+import Home from './Home';
 
 import './App.css';
 
@@ -12,49 +17,75 @@ class App extends Component {
       
   };
 }
+ auth = new Auth();
+
+ handleAuthentication = ({location}) => {
+  console.log(location);
+  console.log(location.error);
+  if (/access_token|id_token|error/.test(location.hash)) {
+    this.auth.handleAuthentication();
+  }
+}
+
+ 
+
+  // getUsers = () => {
+  //   axios.get("https://reminders-international.herokuapp.com/users", this.state.users)
+  //   .then(res => {
+  //     console.log(res.data.users);
+  //     console.log('getting users');
+  //     this.setState({
+  //       users: res.data
+  //     });
+  //     console.log('hello');
+  //     console.log(this.state.users);
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
+  // }
+
+  
 
   componentDidMount() {
-    axios.get("https://reminders-international.herokuapp.com/users", this.state.users)
-    .then(res => {
-      console.log(res.data.users);
-      console.log('getting users');
-      this.setState({
-        users: res.data
-      });
-      console.log('hello');
-      console.log(this.state.users);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    // this.getUsers();
+    
 
   }
+
 
   
   render() {
       console.log(this.state);
+     
     return  (
+      <div className="App">
+        <Auth0 //auth={this.auth} --I'm not sure we need this? This was an add on at lunch to fix what I thought was a props issue
+        />
       
-      <div className='users'>
-        <h3>Welcome to Reminders International!</h3>
-        <p>Contact information:</p>
-          <ol>
-           {this.state.users.map(user => <li key={user.id}>{user.name}: {user.email}, {user.phone}, {user.country}</li>)}
-          </ol>
+      
+      <Router>
         
-        
-      </div>
-    
-    
+          <Route path="/" render={(props) => <App auth={this.auth} {...props} />} />
+          <Route path="/home" render={(props) => <Home auth={this.auth} {...props} />} />
+          <Route path="/callback" render={(props) => {
+            this.handleAuthentication(props);
+            return <Callback {...props} /> 
+          }}/>
 
-   
-      // <div className="App">
-      //   <header className="App-header">
-      //     <p>
-      //       Welcome to Reminders International
-      //     </p>
-      //   </header>
+      </Router>
+      </div>
+
+      // <div className='users'>
+      //   <Auth />
+      //   <h3>Welcome to Reminders International!</h3>
+      //   <p>Contact information:</p>
+      //     <ol>
+      //      {this.state.users.map(user => <li key={user.id}>{user.name}: {user.email}, {user.phone}, {user.country}</li>)}
+      //     </ol>
       // </div>
+    
+       
     );
   }
 
