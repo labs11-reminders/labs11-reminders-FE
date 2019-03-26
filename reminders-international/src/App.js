@@ -57,10 +57,11 @@ class App extends Component {
   
   render() {
       console.log(this.state);
-     this.auth.login();
+     
     return  (
       <div className="App">
-        <Auth0 auth={this.auth}/>
+        <Auth0 //auth={this.auth} --I'm not sure we need this? This was an add on at lunch to fix what I thought was a props issue
+        />
       
       
       <Router>
