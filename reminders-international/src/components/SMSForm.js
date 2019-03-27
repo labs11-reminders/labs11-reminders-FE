@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './SMSForm.css';
+
+// axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 class SMSForm extends Component {
   constructor(props) {
@@ -23,25 +26,41 @@ class SMSForm extends Component {
     });
   }
 
+
+  // getUsers = () => {
+  //   axios.get("https://reminders-international.herokuapp.com/users", this.state.users)
+  //     .then(res => {
+  //     //  console.log('list of 500 users', res.data);
+  //       this.setState({
+  //       users: res.data
+  //       });
+  //       //  console.log('getUsers this.state.users', this.state.users);
+  //   })
+  //   .catch(err => {
+  //       console.log(err);
+  //   });
+  //  }
+
+      // .post("https://reminders-international.herokuapp.com/api/messages", {
+
   onSubmit(event) {
     event.preventDefault();
     this.setState({ submitting: true });
-    fetch('/api/messages', {
+    fetch("http://localhost:3333/api/messages", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(this.state.message)
     })
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
+      .then(res => {
+        if (res.status === 200) {
           this.setState({
             error: false,
             submitting: false,
             message: {
-              "to": "",
-              "body": ""
+              to: '',
+              body: ''
             }
           });
         } else {
@@ -50,7 +69,11 @@ class SMSForm extends Component {
             submitting: false
           });
         }
-      });
+        res.json()
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   render() {
