@@ -1,56 +1,17 @@
-// In components/index.js
-import Users from './Users';
-
-export { Users };
-
-// In components/Users.js
 import React from 'react';
 
-const User = props => {
-  console.log(props)
-
-
+const Users = props => {
+  console.log("PROPS", props.users) // renders twice
   return  (
-  <div className='users'>
-    <h3>Welcome {props.user.username}!</h3>
-    <p>Contact information:</p>
+  <div className='users-container'>
+    <h3>Welcome Admin!</h3>
+    <p>Here is a list of all our current students and pertinent contact information:</p>
       <ol>
-        {props.users.map(user => <li key={user.id}>{user.username}: {props.user.email}, {props.user.phone}, {props.user.country}</li>)}
+        {props.users.map(user => <li key={user.id}>{user.name}: {user.email}, {user.phone}, {user.country}</li>)}
       </ol>
   </div>
 );
   }
 
-export default User; 
+export default Users; 
 
-
-// In App.js
-import React, { Component } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
-import { Users } from './components';
-import axios from 'axios';
-import './App.css';
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: []
-    };
-  }
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <p>Welcome to Reminders International</p>
-        </header>
-        <Switch>
-          <Route 
-            exact path='/users' 
-            render={props => <Users {...props} users={this.state.users} /> } 
-          />
-        </Switch>
-      </div>
-    );
-  }
-}

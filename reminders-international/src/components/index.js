@@ -1,3 +1,3 @@
 import Users from './Users';
-
-export { Users };
+import Reminders from './Reminders';
+export { Users, Reminders };
