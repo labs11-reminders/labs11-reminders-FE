@@ -1,4 +1,5 @@
-import auth0 from './auth0-js';
+import history from '../../history.js';
+import auth0 from 'auth0-js';
 const dotenv = require('dotenv');
 // const result = dotenv.config();
 
@@ -36,7 +37,7 @@ export default class Auth {
           if (authResult && authResult.accessToken && authResult.idToken) {
             this.setSession(authResult);
           } else if (err) {
-           this.props.history.push('/');
+              history.replace('/home');
             console.log(err);
             alert(`Error: ${err.error}. Check the console for further details.`);
           }
@@ -62,7 +63,7 @@ export default class Auth {
         this.expiresAt = expiresAt;
     
         // navigate to the home route
-        this.props.history.push('/');
+        history.replace('/home');
       }
     
       renewSession() {
@@ -87,7 +88,7 @@ export default class Auth {
         localStorage.removeItem('isLoggedIn');
     
         // navigate to the home route
-        this.props.history.push('/');
+        history.replace('/home');
       }
     
       isAuthenticated() {
