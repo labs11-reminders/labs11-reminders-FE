@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Route, withRouter, Router } from 'react-router-dom';
+// import axios from 'axios';
 
 import Auth from './Auth0/Auth/Auth';
 import Callback from './Auth0/Callback/Callback';
 import Auth0 from './Auth0/Auth0';
 import Home from './Home';
-
+import Home2 from './Home2';
 import './App.css';
 
 class App extends Component {
@@ -56,13 +56,13 @@ class App extends Component {
     
     return  (
     <div className="App">
-     
-      
-      <Route path="/home" render={(props) => <Home auth={this.auth} {...props} />} />
-      <Route path="/callback" render={(props) => {
-          this.handleAuthentication(props);
+      <Route exact path="/reminders" />
+      {/* <Route path="/home2" render={(props) => <Home2 auth={this.auth} {...props} />} /> */}
+      {/* <Route path="/home" render={(props) => <Home auth={this.auth} {...props} />} /> */}
+      {/* <Route path="/callback" render={(props) => { */}
+          {/* this.handleAuthentication(props);
           return <Callback {...props} /> 
-        }}/>
+        }}/> */}
     </div>
   );
 }

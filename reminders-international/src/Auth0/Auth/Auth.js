@@ -1,4 +1,4 @@
-import auth0 from 'auth0-js';
+import auth0 from './auth0-js';
 const dotenv = require('dotenv');
 // const result = dotenv.config();
 
