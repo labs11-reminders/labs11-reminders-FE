@@ -6,6 +6,7 @@ class Home extends Component {
       this.state = {  }
     }
     render() { 
+      console.log("Home Render this.state", this.state)
       return ( 
           <div>You're logged in!</div>
        );
