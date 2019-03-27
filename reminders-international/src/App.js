@@ -55,19 +55,6 @@ class App extends Component {
     console.log(this.state);
     
     return  (
-<<<<<<< HEAD
-    <div className="App">
-      <Route exact path="/reminders" />
-      {/* <Route path="/home2" render={(props) => <Home2 auth={this.auth} {...props} />} /> */}
-      {/* <Route path="/home" render={(props) => <Home auth={this.auth} {...props} />} /> */}
-      {/* <Route path="/callback" render={(props) => { */}
-          {/* this.handleAuthentication(props);
-          return <Callback {...props} /> 
-        }}/> */}
-    </div>
-  );
-}
-=======
       <div className="App">
       
         <Route exact path="/" render={(props) => <Auth0 auth={this.auth} {...props} />} />
@@ -80,7 +67,6 @@ class App extends Component {
       </div>
     );
   }
->>>>>>> 88d7681451db789cb3f33739ccbb2d1901fd9bd0
 
 }
 
