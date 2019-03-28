@@ -65,7 +65,7 @@ class App extends Component {
   
   componentDidMount() {
     this.getUsers();
-    this.getReminders();
+    // this.getRetminders();
   }
 
  
