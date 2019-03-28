@@ -25,8 +25,6 @@ class App extends Component {
  auth = new Auth();
 
  handleAuthentication = ({location}) => {
-  console.log(location);
-  console.log(location.error);
   if (/access_token|id_token|error/.test(location.hash)) {
     this.auth.handleAuthentication();
   }
@@ -48,10 +46,11 @@ class App extends Component {
     });
    }
 
-  
-  componentDidMount() {
-    this.getUsers();
-  }
+  // This causes errors currently with auth0 loading
+  // and other components because it triggers a quick succession of double renders.
+  // componentDidMount() {  
+  //   this.getUsers();
+  // }
 
  
   render() {

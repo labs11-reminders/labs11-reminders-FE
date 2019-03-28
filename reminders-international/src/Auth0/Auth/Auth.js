@@ -35,13 +35,17 @@ export default class Auth {
     }
 
     handleAuthentication() {
+        console.log('Auth0: Executing Authentication handler.');
         this.auth0.parseHash((err, authResult) => {
+          console.log(authResult);
           if (authResult && authResult.accessToken && authResult.idToken) {
             this.setSession(authResult);
+            console.log('Auth0: success.');
           } else if (err) {
-              history.replace('/home');
+            history.replace('/home');
+            console.log('Auth0: failure.')
             console.log(err);
-            alert(`Error: ${err.error}. Check the console for further details.`);
+            alert(`Error: ${err.error}. Check the console for further details!!`);
           }
         });
       }
