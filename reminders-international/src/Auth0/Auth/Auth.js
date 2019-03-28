@@ -9,6 +9,7 @@ export default class Auth {
     accessToken;
     idToken;
     expiresAt;
+    userProfile;
 
     //below needs to be attached to the .env file for security in the end
 
@@ -17,7 +18,8 @@ export default class Auth {
       clientID: process.env.REACT_APP_CLIENTID,
       redirectUri: process.env.REACT_APP_CALLBACKURL,
       responseType: 'token id_token',
-      scope: 'openid'
+      audience: 'https://localhost:3000/users',
+      scope: 'openid admin:access'
     });
 
     constructor() {
@@ -61,6 +63,8 @@ export default class Auth {
       setSession(authResult) {
         // Set isLoggedIn flag in localStorage
         localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('accessToken', authResult.accessToken);
+        localStorage.setItem('idToken', authResult.idToken);
     
         // Set the time that the access token will expire at
         let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
