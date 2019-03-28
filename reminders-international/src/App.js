@@ -48,8 +48,9 @@ class App extends Component {
 
   // This causes errors currently with auth0 loading
   // and other components because it triggers a quick succession of double renders.
+  //we need to change this so that the users render but I'm not sure it should go at this level?
   // componentDidMount() {  
-  //   this.getUsers();
+  //     this.getUsers();
   // }
 
  
