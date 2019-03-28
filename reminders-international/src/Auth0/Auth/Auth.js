@@ -1,7 +1,9 @@
 import history from '../../history.js';
 import auth0 from 'auth0-js';
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
+
 // const result = dotenv.config();
+
 
 export default class Auth {
     accessToken;
@@ -11,9 +13,9 @@ export default class Auth {
     //below needs to be attached to the .env file for security in the end
 
     auth0 = new auth0.WebAuth({
-      domain: "dev-fkl4pfae.auth0.com",
-      clientID: "thcZp1ZuBv61K2Gxcpv5QpxnpkJiV5AP",
-      redirectUri: 'http://localhost:3000/callback',
+      domain: process.env.REACT_APP_DOMAIN,
+      clientID: process.env.REACT_APP_CLIENTID,
+      redirectUri: process.env.REACT_APP_CALLBACKURL,
       responseType: 'token id_token',
       scope: 'openid'
     });
