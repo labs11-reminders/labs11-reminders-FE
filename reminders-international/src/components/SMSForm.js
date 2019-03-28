@@ -15,11 +15,11 @@ class SMSForm extends Component {
       submitting: false,
       error: false
     };
-    this.onHandleChange = this.onHandleChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    // this.onHandleChange = this.onHandleChange.bind(this);
+    // this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onHandleChange(event) {
+  onHandleChange = (event) => {
     const name = event.target.getAttribute('name');
     this.setState({
       message: { ...this.state.message, [name]: event.target.value }
@@ -27,26 +27,11 @@ class SMSForm extends Component {
   }
 
 
-  // getUsers = () => {
-  //   axios.get("https://reminders-international.herokuapp.com/users", this.state.users)
-  //     .then(res => {
-  //     //  console.log('list of 500 users', res.data);
-  //       this.setState({
-  //       users: res.data
-  //       });
-  //       //  console.log('getUsers this.state.users', this.state.users);
-  //   })
-  //   .catch(err => {
-  //       console.log(err);
-  //   });
-  //  }
-
-      // .post("https://reminders-international.herokuapp.com/api/messages", {
-
-  onSubmit(event) {
+  onSubmit = (event) => {
     event.preventDefault();
     this.setState({ submitting: true });
-    fetch("http://localhost:3333/api/messages", {
+    fetch("https://reminders-international.herokuapp.com/api/messages", {
+    // fetch("http://localhost:3333/api/messages", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

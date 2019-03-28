@@ -15,11 +15,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [],
-      reminders: [{
-        name: '',
-        greeting: ''
-      }],
+      // users: [],
+      // reminders: [{
+      //   name: '',
+      //   greeting: ''
+      // }],
   };
 }
  auth = new Auth();
@@ -30,27 +30,16 @@ class App extends Component {
   }
  }
 
- 
 
-  getUsers = () => {
-    axios.get("https://reminders-international.herokuapp.com/users", this.state.users)
-      .then(res => {
-      //  console.log('list of 500 users', res.data);
-        this.setState({
-        users: res.data
-        });
-        //  console.log('getUsers this.state.users', this.state.users);
-    })
-    .catch(err => {
-        console.log(err);
-    });
-   }
 
   // This causes errors currently with auth0 loading
   // and other components because it triggers a quick succession of double renders.
   //we need to change this so that the users render but I'm not sure it should go at this level?
+
+  // Kat's response: getUsers and other functions are probably best in their own component. This is left over from last week when our main goal was to show 500 users.
+
   // componentDidMount() {  
-  //     this.getUsers();
+ 
   // }
 
  
