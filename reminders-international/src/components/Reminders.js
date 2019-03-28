@@ -11,16 +11,16 @@ class Reminders extends Component {
       name: '',
       greeting: ''
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
     // this.handleSubmitMsgList = this.handleSubmitMsgList.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({ name: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
     fetch(`/api/greeting?name=${encodeURIComponent(this.state.name)}`)
       .then(response => response.json())

@@ -48,9 +48,24 @@ class App extends Component {
     });
    }
 
+  //  getReminders = () => {
+  //   axios.get("http://localhost:3333/reminders/", this.state.users)
+  //     .then(res => {
+  //     //  console.log('list of 500 users', res.data);
+  //       this.setState({
+  //       users: res.data
+  //       });
+  //       //  console.log('getUsers this.state.users', this.state.users);
+  //   })
+  //   .catch(err => {
+  //       console.log(err);
+  //   });
+  //  }
+
   
   componentDidMount() {
     this.getUsers();
+    this.getReminders();
   }
 
  
