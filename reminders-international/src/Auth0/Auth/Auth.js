@@ -1,6 +1,6 @@
 import history from '../../history.js';
 import auth0 from 'auth0-js';
-// const dotenv = require('dotenv');
+const dotenv = require('dotenv'); //need to uncomment for local dev and testing
 
 // const result = dotenv.config();
 
@@ -73,7 +73,8 @@ export default class Auth {
         this.expiresAt = expiresAt;
     
         // navigate to the home route
-        history.replace('/home');
+        history.replace('/users');
+        window.location.reload();
       }
     
       renewSession() {
@@ -87,18 +88,31 @@ export default class Auth {
            }
         });
       }
-    
+
       logout() {
         // Remove tokens and expiry time
         this.accessToken = null;
         this.idToken = null;
         this.expiresAt = 0;
-    
+
+        // clear token renewal
+        clearTimeout(this.tokenRenewalTimeout);
+
         // Remove isLoggedIn flag from localStorage
         localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('idToken');
     
+        // clear our Auth0 session
+        this.auth0.logout({
+          returnTo: process.env.REACT_APP_LOGOUTURL,
+          client_id: process.env.REACT_APP_CLIENTID,
+        });
+      
         // navigate to the home route
-        history.replace('/home');
+        
+        // history.push('/');
+        // window.location.reload();
       }
     
       isAuthenticated() {

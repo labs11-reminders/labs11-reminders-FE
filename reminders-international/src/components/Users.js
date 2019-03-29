@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import requiresAuth from '../Auth0/Auth/requiresAuth.js';
+
 class Users extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +25,7 @@ class Users extends Component {
     });
    }
 
+
   componentDidMount() {
     this.getUsers();
   }
@@ -30,6 +33,7 @@ class Users extends Component {
   render() {
     console.log("Users Render:", this.state)
     return  (
+      
       <div className='users-container'>
         <h3>Welcome Admin!</h3>
         <p>Here is a list of all our current students and pertinent contact information:</p>
@@ -41,5 +45,5 @@ class Users extends Component {
   }
 }
 
-export default Users; 
+export default requiresAuth(Users); 
 
