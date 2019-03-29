@@ -8,8 +8,8 @@ class Home extends Component {
     render() { 
       console.log("Home Render this.state", this.state)
       return ( 
-          <div>You're logged in!</div>
-       );
+        <div>You're logged in!</div>
+      );
     }
   }
    

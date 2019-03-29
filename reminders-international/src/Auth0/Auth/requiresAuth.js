@@ -22,20 +22,7 @@ export default function(Component) {
     return class Authenticated extends React.Component {
 
         logout() {
-            // Remove tokens and expiry time
-            this.accessToken = null;
-            this.idToken = null;
-            this.expiresAt = 0;
-        
-            // Remove isLoggedIn flag from localStorage
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('accessToken');
-            localStorage.removeItem('idToken');
-        
-            // navigate to the home route
-            history.push('/');
-            window.location.reload();
-           
+            this.props.auth.logout();
         }
 
         login() {

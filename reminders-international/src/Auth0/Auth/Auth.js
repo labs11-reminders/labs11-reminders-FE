@@ -73,7 +73,8 @@ export default class Auth {
         this.expiresAt = expiresAt;
     
         // navigate to the home route
-        history.replace('/home');
+        history.replace('/users');
+        window.location.reload();
       }
     
       renewSession() {
@@ -93,12 +94,15 @@ export default class Auth {
         this.accessToken = null;
         this.idToken = null;
         this.expiresAt = 0;
-    
+
         // Remove isLoggedIn flag from localStorage
         localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('idToken');
     
         // navigate to the home route
-        history.replace('/home');
+        history.push('/');
+        window.location.reload();
       }
     
       isAuthenticated() {
