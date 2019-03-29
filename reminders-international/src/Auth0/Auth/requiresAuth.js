@@ -2,8 +2,9 @@ import history from '../../history.js';
 import React from 'react';
 import axios from 'axios';
 import { Button } from 'reactstrap';
+const dotenv = require('dotenv'); 
 
-axios.defaults.baseURL = 'http://localhost:3000' || '';
+axios.defaults.baseURL = process.env.REACT_APP_BASEURL || 'http://localhost:3000/';
 
 axios.interceptors.request.use(
     function(options) {
