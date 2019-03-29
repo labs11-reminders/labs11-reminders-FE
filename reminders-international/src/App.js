@@ -3,6 +3,8 @@ import { Route, withRouter, Switch } from 'react-router-dom';
 import { Users, Reminders } from './components';
 import axios from 'axios';
 
+
+
 import Auth from './Auth0/Auth/Auth';
 import Callback from './Auth0/Callback/Callback';
 import Auth0 from './Auth0/Auth0';
@@ -22,6 +24,7 @@ class App extends Component {
       // }],
   };
 }
+
  auth = new Auth();
 
  handleAuthentication = ({location}) => {
@@ -29,34 +32,25 @@ class App extends Component {
     this.auth.handleAuthentication();
   }
  }
-
-
-
-  // This causes errors currently with auth0 loading
-  // and other components because it triggers a quick succession of double renders.
-  //we need to change this so that the users render but I'm not sure it should go at this level?
-
-  // Kat's response: getUsers and other functions are probably best in their own component. This is left over from last week when our main goal was to show 500 users.
-
-  // componentDidMount() {  
- 
-  // }
-
  
   render() {
-    console.log("App Render", this.state);  // Renders twice
+    console.log("App Render", this.state);
+   
     return  (
+     
       <div className="App">
-          <Route exact path="/" render={(props) => <Auth0 auth={this.auth} {...props} />} />
+      
+          <Route exact path="/" render={(props) => <Auth0 auth={this.auth} {...props} />} /> 
           <Route exact path="/home" render={(props) => <Home auth={this.auth} {...props} />} />
           <Route exact path="/callback" render={(props) => {
               this.handleAuthentication(props);
               return <Callback {...props} /> 
             }}/>
-
+          
           <Route 
             exact path='/users' 
             render={props => <Users {...props} 
+            auth={this.auth}
             users={this.state.users} /> } 
           />
 
@@ -67,6 +61,7 @@ class App extends Component {
           />
 
       </div>
+      
     );
   }
 
@@ -75,19 +70,3 @@ class App extends Component {
 export default withRouter(App);
 
 
-  // <div className='users'>
-    //   <Auth />
-    //   <h3>Welcome to Reminders International!</h3>
-    //   <p>Contact information:</p>
-    //     <ol>
-    //      {this.state.users.map(user => <li key={user.id}>{user.name}: {user.email}, {user.phone}, {user.country}</li>)}
-    //     </ol>
-    // </div>
-
-    /* 
-    
-    <Auth0 //auth={this.auth} --I'm not sure we need this? This was an add on at lunch to fix what I thought was a props issue
-      />
-      
-      <Route path="/" render={(props) => <App auth={this.auth} {...props} />} />
-      */

@@ -40,13 +40,13 @@ class Auth0 extends Component {
             {/* <Navbar.Brand>
               <a href="">Reminders International</a>
             </Navbar.Brand> */}
-            <Button
+            {/* <Button
               // bsStyle="primary"
               // className="btn-margin"
               onClick={this.goTo.bind(this, 'home')}
             >
               Home
-            </Button>
+            </Button> */}
             {
               !isAuthenticated() && (
                   <Button
