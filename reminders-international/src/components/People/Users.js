@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import requiresAuth from '../Auth0/Auth/requiresAuth.js';
+import requiresAuth from '../../Auth0/Auth/requiresAuth.js';
 
 class Users extends Component {
   constructor(props) {

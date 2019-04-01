@@ -44,7 +44,7 @@ class App extends Component {
           <Route exact path="/callback" render={(props) => {
               this.handleAuthentication(props);
               return <Callback {...props} /> 
-            }}/>
+          }}/>
           
           <Route 
             exact path='/users' 

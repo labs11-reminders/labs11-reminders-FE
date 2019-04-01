@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import SMSForm from './SMSForm';
+import SMSForm from './SMSForm/SMSForm.js';
 import './Reminders.css';
 
 
