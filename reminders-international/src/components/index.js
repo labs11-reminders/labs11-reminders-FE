@@ -1,3 +1,3 @@
-// import Users from '.components/People/Users';
-// import Reminders from '.components/Reminders/Reminders';
-// export { Users, Reminders};
+import Users from './People/Users';
+import Reminders from './Reminders/Reminders';
+export { Users, Reminders};
