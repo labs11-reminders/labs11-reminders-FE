@@ -10,6 +10,7 @@ export default class Auth {
     idToken;
     expiresAt;
     userProfile;
+    tokenRenewalTimeout;
 
     //below needs to be attached to the .env file for security in the end
 
@@ -19,7 +20,7 @@ export default class Auth {
       redirectUri: process.env.REACT_APP_CALLBACKURL,
       responseType: 'token id_token',
       audience: 'https://localhost:3000/users',
-      scope: 'openid admin:access'
+      scope: 'openid profile admin:access'
     });
 
     constructor() {
@@ -30,6 +31,9 @@ export default class Auth {
       this.getAccessToken = this.getAccessToken.bind(this);
       this.getIdToken = this.getIdToken.bind(this);
       this.renewSession = this.renewSession.bind(this);
+      this.getProfile = this.getProfile.bind(this);
+      this.getExpiryDate = this.getExpiryDate.bind(this);
+      this.scheduleRenewal();
     }
 
     login() {
@@ -47,7 +51,7 @@ export default class Auth {
             history.replace('/home');
             console.log('Auth0: failure.')
             console.log(err);
-            alert(`Error: ${err.error}. Check the console for further details!!`);
+           // alert(`Error: ${err.error}. Check the console for further details!!`);
           }
         });
       }
@@ -71,10 +75,12 @@ export default class Auth {
         this.accessToken = authResult.accessToken;
         this.idToken = authResult.idToken;
         this.expiresAt = expiresAt;
+
+         // schedule a token renewal
+        this.scheduleRenewal();
     
         // navigate to the home route
         history.replace('/users');
-        window.location.reload();
       }
     
       renewSession() {
@@ -89,11 +95,23 @@ export default class Auth {
         });
       }
 
+      getProfile(cb) {
+        this.auth0.client.userInfo(this.accessToken, (err, profile) => {
+          if (profile) {
+            this.userProfile = profile;
+          }
+          cb(err, profile);
+        });
+      }
+
       logout() {
         // Remove tokens and expiry time
         this.accessToken = null;
         this.idToken = null;
         this.expiresAt = 0;
+
+        // Remove user profile
+        this.userProfile = null;
 
         // clear token renewal
         clearTimeout(this.tokenRenewalTimeout);
@@ -111,7 +129,7 @@ export default class Auth {
       
         // navigate to the home route
         
-        // history.push('/');
+        history.replace('/home');
         // window.location.reload();
       }
     
@@ -121,4 +139,19 @@ export default class Auth {
         let expiresAt = this.expiresAt;
         return new Date().getTime() < expiresAt;
       }
+
+      scheduleRenewal() {
+        let expiresAt = this.expiresAt;
+        const timeout = expiresAt - Date.now();
+        if (timeout > 0) {
+          this.tokenRenewalTimeout = setTimeout(() => {
+            this.renewSession();
+          }, timeout);
+        }
+      }
+    
+      getExpiryDate() {
+        return JSON.stringify(new Date(this.expiresAt));
+      }      
+
 };

@@ -39,13 +39,12 @@ class App extends Component {
     return  (
      
       <div className="App">
-      
-          <Route exact path="/" render={(props) => <Auth0 auth={this.auth} {...props} />} /> 
+          <Route path="/" render={(props) => <Auth0 auth={this.auth} {...props} />} /> 
           <Route exact path="/home" render={(props) => <Home auth={this.auth} {...props} />} />
           <Route exact path="/callback" render={(props) => {
               this.handleAuthentication(props);
               return <Callback {...props} /> 
-            }}/>
+          }}/>
           
           <Route 
             exact path='/users' 
