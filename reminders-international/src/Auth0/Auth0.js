@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Navbar, Button } from 'reactstrap';
+import { Navbar, Button, NavbarBrand } from 'reactstrap';
+
+
 //import './App.css';
 
 class Auth0 extends Component {
@@ -35,24 +37,12 @@ class Auth0 extends Component {
     //console.log(this.props.auth);
     return (
       <div>
-        <Navbar >
-          {/* <Navbar.Header> */}
-            {/* <Navbar.Brand>
-              <a href="">Reminders International</a>
-            </Navbar.Brand> */}
-            {/* <Button
-              // bsStyle="primary"
-              // className="btn-margin"
-              onClick={this.goTo.bind(this, 'home')}
-            >
-              Home
-            </Button> */}
+        <Navbar color="light">
+          <NavbarBrand href="/">MFI International</NavbarBrand>
             {
               !isAuthenticated() && (
                   <Button
-                    // id="qsLoginBtn"
-                    // bsStyle="primary"
-                    // className="btn-margin"
+                    color="primary"
                     onClick={this.login.bind(this)}
                   >
                     Log In
@@ -62,9 +52,7 @@ class Auth0 extends Component {
             {
               isAuthenticated() && (
                   <Button
-                    // id="qsLogoutBtn"
-                    // bsStyle="primary"
-                    // className="btn-margin"
+                    color="primary"
                     onClick={this.logout.bind(this)}
                   >
                     Log Out

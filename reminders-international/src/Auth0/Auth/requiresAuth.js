@@ -22,20 +22,12 @@ axios.interceptors.request.use(
 export default function(Component) {
     return class Authenticated extends React.Component {
 
-        logout() {
-            this.props.auth.logout();
-        }
-
-        login() {
-            this.props.auth.login();
-        }
-
         render() {
             const token = localStorage.getItem('idToken');
             const notLoggedIn = <div>Please login to access that information.</div>;
 
             return <> {token ? <Component {...this.props} /> : notLoggedIn}  
-            {token ? <Button onClick={this.logout.bind(this)}>Logout</Button> : <Button onClick={this.login.bind(this)}>Login</Button>} </>;
+            </>;
 
             
         }
