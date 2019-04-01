@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
-import { Users, Reminders } from './components';
+import { Users, Reminders, NewMessage } from './components';
 import axios from 'axios';
 
 
@@ -16,13 +16,13 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    // this.state = {
       // users: [],
       // reminders: [{
       //   name: '',
       //   greeting: ''
       // }],
-  };
+  // };
 }
 
  auth = new Auth();
@@ -50,13 +50,23 @@ class App extends Component {
             exact path='/users' 
             render={props => <Users {...props} 
             auth={this.auth}
-            users={this.state.users} /> } 
+            //users={this.state.users}
+             /> } 
           />
 
           <Route 
             exact path='/sms-form' 
-            render={props => <Reminders {...props} 
-            users={this.state.reminders} /> } 
+            render={props => <Reminders {...props}
+            auth={this.auth} 
+            // users={this.state.reminders}
+             /> } 
+          />
+
+          <Route 
+            exact path='/newmessages' 
+            render={props => <NewMessage {...props}
+            auth={this.auth} 
+             /> } 
           />
 
       </div>
