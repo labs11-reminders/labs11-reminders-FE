@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router';
-import { Container, NavBar, Form, FormGroup, Input, Button } from 'reactstrap';
+import { Container, FormGroup, Button } from 'reactstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
@@ -10,7 +9,6 @@ class AddOrgForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // orgs: {...newOrg},
       orgs: [],
       message: '',
     };
@@ -45,10 +43,6 @@ class AddOrgForm extends Component {
     });
   }
 
-  // goHome = route => {
-  //   this.props.history.push("/home")
-  // }
-
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState( { orgs: { ...this.state.orgs, [name]: value}})
@@ -58,25 +52,6 @@ class AddOrgForm extends Component {
     console.log("Add Org render", this.state)
     return (
       <Container className="Add-Org-From" onSubmit={this.addOrg}>
-      {/* <Form className = "org-form">
-        <FormGroup>
-          <Input 
-            type="select" 
-            name="name" 
-            id="id" 
-            placeholder="type the name of your organization here"
-            value={this.state.orgs.name}
-            onChange={this.onHandleChange}            
-            >
-            {
-              this.state.orgs.map(org =>
-              <option key={org.id} value={org.value}  > 
-                {org.name}</option>
-              )
-            } 
-          </Input>
-          <Button onClick={this.goHome}>My Dashboard</Button>
-        </FormGroup> */}
         <FormGroup>
           <p>Can't find your organization?</p> 
           <input
@@ -93,8 +68,6 @@ class AddOrgForm extends Component {
           />
           <Button type='submit' onClick={this.addOrg}>Add it here</Button>
         </FormGroup>
-        
-      {/* </Form> */}
       </Container>
     );
   }

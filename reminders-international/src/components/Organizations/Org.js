@@ -55,7 +55,6 @@ class Org extends Component {
             type="select" 
             name="name" 
             id="id" 
-            placeholder="type the name of your organization here"
             value={this.state.orgs.name}
             onChange={this.onHandleChange}            
             >
@@ -66,7 +65,7 @@ class Org extends Component {
               )
             } 
           </Input>
-          <Button onClick={this.goHome}>My Dashboard</Button>
+          <Button onClick={this.goHome}>Next</Button>
         </FormGroup>
 
       </Form>
