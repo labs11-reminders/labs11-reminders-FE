@@ -36,7 +36,6 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Route exact path="/dashboard" component={Dashboard} />
         <Route
           path="/"
           render={props => <Auth0 auth={this.auth} {...props} />}
@@ -80,6 +79,8 @@ class App extends Component {
             <Reminders {...props} users={this.state.reminders} />
           )}
         />
+
+        <Route exact path="/dashboard" component={Dashboard} />
       </div>
     );
   }
