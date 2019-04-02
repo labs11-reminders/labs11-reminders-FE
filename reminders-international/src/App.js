@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
-import { Users, Reminders, NewGroupMessage, Org, Dashboard, People } from './components';
+import { Users, Reminders, NewGroupMessage, Org, Dashboard, Group, People } from './components';
 import axios from 'axios';
 
 import Auth from './Auth0/Auth/Auth';
@@ -57,12 +57,6 @@ class App extends Component {
           )}
         />
 
-        {/* <Route
-          exact
-          path="/newmessages"
-          render={props => <NewMessage {...props} auth={this.auth} />}
-        /> */}
-
         <Route
           exact
           path="/sms-form"
@@ -76,21 +70,32 @@ class App extends Component {
             render={props => <Org {...props}
             auth={this.auth}
             /> }  */}
+          
           <Route 
+            exact path='/join-org-form' 
+            component={Org}
+          />
+      
+          <Route 
+            exact path='/join-group-form' 
+            component={Group}
+          />
+
+        <Route exact path="/dashboard" component={Dashboard} />
+
+        <Route 
             exact path='/newgroupmessage' 
             render={props => (<NewGroupMessage {...props}
             auth={this.auth} />       
             )}
           />
 
-          <Route 
-            exact path='/people' 
-            render={props => (<People {...props}
-            auth={this.auth} />       
-            )}
-          />
-      
-        <Route exact path="/dashboard" component={Dashboard} />
+        <Route 
+          exact path='/people' 
+          render={props => (<People {...props}
+          auth={this.auth} />       
+          )}
+        />
       </div>
     );
   }
