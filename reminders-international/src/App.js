@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
-import { Users, Reminders } from './components';
 import Dashboard from './components/Dashboard/Dashboard';
+import { Users, Reminders, NewMessage } from './components';
 import axios from 'axios';
 
 import Auth from './Auth0/Auth/Auth';
@@ -14,13 +14,13 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // users: [],
-      // reminders: [{
-      //   name: '',
-      //   greeting: ''
-      // }],
-    };
+    // this.state = {
+    // users: [],
+    // reminders: [{
+    //   name: '',
+    //   greeting: ''
+    // }],
+    // };
   }
 
   auth = new Auth();
@@ -36,6 +36,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <Route exact path="/dashboard" component={Dashboard} />
         <Route
           path="/"
           render={props => <Auth0 auth={this.auth} {...props} />}
@@ -58,11 +59,19 @@ class App extends Component {
           exact
           path="/users"
           render={props => (
-            <Users {...props} auth={this.auth} users={this.state.users} />
+            <Users
+              {...props}
+              auth={this.auth}
+              //users={this.state.users}
+            />
           )}
         />
 
-        <Route exact path="/dashboard" component={Dashboard} />
+        <Route
+          exact
+          path="/newmessages"
+          render={props => <NewMessage {...props} auth={this.auth} />}
+        />
 
         <Route
           exact

@@ -1,3 +1,4 @@
 import Users from './People/Users';
 import Reminders from './Reminders/Reminders';
-export { Users, Reminders};
+import NewMessage from './NewMessage/NewMessage';
+export { Users, Reminders, NewMessage};

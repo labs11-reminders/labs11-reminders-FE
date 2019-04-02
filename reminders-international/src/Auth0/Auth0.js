@@ -5,6 +5,10 @@ import { Navbar, Button, NavbarBrand } from 'reactstrap';
 //import './App.css';
 
 class Auth0 extends Component {
+  try = (route) => {
+    this.props.history.push(route);
+  }
+
   goTo(route) {
     this.props.history.replace(`/${route}`)
   }
@@ -15,6 +19,10 @@ class Auth0 extends Component {
 
   logout() {
     this.props.auth.logout();
+  }
+
+  goSMS = event => {
+    this.try("/sms-form");
   }
 
   componentDidMount() {
@@ -39,6 +47,11 @@ class Auth0 extends Component {
       <div>
         <Navbar color="light">
           <NavbarBrand href="/">MFI International</NavbarBrand>
+          <Button
+              color="primary"
+              onClick={this.goSMS}>
+            SMS
+          </Button>
             {
               !isAuthenticated() && (
                   <Button
