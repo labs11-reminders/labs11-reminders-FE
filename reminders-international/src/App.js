@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
-import { Users, Reminders, NewMessage, Org, Dashboard } from './components';
+import { Users, Reminders, NewMessage, Org, Dashboard, People } from './components';
 import axios from 'axios';
 
 import Auth from './Auth0/Auth/Auth';
@@ -79,6 +79,13 @@ class App extends Component {
           <Route 
             exact path='/newmessage' 
             render={props => (<NewMessage {...props}
+            auth={this.auth} />       
+            )}
+          />
+
+          <Route 
+            exact path='/people' 
+            render={props => (<People {...props}
             auth={this.auth} />       
             )}
           />
