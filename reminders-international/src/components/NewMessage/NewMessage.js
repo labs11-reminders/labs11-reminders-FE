@@ -7,7 +7,8 @@ class NewMessage extends Component {
     render() {
         return (
             <div className="NewMessage">
-                <MessageModal />            
+            <p>Create new message:</p>
+                <MessageModal buttonLabel="Click Me!" />            
             </div>
         );
     }

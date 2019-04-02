@@ -14,16 +14,8 @@ import Home from './Home';
 import './App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    // this.state = {
-      // users: [],
-      // reminders: [{
-      //   name: '',
-      //   greeting: ''
-      // }],
-  // };
-}
+  
+
 
  auth = new Auth();
 
@@ -63,7 +55,7 @@ class App extends Component {
           />
 
           <Route 
-            exact path='/newmessages' 
+            exact path='/newmessage' 
             render={props => <NewMessage {...props}
             auth={this.auth} 
              /> } 
