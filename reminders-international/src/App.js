@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
-import { Users, Reminders, NewMessage, Org, Dashboard, People } from './components';
+import { Users, Reminders, NewGroupMessage, Org, Dashboard, People } from './components';
 import axios from 'axios';
 
 import Auth from './Auth0/Auth/Auth';
@@ -57,11 +57,11 @@ class App extends Component {
           )}
         />
 
-        <Route
+        {/* <Route
           exact
           path="/newmessages"
           render={props => <NewMessage {...props} auth={this.auth} />}
-        />
+        /> */}
 
         <Route
           exact
@@ -77,8 +77,8 @@ class App extends Component {
             auth={this.auth}
             /> }  */}
           <Route 
-            exact path='/newmessage' 
-            render={props => (<NewMessage {...props}
+            exact path='/newgroupmessage' 
+            render={props => (<NewGroupMessage {...props}
             auth={this.auth} />       
             )}
           />
