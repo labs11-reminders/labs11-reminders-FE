@@ -4,13 +4,14 @@ import UserGroupList from './UserGroupList';
 
 class NewMessage extends Component {
     
+    
 
     render() {
         return (
             <div className="NewMessage">
             
                 <UserGroupList />
-                <MessageModal buttonLabel="Click Me!" />            
+                <MessageModal buttonLabel="Compose New Message" />            
             </div>
         );
     }

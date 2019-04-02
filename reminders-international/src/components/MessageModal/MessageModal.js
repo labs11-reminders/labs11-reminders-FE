@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input } from 'reactstrap';
 
 class MessageModal extends React.Component {
   constructor(props) {
@@ -24,9 +24,10 @@ class MessageModal extends React.Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Create a Message</ModalHeader>
           <ModalBody>
-            <form> 
-
-            </form>
+            <FormGroup>
+              <Label for="messageText">Write Message Here</Label>
+              <Input type="textarea" name="text" id="messageText" />
+            </FormGroup>
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>Save Draft</Button>{' '}
