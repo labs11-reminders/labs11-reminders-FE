@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
-import Dashboard from './components/Dashboard/Dashboard';
-import { Users, Reminders, NewMessage } from './components';
+import { Users, Reminders, NewMessage, Org, Dashboard } from './components';
 import axios from 'axios';
 
 import Auth from './Auth0/Auth/Auth';
@@ -79,6 +78,16 @@ class App extends Component {
             <Reminders {...props} users={this.state.reminders} />
           )}
         />
+
+          {/* <Route 
+            exact path='/join-org-form' 
+            render={props => <Org {...props}
+            auth={this.auth}
+            /> }  */}
+          <Route 
+            exact path='/join-org-form' 
+            component={Org}
+          />
 
         <Route exact path="/dashboard" component={Dashboard} />
       </div>
