@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
-import { Users, Reminders, NewMessage, Org, Dashboard, Group, CreateGroupAlt } from './components';
+import { 
+  Users, 
+  Reminders, 
+  NewMessage, 
+  Org, 
+  Dashboard, 
+  Group, 
+  CreateGroupAlt 
+} from './components';
 import axios from 'axios';
 
 import Auth from './Auth0/Auth/Auth';
