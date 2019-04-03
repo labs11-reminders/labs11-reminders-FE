@@ -5,5 +5,5 @@ import Group from './Groups/Group';
 import CreateGroupAlt from './Groups/CreateGroupAlt';
 import Reminders from './Reminders/Reminders';
 import NewMessage from './NewMessage/NewMessage';
-import Roles from './components/Roles/Roles';
+import Roles from './Roles/Roles';
 export { Users, Dashboard, Org, Group, Reminders, NewMessage, CreateGroupAlt, Roles };
