@@ -9,6 +9,7 @@ import {
   Group, 
   CreateGroupAlt,
   Roles,
+  TemplateList, 
   People 
 } from './components';
 
@@ -68,12 +69,16 @@ class App extends Component {
           )}
         />
 
-        <Route
+        {/* <Route
           exact
           path="/sms-form"
           render={props => (
             <Reminders {...props} users={this.state.reminders} />
           )}
+        /> */}
+
+        <Route
+          exact path="/sms-form" component={Reminders}
         />
 
         {/* <Route 
@@ -95,6 +100,7 @@ class App extends Component {
         
         <Route exact path="/select-role" component={Roles} />
 
+        <Route exact path="/template-list" component={TemplateList} />
       </div>
     );
   }

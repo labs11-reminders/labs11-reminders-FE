@@ -6,5 +6,21 @@ import CreateGroupAlt from './Groups/CreateGroupAlt';
 import Reminders from './Reminders/Reminders';
 import NewGroupMessage from './NewGroupMessage/NewGroupMessage';
 import Roles from './Roles/Roles';
+import TemplateList from './Templates/TemplateList';
 import People from './People/People';
-export { Users, Dashboard, Org, Group, Reminders, NewGroupMessage, CreateGroupAlt, Roles, People };
+
+
+
+export { 
+  Users, 
+  Dashboard, 
+  Org, 
+  Group, 
+  Reminders, 
+  CreateGroupAlt, 
+  Roles, 
+  TemplateList, 
+  People, 
+  NewGroupMessage 
+
+};
