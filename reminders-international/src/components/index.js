@@ -11,4 +11,16 @@ import People from './People/People';
 
 
 
-export { Users, Dashboard, Org, Group, Reminders, NewMessage, CreateGroupAlt, Roles, TemplateList, People, NewGroupMessage };
+export { 
+  Users, 
+  Dashboard, 
+  Org, 
+  Group, 
+  Reminders, 
+  CreateGroupAlt, 
+  Roles, 
+  TemplateList, 
+  People, 
+  NewGroupMessage 
+
+};
