@@ -8,7 +8,8 @@ import {
   Dashboard, 
   Group, 
   CreateGroupAlt,
-  Roles, 
+  Roles,
+  TemplateList, 
 } from './components';
 
 import axios from 'axios';
@@ -75,18 +76,28 @@ class App extends Component {
           )}
         />
 
-        <Route
+        {/* <Route
           exact
           path="/newmessages"
           render={props => <NewMessage {...props} auth={this.auth} />}
-        />
+        /> */}
 
         <Route
+          exact
+          path="/newmessages"
+          component={NewMessage}
+        />
+
+        {/* <Route
           exact
           path="/sms-form"
           render={props => (
             <Reminders {...props} users={this.state.reminders} />
           )}
+        /> */}
+
+        <Route
+          exact path="/sms-form" component={Reminders}
         />
 
         {/* <Route 
@@ -98,11 +109,12 @@ class App extends Component {
 
         <Route exact path="/join-group-form" component={Group} />
 
-          <Route 
-            exact path='/create-a-group-alt' component={CreateGroupAlt}/>
+        <Route exact path='/create-a-group-alt' component={CreateGroupAlt}/>
 
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/select-role" component={Roles} />
+
+        <Route exact path="/template-list" component={TemplateList} />
       </div>
     );
   }
