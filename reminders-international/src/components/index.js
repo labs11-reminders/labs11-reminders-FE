@@ -8,4 +8,7 @@ import NewGroupMessage from './NewGroupMessage/NewGroupMessage';
 import Roles from './Roles/Roles';
 import TemplateList from './Templates/TemplateList';
 import People from './People/People';
-export { Users, Dashboard, Org, Group, Reminders, NewMessage, CreateGroupAlt, Roles, TemplateList, People };
+
+
+
+export { Users, Dashboard, Org, Group, Reminders, NewMessage, CreateGroupAlt, Roles, TemplateList, People, NewGroupMessage };
