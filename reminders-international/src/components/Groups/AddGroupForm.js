@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, FormGroup, Button } from 'reactstrap';
+import { Container, FormGroup, Button, Input } from 'reactstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
@@ -54,7 +54,7 @@ class AddGroupForm extends Component {
       <Container className="Add-Group-From" onSubmit={this.addGroup}>
         <FormGroup>
           <label>Group name</label> 
-          <input
+          <Input
             onChange={this.handleInputChange}
             placeholder="example: Marketing 101"
             value={this.state.groups.name}

@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
-import Roles from './components/Roles/Roles';
-import {
-  Users,
-  Reminders,
-  NewMessage,
-  Org,
-  Dashboard,
-  Group,
+import { 
+  Users, 
+  Reminders, 
+  NewMessage, 
+  Org, 
+  Dashboard, 
+  Group, 
+  CreateGroupAlt,
+  Roles, 
 } from './components';
+
 import axios from 'axios';
 
 import Auth from './Auth0/Auth/Auth';
@@ -95,6 +97,9 @@ class App extends Component {
         <Route exact path="/join-org-form" component={Org} />
 
         <Route exact path="/join-group-form" component={Group} />
+
+          <Route 
+            exact path='/create-a-group-alt' component={CreateGroupAlt}/>
 
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/select-role" component={Roles} />
