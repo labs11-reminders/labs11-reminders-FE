@@ -25,17 +25,13 @@ class SearchBar extends Component {
         })
       }
 
-    //webAddress = "https://reminders-international.herokuapp.com/api";
-    //webAddress = "https://localhost:3000/api";
-   
-
     searchUsers = () => {
         console.log('search....');
         axios.interceptors.request.use(request => {
             console.log('Starting Request', request)
             return request
             });
-        axios.post("http://localhost:3333/api/users/search", {search: this.state.query})
+        axios.post(`${process.env.REACT_APP_BACKEND}/api/users/search`, {search: this.state.query})
         .then(res => {
             this.setState({
                 users: res.data
@@ -47,7 +43,7 @@ class SearchBar extends Component {
     }
 
     addUserToGroup = () => {
-        axios.post("https://localhost:3000/api/add/user", this.state.users)
+        axios.post(`${process.env.REACT_APP_BACKEND}/api/add/user`, this.state.users)
         .then(res => {
             this.setState({
                 users: res.data

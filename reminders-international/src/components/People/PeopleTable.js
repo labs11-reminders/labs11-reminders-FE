@@ -13,7 +13,7 @@ class PeopleTable extends Component {
 
     getUsersByGroup = () => {
         //group id is hardcoded in - need to change it to pull id from props
-        axios.get("http://localhost:3333/api/groups/2/users", this.state.users)
+        axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/2/users`, this.state.users)
           .then(res => {  
             this.setState({
                 users: res.data
@@ -25,7 +25,7 @@ class PeopleTable extends Component {
     }
 
     removeUserFromGroup = () => {
-        axios.get("https://localhost:3000/api/remove/user", this.state.users)
+        axios.get(`${process.env.REACT_APP_BACKEND}/api/remove/user`, this.state.users)
         .then(res => {
             this.setState({
                 users: res.data

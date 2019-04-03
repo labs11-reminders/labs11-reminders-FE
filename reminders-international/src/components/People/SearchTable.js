@@ -10,7 +10,7 @@ class SearchTable extends Component {
 
 
     removeUserFromGroup = () => {
-        axios.get("https://localhost:3000/api/remove/user", this.state.users)
+        axios.get(`${process.env.REACT_APP_BACKEND}/api/remove/user`, this.state.users)
         .then(res => {
             this.setState({
                 users: res.data
