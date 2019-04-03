@@ -1,0 +1,54 @@
+.rolesContainer {
+    margin: auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 90vh
+}
+
+.rolesWrapper {
+    width: 40vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 15px;
+    justify-content: center;
+}
+
+.roleCard {
+    margin: 3%;
+    box-shadow: 0px 0px 7px rgb(110, 110, 110);
+    width: 15vw;
+    height: 15vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.roleCard p {
+    padding-top: 15px;
+    font-size: 0.8rem
+}
+
+#roleBtn {
+    width: 100%;
+    font-size: 0.9rem;
+    height: 20%;
+}
+
+#activeBtn {
+    width: 100%;
+    font-size: 0.9rem;
+    height: 20%;
+    background-color: #007bff;
+}
+
+#size {
+    width: 10%;
+    background-color: #007bff;
+}
+
+#size:hover {
+    background-color: #0068d8;
+}
