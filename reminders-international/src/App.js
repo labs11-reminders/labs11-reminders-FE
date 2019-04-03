@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
-import Roles from './components/Roles/Roles';
+
 import {
   Users,
   Reminders,
@@ -8,6 +8,7 @@ import {
   Org,
   Dashboard,
   Group,
+  Roles
 } from './components';
 import axios from 'axios';
 
