@@ -1,24 +1,37 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
+import SearchTable from './SearchTable';
 
 class SearchBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          users: []
+          users: [],
+          query: ''
         };
     }
 
-    handleChanges = e => {
-        this.setState({ [e.target.name]: e.target.value });
-    }
-
-    //webAddress = "https://reminders-international.herokuapp.com/api";
-    //webAddress = "https://localhost:3000/api";
+    handleChanges = () => {
+        console.log('search change detected');
+        this.setState({
+          query: this.search.value
+        }, () => {
+          if (this.state.query && this.state.query.length > 1) {
+            if (this.state.query.length % 2 === 0) {
+              this.searchUsers()
+            }
+          } 
+        })
+      }
 
     searchUsers = () => {
-        axios.post("https://localhost:3000/api/users/search", this.state.users)
+        console.log('search....');
+        axios.interceptors.request.use(request => {
+            console.log('Starting Request', request)
+            return request
+            });
+        axios.post(`${process.env.REACT_APP_BACKEND}/api/users/search`, {search: this.state.query})
         .then(res => {
             this.setState({
                 users: res.data
@@ -30,7 +43,7 @@ class SearchBar extends Component {
     }
 
     addUserToGroup = () => {
-        axios.post("https://localhost:3000/api/add/user", this.state.users)
+        axios.post(`${process.env.REACT_APP_BACKEND}/api/add/user`, this.state.users)
         .then(res => {
             this.setState({
                 users: res.data
@@ -44,15 +57,17 @@ class SearchBar extends Component {
 
     render() {
         return (
-        <InputGroup>
-            <InputGroupAddon addonType="prepend">@</InputGroupAddon>
-            <Input 
-                placeholder="search"
-                onChange={this.handleChanges}
-                search={this.searchUsers}
-            />
-            <Button color="success" onClick={this.addUserToGroup}>Add User</Button>
-        </InputGroup>
+     
+
+        <form>
+        <input
+          placeholder="Search for user..."
+          ref={input => this.search = input}
+          onChange={this.handleChanges}
+        />
+        
+        <SearchTable users={this.state.users} />
+        </form>
         
         );
     }
