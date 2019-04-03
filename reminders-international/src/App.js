@@ -3,12 +3,13 @@ import { Route, withRouter, Switch } from 'react-router-dom';
 import { 
   Users, 
   Reminders, 
-  NewMessage, 
+  NewGroupMessage, 
   Org, 
   Dashboard, 
   Group, 
   CreateGroupAlt,
-  Roles, 
+  Roles,
+  People 
 } from './components';
 
 import axios from 'axios';
@@ -21,16 +22,8 @@ import Home from './Home';
 import './App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    // this.state = {
-    // users: [],
-    // reminders: [{
-    //   name: '',
-    //   greeting: ''
-    // }],
-    // };
-  }
+  
+
 
   auth = new Auth();
 
@@ -77,12 +70,6 @@ class App extends Component {
 
         <Route
           exact
-          path="/newmessages"
-          render={props => <NewMessage {...props} auth={this.auth} />}
-        />
-
-        <Route
-          exact
           path="/sms-form"
           render={props => (
             <Reminders {...props} users={this.state.reminders} />
@@ -98,11 +85,16 @@ class App extends Component {
 
         <Route exact path="/join-group-form" component={Group} />
 
-          <Route 
-            exact path='/create-a-group-alt' component={CreateGroupAlt}/>
+        <Route exact path='/create-a-group-alt' component={CreateGroupAlt}/>
 
         <Route exact path="/dashboard" component={Dashboard} />
+
+        <Route exact path='/newgroupmessage' component={NewGroupMessage}/>
+
+        <Route exact path='/people' component={People}/>
+        
         <Route exact path="/select-role" component={Roles} />
+
       </div>
     );
   }
