@@ -192,11 +192,7 @@ class Sidebar extends Component {
               <FormGroup row>
                 <Label for="country">Country</Label>
                 <Col sm={10}>
-                  <Input
-                    placeholder="Peru - January Cohort"
-                    name="country"
-                    id="country"
-                  />
+                  <Input placeholder="Country" name="country" id="country" />
                 </Col>
               </FormGroup>
             </Form>
