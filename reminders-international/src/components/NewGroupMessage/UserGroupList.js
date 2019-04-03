@@ -13,7 +13,8 @@ class UserGroupList extends Component {
 
     getUsersByGroup = () => {
         //group id is hardcoded in - need to change it to pull id from props
-        axios.get("https://reminders-international.herokuapp.com/api/groups/2/users", this.state.users)
+        axios.get("http://localhost:3333/api/groups/2/users", this.state.users)
+        //axios.get("https://reminders-international.herokuapp.com/api/groups/2/users", this.state.users)
           .then(res => {  
             this.setState({
                 users: res.data

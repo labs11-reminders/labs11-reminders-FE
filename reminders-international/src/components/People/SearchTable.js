@@ -3,26 +3,11 @@ import axios from 'axios';
 
 import { Table, Button } from 'reactstrap';
 
-class PeopleTable extends Component {
+class SearchTable extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-          users: []
-        };
     }
 
-    getUsersByGroup = () => {
-        //group id is hardcoded in - need to change it to pull id from props
-        axios.get("http://localhost:3333/api/groups/2/users", this.state.users)
-          .then(res => {  
-            this.setState({
-                users: res.data
-            });
-        })
-        .catch(err => {
-            console.log(err);
-        });
-    }
 
     removeUserFromGroup = () => {
         axios.get("https://localhost:3000/api/remove/user", this.state.users)
@@ -36,13 +21,23 @@ class PeopleTable extends Component {
         })
     }
 
-    componentDidMount() {
-        this.getUsersByGroup();
+    emptyTable = () => {
+        if (this.props.users.length === 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
+    
     render() {
         return (
+            <div>
+            {
+                this.emptyTable() && (
             <Table>
+                
+                
             <thead>
               <tr>
                 
@@ -53,22 +48,25 @@ class PeopleTable extends Component {
                 <th></th>
               </tr>
             </thead>
+        
             <tbody>
-                {this.state.users.map(user => 
+                
+                {this.props.users.map(user => 
                     <tr>
                        
                         <td>{user.name}</td>
                         <td>{user.country}</td>
                         <td>{user.email}</td>
                         <td>{user.phone}</td>
-                        <td><Button color="danger" onClick={this.removeUserFromGroup}>X</Button></td>
+                        <td><Button color="success" onClick={this.removeUserFromGroup}>+</Button></td>
                     </tr>
                 )}
             </tbody>
             </Table>
-            
+                )}
+                </div>
         )
     }
 }
 
-export default PeopleTable;
+export default SearchTable;
