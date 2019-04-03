@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
+<<<<<<< HEAD
 import { Users, Reminders, NewMessage, Org, Dashboard } from './components';
 import Roles from './components/Roles/Roles';
+=======
+import { Users, Reminders, NewMessage, Org, Dashboard, Group } from './components';
+>>>>>>> 8b4b46cf384531aa8300dee46ea1a8d189102956
 import axios from 'axios';
 
 import Auth from './Auth0/Auth/Auth';
@@ -86,6 +90,11 @@ class App extends Component {
             auth={this.auth}
             /> }  */}
         <Route exact path="/join-org-form" component={Org} />
+
+          <Route 
+            exact path='/join-group-form' 
+            component={Group}
+          />
 
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/select-role" component={Roles} />
