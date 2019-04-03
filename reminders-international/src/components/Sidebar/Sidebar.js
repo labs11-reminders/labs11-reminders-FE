@@ -19,9 +19,11 @@ class Sidebar extends Component {
         </section>
         <section className="groupsSection cube">
           <h6>GROUPS</h6>
+
           <NavLink id="createLink" onClick={null}>
-            Create Group
+            <i class="fas fa-plus-circle" /> &nbsp; Create Group
           </NavLink>
+
           <div>Group Name List</div>
         </section>
         <section className="convSection cube">

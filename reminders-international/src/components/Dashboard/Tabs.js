@@ -21,7 +21,6 @@ export default class Example extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       activeTab: '1',
-      activeNav: '1',
     };
   }
 
