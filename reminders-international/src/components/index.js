@@ -2,7 +2,6 @@ import Users from './People/Users';
 import Dashboard from './Dashboard/Dashboard';
 import Org from './Organizations/Org';
 import Group from './Groups/Group';
-import CreateGroupAlt from './Groups/CreateGroupAlt';
 import Reminders from './Reminders/Reminders';
 import NewMessage from './NewMessage/NewMessage';
 import Roles from './Roles/Roles';
@@ -13,6 +12,5 @@ export {
   Group,
   Reminders,
   NewMessage,
-  CreateGroupAlt,
   Roles,
 };

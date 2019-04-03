@@ -136,3 +136,58 @@ h6 {
     cursor: pointer
 }
 
+/******************** Modal Section ****************/
+.groupModal {
+    box-shadow: 0px 0px 8px rgb(44, 44, 44);
+    width: 100vw;
+    position: absolute;
+    top: 10%;
+    text-align: center
+}
+
+.modalBody {
+    margin: 0 8%;
+}
+
+.modalBody img {
+    border: 1px solid red;
+    width: 125px;
+    height: 125px;
+    margin: 0 auto;
+    border-radius: 100%;
+    box-shadow: 0px 0px 8px rgb(117, 117, 117);
+
+}
+
+.modalProfile {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 3%;
+}
+
+.createGroup {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 5%;
+}
+
+#alertModalWrap {
+   margin-top: 20%;
+}
+
+#alertModal {
+    color: red;
+    text-align: center;
+    font-weight: bold
+}
+
+#alertModalFooter {
+    display: flex; 
+    justify-content: center;
+}
+
+#alertModalFooter Button {
+    width: 20vw;
+}
