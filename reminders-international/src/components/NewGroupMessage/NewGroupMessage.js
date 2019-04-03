@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MessageModal from '../MessageModal/MessageModal';
 import UserGroupList from './UserGroupList';
 
-class NewMessage extends Component {
+class NewGroupMessage extends Component {
     
     
 
@@ -17,4 +17,4 @@ class NewMessage extends Component {
     }
 }
 
-export default NewMessage;
+export default NewGroupMessage;
