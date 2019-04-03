@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import RowElement from './RowElement.js'
 import { Table, Button } from 'reactstrap';
 
 class SearchTable extends Component {
     constructor(props) {
         super(props);
-    }
-
-
-    removeUserFromGroup = () => {
-        axios.get(`${process.env.REACT_APP_BACKEND}/api/remove/user`, this.state.users)
-        .then(res => {
-            this.setState({
-                users: res.data
-            });
-        })
-        .catch(err => {
-            console.log(err);
-        })
+        this.state = {
+            group: {
+                id: 2,
+            }
+          };
     }
 
     emptyTable = () => {
@@ -45,21 +37,14 @@ class SearchTable extends Component {
                 <th>Country</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th></th>
+                <th>Add to Group</th>
               </tr>
             </thead>
         
             <tbody>
                 
                 {this.props.users.map(user => 
-                    <tr>
-                       
-                        <td>{user.name}</td>
-                        <td>{user.country}</td>
-                        <td>{user.email}</td>
-                        <td>{user.phone}</td>
-                        <td><Button color="success" onClick={this.removeUserFromGroup}>+</Button></td>
-                    </tr>
+                    <RowElement user={user} group={this.state.group} show_add={true} />
                 )}
             </tbody>
             </Table>
