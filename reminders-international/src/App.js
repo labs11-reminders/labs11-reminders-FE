@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
-import { 
-  Users, 
-  Reminders, 
-  NewGroupMessage, 
-  Org, 
-  Dashboard, 
-  Group, 
-  CreateGroupAlt,
+import {
+  Users,
+  Reminders,
+  NewGroupMessage,
+  Org,
+  Dashboard,
+  Group,
   Roles,
-  TemplateList, 
-  People 
+  TemplateList,
+  People,
 } from './components';
 
 import axios from 'axios';
@@ -23,9 +22,6 @@ import Home from './Home';
 import './App.css';
 
 class App extends Component {
-  
-
-
   auth = new Auth();
 
   handleAuthentication = ({ location }) => {
@@ -77,9 +73,7 @@ class App extends Component {
           )}
         /> */}
 
-        <Route
-          exact path="/sms-form" component={Reminders}
-        />
+        <Route exact path="/sms-form" component={Reminders} />
 
         {/* <Route 
             exact path='/join-org-form' 
@@ -90,14 +84,12 @@ class App extends Component {
 
         <Route exact path="/join-group-form" component={Group} />
 
-        <Route exact path='/create-a-group-alt' component={CreateGroupAlt}/>
-
         <Route exact path="/dashboard" component={Dashboard} />
 
-        <Route exact path='/newgroupmessage' component={NewGroupMessage}/>
+        <Route exact path="/newgroupmessage" component={NewGroupMessage} />
 
-        <Route exact path='/people' component={People}/>
-        
+        <Route exact path="/people" component={People} />
+
         <Route exact path="/select-role" component={Roles} />
 
         <Route exact path="/template-list" component={TemplateList} />
