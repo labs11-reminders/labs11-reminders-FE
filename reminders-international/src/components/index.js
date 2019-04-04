@@ -7,6 +7,7 @@ import NewGroupMessage from './NewGroupMessage/NewGroupMessage';
 import Roles from './Roles/Roles';
 import TemplateList from './Templates/TemplateList';
 import People from './People/People';
+import SignUp from './SignUp/SignUp';
 
 export {
   Users,
@@ -18,4 +19,5 @@ export {
   TemplateList,
   People,
   NewGroupMessage,
+  SignUp,
 };

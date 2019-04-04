@@ -99,6 +99,7 @@ export default class Auth {
         this.auth0.client.userInfo(this.accessToken, (err, profile) => {
           if (profile) {
             this.userProfile = profile;
+            this.userProfile.user_id = 1;
           }
           cb(err, profile);
         });

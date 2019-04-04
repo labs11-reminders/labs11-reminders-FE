@@ -30,14 +30,13 @@ class Org extends Component {
     });
    }
 
-  goHome = route => {
-    this.props.history.push("/home")
+  handleNext = e => {
+    this.props.handleOrg(this.state.org_id);
   }
-
 
   onHandleChange = (event) => {
     console.log("event", event.target)
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ org_id : event.target.value });
   }
 
   componentDidMount () {
@@ -60,16 +59,16 @@ class Org extends Component {
             >
             {
               this.state.orgs.map(org =>
-              <option key={org.id} value={org.value}  > 
+              <option key={org.id} value={org.id}  > 
                 {org.name}</option>
               )
             } 
           </Input>
-          <Button onClick={this.goHome}>Next</Button>
+          <Button onClick={this.handleNext}>Next</Button>
         </FormGroup>
 
       </Form>
-      <AddOrgForm />
+      {/* <AddOrgForm /> */}
       </Container>
     );
   }

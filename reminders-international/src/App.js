@@ -10,6 +10,7 @@ import {
   Roles,
   TemplateList,
   People,
+  SignUp
 } from './components';
 
 import axios from 'axios';
@@ -93,6 +94,19 @@ class App extends Component {
         <Route exact path="/select-role" component={Roles} />
 
         <Route exact path="/template-list" component={TemplateList} />
+
+        <Route
+          exact
+          path="/signup"
+          render={props => (
+            <SignUp
+              {...props}
+              auth={this.auth}
+              //users={this.state.users}
+            />
+          )}
+        />
+
       </div>
     );
   }
