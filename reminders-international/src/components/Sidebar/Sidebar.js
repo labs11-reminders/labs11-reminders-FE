@@ -25,9 +25,9 @@ class Sidebar extends Component {
       orgs: [],
       groups: [],
       reminders: [],
+      users: [],
       message: '',
     };
-
     this.toggle = this.toggle.bind(this);
     this.toggleNested = this.toggleNested.bind(this);
     this.getAllReminders = this.getAllReminders(this);
@@ -49,6 +49,19 @@ class Sidebar extends Component {
     //   }
     // }
   
+
+  // initialUser() {
+  //   this.setState({ profile: {} });
+  //   const { userProfile, getProfile } = this.props.auth;
+  //   if (!userProfile) {
+  //     getProfile((err, profile) => {
+  //       this.setState({ profile });
+  //     });
+  //   } else {
+  //     this.setState({ profile: userProfile });
+  //   }
+  // }
+
 
 
   toggle() {
@@ -151,8 +164,7 @@ class Sidebar extends Component {
   }
 
 
-  render() {
-    
+  render() {   
     const profileImg =
       'https://tk-assets.lambdaschool.com/ecd33d34-c124-4b75-92d2-e5c52c171ed8_11201517_887808411287357_1307163552_a.jpg';
 

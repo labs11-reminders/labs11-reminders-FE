@@ -123,7 +123,7 @@ class Calendar extends React.Component {
 	clearDayTimeout = () => {
 		this.dayTimeout && clearTimeout(this.dayTimeout);
 	}
-
+/*
 	handlePrevious = evt => {
     evt && (
       evt.preventDefault(),
@@ -137,7 +137,7 @@ class Calendar extends React.Component {
       this.handlePressure(evt)(this.gotoNextMonth, this.gotoNextYear)
     );
 	}
-
+*/
 	renderMonthAndYear = () => {
 		const { month, year } = this.state;
     const monthname = Object.keys(CALENDAR_MONTHS)[ Math.max(0, Math.min(month - 1, 11)) ];
@@ -238,5 +238,4 @@ Calendar.propTypes = {
   date: PropTypes.instanceOf(Date),
   onDateChanged: PropTypes.func
 };
-
 export default Calendar;

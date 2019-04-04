@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom'; // switched to just Router which resolved callback refresh on auth

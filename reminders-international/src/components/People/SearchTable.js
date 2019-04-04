@@ -44,7 +44,7 @@ class SearchTable extends Component {
             <tbody>
                 
                 {this.props.users.map(user => 
-                    <RowElement user={user} group={this.state.group} show_add={true} />
+                    <RowElement key={user.id} value={user.id} user={user} group={this.state.group} show_add={true} />
                 )}
             </tbody>
             </Table>
