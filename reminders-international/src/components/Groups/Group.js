@@ -67,7 +67,7 @@ class Group extends Component {
               )
             } 
           </Input>
-          <Button onClick={this.handleNext}>My Dashboard</Button>
+          <Button onClick={this.handleNext}>Next</Button>
         </FormGroup>
 
       </Form>

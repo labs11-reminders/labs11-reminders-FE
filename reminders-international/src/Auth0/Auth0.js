@@ -21,10 +21,6 @@ class Auth0 extends Component {
     this.props.auth.logout();
   }
 
-  goSMS = event => {
-    this.try("/sms-form");
-  }
-
   goSignUp = event => {
     this.try("/signup");
   }
@@ -52,11 +48,7 @@ class Auth0 extends Component {
       <div>
         <Navbar color="light">
           <NavbarBrand href="/">MFI International</NavbarBrand>
-          <Button
-              color="primary"
-              onClick={this.goSMS}>
-            SMS
-          </Button>
+         
           <Button
               color="primary"
               onClick={this.goSignUp}>
