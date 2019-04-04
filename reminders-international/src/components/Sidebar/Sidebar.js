@@ -13,6 +13,7 @@ import {
   Col,
 } from 'reactstrap';
 import axios from 'axios';
+import requiresAuth from '../../Auth0/Auth/requiresAuth.js';
 import SideTemplateCard from './SideTemplateCard';
 
 class Sidebar extends Component {
@@ -34,6 +35,21 @@ class Sidebar extends Component {
     // this.getAllOrgs = this.getAllOrgs(this);
   }
 
+    // //Auth 0 profile info
+
+    // componentWillMount() {
+    //   this.setState({ profile: {} });
+    //   const { userProfile, getProfile } = this.props.auth;
+    //   if (!userProfile) {
+    //     getProfile((err, profile) => {
+    //       this.setState({ profile });
+    //     });
+    //   } else {
+    //     this.setState({ profile: userProfile });
+    //   }
+    // }
+  
+
   // initialUser() {
   //   this.setState({ profile: {} });
   //   const { userProfile, getProfile } = this.props.auth;
@@ -46,17 +62,7 @@ class Sidebar extends Component {
   //   }
   // }
 
-  // componentWillMount() {
-  //   this.setState({ profile: {} });
-  //   const { userProfile, getProfile } = this.props.auth;
-  //   if (!userProfile) {
-  //     getProfile((err, profile) => {
-  //       this.setState({ profile });
-  //     });
-  //   } else {
-  //     this.setState({ profile: userProfile });
-  //   }
-  // }
+
 
   toggle() {
     this.setState(prevState => ({
@@ -157,7 +163,8 @@ class Sidebar extends Component {
     this.getAllOrgs();
   }
 
-  render() {
+
+  render() {   
     const profileImg =
       'https://tk-assets.lambdaschool.com/ecd33d34-c124-4b75-92d2-e5c52c171ed8_11201517_887808411287357_1307163552_a.jpg';
 
@@ -166,7 +173,7 @@ class Sidebar extends Component {
         <section className="profileSection cube">
           <div id="profilePicture">JW</div>
           <div id="profileName">
-            <span>Hello, User</span>
+            <span>Hello, </span>
           </div>
         </section>
         <section className="orgSection cube">

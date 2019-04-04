@@ -47,7 +47,7 @@ class Auth0 extends Component {
     return (
       <div>
         <Navbar color="light">
-          <NavbarBrand href="/">MFI International</NavbarBrand>
+          <NavbarBrand href="/">Reminders International</NavbarBrand>
          
           <Button
               color="primary"

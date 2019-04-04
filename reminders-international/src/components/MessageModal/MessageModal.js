@@ -31,6 +31,13 @@ class MessageModal extends React.Component {
     });
   }
 
+  toggleDraft(event, id) {
+    this.setState(prevState => ({
+      draft: !prevState
+    }));
+    this.onHandleChange(event,id);
+  }
+
   onSubmit = (event) => {
     event.preventDefault();
     this.setState({ submitting: true });
