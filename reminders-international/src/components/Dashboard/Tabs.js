@@ -13,6 +13,8 @@ import {
   Col,
 } from 'reactstrap';
 import  TemplateList  from '../Templates/TemplateList';
+import NewGroupMessage from '../NewGroupMessage/NewGroupMessage';
+import People from '../People/People';
 import classnames from 'classnames';
 
 export default class Example extends React.Component {
@@ -58,7 +60,7 @@ export default class Example extends React.Component {
               <strong id="tabNav">TEMPLATES</strong>
             </NavLink>
           </NavItem>
-          
+
           <NavItem>
             <NavLink
               className={classnames({ active: this.state.activeTab === '3' })}
@@ -74,7 +76,7 @@ export default class Example extends React.Component {
           <TabPane tabId="1">
             <Row>
               <Col sm="12">
-                <h4>Tab 1 Contents</h4>
+                <NewGroupMessage />
               </Col>
             </Row>
           </TabPane>
@@ -106,7 +108,7 @@ export default class Example extends React.Component {
           <TabPane tabId="3">
             <Row>
               <Col sm="12">
-                <h4>Tab 3 Contents</h4>
+                <People />
               </Col>
             </Row>
           </TabPane>

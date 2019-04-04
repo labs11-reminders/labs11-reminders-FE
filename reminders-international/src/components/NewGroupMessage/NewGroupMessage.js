@@ -9,9 +9,9 @@ class NewGroupMessage extends Component {
     render() {
         return (
             <div className="NewMessage">
-            
+                <MessageModal buttonLabel="Compose New Message" />  
                 <UserGroupList />
-                <MessageModal buttonLabel="Compose New Message" />            
+                          
             </div>
         );
     }
