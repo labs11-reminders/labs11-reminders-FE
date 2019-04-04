@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Col, Row } from 'reactstrap';
+import MessageModal from '../MessageModal/MessageModal';
+import ScheduledMessageCard from './ScheduledMessageCard'
 import axios from 'axios';
 
 //TODO: update imports as needed
@@ -45,12 +47,9 @@ export default class ScheduledMessageList extends Component {
   componentDidMount () {
     this.getAllReminders();
   }
-
+  
   render() {
-    //TODO: pass props for approved toggle event handlers 
-    //TODO: pass props for date picker event handler 
-    //TODO: pass props for edit message handlers 
-   
+     
     return (
       <div className="template-list">
         <Container>
@@ -67,17 +66,23 @@ export default class ScheduledMessageList extends Component {
                 user_id={scheduled_reminders.user_id}
                 approved={scheduled_reminders.approved} //TODO - Add approval column to reminders 
                 date={scheduled_reminders.date} //future feature - ability to schedule for multiple dates
+                toggleApprove={props.toggleApprove} 
+                onEditMessage={props.onEditMessage} 
+                onEditTitle={props.onEditTitle}
+                onDatePicker={props.onDatePicker} 
               />
             )
           })}
           </Row>
         </ul>
-        {/* TO DO: hook in 'Add Message' logic*/}
-        <Button>Add Message</Button>
+        <Button>
+          <MessageModal buttonLabel="Add Scheduled Message" />  
+        </Button>
         </Container>
       </div>
     )
   }
 
 }
+
 

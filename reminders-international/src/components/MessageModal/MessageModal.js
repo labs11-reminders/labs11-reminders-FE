@@ -81,7 +81,7 @@ class MessageModal extends React.Component {
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>Save Draft</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>Schedule</Button>
+            <Button color="secondary" onClick={this.toggle}>Schedule</Button>{/* <---- toggle scheduled to true, and direct user to scheduled component*/}
             {/* <Button color="secondary" onClick={this.onSubmit}>Send</Button> */}
           </ModalFooter>
         </Modal>

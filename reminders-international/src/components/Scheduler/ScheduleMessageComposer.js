@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FormGroup } from 'reactstrap';
 import ScheduledMessageList from './ScheduledMessageList';
 
-//TODO: update imports as needed
+//TODO: FIX REMINDER BY ID in handlers 
 
 class ScheduleMessageComposer extends Component {
     constructor(props) {
@@ -12,14 +12,14 @@ class ScheduleMessageComposer extends Component {
             title: '', 
             to: '',// TODO: props from user group list 
             body: '',
-            approved: false, // TODO: create approved column for backend
+            approved: false, // TODO: create approved column for backend - change worker.py to reflect change
             date: '',//TODO: set from react datetime selector 
-            scheduled: false//TODO: toggle scheduled within date selection function 
+            scheduled: true //NOTE: scheduled is toggled to true in 'MessageModal'
           },
           submitting: false,
           error: false
         };
-        this.toggleApproved = this.toggleApproved.bind(this);
+        this.toggleApprove = this.toggleApprove.bind(this);
       }
     
       componentDidMount() {
@@ -41,6 +41,41 @@ class ScheduleMessageComposer extends Component {
         this.setState({
           message: { ...this.state.message, [message_input]: event.target.value }
         });
+      }
+
+      //------ Date handlers triggered in ScheduledMessageCard --------
+      onDatePicker = (event) => {  
+        //NEEDS TO BE EDITED 
+        event.preventDefault();
+        fetch(`${process.env.REACT_APP_BACKEND}/api/reminders/:id`, {
+        method: 'PUT', 
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        to: this.state.to,
+        body: JSON.stringify(this.state.message),
+        approved: this.state.approved, 
+        date: this.state.date,
+        scheduled: this.state.scheduled
+      })
+        .then(res => {
+          if (res.status === 200) {
+            console.log('scheduling message');
+            this.setState({
+              error: false,
+              submitting: true,
+            });
+          } else {
+            this.setState({
+              error: true,
+              submitting: false
+            });
+          }
+          res.json()
+        })
+        .catch(err => {
+          console.log(err)
+        })
       }
 
       //------ Approve handlers triggered in ScheduledMessageCard --------
@@ -76,6 +111,7 @@ class ScheduleMessageComposer extends Component {
           console.log(err)
         })
       }
+
       onApprove = (event) => {
         event.preventDefault();
         this.setState({ submitting: true });
@@ -110,33 +146,30 @@ class ScheduleMessageComposer extends Component {
           })
       }
 
-      toggleApproved() {
+      toggleApproved(event) {
         this.setState(prevState => ({
           approved: !prevState
         }));
 
         if (this.state.approved === true) {
-          onApprove();
+          onApprove(event);
         } else if (this.state.approved === false){
-          onDisApprove();
+          onDisApprove(event);
         }
       }
 
-   
-    //TODO: pass props for approved toggle event handlers 
-    //TODO: pass props for date picker event handler 
-    //TODO: pass props for edit message handlers 
-   
+  
       render() {
         return (
           <div>
-            <ScheduledMessageList></ScheduledMessageList>
-            {/* TO DO: below - need clarity on user flow */}
-        </div>
+            <ScheduledMessageList toggleApprove={this.toggleApprove} 
+            onEditMessage={this.onEditMessage} 
+            onEditTitle={this.onEditTitle}
+            onDatePicker={this.onDatePicker}/>
+          </div>
         );
   };
 }
 export default ScheduleMessageComposer;
-
 
 
