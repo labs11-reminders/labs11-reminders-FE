@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Roles from "../Roles/Roles.js"
 import Org from "../Organizations/Org.js";
+import Group from "../Groups/Group.js";
+import AddGroupForm from "../Groups/AddGroupForm.js";
 import AddOrgForm from "../Organizations/AddOrgForm.js";
 
 
@@ -14,6 +16,7 @@ class SignUp extends Component {
             step: 1,
             role_id: null,
             org_id: null,
+            group_id: null,
         }
     };
 
@@ -51,15 +54,19 @@ class SignUp extends Component {
         this.nextStep();
     }
 
+    handleGroup = (group_id) => {
+        this.setState({ group_id: group_id });
+        this.nextStep();
+    }
+
     render() {
         return (
             <div>
-                <p>I am on step {this.state.step}</p>
+                <p>You are on step {this.state.step} of account creation.</p>
                 
                 {
                     this.state.step == 1 && (
                         <div>
-                        <p>I'm step one.</p>
                         <Roles handleRole={this.handleRole} />
                         </div>
                     )
@@ -74,11 +81,20 @@ class SignUp extends Component {
                 { 
                     this.state.step == 3 && (
                         <div>
-                        <p>I'm step 3</p>
-                        <Button onClick={this.handleNext}>Done</Button>
+                        <Group handleGroup={this.handleGroup}/>
                         </div>
                     )
                 }
+                { 
+                    this.state.step == 4 && (
+                        <div>
+                        <p>Role id: {this.state.role_id}</p>
+                        <p>Org id: {this.state.org_id}</p>
+                        <p>Group id: {this.state.group_id}</p>
+                        </div>
+                    )
+                }
+
             </div>
         )
     }
