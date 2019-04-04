@@ -5,6 +5,7 @@ import Org from "../Organizations/Org.js";
 import Group from "../Groups/Group.js";
 import AddGroupForm from "../Groups/AddGroupForm.js";
 import AddOrgForm from "../Organizations/AddOrgForm.js";
+import UserDetailsForm from "./UserDetailsForm.js";
 
 
 import { Table, Button } from 'reactstrap';
@@ -59,6 +60,10 @@ class SignUp extends Component {
         this.nextStep();
     }
 
+    handleUser = (user) => {
+        this.setState({ user: user });
+    }
+
     render() {
         return (
             <div>
@@ -88,9 +93,12 @@ class SignUp extends Component {
                 { 
                     this.state.step == 4 && (
                         <div>
-                        <p>Role id: {this.state.role_id}</p>
-                        <p>Org id: {this.state.org_id}</p>
-                        <p>Group id: {this.state.group_id}</p>
+                        <UserDetailsForm 
+                            role_id={this.state.role_id}
+                            org_id={this.state.org_id}
+                            group_id={this.state.group_id}
+                            history={this.props.history}
+                        />
                         </div>
                     )
                 }

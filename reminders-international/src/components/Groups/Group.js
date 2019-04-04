@@ -60,6 +60,7 @@ class Group extends Component {
             value={this.state.groups.name}
             onChange={this.onHandleChange}            
             >
+            <option></option>
             {
               this.state.groups.map(group =>
               <option key={group.id} value={group.id}  > 
@@ -67,7 +68,7 @@ class Group extends Component {
               )
             } 
           </Input>
-          <Button onClick={this.handleNext}>My Dashboard</Button>
+          <Button onClick={this.handleNext}>Next</Button>
         </FormGroup>
 
       </Form>
