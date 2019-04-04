@@ -1,1 +1,0 @@
-//what is to be rendered in scheduled messages component
