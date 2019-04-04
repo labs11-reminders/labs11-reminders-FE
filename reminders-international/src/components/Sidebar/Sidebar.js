@@ -24,15 +24,39 @@ class Sidebar extends Component {
       orgs: [],
       groups: [],
       reminders: [],
+      users: [],
       message: '',
     };
-
     this.toggle = this.toggle.bind(this);
     this.toggleNested = this.toggleNested.bind(this);
     this.getAllReminders = this.getAllReminders(this);
     // this.getAllGroups = this.getAllGroups(this);
     // this.getAllOrgs = this.getAllOrgs(this);
   }
+
+  // initialUser() {
+  //   this.setState({ profile: {} });
+  //   const { userProfile, getProfile } = this.props.auth;
+  //   if (!userProfile) {
+  //     getProfile((err, profile) => {
+  //       this.setState({ profile });
+  //     });
+  //   } else {
+  //     this.setState({ profile: userProfile });
+  //   }
+  // }
+
+  // componentWillMount() {
+  //   this.setState({ profile: {} });
+  //   const { userProfile, getProfile } = this.props.auth;
+  //   if (!userProfile) {
+  //     getProfile((err, profile) => {
+  //       this.setState({ profile });
+  //     });
+  //   } else {
+  //     this.setState({ profile: userProfile });
+  //   }
+  // }
 
   toggle() {
     this.setState(prevState => ({
