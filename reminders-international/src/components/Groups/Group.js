@@ -28,14 +28,14 @@ class Group extends Component {
     });
    }
 
-  goHome = route => {
-    this.props.history.push("/home")
+   handleNext = e => {
+    this.props.handleGroup(this.state.group_id);
   }
 
 
   onHandleChange = (event) => {
     console.log("event", event.target)
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ group_id : event.target.value });
   }
 
   componentDidMount () {
@@ -50,9 +50,9 @@ class Group extends Component {
       <p>Once you create a group, you can invite members, send announcements, and start conversations</p>
       <Form className = "groups-form">
         <FormGroup>
-        <AddGroupForm />
-        <h3>Looking for a group? </h3>
-        <label>Join a group</label>
+        {/* <AddGroupForm /> */}
+        {/* <h3>Looking for a group? </h3>
+        <label>Join a group</label> */}
           <Input 
             type="select" 
             name="name" 
@@ -62,12 +62,12 @@ class Group extends Component {
             >
             {
               this.state.groups.map(group =>
-              <option key={group.id} value={group.value}  > 
+              <option key={group.id} value={group.id}  > 
                 {group.name}</option>
               )
             } 
           </Input>
-          <Button onClick={this.goHome}>My Dashboard</Button>
+          <Button onClick={this.handleNext}>My Dashboard</Button>
         </FormGroup>
 
       </Form>

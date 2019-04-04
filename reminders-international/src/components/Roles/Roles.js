@@ -16,6 +16,10 @@ class Roles extends Component {
     }
   }
 
+  handleNext = e => {
+    this.props.handleRole(this.state.activeRole);
+  }
+
   render() {
     console.log(this.state.activeRole);
     return (
@@ -75,7 +79,7 @@ class Roles extends Component {
             </Card>
           </Col>
         </main>
-        <Button id="size">Next</Button>
+        <Button id="size" onClick={this.handleNext}>Next</Button>
       </div>
     );
   }

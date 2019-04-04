@@ -25,6 +25,11 @@ class Auth0 extends Component {
     this.try("/sms-form");
   }
 
+  goSignUp = event => {
+    this.try("/signup");
+  }
+
+
   componentDidMount() {
     const { renewSession } = this.props.auth;
 
@@ -51,6 +56,11 @@ class Auth0 extends Component {
               color="primary"
               onClick={this.goSMS}>
             SMS
+          </Button>
+          <Button
+              color="primary"
+              onClick={this.goSignUp}>
+            Sign-up
           </Button>
             {
               !isAuthenticated() && (
