@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Col, Row } from 'reactstrap';
 import MessageModal from '../MessageModal/MessageModal';
-import ScheduledMessageCard from './ScheduledMessageCard'
+import ScheduledMessageCard from './ScheduledMessageCard';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
 
 //TODO: update imports as needed
@@ -20,7 +21,7 @@ export default class ScheduledMessageList extends Component {
 
 
   populateScheduledReminders = () => { //Called in getAllReminders below
-    scheduledReminders = this.state.reminders.filter(function (reminders) {
+    const scheduledReminders = this.state.reminders.filter(function (reminders) {
       return reminders.scheduled === true;
     });
     this.setState({
@@ -47,11 +48,12 @@ export default class ScheduledMessageList extends Component {
   componentDidMount () {
     this.getAllReminders();
   }
-  
+
+
   render() {
      
     return (
-      <div className="template-list">
+      <div className="scheduled-reminders-list">
         <Container>
         <ul>
           <Row>
@@ -59,17 +61,17 @@ export default class ScheduledMessageList extends Component {
             return (
               <ScheduledMessageCard
                 key={scheduled_reminders.id}
-                reminder_id={scheduled_reminders.id}
+                scheduled_reminder_id={scheduled_reminders.id}
                 name={scheduled_reminders.name}
                 description={scheduled_reminders.description}
                 group_id={scheduled_reminders.group_id}
                 user_id={scheduled_reminders.user_id}
                 approved={scheduled_reminders.approved} //TODO - Add approval column to reminders 
                 date={scheduled_reminders.date} //future feature - ability to schedule for multiple dates
-                toggleApprove={props.toggleApprove} 
-                onEditMessage={props.onEditMessage} 
-                onEditTitle={props.onEditTitle}
-                onDatePicker={props.onDatePicker} 
+                toggleApprove={this.props.toggleApprove} 
+                onEditMessage={this.props.onEditMessage} 
+                onEditTitle={this.props.onEditTitle}
+                onDatePicker={this.props.onDatePicker} 
               />
             )
           })}
@@ -82,7 +84,55 @@ export default class ScheduledMessageList extends Component {
       </div>
     )
   }
-
 }
+/*
 
+render() {
+    return (
+      <div className="notes-list">
+        {this.props.notes.map(note => (
+         <Link to={`/notes/${note.id}`} key={note.id}>
+          <SingleNoteDetails key={note.id} note={note}/>
+         </Link>
+        ))}
+      </div>
+    );
+  }
 
+//created by NotesContainer via routing 
+import React, { Component } from 'react';
+import EditBar from './EditBar.js';
+
+export default class SingleNote extends Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    console.log(this.props)
+    const id = this.props.match.params.id;
+    this.props.fetchNote(id);
+  } // fetchNote lives in app.js
+
+  render() {
+    if (!this.props.singleNote) {
+      return <div>Loading note information...</div>;
+    }
+    
+    const { title, content} = this.props.singleNote[0];
+
+    return (
+      <div className="note-card">
+        <div className="note-title">
+          <h2>{title}</h2>
+          </div>
+          <div className="note-body">
+            <p>{content}</p>
+          </div>
+         
+          <EditBar deleteNote={this.props.deleteNote}  handleInputChange={this.props.handleInputChange} singleNote = {this.props.singleNote} id = {this.props.match.params.id}
+             />
+        </div>
+    );
+  }
+}
+*/
