@@ -8,6 +8,7 @@ import Roles from './Roles/Roles';
 import TemplateList from './Templates/TemplateList';
 import People from './People/People';
 import SignUp from './SignUp/SignUp';
+import Scheduler from './Scheduler/ScheduleMessageComposer';
 
 export {
   Users,
@@ -20,4 +21,5 @@ export {
   People,
   NewGroupMessage,
   SignUp,
+  Scheduler,
 };

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import TabsSection from './Tabs';
 
+
 class MainContent extends Component {
   state = {};
   render() {

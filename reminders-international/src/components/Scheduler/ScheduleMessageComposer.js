@@ -1,115 +1,61 @@
 import React, { Component } from 'react';
-import { FormGroup } from 'reactstrap';
+import { Button } from 'reactstrap';
 import ScheduledMessageList from './ScheduledMessageList';
+import MessageModal from '../MessageModal/MessageModal';
 import axios from 'axios';
 
 class ScheduleMessageComposer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          message: {
-            title: '', 
-            to: '',// TODO: props from user group list 
-            body: '',
-            approved: false, // TODO: create approved column for backend - change worker.py to reflect change
-            date: '',//TODO: set from react datetime selector 
-            scheduled: true //NOTE: scheduled is toggled to true in 'MessageModal'
-          },
-          submitting: false,
-          error: false
-        };
-        this.toggleApprove = this.toggleApprove.bind(this);
-      }
+          reminders:[],
+          scheduled_reminders:[],
+        }
+    }
 
-      //------ Get scheduled message by ID, and update state --------
-      fetchReminder = id => {
-        axios
-          .get(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
-          .then(response => {
-            this.setState(() => ({ message:response.data}));
-          })
-          .catch(err => {
-            console.log(err)
-          });
+  
+      populateScheduledReminders = () => { //Called in getAllReminders below
+        const scheduledReminders = this.state.reminders.filter(function (reminders) {
+          return reminders.scheduled === true;
+        });
+        this.setState({
+          scheduled_reminders: scheduledReminders
+        });
+        console.log('populateScheduledReminders this.state.scheduled_reminders', this.state.scheduled_reminders);
       }
-
-      componentDidMount () {
-        const id = this.props.match.params.id;
-        this.fetchReminder(id);
-      }
-
-      handleChange = (event,id) => {
-        event.preventDefault();
-        this.setState({ submitting: true });
-        fetch(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          to: this.state.to,
-          body: JSON.stringify(this.state.message),
-          approved: this.state.approved, 
-          date: this.state.date,
-          scheduled: this.state.scheduled
-        })
+    
+      getAllReminders = () => {
+        axios.get(`https://reminders-international.herokuapp.com/api/reminders`, this.state.reminders)
           .then(res => {
-            if (res.status === 200) {
-              console.log('scheduling message');
-              this.setState({
-                error: false,
-                submitting: true,
-              });
-            } else {
-              this.setState({
-                error: true,
-                submitting: false
-              });
-            }
-            res.json()
-          })
+           console.log('list of all reminders', res.data);
+            this.setState({
+              reminders: res.data
+            });
+             console.log('getAllReminders this.state.reminders', this.state.reminders);
+        })
           .catch(err => {
-            console.log(err)
-          })
-      }
-
-      //------ Edit  handlers triggered in ScheduledMessageCard --------
-      onEditTitle  = (event, id) => {
-        const title_input = event.target.getAttribute('title');
-        this.setState({
-          title: { ...this.state.title, [title_input]: event.target.value }
+            console.log(err);
         });
-        this.handleChange(event,id);
+       // this.populateScheduledReminders()
       }
-      onEditMessage = (event, id) => {
-        const message_input = event.target.getAttribute('message');
-        this.setState({
-          message: { ...this.state.message, [message_input]: event.target.value }
-        });
-        this.handleChange(event,id);
-      }
-
-      //------ Date handlers triggered in ScheduledMessageCard --------
-      onDatePicker = (event,id) => {  
-        //NEEDS TO BE EDITED 
-        this.handleChange(event,id);
-      }
-
-      toggleApproved(event,id) {
-        this.setState(prevState => ({
-          approved: !prevState
-        }));
-        this.handleChange(event,id);
-
+    
+      componentDidMount () {
+        console.log("mounted")
+        this.getAllReminders();
       }
 
   
       render() {
         return (
-          <div>
-            <ScheduledMessageList toggleApprove={this.toggleApprove} 
-            onEditMessage={this.onEditMessage} 
-            onEditTitle={this.onEditTitle}
-            onDatePicker={this.onDatePicker}/>
+          <div> 
+           <h3>ScheduledMessageComposer</h3>
+            <ScheduledMessageList reminders = {this.state.reminders} 
+            scheduled_reminders = {this.state.scheduled_reminders}/>
+            <div>
+            <Button>
+                <MessageModal buttonLabel="Add Scheduled Message" />  
+              </Button>
+              </div>
           </div>
         );
   };

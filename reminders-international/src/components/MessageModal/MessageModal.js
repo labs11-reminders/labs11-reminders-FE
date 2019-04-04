@@ -98,3 +98,21 @@ class MessageModal extends React.Component {
 }
 
 export default MessageModal;
+
+
+/*   ------ Edit  handlers triggered in ScheduledMessageCard --------
+
+      onEditTitle  = (event, id) => {
+        const title_input = event.target.getAttribute('title');
+        this.setState({
+          title: { ...this.state.title, [title_input]: event.target.value }
+        });
+        this.handleChange(event,id);
+      }
+      onEditMessage = (event, id) => {
+        const message_input = event.target.getAttribute('message');
+        this.setState({
+          message: { ...this.state.message, [message_input]: event.target.value }
+        });
+        this.handleChange(event,id);
+      } */
