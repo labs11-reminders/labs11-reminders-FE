@@ -11,7 +11,7 @@ import {
   TemplateList,
   People,
   SignUp,
-  Scheduler
+  Scheduler,
 } from './components';
 
 import axios from 'axios';
@@ -22,7 +22,7 @@ import Auth0 from './Auth0/Auth0';
 import Home from './Home';
 
 import './App.css';
-import ScheduleMessageComposer from './components/Scheduler/ScheduleMessageComposer';
+
 
 class App extends Component {
   auth = new Auth();
@@ -77,7 +77,7 @@ class App extends Component {
         /> */}
 
         <Route exact path="/sms-form" component={Reminders} />
-        <Route exact path="/schedulemessagecomposer" component={ScheduleMessageComposer} />
+        <Route exact path="/schedulemessagecomposer" component={Scheduler} />
 
         {/* <Route 
             exact path='/join-org-form' 
