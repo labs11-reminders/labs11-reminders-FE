@@ -1,31 +1,45 @@
 import React from 'react';
+import {
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
+  NavLink,
+  Card,
+  Button,
+  CardTitle,
+  CardSubtitle,
+  CardText,
+  Row,
+  Col,
+} from 'reactstrap';
 
 const TemplateCard = (props) => {
   const { name, description, created_at, group_id, user_id, scheduled, draft, template } = props.template;
   return (
     <div className="template-card">
 
-      <h2>{props.name}</h2>
+      <CardTitle>{props.name}</CardTitle>
 
       <div className="template-description">
-        <h3>Message</h3>
-        <p>{props.description}</p>
+        <CardSubtitle>Message</CardSubtitle>
+        <CardText>{props.description}</CardText>
       </div>
 
       <div className="template-created">
-        <p>Date Created: {props.created_at}</p>
-        <p>Created By: {props.user_id}</p>
+        <CardText>Date Created: {props.created_at}</CardText>
+        <CardText>Created By: {props.user_id}</CardText>
       </div>
 
       <div className="template-group_id">
-        <p>Group:{props.group_id}</p>
+        <CardText>Group:{props.group_id}</CardText>
       </div>
 
       <div className="template-type">
-        <p>Type of Reminder:</p>
-        <p>scheduled: {props.scheduled ? 'true': 'false'}</p>
-        <p>draft: {props.draft ? 'true': 'false'}</p>
-        <p>template: {props.template ? 'true': 'false'}</p>
+        <CardText>Type of Reminder:</CardText>
+        <CardText>scheduled: {props.scheduled ? 'true': 'false'}</CardText>
+        <CardText>draft: {props.draft ? 'true': 'false'}</CardText>
+        <CardText>template: {props.template ? 'true': 'false'}</CardText>
       </div>
     </div>
   );

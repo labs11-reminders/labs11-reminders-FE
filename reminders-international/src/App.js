@@ -93,6 +93,8 @@ class App extends Component {
         <Route exact path="/select-role" component={Roles} />
 
         <Route exact path="/template-list" component={TemplateList} />
+
+        {/* <Route exact path="/shedule-list" component={TemplateList} /> */}
       </div>
     );
   }
