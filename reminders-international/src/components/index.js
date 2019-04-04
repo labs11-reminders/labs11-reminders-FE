@@ -7,7 +7,6 @@ import NewGroupMessage from './NewGroupMessage/NewGroupMessage';
 import Roles from './Roles/Roles';
 import TemplateList from './Templates/TemplateList';
 import People from './People/People';
-
 export {
   Users,
   Dashboard,

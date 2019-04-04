@@ -32,7 +32,7 @@ class Roles extends Component {
               >
                 Teacher
               </Button>
-              <p id="cardText">Mentor, trainer, cordinator, etc</p>
+              <p id="cardText">Mentor, trainer, coordinator, etc</p>
             </Card>
           </Col>
 
@@ -46,7 +46,7 @@ class Roles extends Component {
               >
                 Student
               </Button>
-              <p id="cardText">Client, lerner, beneficiary, etc</p>
+              <p id="cardText">Client, learner, beneficiary, etc</p>
             </Card>
           </Col>
 
