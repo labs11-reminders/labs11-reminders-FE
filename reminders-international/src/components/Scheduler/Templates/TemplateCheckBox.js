@@ -1,1 +1,0 @@
-//checkbox for message composer to save as template

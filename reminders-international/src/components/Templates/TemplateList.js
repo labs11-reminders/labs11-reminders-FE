@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
-import { Container, Col, Row } from 'reactstrap';
+// import { Container, Col, Row } from 'reactstrap';
 import axios from 'axios';
 import TemplateCard from './TemplateCard';
-import TemplateCSS from './TemplateCSS.css';
+import {
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
+  NavLink,
+  Card,
+  CardDeck,
+  CardColumns,
+  CardBody,
+  Button,
+  CardTitle,
+  CardText,
+} from 'reactstrap';
 
 export default class TemplateList extends Component {
   constructor(props) {
@@ -36,11 +49,11 @@ export default class TemplateList extends Component {
   render() {
     return (
       <div className="template-list">
-        <Container>
-        <ul>
-          <Row>
+      <CardColumns sm="6">
           {this.state.reminders.map(reminder => {
             return (
+              <Card>
+                <CardBody>
               <TemplateCard 
                 key={reminder.id}
                 name={reminder.name}
@@ -52,11 +65,11 @@ export default class TemplateList extends Component {
                 draft={reminder.draft}
                 template={reminder.template}
               />
+              </CardBody>
+              </Card>
             )
           })}
-          </Row>
-        </ul>
-        </Container>
+        </CardColumns>
       </div>
     )
   }

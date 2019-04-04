@@ -95,18 +95,10 @@ class App extends Component {
 
         <Route exact path="/template-list" component={TemplateList} />
 
-        <Route
-          exact
-          path="/signup"
-          render={props => (
-            <SignUp
-              {...props}
-              auth={this.auth}
-              //users={this.state.users}
-            />
-          )}
-        />
+        <Route exact path="/signup" render={props => (
+            <SignUp {...props} auth={this.auth} />)}/>
 
+        {/* <Route exact path="/shedule-list" component={TemplateList} /> */}
       </div>
     );
   }

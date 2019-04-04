@@ -12,6 +12,7 @@ import {
   Row,
   Col,
 } from 'reactstrap';
+import  TemplateList  from '../Templates/TemplateList';
 import classnames from 'classnames';
 
 export default class Example extends React.Component {
@@ -76,7 +77,8 @@ export default class Example extends React.Component {
             </Row>
           </TabPane>
           <TabPane tabId="2">
-            <Row>
+            <TemplateList/>
+            {/* <Row>
               <Col sm="6">
                 <Card body>
                   <CardTitle>Special Title Treatment</CardTitle>
@@ -97,7 +99,7 @@ export default class Example extends React.Component {
                   <Button>Go somewhere</Button>
                 </Card>
               </Col>
-            </Row>
+            </Row> */}
           </TabPane>
           <TabPane tabId="3">
             <Row>

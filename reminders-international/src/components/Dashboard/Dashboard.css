@@ -7,13 +7,13 @@
 }
 
 .sidebar {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 20%;
-    background-color: rgb(244, 244, 255);
+    background-color:  #F2F3F5;
 }
 
 .content {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 85%
 }
 
@@ -31,7 +31,9 @@
 
 h6 {
     padding-left: 10%;
+    font-weight: 800;
 }
+
 
 #createLink {
     color: #51a7fd; 
@@ -41,29 +43,31 @@ h6 {
 .profileSection {
     display: flex;
     flex-direction: row;  
-    border: 0.02px solid blue;
+    /* border: 0.02px solid blue; */
     justify-content: center;
 }
 
 #profilePicture {
     border: 1px solid grey;
-    padding: 5%;
-    border-radius: 100%;
+    padding: 5% 0;
+    border-radius: 50%;
     margin: 5px;
     background-color: white;
     box-shadow: 0px 0px 8px rgb(134, 134, 134);
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 600;
+    width:40px;
+    height:40px;
 }
 
 #profileName {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     margin: 0 5px;
 }
 
 .orgSection {
     line-height: 1.6;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     
 }
 .orgSection div {
@@ -72,7 +76,7 @@ h6 {
 
 .groupsSection {
     line-height: 1.6;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     
 }
 .groupsSection div {
@@ -81,7 +85,7 @@ h6 {
 
 .convSection {
     line-height: 1.6;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     
 }
 .convSection div {
@@ -91,7 +95,7 @@ h6 {
 /*************** Dashboard - main content ************************/
 .profileInfo {
     min-height: 150px;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -105,12 +109,12 @@ h6 {
     
 }
 .groupData #grpImage {
-    border: 1px solid black;
+    border: 1px  solid black;
     border-radius: 100%;
     width: 125px;
     height: 125px;
     
-    background-color: white;
+    background-color:  #F2F3F5;
     font-size: 1.5rem;
     font-weight: 600;
 }
@@ -123,13 +127,55 @@ h6 {
 
 .tabSection {
     min-height: 70vh;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     margin: 2%;
 }
 
 #tabNav {
     padding: 0 10px;
     cursor: pointer
+}
+
+.card {
+    border: 1px solid #3A9CD8;
+    padding: 8px;
+}
+
+.card-body {
+    background-color: white;
+    padding: 8px;
+}
+
+.card-columns {
+    padding: 4px;
+}
+
+.template-list {
+    background-color: gainsboro;
+}
+
+.template-description {
+    border: 1px solid grey;
+    position: relative;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.card-subtitle {
+    font-size: 1rem;
+    z-index: 10px;
+    position: absolute;
+    top: -11px;
+    left: 20px;
+    background-color: white;
+}
+
+
+.card-text {
+    position: relative;
 }
 
 #createLink {

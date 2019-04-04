@@ -13,6 +13,7 @@ import {
   Col,
 } from 'reactstrap';
 import axios from 'axios';
+import SideTemplateCard from './SideTemplateCard';
 
 class Sidebar extends Component {
   constructor(props) {
@@ -22,11 +23,15 @@ class Sidebar extends Component {
       nestedModal: false,
       orgs: [],
       groups: [],
+      reminders: [],
       message: '',
     };
 
     this.toggle = this.toggle.bind(this);
     this.toggleNested = this.toggleNested.bind(this);
+    this.getAllReminders = this.getAllReminders(this);
+    // this.getAllGroups = this.getAllGroups(this);
+    // this.getAllOrgs = this.getAllOrgs(this);
   }
 
   toggle() {
@@ -40,6 +45,20 @@ class Sidebar extends Component {
       nestedModal: !this.state.nestedModal,
     });
   }
+
+  // getAllGroups = () => {
+  //   axios.get("https://reminders-international.herokuapp.com/api/groups", this.state.groups)
+  //     .then(res => {
+  //      console.log('list of all groups', res.data);
+  //       this.setState({
+  //       groups: res.data
+  //       });
+  //        console.log('getAllGroups this.state.groups', this.state.groups);
+  //   })
+  //   .catch(err => {
+  //       console.log(err);
+  //   });
+  //  }
 
   getAllOrgs = () => {
     axios
@@ -91,6 +110,20 @@ class Sidebar extends Component {
     }
   };
 
+  getAllReminders = () => {
+    axios.get("https://reminders-international.herokuapp.com/api/reminders", this.state.reminders)
+      .then(res => {
+       console.log('list of all reminders', res.data);
+        this.setState({
+          reminders: res.data
+        });
+         console.log('getAllReminders this.state.reminders', this.state.reminders);
+    })
+    .catch(err => {
+        console.log(err);
+    });
+  }
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({ groups: { ...this.state.groups, [name]: value } });
@@ -126,10 +159,25 @@ class Sidebar extends Component {
           <div>Group Name List</div>
         </section>
         <section className="convSection cube">
-          <h6>CONVERSATIONS</h6>
+          <h6>Scheduled Messages</h6>
+          {this.state.reminders.map(reminder => {
+            return (
+              <SideTemplateCard 
+                    key={reminder.id}
+                    name={reminder.name}
+                    description={reminder.description}
+                    created_at={reminder.created_at}
+                    group_id={reminder.group_id}
+                    user_id={reminder.user_id}
+                    scheduled={reminder.scheduled}
+                    draft={reminder.draft}
+                    template={reminder.template}
+                  />
+          )})
+          }
+          {/* <div>User Name</div>
           <div>User Name</div>
-          <div>User Name</div>
-          <div>User Name</div>
+          <div>User Name</div> */}
         </section>
 
         <Modal
@@ -149,7 +197,8 @@ class Sidebar extends Component {
                   alt="philzcoffee's thumbnail"
                   className="userThumb"
                 />
-                <a href="#">edit icon</a>
+                {/* <a href="#">edit icon</a> */}
+                <p>edit icon</p>
               </div>
 
               <FormGroup row>
