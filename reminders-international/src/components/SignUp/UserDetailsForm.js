@@ -15,6 +15,7 @@ class UserDetailsForm extends Component {
         axios.post(`${process.env.REACT_APP_BACKEND}/api/groups/add/user`, {user_id: this.state.user_id, group_id: this.props.group_id})
         .then(res => {
             console.log('adding user to group');
+            this.props.history.replace('/dashboard');
         })
         .catch(err => {
             console.log(err);

@@ -57,6 +57,7 @@ class Org extends Component {
             value={this.state.orgs.name}
             onChange={this.onHandleChange}            
             >
+            <option></option>
             {
               this.state.orgs.map(org =>
               <option key={org.id} value={org.id}  > 

@@ -60,6 +60,7 @@ class Group extends Component {
             value={this.state.groups.name}
             onChange={this.onHandleChange}            
             >
+            <option></option>
             {
               this.state.groups.map(group =>
               <option key={group.id} value={group.id}  > 

@@ -97,6 +97,7 @@ class SignUp extends Component {
                             role_id={this.state.role_id}
                             org_id={this.state.org_id}
                             group_id={this.state.group_id}
+                            history={this.props.history}
                         />
                         </div>
                     )
