@@ -47,7 +47,7 @@ class PeopleTable extends Component {
             </thead>
             <tbody>
                 {this.state.users.map(user => 
-                   <RowElement user={user} group={this.state.group} show_delete={true} /> 
+                   <RowElement key={user.id} value={user.id} user={user} group={this.state.group} show_delete={true} /> 
                 )}
             </tbody>
             </Table>

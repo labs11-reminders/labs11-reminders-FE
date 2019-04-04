@@ -13,6 +13,8 @@ import {
   Col,
 } from 'reactstrap';
 import  TemplateList  from '../Templates/TemplateList';
+import  People  from '../People/People';
+import  NewGroupMessage  from '../NewGroupMessage/NewGroupMessage';
 import classnames from 'classnames';
 
 export default class Example extends React.Component {
@@ -70,11 +72,11 @@ export default class Example extends React.Component {
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="1">
-            <Row>
-              <Col sm="12">
-                <h4>Tab 1 Contents</h4>
-              </Col>
-            </Row>
+            {/* <Row>
+              <Col sm="12"> */}
+                <NewGroupMessage/>
+              {/* </Col>
+            </Row> */}
           </TabPane>
           <TabPane tabId="2">
             <TemplateList/>
@@ -102,11 +104,12 @@ export default class Example extends React.Component {
             </Row> */}
           </TabPane>
           <TabPane tabId="3">
-            <Row>
-              <Col sm="12">
-                <h4>Tab 3 Contents</h4>
-              </Col>
-            </Row>
+            <h2>I am Tab 3</h2>
+            {/* <Row>
+              <Col sm="12"> */}
+                <People/>
+              {/* </Col>
+            </Row> */}
           </TabPane>
         </TabContent>
       </div>
