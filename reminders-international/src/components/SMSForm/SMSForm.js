@@ -30,8 +30,7 @@ class SMSForm extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     this.setState({ submitting: true });
-    fetch("https://reminders-international.herokuapp.com/api/messages", {
-    // fetch("http://localhost:3333/api/messages", {
+    fetch(`${process.env.REACT_APP_BACKEND}/api/messages`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

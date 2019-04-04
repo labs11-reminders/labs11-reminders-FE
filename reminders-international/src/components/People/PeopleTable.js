@@ -2,18 +2,22 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import { Table, Button } from 'reactstrap';
+import RowElement from './RowElement.js';
 
 class PeopleTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          users: []
+          users: [],
+          group: {
+            id: "2",
+          }
         };
     }
 
     getUsersByGroup = () => {
         //group id is hardcoded in - need to change it to pull id from props
-        axios.get("https://reminders-international.herokuapp.com/api/groups/2/users", this.state.users)
+        axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/2/users`, this.state.users)
           .then(res => {  
             this.setState({
                 users: res.data
@@ -22,18 +26,6 @@ class PeopleTable extends Component {
         .catch(err => {
             console.log(err);
         });
-    }
-
-    removeUserFromGroup = () => {
-        axios.get("https://localhost:3000/api/remove/user", this.state.users)
-        .then(res => {
-            this.setState({
-                users: res.data
-            });
-        })
-        .catch(err => {
-            console.log(err);
-        })
     }
 
     componentDidMount() {
@@ -55,14 +47,7 @@ class PeopleTable extends Component {
             </thead>
             <tbody>
                 {this.state.users.map(user => 
-                    <tr>
-                       
-                        <td>{user.name}</td>
-                        <td>{user.country}</td>
-                        <td>{user.email}</td>
-                        <td>{user.phone}</td>
-                        <td><Button color="danger" onClick={this.removeUserFromGroup}>X</Button></td>
-                    </tr>
+                   <RowElement user={user} group={this.state.group} show_delete={true} /> 
                 )}
             </tbody>
             </Table>
