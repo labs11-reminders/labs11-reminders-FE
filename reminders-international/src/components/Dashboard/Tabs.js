@@ -47,6 +47,7 @@ export default class Example extends React.Component {
               <strong id="tabNav">MESSAGES</strong>
             </NavLink>
           </NavItem>
+
           <NavItem>
             <NavLink
               className={classnames({ active: this.state.activeTab === '2' })}
@@ -57,6 +58,7 @@ export default class Example extends React.Component {
               <strong id="tabNav">TEMPLATES</strong>
             </NavLink>
           </NavItem>
+          
           <NavItem>
             <NavLink
               className={classnames({ active: this.state.activeTab === '3' })}

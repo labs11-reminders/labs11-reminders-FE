@@ -85,7 +85,7 @@ class App extends Component {
 
         <Route exact path="/join-group-form" component={Group} />
 
-        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/dashboard" component={Dashboard} auth={this.props.auth}/>
 
         <Route exact path="/newgroupmessage" component={NewGroupMessage} />
 
