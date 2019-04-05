@@ -84,15 +84,15 @@ export default class Auth {
       }
     
       renewSession() {  //commented out so that routes are available/ buggy and needs fixed
-        // this.auth0.checkSession({}, (err, authResult) => {
-        //    if (authResult && authResult.accessToken && authResult.idToken) {
-        //      this.setSession(authResult);
-        //    } else if (err) {
-        //     //  this.logout();
-        //      console.log(err);
-        //     //  alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
-        //    }
-        // });
+        this.auth0.checkSession({}, (err, authResult) => {
+           if (authResult && authResult.accessToken && authResult.idToken) {
+             this.setSession(authResult);
+           } else if (err) {
+            //  this.logout();
+             console.log(err);
+            //  alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
+           }
+        });
       }
 
       getProfile(cb) {
