@@ -48,19 +48,20 @@ class ScheduledMessageCard extends Component{
 
 fetchReminder = id => {
   axios
-    .get(`${process.env.REACT_APP_BACKEND}api/reminders/${id}`)
+    .get(`https://reminders-international.herokuapp.com/api/reminders/${id}`)
     .then(response => {
       console.log(response.data)
       this.setState(() => ({ message:{
         title: response.data.name,
-        to: '',
+        to: response.data.phone_send,
         body: response.data.description,
-        approved: false, 
-        date: '',
-        scheduled: true,
+        approved: response.data.approved, 
+        date: response.data.scheduled_date,
+        scheduled: response.data.scheduled,
         id:response.data.id
         }}));
-    })
+  
+    }) 
     .catch(err => {
       console.log(err)
     });
@@ -70,44 +71,23 @@ fetchReminder = id => {
     console.log(this)
     const id = this.props.id
     this.fetchReminder(id);
+    
   }
-
   handleChange = () => {
     //event.preventDefault();
     const id = this.props.id
-    this.setState({ submitting: true });
-    fetch(`${process.env.REACT_APP_BACKEND}api/reminders/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      to: this.state.to,
-      body: JSON.stringify(this.state.message),
-      approved: this.state.approved, 
-      date: this.state.date,
-      scheduled: this.state.scheduled
-    })
-      .then(res => {
-        if (res.status === 200) {
-          console.log('scheduling message');
-          this.setState({
-            error: false,
-            submitting: true,
-          });
-        } else {
-          this.setState({
-            error: true,
-            submitting: false
-          });
-        }
-       // res.json()
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
+    axios.put(`https://reminders-international.herokuapp.com/api/reminders/${id}`, {message: this.state.message})
+        .then(res => {
+            window.location.reload();
+        }).catch(err => {
+            console.log(err);
+        })
+    }
 
   toggleApprove() {
+
+  console.log(this.state.message)
+
     if (this.state.message.approved == false) {
       this.setState({message:{
         id:this.state.id,
@@ -128,8 +108,9 @@ fetchReminder = id => {
         scheduled: true }});
     } 
     console.log(this.state.message.approved)
-    console.log(this.state)
-    //this.handleChange(); --- NEED BACKEND UPDATES
+    this.handleChange(); 
+    const id = this.props.id
+    this.fetchReminder(id)
   }
 
   onDatePicker = (event) => {  
@@ -138,16 +119,24 @@ fetchReminder = id => {
       message: { ...this.state.message, date:date}
     });
    
-    console.log(this.state.message.date)
-    
-    //this.handleChange(event,id);
+     this.handleChange();
     }
-    
-    
+
+    onDelete = () => {  
+      const id = this.props.id
+        axios.delete(`https://reminders-international.herokuapp.com/api/reminders/${id}`, {message: this.state.message})
+        .then(res => {
+            window.location.reload();
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+     
+      
 
   render(){
     
-
   return (
     <div className="scheduled-card">
            
@@ -160,6 +149,7 @@ fetchReminder = id => {
         <CardSubtitle>Message</CardSubtitle>
         <CardText>{this.props.message}</CardText>
         <div className="schedule-functions">
+        <CardText>Currently scheduled for {this.props.date}</CardText>
         <DayPickerInput onDayChange={this.onDatePicker}
         dayPickerProps={{
         month: new Date(),
@@ -171,6 +161,13 @@ fetchReminder = id => {
           <Label check>
             <Input type="checkbox" onClick={this.toggleApprove} />{' '}
             Approved
+          </Label>
+        </FormGroup>
+
+        <FormGroup check>
+          <Label check>
+            <Input type="checkbox" onClick={this.onDelete} />{' '}
+            Delete
           </Label>
         </FormGroup>
         </div>
