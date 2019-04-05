@@ -1,8 +1,11 @@
 import history from '../../history.js';
 import React from 'react';
 import axios from 'axios';
-import { Button } from 'reactstrap';
+// import { Button } from 'reactstrap';
+
+// Do we need this and what is the correct format?
 const dotenv = require('dotenv'); 
+// require('dotenv').config(); 
 
 axios.defaults.baseURL = process.env.REACT_APP_BASEURL || 'http://localhost:3000/';
 

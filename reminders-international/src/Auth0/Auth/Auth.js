@@ -1,6 +1,6 @@
 import history from '../../history.js';
 import auth0 from 'auth0-js';
-//const dotenv = require('dotenv'); //need to uncomment for local dev and testing
+const dotenv = require('dotenv'); //need to uncomment for local dev and testing
 
 // const result = dotenv.config();
 
@@ -20,6 +20,7 @@ export default class Auth {
       redirectUri: process.env.REACT_APP_CALLBACKURL,
       responseType: 'token id_token',
       audience: 'https://localhost:3000/users',
+      // scope: 'openid profile',
       scope: 'openid profile admin:access'
     });
 
@@ -88,6 +89,7 @@ export default class Auth {
            if (authResult && authResult.accessToken && authResult.idToken) {
              this.setSession(authResult);
            } else if (err) {
+
             this.logout();
             console.log(`Could not get a new token (${err.error}: ${err.error_description}).`);
            }
@@ -98,7 +100,9 @@ export default class Auth {
         this.auth0.client.userInfo(this.accessToken, (err, profile) => {
           if (profile) {
             this.userProfile = profile;
+
             // This needs to be removed once we link our user table to auth0
+
             this.userProfile.user_id = 1;
           }
           cb(err, profile);

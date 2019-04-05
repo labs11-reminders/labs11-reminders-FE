@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import RowElement from './RowElement.js'
-import { Table, Button } from 'reactstrap';
+import { Table } from 'reactstrap';
 
 class SearchTable extends Component {
     constructor(props) {

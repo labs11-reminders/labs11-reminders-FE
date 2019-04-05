@@ -28,6 +28,7 @@ class Dashboard extends Component {
   render() {
     return (
       <>
+
         <h1> {this.state.profile.nickname}'s Dashboard </h1>
         <div className="mainContainer">
           <section className="sidebar">

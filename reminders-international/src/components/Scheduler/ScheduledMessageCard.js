@@ -1,17 +1,17 @@
 import React,  { Component } from 'react';
 import {
-  TabContent,
-  TabPane,
-  Nav,
-  NavItem,
-  NavLink,
+  // TabContent,
+  // TabPane,
+  // Nav,
+  // NavItem,
+  // NavLink,
   Card,
-  Button,
+  // Button,
   CardTitle,
   CardSubtitle,
   CardText,
-  Row,
-  Col,
+  // Row,
+  // Col,
 } from 'reactstrap';
 
 class ScheduledMessageCard extends Component{
@@ -31,17 +31,37 @@ class ScheduledMessageCard extends Component{
   };
   //this.toggleApprove = this.toggleApprove.bind(this);
 }
+
+// Katie I surrounded your code with a conditional render using a ternary operator based on if scheduled was true. 
+// Also, I added <Card> around your code so that the word "message" aligns correctly.
+
+//  {this.props.scheduled ? (
+//    <div>
+//      <Card>
+
+//        your original code
+
+//      <Card>
+//    </div>
+//  ): undefined }
+
   render(){
   return (
     <div className="scheduled-card">
 
-      <CardTitle>{this.props.name}</CardTitle>
+      {this.props.scheduled ? (
+        <div>
+          <Card>
 
-      <div className="scheduled-description">
-        <CardSubtitle>Message</CardSubtitle>
-        <CardText>{this.props.description}</CardText>
-      </div>
-      
+          <CardTitle>{this.props.name}</CardTitle>
+          <div className="scheduled-description">
+            <CardSubtitle>Message</CardSubtitle>
+            <CardText>{this.props.description}</CardText>
+          </div>
+
+          </Card>
+        </div>
+      ): undefined }
 
     </div>
   );

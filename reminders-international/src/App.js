@@ -12,6 +12,7 @@ import {
   People,
   SignUp,
   Scheduler,
+  DraftList,
 } from './components';
 
 import axios from 'axios';
@@ -79,16 +80,12 @@ class App extends Component {
         <Route exact path="/sms-form" component={Reminders} />
         <Route exact path="/schedulemessagecomposer" component={Scheduler} />
 
-        {/* <Route 
-            exact path='/join-org-form' 
-            render={props => <Org {...props}
-            auth={this.auth}
-            /> }  */}
         <Route exact path="/join-org-form" component={Org} />
 
         <Route exact path="/join-group-form" component={Group} />
 
         {/* <Route exact path="/dashboard" component={Dashboard} /> */}
+
         <Route exact path="/dashboard" render={props => (
             <Dashboard {...props} auth={this.auth} />)}/>
         {/* <Route exact path="/dashboard" auth={this.auth} component={Dashboard} /> */}
@@ -100,6 +97,7 @@ class App extends Component {
         <Route exact path="/select-role" component={Roles} />
 
         <Route exact path="/template-list" component={TemplateList} />
+        <Route exact path="/draft-list" component={DraftList} />
 
         <Route exact path="/signup" render={props => (
             <SignUp {...props} auth={this.auth} history={this.props.history}/>)}/>

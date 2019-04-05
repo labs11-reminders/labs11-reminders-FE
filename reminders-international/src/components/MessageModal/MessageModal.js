@@ -24,7 +24,7 @@ class MessageModal extends React.Component {
     }));
   }
 
-  onHandleChange = (event) => {
+  handleChange = (event) => {
     const name = event.target.getAttribute('name');
     this.setState({
       message: { ...this.state.message, [name]: event.target.value }
@@ -74,6 +74,7 @@ class MessageModal extends React.Component {
 
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <Button color="primary" onClick={this.toggle}>{this.props.buttonLabel}</Button>
