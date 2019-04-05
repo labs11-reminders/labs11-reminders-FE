@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import TabsSection from './Tabs';
-
+import ScheduleMessageComposer from '../Scheduler/ScheduleMessageComposer';
 
 class MainContent extends Component {
   state = {};
@@ -26,7 +26,9 @@ class MainContent extends Component {
           </div>
         </section>
         <section className="tabSection">
+          <ScheduleMessageComposer></ScheduleMessageComposer>
           <TabsSection />
+          
         </section>
       </div>
     );

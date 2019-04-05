@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ScheduledMessageCard from './ScheduledMessageCard';
+import { Link } from 'react-router-dom';
 import {
   TabContent,
   TabPane,
@@ -36,10 +37,15 @@ export default class ScheduledMessageList extends Component {
             
             <Card>
               <CardBody>
+  
             <ScheduledMessageCard //ADD approved and date
               key={reminder.id}
-              name={reminder.name}
-              description={reminder.description}
+              id={reminder.id}
+              title={reminder.name}
+              message={reminder.description}
+              to={reminder.phone_send}
+              date={reminder.scheduled_date}
+              approved={reminder.approved}
               created_at={reminder.created_at}
               group_id={reminder.group_id}
               user_id={reminder.user_id}
