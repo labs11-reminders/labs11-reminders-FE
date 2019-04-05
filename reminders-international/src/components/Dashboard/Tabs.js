@@ -13,8 +13,6 @@ import {
   Col,
 } from 'reactstrap';
 
-import TemplateList from '../Templates/TemplateList';
-
 import NewGroupMessage from '../NewGroupMessage/NewGroupMessage';
 import TemplateList  from '../Templates/TemplateList';
 import DraftList  from '../Drafts/DraftList';
