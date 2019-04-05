@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { Table, Button } from 'reactstrap';
+import { Table } from 'reactstrap';
 import RowElement from './RowElement.js';
 
 class PeopleTable extends Component {

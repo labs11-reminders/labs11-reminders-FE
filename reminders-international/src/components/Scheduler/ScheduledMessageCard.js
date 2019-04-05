@@ -4,13 +4,13 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import axios from 'axios';
 import {
-  TabContent,
-  TabPane,
-  Nav,
-  NavItem,
-  NavLink,
+  // TabContent,
+  // TabPane,
+  // Nav,
+  // NavItem,
+  // NavLink,
   Card,
-  Button,
+  // Button,
   CardTitle,
   CardSubtitle,
   CardText,
@@ -22,6 +22,7 @@ import {
   Input, 
   FormGroup,
   Label,
+
 
 } from 'reactstrap';
 
@@ -64,6 +65,7 @@ fetchReminder = id => {
       console.log(err)
     });
 }
+
   componentDidMount() {
     console.log(this)
     const id = this.props.id
@@ -143,14 +145,16 @@ fetchReminder = id => {
     
     
 
-
   render(){
     
 
   return (
     <div className="scheduled-card">
-
-      <CardTitle>{this.props.title}</CardTitle>
+           
+      {this.props.scheduled ? (
+        <div>
+          <Card>
+          <CardTitle>{this.props.title}</CardTitle>
 
       <div className="scheduled-description">
         <CardSubtitle>Message</CardSubtitle>
@@ -170,10 +174,11 @@ fetchReminder = id => {
           </Label>
         </FormGroup>
         </div>
+          </div>
 
-
-      </div>
-      
+          </Card>
+        </div>
+      ): undefined }
 
     </div>
   );

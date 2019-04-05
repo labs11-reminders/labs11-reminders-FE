@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import ScheduledMessageCard from './ScheduledMessageCard';
 import { Link } from 'react-router-dom';
 import {
-  TabContent,
-  TabPane,
-  Nav,
-  NavItem,
-  NavLink,
+  // TabContent,
+  // TabPane,
+  // Nav,
+  // NavItem,
+  // NavLink,
   Card,
-  CardDeck,
+  // CardDeck,
   CardColumns,
   CardBody,
-  Button,
-  CardTitle,
-  CardText,
+  // Button,
+  // CardTitle,
+  // CardText,
 } from 'reactstrap';
 
 //TODO: update imports as needed
@@ -34,11 +34,9 @@ export default class ScheduledMessageList extends Component {
     <CardColumns sm="6">
         {this.props.reminders.map(reminder => { //change to scheduled reminders when whe have them 
           return (
-            
-            <Card>
+              <Card>
               <CardBody>
-  
-            <ScheduledMessageCard //ADD approved and date
+              <ScheduledMessageCard //ADD approved and date
               key={reminder.id}
               id={reminder.id}
               title={reminder.name}
