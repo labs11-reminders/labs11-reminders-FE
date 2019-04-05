@@ -1,0 +1,26 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js
+
+PATH: 
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Git\cmd;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\nodejs\;C:\Ruby24-x64\bin;C:\Users\Rachel\AppData\Local\Microsoft\WindowsApps;C:\Users\Rachel\AppData\Roaming\Dashlane\6.5.0.12978\bin\Firefox_Extension\{442718d9-475e-452a-b3e1-fb1ee16b8e9f}\components;C:\Users\Rachel\AppData\Roaming\Dashlane\6.5.0.12978\ucrt;C:\Users\Rachel\AppData\Roaming\Dashlane\6.5.0.12978\bin\Qt;C:\Users\Rachel\AppData\Roaming\Dashlane\6.5.0.12978\ucrt;C:\Users\Rachel\AppData\Roaming\Dashlane\6.5.0.12978\bin\Ssl;C:\Users\Rachel\AppData\Local\atom\bin;C:\Users\Rachel\bin;C:\Users\Rachel\AppData\Roaming\Dashlane\6.1846.0.15081\bin\Firefox_Extension\{442718d9-475e-452a-b3e1-fb1ee16b8e9f}\components;C:\Users\Rachel\AppData\Roaming\Dashlane\6.1846.0.15081\ucrt;C:\Users\Rachel\AppData\Roaming\Dashlane\6.1846.0.15081\bin\Qt;C:\Users\Rachel\AppData\Roaming\Dashlane\6.1846.0.15081\ucrt;C:\Users\Rachel\AppData\Roaming\Dashlane\6.1846.0.15081\bin\Ssl;C:\Users\Rachel\AppData\Local\GitHubDesktop\bin;C:\Users\Rachel\AppData\Local\Yarn\bin;C:\Users\Rachel\AppData\Roaming\npm;C:\Users\Rachel\AppData\Roaming\Dashlane\6.1907.0.17833\bin\Firefox_Extension\{442718d9-475e-452a-b3e1-fb1ee16b8e9f}\components;C:\Users\Rachel\AppData\Roaming\Dashlane\6.1907.0.17833\ucrt;C:\Users\Rachel\AppData\Roaming\Dashlane\6.1907.0.17833\bin\Qt;C:\Users\Rachel\AppData\Roaming\Dashlane\6.1907.0.17833\bin\Ssl;C:\Program Files\PostgreSQL\11\bin;
+
+Yarn version: 
+  1.13.0
+
+Node version: 
+  10.15.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, mkdir 'C:\Users\Rachel\Documents\LAMBDA\labs11-reminders-FE\node_modules'
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -80,7 +80,7 @@ export default class Auth {
         this.scheduleRenewal();
     
         // navigate to the home route
-        history.replace('/users');
+        history.replace('/dashboard');
       }
     
       renewSession() {  //commented out so that routes are available/ buggy and needs fixed
