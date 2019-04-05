@@ -2,14 +2,22 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input } from 'reactstrap';
 import SMSForm from '../SMSForm/SMSForm';
 
+import axios from 'axios';
+
 class MessageModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: {},
       modal: false,
       message: {
         to: '',
-        body: ''
+        body: '',
+        scheduled: false,
+        draft: false,
+        template: false,
+        group_id: '',
+        user_id: '',
       },
       submitting: false,
       error: false
@@ -18,11 +26,55 @@ class MessageModal extends React.Component {
     this.toggle = this.toggle.bind(this);
   }
 
-  toggle() {
-    this.setState(prevState => ({
-      modal: !prevState.modal
-    }));
+  // getUserData = () => {
+  //   axios.get(`${process.env.REACT_APP_BACKEND}/api/users/data/${id}`, this.state.user.id)
+  //     .then(res => {
+  //       this.setState({
+  //         user: res.data
+  //       })
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }
+
+  createSavedReminder = () => {
+    axios.post(`${process.env.REACT_APP_BACKEND}/api/reminders`, this.state.message)
+      .then(res => {
+        console.log('saving reminder');
+        this.setState({
+          message: res.data
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
+
+
+
+  // toggleSavedAsDraft() {
+  //   this.setState(prevState => ({
+  //     draft: !prevState.draft })), () => {
+  //     this.createSavedReminder();
+  //   };
+  // }
+
+  // toggleSavedAsTemplate() {
+  //   this.setState(prevState => ({
+  //     template: !prevState.template
+  //   })), () => {
+  //     this.createSavedReminder()
+  //   };
+  // }
+
+  // toggleSavedAsTemplate() {
+  //   this.setState(prevState => ({
+  //     scheduled: !prevState.scheduled
+  //   })), () => {
+  //     this.createSavedReminder()
+  //   };
+  // }
 
   onHandleChange = (event) => {
     const name = event.target.getAttribute('name');
@@ -89,7 +141,7 @@ class MessageModal extends React.Component {
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>Save Draft</Button>{' '}
             <Button color="secondary" onClick={this.toggle}>Schedule</Button>{/* <---- toggle scheduled to true, and direct user to scheduled component*/}
-            {/* <Button color="secondary" onClick={this.onSubmit}>Send</Button> */}
+            <Button color="secondary" onClick={this.onSubmit}>Send</Button>
           </ModalFooter>
         </Modal>
       </div>
