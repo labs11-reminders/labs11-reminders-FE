@@ -80,25 +80,25 @@ export default class Auth {
         this.scheduleRenewal();
     
         // navigate to the home route
-        history.replace('/users');
+        history.replace('/dashboard');
       }
     
       renewSession() {  //commented out so that routes are available/ buggy and needs fixed
-        // this.auth0.checkSession({}, (err, authResult) => {
-        //    if (authResult && authResult.accessToken && authResult.idToken) {
-        //      this.setSession(authResult);
-        //    } else if (err) {
-        //     //  this.logout();
-        //      console.log(err);
-        //     //  alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
-        //    }
-        // });
+        this.auth0.checkSession({}, (err, authResult) => {
+           if (authResult && authResult.accessToken && authResult.idToken) {
+             this.setSession(authResult);
+           } else if (err) {
+            this.logout();
+            console.log(`Could not get a new token (${err.error}: ${err.error_description}).`);
+           }
+        });
       }
 
       getProfile(cb) {
         this.auth0.client.userInfo(this.accessToken, (err, profile) => {
           if (profile) {
             this.userProfile = profile;
+            // This needs to be removed once we link our user table to auth0
             this.userProfile.user_id = 1;
           }
           cb(err, profile);

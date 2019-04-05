@@ -35,7 +35,7 @@ class MessageModal extends React.Component {
     this.setState(prevState => ({
       draft: !prevState
     }));
-    this.onHandleChange(event,id);
+    this.handleChange(event,id);
   }
 
   onSubmit = (event) => {

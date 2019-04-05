@@ -171,9 +171,9 @@ class Sidebar extends Component {
     return (
       <div className="sidebarWrapper">
         <section className="profileSection cube">
-          <div id="profilePicture">JW</div>
+          <div id="profilePicture"><img src={this.props.profile.picture} /></div>
           <div id="profileName">
-            <span>Hello, </span>
+            <span>Hello, {this.props.profile.nickname} </span>
           </div>
         </section>
         <section className="orgSection cube">
