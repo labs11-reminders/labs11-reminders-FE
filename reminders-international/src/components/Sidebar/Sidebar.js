@@ -177,12 +177,11 @@ class Sidebar extends Component {
       
       <div className="sidebarWrapper">
         <section className="profileSection cube">
-        <div id="profilePicture">JW</div>
-          {/* <div id="profilePicture"><img src={this.props.profile.picture} alt="your profile pic" /></div> */}
+
+          <div id="profilePicture"><img src={this.props.profile.picture} /></div>
           <div id="profileName">
-            {/* <span>Hello, {this.props.profile.nickname}</span> */}
-            {/* <span>Hello, {this.props.profile}</span> */}
-            <span>Hello, </span>
+            <span>Hello, {this.props.profile.nickname} </span>
+
           </div>
         </section>
         <section className="orgSection cube">

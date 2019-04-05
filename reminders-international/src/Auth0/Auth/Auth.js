@@ -89,8 +89,9 @@ export default class Auth {
            if (authResult && authResult.accessToken && authResult.idToken) {
              this.setSession(authResult);
            } else if (err) {
-            //  this.logout();
-            //  console.log(`Could not get a new token (${err.error}: ${err.error_description}).`);
+
+            this.logout();
+            console.log(`Could not get a new token (${err.error}: ${err.error_description}).`);
            }
         });
       }
@@ -100,7 +101,7 @@ export default class Auth {
           if (profile) {
             this.userProfile = profile;
 
-            // TODO Remove once the user table is linked to Auth0
+            // This needs to be removed once we link our user table to auth0
 
             this.userProfile.user_id = 1;
           }

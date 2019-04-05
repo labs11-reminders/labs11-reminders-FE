@@ -12,6 +12,9 @@ import {
   Row,
   Col,
 } from 'reactstrap';
+
+import TemplateList from '../Templates/TemplateList';
+
 import NewGroupMessage from '../NewGroupMessage/NewGroupMessage';
 import TemplateList  from '../Templates/TemplateList';
 import DraftList  from '../Drafts/DraftList';
@@ -19,7 +22,9 @@ import Scheduler from '../Scheduler/ScheduleMessageComposer';
 import People from '../People/People';
 import classnames from 'classnames';
 
-export default class TabSection extends React.Component {
+
+export default class TabsSection extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -97,12 +102,14 @@ export default class TabSection extends React.Component {
           </NavItem>
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
+          
           <TabPane tabId="1">
             <Row>
               <Col sm="12">
                 <NewGroupMessage />
               </Col>
             </Row>
+          
           </TabPane>
           <TabPane tabId="2">
             <Scheduler/>
