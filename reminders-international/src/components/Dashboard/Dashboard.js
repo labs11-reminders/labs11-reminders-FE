@@ -28,9 +28,11 @@ class Dashboard extends Component {
   render() {
     return (
       <>
-        <h1>Dashboard</h1>
+      <h1>Dashboard</h1>
+        {/* <h1>{this.state.profile.nickname}'s Dashboard</h1> */}
         <div className="mainContainer">
           <section className="sidebar">
+            {/* <Sidebar profile={this.state.profile} /> */}
             <Sidebar />
           </section>
           <section className="content">

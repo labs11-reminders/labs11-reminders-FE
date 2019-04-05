@@ -5,19 +5,21 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Card,
-  Button,
-  CardTitle,
-  CardText,
+  // Card,
+  // Button,
+  // CardTitle,
+  // CardText,
   Row,
   Col,
 } from 'reactstrap';
-import  TemplateList  from '../Templates/TemplateList';
 import NewGroupMessage from '../NewGroupMessage/NewGroupMessage';
+import TemplateList  from '../Templates/TemplateList';
+import DraftList  from '../Drafts/DraftList';
+import Scheduler from '../Scheduler/ScheduleMessageComposer';
 import People from '../People/People';
 import classnames from 'classnames';
 
-export default class Example extends React.Component {
+export default class TabSection extends React.Component {
   constructor(props) {
     super(props);
 
@@ -57,7 +59,7 @@ export default class Example extends React.Component {
                 this.toggle('2');
               }}
             >
-              <strong id="tabNav">TEMPLATES</strong>
+              <strong id="tabNav">SCHEDULER</strong>
             </NavLink>
           </NavItem>
 
@@ -66,6 +68,28 @@ export default class Example extends React.Component {
               className={classnames({ active: this.state.activeTab === '3' })}
               onClick={() => {
                 this.toggle('3');
+              }}
+            >
+              <strong id="tabNav">TEMPLATES</strong>
+            </NavLink>
+          </NavItem>
+
+          <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '4' })}
+              onClick={() => {
+                this.toggle('4');
+              }}
+            >
+              <strong id="tabNav">DRAFTS</strong>
+            </NavLink>
+          </NavItem>
+
+          <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '5' })}
+              onClick={() => {
+                this.toggle('5');
               }}
             >
               <strong id="tabNav">PEOPLE</strong>
@@ -81,31 +105,23 @@ export default class Example extends React.Component {
             </Row>
           </TabPane>
           <TabPane tabId="2">
-            <TemplateList/>
-            {/* <Row>
-              <Col sm="6">
-                <Card body>
-                  <CardTitle>Special Title Treatment</CardTitle>
-                  <CardText>
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </CardText>
-                  <Button>Go somewhere</Button>
-                </Card>
-              </Col>
-              <Col sm="6">
-                <Card body>
-                  <CardTitle>Special Title Treatment</CardTitle>
-                  <CardText>
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </CardText>
-                  <Button>Go somewhere</Button>
-                </Card>
-              </Col>
-            </Row> */}
+            <Scheduler/>
           </TabPane>
           <TabPane tabId="3">
+            <Row>
+              <Col sm="12">
+                <TemplateList />
+              </Col>
+            </Row>
+          </TabPane>
+          <TabPane tabId="4">
+            <Row>
+              <Col sm="12">
+                <DraftList />
+              </Col>
+            </Row>
+          </TabPane>
+          <TabPane tabId="5">
             <Row>
               <Col sm="12">
                 <People />

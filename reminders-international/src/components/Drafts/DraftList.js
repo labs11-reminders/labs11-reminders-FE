@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { Container, Col, Row } from 'reactstrap';
 import axios from 'axios';
-import TemplateCard from './TemplateCard';
+import DraftCard from './DraftCard';
 import {
   // TabContent,
   // TabPane,
@@ -17,7 +17,7 @@ import {
   // CardText,
 } from 'reactstrap';
 
-export default class TemplateList extends Component {
+export default class DraftList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,7 +52,8 @@ export default class TemplateList extends Component {
             return (
               <Card>
                 <CardBody>
-              <TemplateCard 
+              <DraftCard 
+                id={reminder.id}
                 key={reminder.id}
                 name={reminder.name}
                 description={reminder.description}

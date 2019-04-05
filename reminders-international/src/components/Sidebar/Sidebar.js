@@ -11,6 +11,9 @@ import {
   Form,
   FormGroup,
   Col,
+  Panel, 
+  ControlLabel,
+  Glyphicon,
 } from 'reactstrap';
 import axios from 'axios';
 import requiresAuth from '../../Auth0/Auth/requiresAuth.js';
@@ -30,27 +33,13 @@ class Sidebar extends Component {
     };
     this.toggle = this.toggle.bind(this);
     this.toggleNested = this.toggleNested.bind(this);
-    this.getAllReminders = this.getAllReminders(this);
-    // this.getAllGroups = this.getAllGroups(this);
-    // this.getAllOrgs = this.getAllOrgs(this);
+    // this.getAllReminders = this.getAllReminders.bind(this);
+    // this.getAllGroups = this.getAllGroups.bind(this);
+    // this.getAllOrgs = this.getAllOrgs.bind(this);
+    // this.getProfile = this.getProfile.bind(this);
   }
 
-    // //Auth 0 profile info
-
-    // componentWillMount() {
-    //   this.setState({ profile: {} });
-    //   const { userProfile, getProfile } = this.props.auth;
-    //   if (!userProfile) {
-    //     getProfile((err, profile) => {
-    //       this.setState({ profile });
-    //     });
-    //   } else {
-    //     this.setState({ profile: userProfile });
-    //   }
-    // }
-  
-
-  // initialUser() {
+  // componentWillMount() {
   //   this.setState({ profile: {} });
   //   const { userProfile, getProfile } = this.props.auth;
   //   if (!userProfile) {
@@ -61,6 +50,19 @@ class Sidebar extends Component {
   //     this.setState({ profile: userProfile });
   //   }
   // }
+
+  getProfile = (cb) => {
+    this.auth0.client.userInfo(this.accessToken, (err, profile) => {
+      if (profile) {
+        this.userProfile = profile;
+
+        // TODO Remove once the user table is linked to Auth0
+
+        this.userProfile.user_id = 1;
+      }
+      cb(err, profile);
+    });
+  }
 
 
 
@@ -143,11 +145,11 @@ class Sidebar extends Component {
   getAllReminders = () => {
     axios.get("https://reminders-international.herokuapp.com/api/reminders", this.state.reminders)
       .then(res => {
-       console.log('list of all reminders', res.data);
+      //  console.log('list of all reminders', res.data);
         this.setState({
           reminders: res.data
         });
-         console.log('getAllReminders this.state.reminders', this.state.reminders);
+        //  console.log('getAllReminders this.state.reminders', this.state.reminders);
     })
     .catch(err => {
         console.log(err);
@@ -161,23 +163,33 @@ class Sidebar extends Component {
 
   componentDidMount() {
     this.getAllOrgs();
+    this.getAllReminders();
+    // this.getProfile();
   }
 
 
-  render() {   
+  render() {  
+    // const { profile } = this.state 
     const profileImg =
       'https://tk-assets.lambdaschool.com/ecd33d34-c124-4b75-92d2-e5c52c171ed8_11201517_887808411287357_1307163552_a.jpg';
-
+      console.log("SIDEBAR this.props", this.state, this.props)
     return (
+      
       <div className="sidebarWrapper">
         <section className="profileSection cube">
-          <div id="profilePicture">JW</div>
+        <div id="profilePicture">JW</div>
+          {/* <div id="profilePicture"><img src={this.props.profile.picture} alt="your profile pic" /></div> */}
           <div id="profileName">
+            {/* <span>Hello, {this.props.profile.nickname}</span> */}
+            {/* <span>Hello, {this.props.profile}</span> */}
             <span>Hello, </span>
           </div>
         </section>
         <section className="orgSection cube">
           <h6>ORGANIZATION</h6>
+
+          {/*<p> NEED ORG NAME FOR THIS USER </p> */}
+
           <div>Organization Name</div>
         </section>
         <section className="groupsSection cube">
@@ -187,25 +199,26 @@ class Sidebar extends Component {
             <i className="fas fa-plus-circle" /> &nbsp; Create Group
           </NavLink>
 
+          {/*<p> NEED GROUP NAME FOR THIS USER </p> */}
+          
           <div>Group Name List</div>
         </section>
         <section className="convSection cube">
           <h6>Scheduled Messages</h6>
-          {this.state.reminders.map(reminder => {
-            return (
-              <SideTemplateCard 
-                    key={reminder.id}
-                    name={reminder.name}
-                    description={reminder.description}
-                    created_at={reminder.created_at}
-                    group_id={reminder.group_id}
-                    user_id={reminder.user_id}
-                    scheduled={reminder.scheduled}
-                    draft={reminder.draft}
-                    template={reminder.template}
-                  />
-          )})
-          }
+            {this.state.reminders.map(reminder => {
+              return (
+                <SideTemplateCard 
+                      key={reminder.id}
+                      name={reminder.name}
+                      description={reminder.description}
+                      created_at={reminder.created_at}
+                      group_id={reminder.group_id}
+                      user_id={reminder.user_id}
+                      scheduled={reminder.scheduled}
+                      draft={reminder.draft}
+                      template={reminder.template}
+                    />
+            )})}
           {/* <div>User Name</div>
           <div>User Name</div>
           <div>User Name</div> */}

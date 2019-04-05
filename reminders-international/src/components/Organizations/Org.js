@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router';
-import AddOrgForm from './AddOrgForm';
-import { Container, NavBar, Form, FormGroup, Input, Button } from 'reactstrap';
+// import AddOrgForm from './AddOrgForm';
+import { Container, Form, FormGroup, Input, Button } from 'reactstrap';
 import axios from 'axios';
 
 
@@ -19,11 +19,9 @@ class Org extends Component {
     axios.get("https://reminders-international.herokuapp.com/api/orgs", this.state.orgs)
     // axios.get("https://localhost:3333/api/orgs", this.state.orgs)
       .then(res => {
-       console.log('list of all orgs', res.data);
         this.setState({
         orgs: res.data
         });
-         console.log('getAllOrgs this.state.orgs', this.state.orgs);
     })
     .catch(err => {
         console.log(err);

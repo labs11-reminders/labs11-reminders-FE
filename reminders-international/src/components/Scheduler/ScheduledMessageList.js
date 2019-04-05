@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import ScheduledMessageCard from './ScheduledMessageCard';
 import {
-  TabContent,
-  TabPane,
-  Nav,
-  NavItem,
-  NavLink,
+  // TabContent,
+  // TabPane,
+  // Nav,
+  // NavItem,
+  // NavLink,
   Card,
-  CardDeck,
+  // CardDeck,
   CardColumns,
   CardBody,
-  Button,
-  CardTitle,
-  CardText,
+  // Button,
+  // CardTitle,
+  // CardText,
 } from 'reactstrap';
 
 //TODO: update imports as needed
@@ -36,16 +36,17 @@ export default class ScheduledMessageList extends Component {
             
             <Card>
               <CardBody>
-            <ScheduledMessageCard //ADD approved and date
-              key={reminder.id}
-              name={reminder.name}
-              description={reminder.description}
-              created_at={reminder.created_at}
-              group_id={reminder.group_id}
-              user_id={reminder.user_id}
-              scheduled={reminder.scheduled}
-            >ScheduledMessageCard</ScheduledMessageCard>
-            </CardBody>
+                <ScheduledMessageCard //ADD approved and date
+                  key={reminder.id}
+                  name={reminder.name}
+                  description={reminder.description}
+                  created_at={reminder.created_at}
+                  group_id={reminder.group_id}
+                  user_id={reminder.user_id}
+                  scheduled={reminder.scheduled}
+                  >ScheduledMessageCard
+                </ScheduledMessageCard>
+              </CardBody>
             </Card>
           )
         })}

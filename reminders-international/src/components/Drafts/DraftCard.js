@@ -14,11 +14,11 @@ import {
   // Col,
 } from 'reactstrap';
 
-const TemplateCard = (props) => {
+const DraftCard = (props) => {
   const { name, description, created_at, group_id, user_id, scheduled, draft, template } = props.template;
   return (
     <div className="template-card">
-      {props.template ? (
+      {props.draft ? (
         <div className="if-undefined-make-invisible-or-hidden">
       
           <CardTitle>{props.name}</CardTitle>
@@ -36,4 +36,4 @@ const TemplateCard = (props) => {
   );
 };
 
-export default TemplateCard;
+export default DraftCard;
