@@ -9,21 +9,10 @@ class ScheduleMessageComposer extends Component {
         super(props);
         this.state = {
           reminders:[],
-          scheduled_reminders:[],
         }
     }
 
   
-      populateScheduledReminders = () => { //Called in getAllReminders below
-        const scheduledReminders = this.state.reminders.filter(function (reminders) {
-          return reminders.scheduled === true;
-        });
-        this.setState({
-          scheduled_reminders: scheduledReminders
-        });
-        console.log('populateScheduledReminders this.state.scheduled_reminders', this.state.scheduled_reminders);
-      }
-    
       getAllReminders = () => {
         axios.get(`https://reminders-international.herokuapp.com/api/reminders`, this.state.reminders)
           .then(res => {
@@ -50,7 +39,7 @@ class ScheduleMessageComposer extends Component {
           <div> 
            <h3>ScheduledMessageComposer</h3>
             <ScheduledMessageList reminders = {this.state.reminders} 
-            scheduled_reminders = {this.state.scheduled_reminders}/>
+            />
             <div>
             <Button>
                 <MessageModal buttonLabel="Add Scheduled Message" />  
