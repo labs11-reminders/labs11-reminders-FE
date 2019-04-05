@@ -21,9 +21,9 @@ class Auth0 extends Component {
     this.props.auth.logout();
   }
 
-  goSignUp = event => {
-    this.try("/signup");
-  }
+  // goSignUp = event => {
+  //   this.try("/signup");
+  // }
 
 
   componentDidMount() {
