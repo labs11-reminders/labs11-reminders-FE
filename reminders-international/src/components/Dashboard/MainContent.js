@@ -26,6 +26,7 @@ class MainContent extends Component {
         </section>
         <section className="tabSection">
           <TabsSection />
+          
         </section>
       </div>
     );

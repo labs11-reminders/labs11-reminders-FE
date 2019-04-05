@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { InputGroup, InputGroupAddon,  Input, Button } from 'reactstrap';
+import { InputGroup, InputGroupAddon, Button } from 'reactstrap';
 
 class UserDetailsForm extends Component {
     constructor(props) {
@@ -70,19 +70,19 @@ class UserDetailsForm extends Component {
            <div>
                 <InputGroup>
                     <InputGroupAddon addonType="prepend">Name</InputGroupAddon>
-                        <input placeholder="First & Last" ref={input => this.full_name = input} onChange={this.onHandleChange}/>
+                        <input placeholder="First & Last" ref={input => this.full_name = input} onChange={this.onHandleChanges}/>
                 </InputGroup>
                 <InputGroup>
                     <InputGroupAddon addonType="prepend">Email</InputGroupAddon>
-                        <input placeholder="@address.com" ref={input => this.email = input} onChange={this.onHandleChange}/>
+                        <input placeholder="@address.com" ref={input => this.email = input} onChange={this.onHandleChanges}/>
                 </InputGroup>
                 <InputGroup>
                     <InputGroupAddon addonType="prepend">Country</InputGroupAddon>
-                        <input placeholder="of Residence" ref={input => this.country = input} onChange={this.onHandleChange}/>
+                        <input placeholder="of Residence" ref={input => this.country = input} onChange={this.onHandleChanges}/>
                 </InputGroup>
                 <InputGroup>
                     <InputGroupAddon addonType="prepend">Phone</InputGroupAddon>
-                        <input placeholder="Number" ref={input => this.phone = input} onChange={this.onHandleChange} />
+                        <input placeholder="Number" ref={input => this.phone = input} onChange={this.onHandleChanges} />
                 </InputGroup>
                 <Button color="primary" onClick={this.handleSubmit}>Save and Continue</Button>{' '}
            </div> 

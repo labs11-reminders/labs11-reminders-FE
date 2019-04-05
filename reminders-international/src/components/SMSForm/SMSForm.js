@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './SMSForm.css';
-
-// axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 class SMSForm extends Component {
   constructor(props) {
@@ -15,8 +12,6 @@ class SMSForm extends Component {
       submitting: false,
       error: false
     };
-    // this.onHandleChange = this.onHandleChange.bind(this);
-    // this.onSubmit = this.onSubmit.bind(this);
   }
 
   onHandleChange = (event) => {
