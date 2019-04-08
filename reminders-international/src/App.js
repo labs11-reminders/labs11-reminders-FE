@@ -90,7 +90,8 @@ class App extends Component {
             <Dashboard {...props} auth={this.auth} />)}/>
         {/* <Route exact path="/dashboard" auth={this.auth} component={Dashboard} /> */}
 
-        <Route exact path="/newgroupmessage" component={NewGroupMessage} />
+        <Route exact path="/newgroupmessage" render={props => (
+            <NewGroupMessage {...props} /> )}/>
 
         <Route exact path="/people" component={People} />
 

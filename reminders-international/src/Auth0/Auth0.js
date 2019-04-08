@@ -49,11 +49,11 @@ class Auth0 extends Component {
         <Navbar color="light">
           <NavbarBrand href="/">Reminders International</NavbarBrand>
          
-          <Button
+          {/* <Button
               color="primary"
               onClick={this.goSignUp}>
             Sign-up
-          </Button>
+          </Button> */}
             {
               !isAuthenticated() && (
                   <Button

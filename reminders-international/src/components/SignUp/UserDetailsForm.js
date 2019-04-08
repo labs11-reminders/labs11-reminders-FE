@@ -58,6 +58,7 @@ class UserDetailsForm extends Component {
             org_id: this.props.org_id,
             role_id: this.props.role_id,
             password: 'NotAPassword',
+            auth0_sub: this.props.profile.sub
             }    
         }, () => {   
         this.createNewUser(); 
