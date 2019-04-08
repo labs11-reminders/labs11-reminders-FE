@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router';
-// import AddOrgForm from './AddOrgForm';
+import AddOrgForm from './AddOrgForm';
 import { Container, Form, FormGroup, Input, Button } from 'reactstrap';
 import axios from 'axios';
 
@@ -67,7 +67,7 @@ class Org extends Component {
         </FormGroup>
 
       </Form>
-      {/* <AddOrgForm /> */}
+      <AddOrgForm />
       </Container>
     );
   }
