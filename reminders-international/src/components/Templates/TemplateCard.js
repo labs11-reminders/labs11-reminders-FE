@@ -4,7 +4,7 @@ import {
   // TabPane,
   // Nav,
   // NavItem,
-  // NavLink,
+  NavLink,
   // Card,
   // Button,
   CardTitle,
@@ -22,7 +22,11 @@ const TemplateCard = (props) => {
         <div className="if-undefined-make-invisible-or-hidden">
       
           <CardTitle>{props.name}</CardTitle>
-
+          <NavLink id="createLink" >
+            <i className="fas fa-pencil-alt" /> &nbsp; </NavLink>
+          <NavLink id="createLink" >
+            <i className="fas fa-trash-alt" /> &nbsp;
+          </NavLink>
           <div className="template-description">
             <CardSubtitle>Message</CardSubtitle>
             <CardText>{props.description}</CardText>

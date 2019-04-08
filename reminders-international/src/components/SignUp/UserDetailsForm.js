@@ -25,7 +25,7 @@ class UserDetailsForm extends Component {
     createNewUser = () => {
         axios.post(`${process.env.REACT_APP_BACKEND}/api/users`, this.state.user)
             .then(res=> {
-                
+                console.log("UserDetailForm res", res)
                 this.setState({
                     user_id: res.data[0]
                 }, () => {
