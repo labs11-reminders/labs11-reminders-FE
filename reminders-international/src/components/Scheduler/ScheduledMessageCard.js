@@ -1,30 +1,24 @@
 import React,  { Component } from 'react';
-import DayPicker from 'react-day-picker';
+import MomentLocaleUtils, {
+  formatDate,
+  parseDate,
+} from 'react-day-picker/moment'
+import 'moment/locale/it';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import axios from 'axios';
 import {
-  // TabContent,
-  // TabPane,
-  // Nav,
-  // NavItem,
-  // NavLink,
-  Card,
-  // Button,
-  CardTitle,
+   Card,
+   CardTitle,
   CardSubtitle,
   CardText,
-  Row,
-  Col,
-  InputGroup, 
-  InputGroupAddon, 
-  InputGroupText, 
   Input, 
   FormGroup,
   Label,
 
 
 } from 'reactstrap';
+import moment from "moment";
 
 
 class ScheduledMessageCard extends Component{
@@ -36,9 +30,9 @@ class ScheduledMessageCard extends Component{
         title: '', 
         to: '',// TODO: props from user group list 
         body: '',
-        approved: false, // TODO: create approved column for backend - change worker.py to reflect change
+        approved: false, // TODO: Change worker.py to reflect change
         date: '',//TODO: set from react datetime selector 
-        scheduled: true //NOTE: scheduled is toggled to true in 'MessageModal'
+        scheduled: true 
       },
     submitting: false,
     error: false
@@ -73,21 +67,28 @@ fetchReminder = id => {
     this.fetchReminder(id);
     
   }
-  handleChange = () => {
-    //event.preventDefault();
-    const id = this.props.id
-    axios.put(`https://reminders-international.herokuapp.com/api/reminders/${id}`, {message: this.state.message})
-        .then(res => {
-            window.location.reload();
-        }).catch(err => {
-            console.log(err);
-        })
+  handleChange = () => { // BLOCKER - Called in onDatePicker() and toggleApproved()
+    const id = this.state.message.id
+    //const date = moment.utc(this.state.message.date)
+    axios
+    .put(`https://reminders-international.herokuapp.com/api/reminders/${id}`,  
+    {   message:{
+        id:this.state.id,
+        title: this.state.title, 
+        to: this.state.to,
+        body: this.state.body,
+        approved: true, 
+        date: this.state.date,
+        scheduled: true
     }
-
+    }).then(res => {
+        window.location.reload();
+    }).catch(err => {
+        console.log(err);
+    })}
+ 
   toggleApprove() {
-
-  console.log(this.state.message)
-
+  //console.log(this.state.message)
     if (this.state.message.approved == false) {
       this.setState({message:{
         id:this.state.id,
@@ -109,27 +110,28 @@ fetchReminder = id => {
     } 
     console.log(this.state.message.approved)
     this.handleChange(); 
-    const id = this.props.id
-    this.fetchReminder(id)
+    //const id = this.props.id
+    //this.fetchReminder(id)
   }
 
-  onDatePicker = (event) => {  
+  onDatePicker = (event) => {  //need to have state re-render properly 
+    //console.log(this.state.message.date)
     const date = event
     this.setState({
       message: { ...this.state.message, date:date}
     });
-   
-     this.handleChange();
+    //console.log(this.state.message.date)
+    this.handleChange();
     }
 
-    onDelete = () => {  
-      const id = this.props.id
-        axios.delete(`https://reminders-international.herokuapp.com/api/reminders/${id}`, {message: this.state.message})
-        .then(res => {
-            window.location.reload();
-        })
-        .catch(err => {
-            console.log(err);
+  onDelete = () => {  //BLOCKER - call not working 
+    const id = this.props.id
+      axios.delete(`https://reminders-international.herokuapp.com/api/reminders/${id}`, {message: this.state.message})
+      .then(res => {
+          window.location.reload();
+      })
+      .catch(err => {
+          console.log(err);
         })
     }
      
@@ -140,7 +142,7 @@ fetchReminder = id => {
   return (
     <div className="scheduled-card">
            
-      {this.props.scheduled ? (
+      {this.props.scheduled ? ( //conditional rendering based on if scheduled is true or false
         <div>
           <Card>
           <CardTitle>{this.props.title}</CardTitle>
@@ -150,12 +152,11 @@ fetchReminder = id => {
         <CardText>{this.props.message}</CardText>
         <div className="schedule-functions">
         <CardText>Currently scheduled for {this.props.date}</CardText>
-        <DayPickerInput onDayChange={this.onDatePicker}
-        dayPickerProps={{
-        month: new Date(),
-        showWeekNumbers: true,
-        todayButton: 'Today',
-        }}
+        <DayPickerInput
+        onDayChange={this.onDatePicker}
+        formatDate={formatDate}
+        parseDate={parseDate}
+        placeholder={`${formatDate(new Date())}`}
     />
         <FormGroup check>
           <Label check>
@@ -184,96 +185,3 @@ fetchReminder = id => {
 export default ScheduledMessageCard;
 
 
-/*
-this.setState({message:{
-      id:this.state.id,
-      title: this.state.title, 
-      to: this.state.to,
-      body: this.state.body,
-      approved: this.state.approved, 
-      date: event,
-      scheduled: true }});
-handleChange = (event,id) => {
-  event.preventDefault();
-  this.setState({ submitting: true });
-  fetch(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    to: this.state.to,
-    body: JSON.stringify(this.state.message),
-    approved: this.state.approved, 
-    date: this.state.date,
-    scheduled: this.state.scheduled
-  })
-    .then(res => {
-      if (res.status === 200) {
-        console.log('scheduling message');
-        this.setState({
-          error: false,
-          submitting: true,
-        });
-      } else {
-        this.setState({
-          error: true,
-          submitting: false
-        });
-      }
-      res.json()
-    })
-    .catch(err => {
-      console.log(err)
-    })
-}*/
-
-/*
-
-//------ Date handlers triggered in ScheduledMessageCard --------
-onDatePicker = (event,id) => {  
-  //NEEDS TO BE EDITED 
-  //this.handleChange(event,id);
-}
-
-toggleApprove(event,id) {
-  this.setState(prevState => ({
-    approved: !prevState
-  }));
-  //this.handleChange(event,id);
-
-}
-
-
-
-render() {
-  return (
-
-    <div className="scheduled-message-card">
-      <div className="scheduled-message-title">
-      <h2>{this.state.title}</h2>
-       <Button className="edit_button">
-          <MessageModal buttonLabel="edit title" id = {this.props.scheduled_reminders_id}/>  
-        </Button>
-      </div>
-
-      <div className="scheduled-message-description">
-        <h3>Message</h3>
-        <p>{this.state.message}</p>
-      </div>
-
-      {/* TODO - Finish Calendar - <div className="w-25 py-5 my-5 mx-auto">
-        <DatePicker label="Birthday" value="2000-08-15" />
-  </div>
-
-      <div className='check_box'>
-      <FormGroup onClick={this.toggleApprove()} id = {this.props.scheduled_reminders_id}> 
-          <Label for="checkbox_approve">approved</Label>
-          <Input type="checkbox" approved="approved" id="checkbox_approve"/> 
-        </FormGroup>
-      </div>
-    </div>
-  );
-};
-}
-export default ScheduledMessageCard;
-*/
