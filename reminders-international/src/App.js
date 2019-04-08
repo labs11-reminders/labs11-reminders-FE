@@ -90,7 +90,8 @@ class App extends Component {
             <Dashboard {...props} auth={this.auth} />)}/>
         {/* <Route exact path="/dashboard" auth={this.auth} component={Dashboard} /> */}
 
-        <Route exact path="/newgroupmessage" component={NewGroupMessage} />
+        <Route exact path="/newgroupmessage" render={props => (
+            <NewGroupMessage {...props} /> )}/>
 
         <Route exact path="/people" component={People} />
 
@@ -101,7 +102,7 @@ class App extends Component {
         
         {/* <Route exact path="/signup" component={Dashboard} /> */}
         <Route exact path="/signup" render={props => (
-            <SignUp {...props} auth={this.auth} history={this.props.history}/>)}/>
+          <SignUp {...props} auth={this.auth} history={this.props.history}/>)}/>
 
         {/* <Route exact path="/shedule-list" component={TemplateList} /> */}
       </div>

@@ -1,5 +1,7 @@
 import history from '../../history.js';
 import auth0 from 'auth0-js';
+import axios from 'axios';
+
 const dotenv = require('dotenv'); //need to uncomment for local dev and testing
 
 // const result = dotenv.config();
@@ -37,6 +39,32 @@ export default class Auth {
       this.scheduleRenewal();
     }
 
+    // checks the users database to see if the user has logged in to the site before
+    verifyAuth0User() {
+      console.log('starting user verification');
+      this.auth0.client.userInfo(this.accessToken, (err, profile) => {
+        if (profile) {
+        {
+          axios.post(`${process.env.REACT_APP_BACKEND}/api/users/auth`, {auth0_sub: profile.sub})
+            .then(res => {
+              if (res.data.length === 0) {
+                console.log('Signing up new user.')
+                history.replace('/signup');
+              } else {
+                console.log('Existing user signing in.');
+                history.replace('/dashboard');
+              }
+            })
+            .catch(err => {
+              console.log(err);
+              console.log({message: 'Error verifying Auth0 login'});
+           });
+        } 
+      } 
+    });
+
+  }
+
     login() {
         this.auth0.authorize();
     }
@@ -49,7 +77,7 @@ export default class Auth {
             this.setSession(authResult);
             console.log('Auth0: success.');
           } else if (err) {
-            history.replace('/home');
+            history.replace('/');
             console.log('Auth0: failure.')
             console.log(err);
            // alert(`Error: ${err.error}. Check the console for further details!!`);
@@ -79,9 +107,10 @@ export default class Auth {
 
          // schedule a token renewal
         this.scheduleRenewal();
-    
-        // navigate to the home route
-        history.replace('/dashboard');
+        console.log('User logging in.');
+        // navigate to the home route or signup depending on user status
+        this.verifyAuth0User(); 
+          
       }
     
       renewSession() {  //commented out so that routes are available/ buggy and needs fixed
@@ -134,7 +163,7 @@ export default class Auth {
       
         // navigate to the home route
         
-        history.replace('/home');
+        history.replace('/home');   ///*****Rachel, come back to this is this the Auth0 buggy spot?
         // window.location.reload();
       }
     

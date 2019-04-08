@@ -50,7 +50,7 @@ class Group extends Component {
       <p>Once you create a group, you can invite members, send announcements, and start conversations</p>
       <Form className = "groups-form">
         <FormGroup>
-        <AddGroupForm />
+        <AddGroupForm /> 
         <h3>Looking for a group? </h3>
         <label>Join a group</label>
           <Input 
