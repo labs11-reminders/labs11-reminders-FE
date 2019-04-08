@@ -33,7 +33,7 @@ class SignUp extends Component {
         }
     }
 
-    //sub: "google-oauth2|116880671363670736349"
+    
 
     handleNext = e => {
         this.nextStep();
@@ -98,6 +98,7 @@ class SignUp extends Component {
                             org_id={this.state.org_id}
                             group_id={this.state.group_id}
                             history={this.props.history}
+                            profile={this.state.profile}
                         />
                         </div>
                     )
