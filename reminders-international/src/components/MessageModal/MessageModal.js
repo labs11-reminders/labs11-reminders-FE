@@ -56,7 +56,7 @@ class MessageModal extends React.Component {
   // toggleSavedAsDraft() {
   //   this.setState(prevState => ({
   //     draft: !prevState.draft })), () => {
-  //     this.createSavedReminder();
+  //      this.createSavedReminder();
   //   };
   // }
 
