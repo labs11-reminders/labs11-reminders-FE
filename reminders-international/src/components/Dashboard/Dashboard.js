@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Dashboard.css';
 import Sidebar from '../Sidebar/Sidebar';
 import MainContent from './MainContent';
-import axios from './axios';
+import axios from 'axios';
 class Dashboard extends Component {
   constructor(props) {
     super(props);
