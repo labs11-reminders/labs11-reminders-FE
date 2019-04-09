@@ -3,7 +3,6 @@ import axios from 'axios';
 import './Dashboard.css';
 import Sidebar from '../Sidebar/Sidebar';
 import MainContent from './MainContent';
-import axios from 'axios';
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -12,6 +11,7 @@ class Dashboard extends Component {
       org_id: null,
       group_id: null,
       user_id: null,
+      groups: [],
     };
   }
 
@@ -23,8 +23,8 @@ class Dashboard extends Component {
         users: res.data
         });
         //  console.log('getUsers this.state.users', this.state.users);
-      groups: [],
-    };
+
+    });
   }
 
   getOrgGroups = () => {
