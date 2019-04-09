@@ -24,7 +24,6 @@ import Home from './Home';
 
 import './App.css';
 
-
 class App extends Component {
   auth = new Auth();
 
@@ -86,12 +85,18 @@ class App extends Component {
 
         {/* <Route exact path="/dashboard" component={Dashboard} /> */}
 
-        <Route exact path="/dashboard" render={props => (
-            <Dashboard {...props} auth={this.auth} />)}/>
+        <Route
+          exact
+          path="/dashboard"
+          render={props => <Dashboard {...props} auth={this.auth} />}
+        />
         {/* <Route exact path="/dashboard" auth={this.auth} component={Dashboard} /> */}
 
-        <Route exact path="/newgroupmessage" render={props => (
-            <NewGroupMessage {...props} /> )}/>
+        <Route
+          exact
+          path="/newgroupmessage"
+          render={props => <NewGroupMessage {...props} />}
+        />
 
         <Route exact path="/people" component={People} />
 
@@ -99,10 +104,15 @@ class App extends Component {
 
         <Route exact path="/template-list" component={TemplateList} />
         <Route exact path="/draft-list" component={DraftList} />
-        
+
         {/* <Route exact path="/signup" component={Dashboard} /> */}
-        <Route exact path="/signup" render={props => (
-          <SignUp {...props} auth={this.auth} history={this.props.history}/>)}/>
+        <Route
+          exact
+          path="/signup"
+          render={props => (
+            <SignUp {...props} auth={this.auth} history={this.props.history} />
+          )}
+        />
 
         {/* <Route exact path="/shedule-list" component={TemplateList} /> */}
       </div>
