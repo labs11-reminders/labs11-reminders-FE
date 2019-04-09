@@ -60,7 +60,7 @@ class TemplateCard extends Component {
   }
 
   getReminders = () => {
-  axios.get('http://reminders-international.herokuapp.com/api/reminders')
+  axios.get(`${process.env.REACT_APP_BACKEND}/api/reminders`)
       .then(res => {
         //const reminders = res.data;
         //this.setState({ reminders });
@@ -74,11 +74,30 @@ class TemplateCard extends Component {
     // this.editReminder();
   }
 
-  editReminder = (edits, id) => {
+
+  /*   ------ Edit  handlers triggered in ScheduledMessageCard --------
+
+      onEditTitle  = (event, id) => {
+        const title_input = event.target.getAttribute('title');
+        this.setState({
+          title: { ...this.state.title, [title_input]: event.target.value }
+        });
+        this.handleChange(event,id);
+      }
+      onEditMessage = (event, id) => {
+        const message_input = event.target.getAttribute('message');
+        this.setState({
+          message: { ...this.state.message, [message_input]: event.target.value }
+        });
+        this.handleChange(event,id);
+      } */
+  editReminder = id => {
+    console.log("editReminder ID", id)
+    const editObj ={ name: this.state.reminders.name, description: this.state.reminders.description };
     axios
-      .put(`http://reminders-international.herokuapp.com/api/reminders/${id}`, edits)
+      .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
-        console.log("PUT RESPONSE:", response)
+        console.log("PUT RESPONSE:", response.data)
         this.setState({ remindersData: response.data})
       })
       .catch(error => console.log(error))
@@ -87,7 +106,7 @@ class TemplateCard extends Component {
   getAllGroups = () => {
     axios
       .get(
-        'https://reminders-international.herokuapp.com/api/groups',
+        `${process.env.REACT_APP_BACKEND}/api/groups`,
         this.state.groups,
       )
       .then(res => {
@@ -107,7 +126,7 @@ class TemplateCard extends Component {
 
   render() {
     // console.log("TemplateCard this.state", this.state)
-    // console.log("this.props", this.props)
+    console.log("this.props", this.props)
     return (
       <div className="template-card">
         {this.props.template ? (
@@ -129,34 +148,34 @@ class TemplateCard extends Component {
             <h5>Edit the Template</h5>
           </ModalHeader>
           <ModalBody className="modalBody">
-            <Form className="createGroup" onSubmit={this.editReminder}>
+            <Form className="createGroup" >
               <FormGroup row>
-                <Label for="name">Edit Title</Label>
-                <Col sm={10}>
-                  <Input
-                    onChange={this.handleInputChange}
-                    placeholder={this.props.name}
-                    value={this.state.reminders.name}
-                    name="name"
-                    id="name"
-                  />
-                </Col>
+                <Label for="templateName">Edit Title</Label>
+                  <Col sm={10}>
+                    <Input
+                      onChange={this.handleInputChange}
+                      placeholder={this.props.name}
+                      value={this.state.reminders.name}
+                      name="name"
+                      id="templateName"
+                    />
+                  </Col>
               </FormGroup>
 
               <FormGroup row>
-                <Label for="code">Edit Message</Label>
+                <Label for="templateDescription">Edit Message</Label>
                 <Col sm={10}>
                   <Input 
                     onChange={this.handleInputChange}
                     placeholder={this.props.description}
                     value={this.state.reminders.description}
                     name="description" 
-                    id="description" />
+                    id="templateDescription" />
                 </Col>
               </FormGroup>
 
               <FormGroup row>
-                <Label for="group">Group</Label>
+                <Label for="templateGroup">Group</Label>
                 <Col sm={10}>
                   <Input
                     type="select"
@@ -164,7 +183,7 @@ class TemplateCard extends Component {
                     onChange={this.handleInputChange}
                     value={this.state.groups.name}
                     name="group"
-                    id="group"
+                    id="templateGroup"
                   >
                     <option> --&nbsp; Select Group</option>
                     {this.state.groups.map(group => (
@@ -178,7 +197,7 @@ class TemplateCard extends Component {
           </ModalBody>
 
           <ModalFooter>
-            <Button color="primary" onClick={this.editReminder}>
+            <Button color="primary" onClick={()=>this.editReminder(this.props.id)}>
               Edit
             </Button>{' '}
             <Button color="secondary" onClick={this.toggle}>
