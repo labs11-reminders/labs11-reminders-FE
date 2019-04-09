@@ -2,7 +2,7 @@ import history from '../../history.js';
 import auth0 from 'auth0-js';
 import axios from 'axios';
 
-const dotenv = require('dotenv'); //need to uncomment for local dev and testing
+//const dotenv = require('dotenv'); //need to uncomment for local dev and testing
 
 // const result = dotenv.config();
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AddGroupForm from './AddGroupForm.js';
-import { Container, NavBar, Form, FormGroup, Input, Button } from 'reactstrap';
+import { Container, Form, FormGroup, Input, Button } from 'reactstrap';
 import axios from 'axios';
 
 

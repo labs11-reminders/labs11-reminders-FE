@@ -11,12 +11,8 @@ import {
   Form,
   FormGroup,
   Col,
-  Panel, 
-  ControlLabel,
-  Glyphicon,
 } from 'reactstrap';
 import axios from 'axios';
-import requiresAuth from '../../Auth0/Auth/requiresAuth.js';
 import SideTemplateCard from './SideTemplateCard';
 
 class Sidebar extends Component {

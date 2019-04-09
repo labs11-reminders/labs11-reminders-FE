@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, withRouter, Switch } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import {
   Users,
   Reminders,
@@ -15,7 +15,7 @@ import {
   DraftList,
 } from './components';
 
-import axios from 'axios';
+//import axios from 'axios';
 
 import Auth from './Auth0/Auth/Auth';
 import Callback from './Auth0/Callback/Callback';
