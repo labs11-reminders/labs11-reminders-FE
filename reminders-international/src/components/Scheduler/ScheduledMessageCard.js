@@ -7,6 +7,7 @@ import 'moment/locale/it';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import axios from 'axios';
+import requiresAuth from '../../Auth0/Auth/requiresAuth.js'
 import {
    Card,
    CardTitle,
@@ -67,6 +68,17 @@ fetchReminder = id => {
     this.fetchReminder(id);
     
   }
+  getProfile = (cb) => {
+    this.auth0.client.userInfo(this.accessToken, (err, profile) => {
+      if (profile) {
+        this.userProfile = profile;
+        // TODO Remove once the user table is linked to Auth0
+        this.userProfile.user_id = 1;
+      }
+      cb(err, profile);
+    });
+  }
+
   handleChange = () => { // BLOCKER - Called in onDatePicker() and toggleApproved()
     const id = this.state.message.id
     //const date = moment.utc(this.state.message.date)

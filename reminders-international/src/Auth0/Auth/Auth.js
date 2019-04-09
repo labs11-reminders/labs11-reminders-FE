@@ -45,7 +45,10 @@ export default class Auth {
       this.auth0.client.userInfo(this.accessToken, (err, profile) => {
         if (profile) {
         {
-          axios.post(`${process.env.REACT_APP_BACKEND}api/users/auth`, {auth0_sub: profile.sub})
+
+          axios.post(`${process.env.REACT_APP_BACKEND}/api/users/auth`, {auth0_sub: profile.sub})
+
+
             .then(res => {
               if (res.data.length === 0) {
                 console.log('Signing up new user.')
