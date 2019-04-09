@@ -18,6 +18,7 @@ class SignUp extends Component {
             role_id: null,
             org_id: null,
             group_id: null,
+            user_id: null,
         }
     };
 
@@ -65,6 +66,7 @@ class SignUp extends Component {
     }
 
     render() {
+        console.log("SignUp.js render this.state", this.state)
         return (
             <div>
                 <p>You are on step {this.state.step} of account creation.</p>

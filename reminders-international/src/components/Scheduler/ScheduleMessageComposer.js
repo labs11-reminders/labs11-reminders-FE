@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import ScheduledMessageList from './ScheduledMessageList';
-// import MessageModal from '../MessageModal/MessageModal';
+import MessageModal from '../MessageModal/MessageModal';
 import axios from 'axios';
 
 class ScheduleMessageComposer extends Component {
@@ -42,7 +42,7 @@ class ScheduleMessageComposer extends Component {
             />
             <div>
             <Button>
-                {/* <MessageModal buttonLabel="Add Scheduled Message" />   */}
+                <MessageModal buttonLabel="Add Scheduled Message" />  
               </Button>
               </div>
           </div>

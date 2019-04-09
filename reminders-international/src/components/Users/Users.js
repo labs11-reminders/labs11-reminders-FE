@@ -7,7 +7,11 @@ class Users extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: []
+      users: [],
+      user_id: null,
+      role_id: null,
+      org_id: null,
+      group_id: null,
     };
   }
 
