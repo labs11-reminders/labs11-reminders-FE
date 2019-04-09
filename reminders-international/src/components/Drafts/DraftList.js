@@ -51,10 +51,9 @@ export default class DraftList extends Component {
           {this.state.reminders.map(reminder => {
             return (
               <Card>
-                <CardBody>
+                <CardBody key={reminder.id}>
               <DraftCard 
                 id={reminder.id}
-                key={reminder.id}
                 name={reminder.name}
                 description={reminder.description}
                 created_at={reminder.created_at}
