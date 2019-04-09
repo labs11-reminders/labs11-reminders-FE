@@ -65,8 +65,8 @@ class Dashboard extends Component {
     console.log("Dashboard Render this", this.state)
     return (
       <>
-
-        <h1> {this.state.profile.given_name}'s Dashboard </h1>
+          {/* This needs to remain {this.state.profile.nickname} in order to render correctly -Rachel */}
+        <h1> {this.state.profile.nickname}'s Dashboard </h1>
         <div className="mainContainer">
           <section className="sidebar">
             <Sidebar groups={this.state.groups} profile={this.state.profile} />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, withRouter, Switch } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import {
   Users,
   Reminders,
@@ -15,7 +15,7 @@ import {
   DraftList,
 } from './components';
 
-import axios from 'axios';
+//import axios from 'axios';
 
 import Auth from './Auth0/Auth/Auth';
 import Callback from './Auth0/Callback/Callback';
@@ -23,7 +23,6 @@ import Auth0 from './Auth0/Auth0';
 import Home from './Home';
 
 import './App.css';
-
 
 class App extends Component {
   auth = new Auth();
@@ -86,12 +85,18 @@ class App extends Component {
 
         {/* <Route exact path="/dashboard" component={Dashboard} /> */}
 
-        <Route exact path="/dashboard" render={props => (
-            <Dashboard {...props} auth={this.auth} />)}/>
+        <Route
+          exact
+          path="/dashboard"
+          render={props => <Dashboard {...props} auth={this.auth} />}
+        />
         {/* <Route exact path="/dashboard" auth={this.auth} component={Dashboard} /> */}
 
-        <Route exact path="/newgroupmessage" render={props => (
-            <NewGroupMessage {...props} /> )}/>
+        <Route
+          exact
+          path="/newgroupmessage"
+          render={props => <NewGroupMessage {...props} />}
+        />
 
         <Route exact path="/people" component={People} />
 
@@ -99,10 +104,15 @@ class App extends Component {
 
         <Route exact path="/template-list" component={TemplateList} />
         <Route exact path="/draft-list" component={DraftList} />
-        
+
         {/* <Route exact path="/signup" component={Dashboard} /> */}
-        <Route exact path="/signup" render={props => (
-          <SignUp {...props} auth={this.auth} history={this.props.history}/>)}/>
+        <Route
+          exact
+          path="/signup"
+          render={props => (
+            <SignUp {...props} auth={this.auth} history={this.props.history} />
+          )}
+        />
 
         {/* <Route exact path="/shedule-list" component={TemplateList} /> */}
       </div>

@@ -7,7 +7,7 @@ import 'moment/locale/it';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import axios from 'axios';
-import requiresAuth from '../../Auth0/Auth/requiresAuth.js'
+//import requiresAuth from '../../Auth0/Auth/requiresAuth.js'
 import {
    Card,
    CardTitle,
@@ -101,7 +101,7 @@ fetchReminder = id => {
  
   toggleApprove() {
   //console.log(this.state.message)
-    if (this.state.message.approved == false) {
+    if (this.state.message.approved === false) {
       this.setState({message:{
         id:this.state.id,
         title: this.state.title, 
@@ -110,7 +110,7 @@ fetchReminder = id => {
         approved: true, 
         date: this.state.date,
         scheduled: true }});
-    } else if (this.state.message.approved == true) {
+    } else if (this.state.message.approved === true) {
       this.setState({message:{
         id:this.state.id,
         title: this.state.title, 
