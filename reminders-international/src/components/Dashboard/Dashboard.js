@@ -11,6 +11,7 @@ class Dashboard extends Component {
       org_id: null,
       group_id: null,
       user_id: null,
+      groups: [],
     };
   }
 
