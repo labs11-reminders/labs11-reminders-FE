@@ -78,19 +78,21 @@ class Sidebar extends Component {
     });
   }
 
-  // getAllGroups = () => {
-  //   axios.get("https://reminders-international.herokuapp.com/api/groups", this.state.groups)
-  //     .then(res => {
-  //      console.log('list of all groups', res.data);
-  //       this.setState({
-  //       groups: res.data
-  //       });
-  //        console.log('getAllGroups this.state.groups', this.state.groups);
-  //   })
-  //   .catch(err => {
-  //       console.log(err);
-  //   });
-  //  }
+  getOrgGroups = () => {
+    console.log('***********************');
+    console.log('Calling for group list');
+    console.log(this.props.profile);
+    axios.get(`${process.env.REACT_APP_BACKEND}/api/orgs/${this.props.profile.org_id}/groups`)
+      .then(res => {
+       console.log('list of all groups', res);
+        this.setState({
+          groups: res.data
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    });
+   }
 
   getAllOrgs = () => {
     axios
@@ -108,6 +110,8 @@ class Sidebar extends Component {
         console.log(err);
       });
   };
+
+
 
   addGroup = event => {
     event.preventDefault();
@@ -164,7 +168,10 @@ class Sidebar extends Component {
   componentDidMount() {
     this.getAllOrgs();
     this.getAllReminders();
-    // this.getProfile();
+  }
+
+  componentWillReceiveProps() {
+    this.getOrgGroups();
   }
 
 
