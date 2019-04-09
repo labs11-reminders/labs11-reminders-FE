@@ -12,7 +12,7 @@ class UserDetailsForm extends Component {
     }
 
     addUserToGroup = () => {
-        axios.post(`${process.env.REACT_APP_BACKEND}/api/groups/add/user`, {user_id: this.state.user_id, group_id: this.props.group_id})
+        axios.post(`${process.env.REACT_APP_BACKEND}api/groups/add/user`, {user_id: this.state.user_id, group_id: this.props.group_id})
         .then(res => {
             console.log('adding user to group');
             this.props.history.replace('/dashboard');
@@ -23,7 +23,7 @@ class UserDetailsForm extends Component {
     } 
 
     createNewUser = () => {
-        axios.post(`${process.env.REACT_APP_BACKEND}/api/users`, this.state.user)
+        axios.post(`${process.env.REACT_APP_BACKEND}api/users`, this.state.user)
             .then(res=> {
                 console.log("UserDetailForm res", res)
                 this.setState({

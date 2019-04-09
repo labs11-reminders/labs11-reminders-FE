@@ -45,28 +45,30 @@ export default class TemplateList extends Component {
 
 
   render() {
+    console.log("Template list this.state.reminders", this.state.reminders)
     return (
       <div className="template-list">
       <CardColumns sm="6">
-          {this.state.reminders.map(reminder => {
-            return (
-              <Card>
-                <CardBody>
-              <TemplateCard 
-                key={reminder.id}
-                name={reminder.name}
-                description={reminder.description}
-                created_at={reminder.created_at}
-                group_id={reminder.group_id}
-                user_id={reminder.user_id}
-                scheduled={reminder.scheduled}
-                draft={reminder.draft}
-                template={reminder.template}
-              />
-              </CardBody>
-              </Card>
-            )
-          })}
+
+          
+          {this.state.reminders.map((reminder, index) => 
+                  <Card>
+            <CardBody key={reminder.id}> 
+                  <TemplateCard 
+                    name={reminder.name}
+                    description={reminder.description}
+                    created_at={reminder.created_at}
+                    group_id={reminder.group_id}
+                    user_id={reminder.user_id}
+                    scheduled={reminder.scheduled}
+                    draft={reminder.draft}
+                    template={reminder.template}
+                  />
+                  </CardBody>
+                            </Card>
+          )}
+          
+
         </CardColumns>
       </div>
     )

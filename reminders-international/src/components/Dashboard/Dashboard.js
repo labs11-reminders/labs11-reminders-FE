@@ -27,7 +27,9 @@ class Dashboard extends Component {
     .catch(err => {
         console.log(err);
     });
-   }
+  }
+
+  
 
   componentWillMount() {
     this.setState({ profile: {} });
@@ -50,7 +52,7 @@ class Dashboard extends Component {
     return (
       <>
 
-        <h1> {this.state.profile.nickname}'s Dashboard </h1>
+        <h1> {this.state.profile.given_name}'s Dashboard </h1>
         <div className="mainContainer">
           <section className="sidebar">
             <Sidebar profile={this.state.profile} />

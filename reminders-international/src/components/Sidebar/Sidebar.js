@@ -180,7 +180,7 @@ class Sidebar extends Component {
 
           <div id="profilePicture"><img src={this.props.profile.picture} /></div>
           <div id="profileName">
-            <span>Hello, {this.props.profile.nickname} </span>
+            <span>Hello, {this.props.profile.given_name} </span>
 
           </div>
         </section>
