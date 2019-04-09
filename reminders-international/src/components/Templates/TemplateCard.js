@@ -141,7 +141,7 @@ class TemplateCard extends Component {
             <Modal
               isOpen={this.state.modal}
               toggle={this.toggle}
-              className="groupModal"
+              className={this.props.className}
               size="lg"
             >
             <ModalHeader toggle={this.toggle}>
@@ -197,7 +197,7 @@ class TemplateCard extends Component {
           </ModalBody>
 
           <ModalFooter>
-            <Button color="primary" onClick={()=>this.editReminder(this.props.id)}>
+            <Button color="primary" onClick={()=>this.editReminder(this.props.id)} >
               Edit
             </Button>{' '}
             <Button color="secondary" onClick={this.toggle}>
