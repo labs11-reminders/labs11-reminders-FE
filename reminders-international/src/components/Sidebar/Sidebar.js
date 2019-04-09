@@ -11,12 +11,7 @@ import {
   Form,
   FormGroup,
   Col,
-<<<<<<< HEAD
-=======
-  Panel,
-  ControlLabel,
-  Glyphicon,
->>>>>>> a2d50d233cc42a5062fe0dc1760b72dc95ec81e3
+
 } from 'reactstrap';
 import axios from 'axios';
 import SideTemplateCard from './SideTemplateCard';
@@ -192,13 +187,9 @@ class Sidebar extends Component {
         <section className="profileSection cube">
           <img src={this.props.profile.picture} id="profilePicture" />
           <div id="profileName">
-<<<<<<< HEAD
                   {/* This needs to remain {this.props.profile.nickname} in order to render correctly. -Rachel */}
             <span>Hello, {this.props.profile.nickname} </span>  
 
-=======
-            <span>Hello, {this.props.profile.given_name} </span>
->>>>>>> a2d50d233cc42a5062fe0dc1760b72dc95ec81e3
           </div>
         </section>
         <section className="orgSection cube">
@@ -225,7 +216,6 @@ class Sidebar extends Component {
           </NavLink>
 
           {/*<p> NEED GROUP NAME FOR THIS USER </p> */}
-<<<<<<< HEAD
           
          
             {this.state.groups.map(group => {
@@ -238,10 +228,6 @@ class Sidebar extends Component {
             })}
          
 
-=======
-
-          <div>Group Name List</div>
->>>>>>> a2d50d233cc42a5062fe0dc1760b72dc95ec81e3
         </section>
         <section className="convSection cube">
           <h6>Scheduled Messages</h6>
