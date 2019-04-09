@@ -11,7 +11,7 @@ import {
   Form,
   FormGroup,
   Col,
-  Panel, 
+  Panel,
   ControlLabel,
   Glyphicon,
 } from 'reactstrap';
@@ -51,7 +51,7 @@ class Sidebar extends Component {
   //   }
   // }
 
-  getProfile = (cb) => {
+  getProfile = cb => {
     this.auth0.client.userInfo(this.accessToken, (err, profile) => {
       if (profile) {
         this.userProfile = profile;
@@ -62,9 +62,7 @@ class Sidebar extends Component {
       }
       cb(err, profile);
     });
-  }
-
-
+  };
 
   toggle() {
     this.setState(prevState => ({
@@ -82,17 +80,22 @@ class Sidebar extends Component {
     console.log('***********************');
     console.log('Calling for group list');
     console.log(this.props.profile);
-    axios.get(`${process.env.REACT_APP_BACKEND}/api/orgs/${this.props.profile.org_id}/groups`)
+    axios
+      .get(
+        `${process.env.REACT_APP_BACKEND}/api/orgs/${
+          this.props.profile.org_id
+        }/groups`,
+      )
       .then(res => {
-       console.log('list of all groups', res);
+        console.log('list of all groups', res);
         this.setState({
-          groups: res.data
+          groups: res.data,
         });
-    })
-    .catch(err => {
+      })
+      .catch(err => {
         console.log(err);
-    });
-   }
+      });
+  };
 
   getAllOrgs = () => {
     axios
@@ -110,8 +113,6 @@ class Sidebar extends Component {
         console.log(err);
       });
   };
-
-
 
   addGroup = event => {
     event.preventDefault();
@@ -147,18 +148,22 @@ class Sidebar extends Component {
   };
 
   getAllReminders = () => {
-    axios.get("https://reminders-international.herokuapp.com/api/reminders", this.state.reminders)
+    axios
+      .get(
+        'https://reminders-international.herokuapp.com/api/reminders',
+        this.state.reminders,
+      )
       .then(res => {
-      //  console.log('list of all reminders', res.data);
+        //  console.log('list of all reminders', res.data);
         this.setState({
-          reminders: res.data
+          reminders: res.data,
         });
         //  console.log('getAllReminders this.state.reminders', this.state.reminders);
-    })
-    .catch(err => {
+      })
+      .catch(err => {
         console.log(err);
-    });
-  }
+      });
+  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -174,21 +179,17 @@ class Sidebar extends Component {
     this.getOrgGroups();
   }
 
-
-  render() {  
-    // const { profile } = this.state 
+  render() {
+    // const { profile } = this.state
     const profileImg =
       'https://tk-assets.lambdaschool.com/ecd33d34-c124-4b75-92d2-e5c52c171ed8_11201517_887808411287357_1307163552_a.jpg';
-      console.log("SIDEBAR this.props", this.state, this.props)
+    console.log('SIDEBAR this.props', this.state, this.props);
     return (
-      
       <div className="sidebarWrapper">
         <section className="profileSection cube">
-
-          <div id="profilePicture"><img src={this.props.profile.picture} /></div>
+          <img src={this.props.profile.picture} id="profilePicture" />
           <div id="profileName">
             <span>Hello, {this.props.profile.given_name} </span>
-
           </div>
         </section>
         <section className="orgSection cube">
@@ -206,25 +207,26 @@ class Sidebar extends Component {
           </NavLink>
 
           {/*<p> NEED GROUP NAME FOR THIS USER </p> */}
-          
+
           <div>Group Name List</div>
         </section>
         <section className="convSection cube">
           <h6>Scheduled Messages</h6>
-            {this.state.reminders.map(reminder => {
-              return (
-                <SideTemplateCard 
-                      key={reminder.id}
-                      name={reminder.name}
-                      description={reminder.description}
-                      created_at={reminder.created_at}
-                      group_id={reminder.group_id}
-                      user_id={reminder.user_id}
-                      scheduled={reminder.scheduled}
-                      draft={reminder.draft}
-                      template={reminder.template}
-                    />
-            )})}
+          {this.state.reminders.map(reminder => {
+            return (
+              <SideTemplateCard
+                key={reminder.id}
+                name={reminder.name}
+                description={reminder.description}
+                created_at={reminder.created_at}
+                group_id={reminder.group_id}
+                user_id={reminder.user_id}
+                scheduled={reminder.scheduled}
+                draft={reminder.draft}
+                template={reminder.template}
+              />
+            );
+          })}
           {/* <div>User Name</div>
           <div>User Name</div>
           <div>User Name</div> */}
