@@ -15,7 +15,7 @@ import {
 } from 'reactstrap';
 
 const DraftCard = (props) => {
-  const { name, description, created_at, group_id, user_id, scheduled, draft, template } = props.template;
+  // const { name, description, created_at, group_id, user_id, scheduled, draft, template } = props.template;
   return (
     <div className="template-card">
       {props.draft ? (
