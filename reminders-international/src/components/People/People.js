@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
-import requiresAuth from '../../Auth0/Auth/requiresAuth.js';
+
+
 import SearchBar from './SearchBar.js';
 import PeopleTable from './PeopleTable.js';
 

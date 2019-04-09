@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Roles from "../Roles/Roles.js"
 import Org from "../Organizations/Org.js";
 import Group from "../Groups/Group.js";
-import AddGroupForm from "../Groups/AddGroupForm.js";
-import AddOrgForm from "../Organizations/AddOrgForm.js";
+//import AddGroupForm from "../Groups/AddGroupForm.js";
+//import AddOrgForm from "../Organizations/AddOrgForm.js";
 import UserDetailsForm from "./UserDetailsForm.js";
 
 
-import { Table, Button } from 'reactstrap';
+//import { Table, Button } from 'reactstrap';
 
 class SignUp extends Component {
     constructor(props) {
@@ -72,28 +71,28 @@ class SignUp extends Component {
                 <p>You are on step {this.state.step} of account creation.</p>
                 
                 {
-                    this.state.step == 1 && (
+                    this.state.step === 1 && (
                         <div>
                         <Roles handleRole={this.handleRole} />
                         </div>
                     )
                 }
                 {
-                    this.state.step == 2 && (
+                    this.state.step === 2 && (
                         <div>
                         <Org handleOrg={this.handleOrg}/>                        
                         </div>
                     )
                 }
                 { 
-                    this.state.step == 3 && (
+                    this.state.step === 3 && (
                         <div>
                         <Group handleGroup={this.handleGroup}/>
                         </div>
                     )
                 }
                 { 
-                    this.state.step == 4 && (
+                    this.state.step === 4 && (
                         <div>
                         <UserDetailsForm 
                             role_id={this.state.role_id}

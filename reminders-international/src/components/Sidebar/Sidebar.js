@@ -11,13 +11,11 @@ import {
   Form,
   FormGroup,
   Col,
-  Panel,
-  ControlLabel,
-  Glyphicon,
+
 } from 'reactstrap';
 import axios from 'axios';
-import requiresAuth from '../../Auth0/Auth/requiresAuth.js';
 import SideTemplateCard from './SideTemplateCard';
+import ClickableCard from './ClickableCard';
 
 class Sidebar extends Component {
   constructor(props) {
@@ -189,26 +187,47 @@ class Sidebar extends Component {
         <section className="profileSection cube">
           <img src={this.props.profile.picture} id="profilePicture" />
           <div id="profileName">
-            <span>Hello, {this.props.profile.given_name} </span>
+                  {/* This needs to remain {this.props.profile.nickname} in order to render correctly. -Rachel */}
+            <span>Hello, {this.props.profile.nickname} </span>  
+
           </div>
         </section>
         <section className="orgSection cube">
-          <h6>ORGANIZATION</h6>
+          <h6>YOUR ORGANIZATION</h6>
 
           {/*<p> NEED ORG NAME FOR THIS USER </p> */}
 
-          <div>Organization Name</div>
+         {this.state.orgs.map(org => {
+            if (org.id === this.props.profile.org_id) {
+            return (
+              <ClickableCard 
+                key={org.id}
+                name={org.name}
+              />
+            )}
+          })}
         </section>
+
         <section className="groupsSection cube">
-          <h6>GROUPS</h6>
+          <h6>YOUR GROUPS</h6>
 
           <NavLink id="createLink" onClick={this.toggle}>
             <i className="fas fa-plus-circle" /> &nbsp; Create Group
           </NavLink>
 
           {/*<p> NEED GROUP NAME FOR THIS USER </p> */}
+          
+         
+            {this.state.groups.map(group => {
+              return (
+                <ClickableCard
+                  key={group.id}
+                  name={group.name}
+                />
+              )
+            })}
+         
 
-          <div>Group Name List</div>
         </section>
         <section className="convSection cube">
           <h6>Scheduled Messages</h6>
