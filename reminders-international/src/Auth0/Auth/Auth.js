@@ -129,10 +129,18 @@ export default class Auth {
         this.auth0.client.userInfo(this.accessToken, (err, profile) => {
           if (profile) {
             this.userProfile = profile;
-
-            // This needs to be removed once we link our user table to auth0
-
-            this.userProfile.user_id = 1;
+            // Populate user profile with backend data
+            axios.post(`${process.env.REACT_APP_BACKEND}/api/users/auth`, {auth0_sub: profile.sub})
+            .then(res => {
+              console.log(res.data);
+              this.userProfile.org_id = res.data.org_id;
+              this.userProfile.role_id = res.data.role_id;
+              this.userProfile.country = res.data.country;
+              this.userProfile.phone = res.data.phone;
+            })
+            .catch(err => {
+              console.log(err);
+            })     
           }
           cb(err, profile);
         });

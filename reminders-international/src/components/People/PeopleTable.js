@@ -10,14 +10,37 @@ class PeopleTable extends Component {
         this.state = {
           users: [],
           group: {
-            id: "2",
+            id: "",
+          },
+          user: {
+            auth0_sub: "",
           }
         };
     }
 
+    getUserInfo = () => {
+      this.auth0.client.userInfo(this.accessToken, (err, profile) => {
+        if (profile) {
+          axios.post(`${process.env.REACT_APP_BACKEND}/api/users/auth`, {auth0_sub: profile.sub})
+            .then(res => {
+              return axios.get(`${process.env.REACT_APP_BACKEND}/api/users/data/${this.user.id}`, this.user.auth0_sub)
+            })
+            .then(res => {
+              this.setState({
+                user: res.data
+              });
+            })
+            .catch(err => {
+              console.log(err);
+            })     
+        }
+      });   
+    }
+
     getUsersByGroup = () => {
         //group id is hardcoded in - need to change it to pull id from props
-        axios.get(`${process.env.REACT_APP_BACKEND}api/groups/2/users`, this.state.users)
+        console.log('getting users by group');
+        axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/${this.state.group.id}/users`, this.state.users)
           .then(res => {  
             this.setState({
                 users: res.data
