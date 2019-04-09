@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import {
+  Input
+
+} from "reactstrap";
 import './SMSForm.css';
 
 class SMSForm extends Component {
@@ -64,7 +68,7 @@ class SMSForm extends Component {
       >
         <div>
           <label htmlFor="to">To:</label>
-          <input
+          <Input
             type="tel"
             name="to"
             id="to"
