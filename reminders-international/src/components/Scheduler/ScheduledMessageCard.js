@@ -45,7 +45,7 @@ fetchReminder = id => {
   axios
     .get(`https://reminders-international.herokuapp.com/api/reminders/${id}`)
     .then(response => {
-      console.log(response.data)
+      // console.log(response.data)
       this.setState(() => ({ message:{
         title: response.data.name,
         to: response.data.phone_send,
