@@ -10,7 +10,10 @@ class Group extends Component {
     this.state = {
       groups: [],
       newGroup: '',
-      
+      user_id: null,
+      role_id: null,
+      org_id: null,
+      group_id: null,
     };
   }
 
@@ -43,7 +46,7 @@ class Group extends Component {
   }
 
   render() {
-    console.log("Group render", ...this.state.groups)
+    console.log("Group render this.state", this.state)
     return (
       <Container className="Groups">
       <h2>Create a group</h2>

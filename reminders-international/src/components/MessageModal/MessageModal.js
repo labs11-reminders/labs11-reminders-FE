@@ -134,8 +134,8 @@ class MessageModal extends React.Component {
           <ModalHeader toggle={this.toggle}>Create a Message</ModalHeader>
           <ModalBody>
             <FormGroup>
-              {/* <Label for="messageText">Write Message Here</Label> */}
-              {/* <Input type="textarea" name="body" id="messageText"/> */}
+              <Label for="messageText">Write Message Here</Label>
+              <Input type="textarea" name="body" id="messageText"/>
               <SMSForm/>
             </FormGroup>
           </ModalBody>

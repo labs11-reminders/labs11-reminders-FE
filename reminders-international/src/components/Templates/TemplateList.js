@@ -9,7 +9,7 @@ import {
   // NavItem,
   // NavLink,
   Card,
-  // CardDeck,
+  // CardDeck,bo
   CardColumns,
   CardBody,
   // Button,
@@ -21,7 +21,8 @@ export default class TemplateList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reminders: []
+      reminders: [],
+      // editedReminder: '',
     };
   }
 
@@ -37,6 +38,18 @@ export default class TemplateList extends Component {
     });
   }
 
+  // editReminder = props => {
+  //   console.log(props)
+  //   const newReminder = { newReminder: this.state.editedReminder}
+  //   axios
+  //     .put(`http://reminders-international.herokuapp.com/api/reminders${this.props.reminder.id}`, newReminder)
+  //     .then(response => {
+  //       console.log("PUT RESPONSE:", response)
+  //       this.setState({ remindersData: response.data})
+  //     })
+  //     .catch(error => console.log(error))
+  // }
+
 
 
   componentDidMount () {
@@ -45,15 +58,13 @@ export default class TemplateList extends Component {
 
 
   render() {
+    console.log("Template list this.state", this.state)
     return (
-      <div className="template-list">
-      <CardColumns sm="6">
-          {this.state.reminders.map(reminder => {
-            return (
-              <Card>
-                <CardBody>
+      <CardColumns className="template-list" sm="6">
+        {this.state.reminders.map((reminder, index) => 
+          <Card>
+            <CardBody key={reminder.id}> 
               <TemplateCard 
-                key={reminder.id}
                 name={reminder.name}
                 description={reminder.description}
                 created_at={reminder.created_at}
@@ -63,12 +74,10 @@ export default class TemplateList extends Component {
                 draft={reminder.draft}
                 template={reminder.template}
               />
-              </CardBody>
-              </Card>
-            )
-          })}
-        </CardColumns>
-      </div>
+            </CardBody>
+          </Card>
+        )}
+      </CardColumns>
     )
   }
 

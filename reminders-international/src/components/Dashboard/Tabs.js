@@ -29,6 +29,10 @@ export default class TabsSection extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       activeTab: '1',
+      user_id: null,
+      role_id: null,
+      org_id: null,
+      group_id: null,
     };
   }
 

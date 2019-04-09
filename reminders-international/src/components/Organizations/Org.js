@@ -11,6 +11,10 @@ class Org extends Component {
     this.state = {
       orgs: [],
       newOrg: '',
+      user_id: null,
+      role_id: null,
+      org_id: null,
+      group_id: null,
       
     };
   }
@@ -42,7 +46,7 @@ class Org extends Component {
   }
 
   render() {
-    console.log("Org render", ...this.state.orgs)
+    console.log("Org render this.state", this.state)
     return (
       <Container className="Org">
       <h2>What's the name of your organization?</h2>

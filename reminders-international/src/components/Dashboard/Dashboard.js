@@ -10,8 +10,23 @@ class Dashboard extends Component {
       role_id: null,
       org_id: null,
       group_id: null,
+
       groups: [],
     };
+  }
+      user_id: null,
+    };
+  }
+
+  getUsers = () => {
+    axios.get("https://reminders-international.herokuapp.com/api/users", this.state.users)
+      .then(res => {
+      //  console.log('list of 500 users', res.data);
+        this.setState({
+        users: res.data
+        });
+        //  console.log('getUsers this.state.users', this.state.users);
+    });     
   }
 
   getOrgGroups = () => {
@@ -45,11 +60,16 @@ class Dashboard extends Component {
     }
   }
 
+  componentDidMount() {
+    this.getUsers();
+  }
+
   render() {
+    console.log("Dashboard Render this", this.state)
     return (
       <>
 
-        <h1> {this.state.profile.nickname}'s Dashboard </h1>
+        <h1> {this.state.profile.given_name}'s Dashboard </h1>
         <div className="mainContainer">
           <section className="sidebar">
             <Sidebar groups={this.state.groups} profile={this.state.profile} />
