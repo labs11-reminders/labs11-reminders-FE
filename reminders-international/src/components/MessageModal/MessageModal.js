@@ -26,6 +26,14 @@ class MessageModal extends React.Component {
     this.toggle = this.toggle.bind(this);
   }
 
+  toggle(tab) {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab,
+      });
+    }
+  }
+
   // getUserData = () => {
   //   axios.get(`${process.env.REACT_APP_BACKEND}/api/users/data/${id}`, this.state.user.id)
   //     .then(res => {
