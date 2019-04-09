@@ -25,6 +25,14 @@ class MessageModal extends React.Component {
 
     this.toggle = this.toggle.bind(this);
   }
+  
+  toggle(tab){
+    if (this.state.activeTab !==tab) {
+      this.setState({
+        activeTab:tab,
+      })
+    }
+  }
 
   toggle(tab) {
     if (this.state.activeTab !== tab) {

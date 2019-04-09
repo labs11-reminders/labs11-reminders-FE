@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './Dashboard.css';
 import Sidebar from '../Sidebar/Sidebar';
 import MainContent from './MainContent';
@@ -23,8 +22,12 @@ class Dashboard extends Component {
         users: res.data
         });
         //  console.log('getUsers this.state.users', this.state.users);
+<<<<<<< HEAD
 
     });
+=======
+    });     
+>>>>>>> a526ff38b8ebc14111512f847de4be222ff36114
   }
 
   getOrgGroups = () => {
