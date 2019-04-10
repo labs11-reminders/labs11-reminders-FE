@@ -93,7 +93,7 @@ class TemplateCard extends Component {
     axios
       .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
       .then(response => {
-          console.log("PUT RESPONSE:", response.data)
+          console.log("DELETE RESPONSE:", response.data)
           this.setState({ reminders: response.data, reminder: "" })
       })
       .catch(err => {
