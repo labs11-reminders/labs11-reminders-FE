@@ -66,7 +66,6 @@ fetchReminder = id => {
     console.log(this)
     const id = this.props.id
     this.fetchReminder(id);
-    
   }
   getProfile = (cb) => {
     this.auth0.client.userInfo(this.accessToken, (err, profile) => {
@@ -119,20 +118,21 @@ fetchReminder = id => {
       .catch(error => console.log(error))
     }
 
-  onDelete = () => {  //need to work on card rendering 
+  onDelete = (event) => {  //need to work on card rendering 
     const id = this.props.id
-    axios
+    console.log("ID", id)
+    if (event.target.checked == true) {
+      axios
       .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
       .then(response => {
           console.log("DELETE RESPONSE:", response.data)
-          this.setState({ reminders: response.data, reminder: "" })
+          
       })
       .catch(err => {
           console.log(err);
       })
     }
-     
-   
+    }
       
 
   render(){
