@@ -7,7 +7,8 @@ class UserGroupList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          users: []
+          users: [],
+
         };
     }
 

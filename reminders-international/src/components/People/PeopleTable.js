@@ -38,10 +38,16 @@ class PeopleTable extends Component {
     }
 
     getUsersByGroup = () => {
+      console.log("PeopleTable getUsersByGroup this.state", this.state)
+      console.log("this.state.group", this.state)
+      // if (!this.state.group.id) {
+      //   this.state.group.id = 2;
+      // }
         //group id is hardcoded in - need to change it to pull id from props
         console.log('getting users by group');
         axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/${this.state.group.id}/users`, this.state.users)
-          .then(res => {  
+          .then(res => { 
+            console.log(res, res.data) 
             this.setState({
                 users: res.data
             });

@@ -98,7 +98,7 @@ class Sidebar extends Component {
   getAllOrgs = () => {
     axios
       .get(
-        'https://reminders-international.herokuapp.com/api/orgs',
+        `${process.env.REACT_APP_BACKEND}/api/orgs`,
         this.state.orgs,
       )
       // axios.get("https://localhost:3333/api/orgs", this.state.orgs)
@@ -127,7 +127,7 @@ class Sidebar extends Component {
         ? this.toggleNested()
         : axios
             .post(
-              'https://reminders-international.herokuapp.com/api/groups',
+              `${process.env.REACT_APP_BACKEND}/api/groups`,
               groupObj,
             )
             // axios.post("https://localhost:3333/api/orgs", orgObj)
@@ -148,7 +148,7 @@ class Sidebar extends Component {
   getAllReminders = () => {
     axios
       .get(
-        'https://reminders-international.herokuapp.com/api/reminders',
+        `${process.env.REACT_APP_BACKEND}/api/reminders`,
         this.state.reminders,
       )
       .then(res => {
@@ -182,6 +182,7 @@ class Sidebar extends Component {
     const profileImg =
       'https://tk-assets.lambdaschool.com/ecd33d34-c124-4b75-92d2-e5c52c171ed8_11201517_887808411287357_1307163552_a.jpg';
     console.log('SIDEBAR this.props', this.state, this.props);
+    console.log('SIDEBAR RENDER this.props.profile', this.props.profile);
     return (
       <div className="sidebarWrapper">
         <section className="profileSection cube">

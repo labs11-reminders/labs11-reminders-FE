@@ -16,7 +16,7 @@ class Dashboard extends Component {
   }
 
   getUsers = () => {
-    axios.get("https://reminders-international.herokuapp.com/api/users", this.state.users)
+    axios.get(`${process.env.REACT_APP_BACKEND}/api/users`, this.state.users)
       .then(res => {
       //  console.log('list of 500 users', res.data);
         this.setState({
