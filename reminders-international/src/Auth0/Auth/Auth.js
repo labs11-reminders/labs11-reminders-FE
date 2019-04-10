@@ -129,7 +129,15 @@ export default class Auth {
   }
 
   getProfile(cb) {
-    this.auth0.client.userInfo(this.accessToken, (err, profile) => {
+      // Get access token from local storage if not defined.
+      if (this.accessToken) 
+      {
+        var accessToken = this.accessToken
+      } else
+      {
+        var accessToken = localStorage.getItem('accessToken');
+      }
+      this.auth0.client.userInfo(accessToken, (err, profile) => {
       if (profile) {
         this.userProfile = profile;
         // Populate user profile with backend data
