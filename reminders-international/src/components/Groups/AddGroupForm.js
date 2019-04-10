@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, FormGroup, Button, Input } from 'reactstrap';
+import { Container, FormGroup, Button, Input, Label } from 'reactstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
@@ -22,7 +22,7 @@ class AddGroupForm extends Component {
       user_id: user_id,
     }
     console.log("groupObj", groupObj)
-    axios.post("https://reminders-international.herokuapp.com/api/groups", groupObj)
+    axios.post(`${process.env.REACT_APP_BACKEND}/api/groups`, groupObj)
     // axios.post("https://localhost:3333/api/orgs", orgObj)
       .then(res => {
         console.log('POST RESPONSE', res);
@@ -53,22 +53,22 @@ class AddGroupForm extends Component {
     return (
       <Container className="Add-Group-From" onSubmit={this.addGroup}>
         <FormGroup>
-          <label>Group name</label> 
+          <Label>Group name</Label> 
           <Input
             onChange={this.handleInputChange}
             placeholder="example: Marketing 101"
             value={this.state.groups.name}
             name="name"
           />
-          {/* <label>Country</label> 
-            <input
+          {/* <Label>Country</Label> 
+            <Input
               onChange={this.handleInputChange}
               placeholder="country"
               value={this.state.groups.name}
               name="name"
             />
-          <label>Instructor</label> 
-            <input
+          <Label>Instructor</Label> 
+            <Input
               onChange={this.handleInputChange}
               placeholder="example: Jane Doe"
               value={this.state.groups.name}

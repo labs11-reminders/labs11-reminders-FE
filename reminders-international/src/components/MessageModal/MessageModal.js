@@ -34,6 +34,7 @@ class MessageModal extends React.Component {
     }
   }
 
+
   // getUserData = () => {
   //   axios.get(`${process.env.REACT_APP_BACKEND}/api/users/data/${id}`, this.state.user.id)
   //     .then(res => {

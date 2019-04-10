@@ -26,7 +26,7 @@ export default class DraftList extends Component {
   }
 
   getAllReminders = () => {
-    axios.get("https://reminders-international.herokuapp.com/api/reminders", this.state.reminders)
+    axios.get(`${process.env.REACT_APP_BACKEND}/api/reminders`, this.state.reminders)
       .then(res => {
         this.setState({
           reminders: res.data
@@ -51,10 +51,9 @@ export default class DraftList extends Component {
           {this.state.reminders.map(reminder => {
             return (
               <Card>
-                <CardBody>
+                <CardBody key={reminder.id}>
               <DraftCard 
                 id={reminder.id}
-                key={reminder.id}
                 name={reminder.name}
                 description={reminder.description}
                 created_at={reminder.created_at}

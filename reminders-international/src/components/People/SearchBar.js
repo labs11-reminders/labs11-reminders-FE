@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
+import { InputGroup, InputGroupAddon, Input, Button, FormGroup} from 'reactstrap';
 import SearchTable from './SearchTable';
 
 class SearchBar extends Component {
@@ -59,15 +59,15 @@ class SearchBar extends Component {
         return (
      
 
-        <form>
-        <input
-          placeholder="Search for user..."
-          ref={input => this.search = input}
-          onChange={this.handleChanges}
-        />
-        
-        <SearchTable users={this.state.users} />
-        </form>
+        <FormGroup>
+          <Input
+            placeholder="Search for user..."
+            ref={input => this.search = input}
+            onChange={this.handleChanges}
+          />
+          
+          <SearchTable users={this.state.users} />
+        </FormGroup>
         
         );
     }

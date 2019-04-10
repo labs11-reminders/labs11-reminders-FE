@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { InputGroup, InputGroupAddon, Button } from 'reactstrap';
+import { InputGroup, InputGroupAddon, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 class UserDetailsForm extends Component {
     constructor(props) {
@@ -12,7 +12,7 @@ class UserDetailsForm extends Component {
     }
 
     addUserToGroup = () => {
-        axios.post(`${process.env.REACT_APP_BACKEND}api/groups/add/user`, {user_id: this.state.user_id, group_id: this.props.group_id})
+        axios.post(`${process.env.REACT_APP_BACKEND}/api/groups/add/user`, {user_id: this.state.user_id, group_id: this.props.group_id})
         .then(res => {
             console.log('adding user to group');
             this.props.history.replace('/dashboard');
@@ -23,7 +23,7 @@ class UserDetailsForm extends Component {
     } 
 
     createNewUser = () => {
-        axios.post(`${process.env.REACT_APP_BACKEND}api/users`, this.state.user)
+        axios.post(`${process.env.REACT_APP_BACKEND}/api/users`, this.state.user)
             .then(res=> {
                 console.log("UserDetailForm res", res)
                 this.setState({
@@ -44,8 +44,12 @@ class UserDetailsForm extends Component {
             country: this.country.value,
             phone: this.phone.value,
             org_id: this.props.org_id,
+            // group_id: this.props.group_id,
             role_id: this.props.role_id,
-            }    
+            },
+            // groups: {
+
+            // }
         }); 
       }
 
@@ -56,6 +60,7 @@ class UserDetailsForm extends Component {
             country: this.country.value,
             phone: this.phone.value,
             org_id: this.props.org_id,
+            // group_id: this.props.group_id,
             role_id: this.props.role_id,
             password: 'NotAPassword',
             auth0_sub: this.props.profile.sub
@@ -67,25 +72,41 @@ class UserDetailsForm extends Component {
 
     render() {
         return (
-           <div>
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend">Name</InputGroupAddon>
-                        <input placeholder="First & Last" ref={input => this.full_name = input} onChange={this.onHandleChanges}/>
-                </InputGroup>
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend">Email</InputGroupAddon>
-                        <input placeholder="@address.com" ref={input => this.email = input} onChange={this.onHandleChanges}/>
-                </InputGroup>
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend">Country</InputGroupAddon>
-                        <input placeholder="of Residence" ref={input => this.country = input} onChange={this.onHandleChanges}/>
-                </InputGroup>
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend">Phone</InputGroupAddon>
-                        <input placeholder="Number" ref={input => this.phone = input} onChange={this.onHandleChanges} />
-                </InputGroup>
+            <Form>
+                <FormGroup>
+                    <Label for="userFullName">Name</Label>
+                        <input 
+                            placeholder="First & Last"
+                            id="userFullName"
+                            ref={input => this.full_name = input} 
+                            onChange={this.onHandleChanges}/>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="userEmail">Email</Label>
+                        <input 
+                            placeholder="handle@address.com"
+                            id="userEmail" 
+                            ref={input => this.email = input} 
+                            onChange={this.onHandleChanges}/>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="userCountry">Country</Label>
+                        <input 
+                            placeholder="Country of Residence"
+                            id="userCountry"
+                            ref={input => this.country = input} 
+                            onChange={this.onHandleChanges}/>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="userPhone">Phone Number (include country & area codes)</Label>
+                        <input 
+                            placeholder="442071838750"
+                            id="userPhone"
+                            ref={input => this.phone = input} 
+                            onChange={this.onHandleChanges} />
+                </FormGroup>
                 <Button color="primary" onClick={this.handleSubmit}>Save and Continue</Button>{' '}
-           </div> 
+           </Form> 
         )
     }
 }

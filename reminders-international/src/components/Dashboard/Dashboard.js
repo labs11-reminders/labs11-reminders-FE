@@ -11,11 +11,12 @@ class Dashboard extends Component {
       org_id: null,
       group_id: null,
       user_id: null,
+      groups: [],
     };
   }
 
   getUsers = () => {
-    axios.get("https://reminders-international.herokuapp.com/api/users", this.state.users)
+    axios.get(`${process.env.REACT_APP_BACKEND}/api/users`, this.state.users)
       .then(res => {
       //  console.log('list of 500 users', res.data);
         this.setState({
@@ -64,8 +65,8 @@ class Dashboard extends Component {
     console.log("Dashboard Render this", this.state)
     return (
       <>
-
-        <h1> {this.state.profile.given_name}'s Dashboard </h1>
+          {/* This needs to remain {this.state.profile.nickname} in order to render correctly -Rachel */}
+        <h1> {this.state.profile.nickname}'s Dashboard </h1>
         <div className="mainContainer">
           <section className="sidebar">
             <Sidebar groups={this.state.groups} profile={this.state.profile} />

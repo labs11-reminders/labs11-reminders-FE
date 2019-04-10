@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AddGroupForm from './AddGroupForm.js';
-import { Container, NavBar, Form, FormGroup, Input, Button } from 'reactstrap';
+import { Container, Form, FormGroup, Input, Button, Label } from 'reactstrap';
 import axios from 'axios';
 
 
@@ -18,7 +18,7 @@ class Group extends Component {
   }
 
   getAllGroups = () => {
-    axios.get("https://reminders-international.herokuapp.com/api/groups", this.state.groups)
+    axios.get(`${process.env.REACT_APP_BACKEND}/api/groups`, this.state.groups)
       .then(res => {
        console.log('list of all groups', res.data);
         this.setState({
@@ -55,21 +55,22 @@ class Group extends Component {
         <FormGroup>
         <AddGroupForm /> 
         <h3>Looking for a group? </h3>
-        <label>Join a group</label>
+        <Label for="groupName" >Join a group</Label>
           <Input 
             type="select" 
             name="name" 
-            id="id" 
+            id="groupName" 
             value={this.state.groups.name}
             onChange={this.onHandleChange}            
             >
-            <option></option>
-            {
-              this.state.groups.map(group =>
-              <option key={group.id} value={group.id}  > 
-                {group.name}</option>
-              )
-            } 
+            {/* <option> */}
+              {
+                this.state.groups.map(group =>
+                <option key={group.id} value={group.id}  > 
+                  {group.name}</option>
+                )
+              } 
+            {/* </option> */}
           </Input>
           <Button onClick={this.handleNext}>Next</Button>
         </FormGroup>

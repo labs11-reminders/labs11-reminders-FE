@@ -7,7 +7,7 @@ import 'moment/locale/it';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import axios from 'axios';
-import requiresAuth from '../../Auth0/Auth/requiresAuth.js'
+//import requiresAuth from '../../Auth0/Auth/requiresAuth.js'
 import {
    Card,
    CardTitle,
@@ -43,7 +43,7 @@ class ScheduledMessageCard extends Component{
 
 fetchReminder = id => {
   axios
-    .get(`https://reminders-international.herokuapp.com/api/reminders/${id}`)
+    .get(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
     .then(response => {
       // console.log(response.data)
       this.setState(() => ({ message:{
@@ -83,7 +83,7 @@ fetchReminder = id => {
     const id = this.state.message.id
     //const date = moment.utc(this.state.message.date)
     axios
-    .put(`https://reminders-international.herokuapp.com/api/reminders/${id}`,  
+    .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`,  
     {   message:{
         id:this.state.id,
         title: this.state.title, 
@@ -101,7 +101,7 @@ fetchReminder = id => {
  
   toggleApprove() {
   //console.log(this.state.message)
-    if (this.state.message.approved == false) {
+    if (this.state.message.approved === false) {
       this.setState({message:{
         id:this.state.id,
         title: this.state.title, 
@@ -110,7 +110,7 @@ fetchReminder = id => {
         approved: true, 
         date: this.state.date,
         scheduled: true }});
-    } else if (this.state.message.approved == true) {
+    } else if (this.state.message.approved === true) {
       this.setState({message:{
         id:this.state.id,
         title: this.state.title, 
@@ -138,7 +138,11 @@ fetchReminder = id => {
 
   onDelete = () => {  //BLOCKER - call not working 
     const id = this.props.id
+<<<<<<< HEAD
       axios.delete(`http://localhost:3333/api/reminders/${id}`, {message: this.state.message})
+=======
+      axios.delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, {message: this.state.message})
+>>>>>>> f4a1128cd121c591f1aa19f97def27e74ee0b525
       .then(res => {
           window.location.reload();
       })
