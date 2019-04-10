@@ -11,7 +11,6 @@ import {
   Form,
   FormGroup,
   Col,
-
 } from 'reactstrap';
 import axios from 'axios';
 import SideTemplateCard from './SideTemplateCard';
@@ -25,6 +24,7 @@ class Sidebar extends Component {
       nestedModal: false,
       orgs: [],
       groups: [],
+      newGroup: { name: '', org_id: null },
       reminders: [],
       users: [],
       message: '',
@@ -74,18 +74,14 @@ class Sidebar extends Component {
     });
   }
 
-  getOrgGroups = () => {
+  getGroups = () => {
     console.log('***********************');
     console.log('Calling for group list');
     console.log(this.props.profile);
     axios
-      .get(
-        `${process.env.REACT_APP_BACKEND}/api/orgs/${
-          this.props.profile.org_id
-        }/groups`,
-      )
+      .get(`${process.env.REACT_APP_BACKEND}/api/groups`)
       .then(res => {
-        console.log('list of all groups', res);
+        console.log('List of all groups', res.data);
         this.setState({
           groups: res.data,
         });
@@ -97,10 +93,7 @@ class Sidebar extends Component {
 
   getAllOrgs = () => {
     axios
-      .get(
-        `${process.env.REACT_APP_BACKEND}/api/orgs`,
-        this.state.orgs,
-      )
+      .get(`${process.env.REACT_APP_BACKEND}/api/orgs`, this.state.orgs)
       // axios.get("https://localhost:3333/api/orgs", this.state.orgs)
       .then(res => {
         this.setState({
@@ -114,26 +107,20 @@ class Sidebar extends Component {
 
   addGroup = event => {
     event.preventDefault();
-    const { name } = this.state.groups;
-    const groupObj = {
-      name: name,
-    };
-    // const { group_code, organization, country } = this.state.todos;
-    console.log('groupObj', groupObj);
-    console.log('name', name);
-    // console.log("this.state.todos", group_code)
+
+    console.log('newGroup', this.state.newGroup);
     {
-      name === undefined
+      this.state.newGroup.name === undefined
         ? this.toggleNested()
         : axios
             .post(
               `${process.env.REACT_APP_BACKEND}/api/groups`,
-              groupObj,
+              this.state.newGroup,
             )
             // axios.post("https://localhost:3333/api/orgs", orgObj)
             .then(res => {
               if (res.status === 200 || res.status === 201) {
-                this.setState({ groups: { ...groupObj } });
+                this.setState({ newGroup: { name: '', org_id: null } });
                 this.setState(prevState => ({
                   modal: !prevState.modal,
                 }));
@@ -163,21 +150,22 @@ class Sidebar extends Component {
       });
   };
 
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({ groups: { ...this.state.groups, [name]: value } });
+  handleInputChange = ev => {
+    this.setState({
+      newGroup: { name: ev.target.value, org_id: this.props.profile.org_id },
+    });
   };
 
   componentDidMount() {
     this.getAllOrgs();
     this.getAllReminders();
+    this.getGroups();
   }
 
-  componentWillReceiveProps() {
-    this.getOrgGroups();
-  }
+  componentWillReceiveProps() {}
 
   render() {
+    console.log('state', this.state.groups);
     // const { profile } = this.state
     const profileImg =
       'https://tk-assets.lambdaschool.com/ecd33d34-c124-4b75-92d2-e5c52c171ed8_11201517_887808411287357_1307163552_a.jpg';
@@ -188,9 +176,8 @@ class Sidebar extends Component {
         <section className="profileSection cube">
           <img src={this.props.profile.picture} id="profilePicture" />
           <div id="profileName">
-                  {/* This needs to remain {this.props.profile.nickname} in order to render correctly. -Rachel */}
-            <span>Hello, {this.props.profile.nickname} </span>  
-
+            {/* This needs to remain {this.props.profile.nickname} in order to render correctly. -Rachel */}
+            <span>Hello, {this.props.profile.nickname} </span>
           </div>
         </section>
         <section className="orgSection cube">
@@ -198,37 +185,26 @@ class Sidebar extends Component {
 
           {/*<p> NEED ORG NAME FOR THIS USER </p> */}
 
-         {this.state.orgs.map(org => {
+          {this.state.orgs.map(org => {
             if (org.id === this.props.profile.org_id) {
-            return (
-              <ClickableCard 
-                key={org.id}
-                name={org.name}
-              />
-            )}
+              return <ClickableCard key={org.id} name={org.name} />;
+            }
           })}
         </section>
 
         <section className="groupsSection cube">
           <h6>YOUR GROUPS</h6>
-
           <NavLink id="createLink" onClick={this.toggle}>
             <i className="fas fa-plus-circle" /> &nbsp; Create Group
           </NavLink>
-
           {/*<p> NEED GROUP NAME FOR THIS USER </p> */}
-          
-         
-            {this.state.groups.map(group => {
-              return (
-                <ClickableCard
-                  key={group.id}
-                  name={group.name}
-                />
-              )
-            })}
-         
-
+          {this.state.groups.map(group => {
+            console.log('group console', group.org_id);
+            console.log('PROFILE', this.props.profile);
+            if (group.org_id === this.props.profile.org_id) {
+              return <ClickableCard key={group.id} name={group.name} />;
+            }
+          })}
         </section>
         <section className="convSection cube">
           <h6>Scheduled Messages</h6>
@@ -279,7 +255,7 @@ class Sidebar extends Component {
                   <Input
                     onChange={this.handleInputChange}
                     placeholder="Peru - January Cohort"
-                    value={this.state.groups.name}
+                    value={this.state.newGroup.name}
                     name="name"
                     id="name"
                   />
@@ -290,23 +266,6 @@ class Sidebar extends Component {
                 <Label for="code">Group Code</Label>
                 <Col sm={10}>
                   <Input placeholder="@peru1" name="code" id="code" />
-                </Col>
-              </FormGroup>
-
-              <FormGroup row>
-                <Label for="org">Organization</Label>
-                <Col sm={10}>
-                  <Input
-                    type="select"
-                    placeholder="Select Organization"
-                    name="org"
-                    id="org"
-                  >
-                    <option> --&nbsp; Select Organization</option>
-                    {this.state.orgs.map(org => (
-                      <option key={org.id}>{org.name}</option>
-                    ))}{' '}
-                  </Input>
                 </Col>
               </FormGroup>
 
