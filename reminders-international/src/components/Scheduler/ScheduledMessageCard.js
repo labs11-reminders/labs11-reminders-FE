@@ -138,7 +138,7 @@ fetchReminder = id => {
 
   onDelete = () => {  //BLOCKER - call not working 
     const id = this.props.id
-      axios.delete(`https://reminders-international.herokuapp.com/api/reminders/${id}`, {message: this.state.message})
+      axios.delete(`http://localhost:3333/api/reminders/${id}`, {message: this.state.message})
       .then(res => {
           window.location.reload();
       })
