@@ -88,15 +88,11 @@ class Dashboard extends Component {
         <h1> {this.state.profile.nickname}'s Dashboard </h1>
         <div className="mainContainer">
           <section className="sidebar">
-<<<<<<< HEAD
-            <Sidebar groups={this.state.groups} profile={this.state.profile} onClick={this.setGroup}/>
-=======
             <Sidebar
               setActiveGroup={this.setActiveGroup}
               groups={this.state.groups}
               profile={this.state.profile}
             />
->>>>>>> e7aefa20d7f6c600a7f171a3b90812ed390edea0
           </section>
           <section className="content">
             <MainContent profile={this.state.profile} group={this.state.group_id} groups={this.state.groups}/>
