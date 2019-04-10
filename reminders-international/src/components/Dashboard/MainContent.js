@@ -12,7 +12,7 @@ class MainContent extends Component {
             <span id="grpImage">Image</span> &nbsp;
             <div className="grpName">
               <span>
-                <strong>Group Name</strong>
+                <strong>{this.state.groups}</strong>
               </span>{' '}
               &nbsp;
               <span>@groupname</span>

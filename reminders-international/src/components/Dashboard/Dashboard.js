@@ -15,6 +15,12 @@ class Dashboard extends Component {
     };
   }
 
+  setGroup = (group_id, e) => {
+    this.setState({
+      group_id: this.state.profile.group_id
+    });
+  }
+
   getUsers = () => {
     axios.get("https://reminders-international.herokuapp.com/api/users", this.state.users)
       .then(res => {
@@ -69,10 +75,10 @@ class Dashboard extends Component {
         <h1> {this.state.profile.nickname}'s Dashboard </h1>
         <div className="mainContainer">
           <section className="sidebar">
-            <Sidebar groups={this.state.groups} profile={this.state.profile} />
+            <Sidebar groups={this.state.groups} profile={this.state.profile} onClick={this.setGroup}/>
           </section>
           <section className="content">
-            <MainContent />
+            <MainContent profile={this.state.profile} group={this.state.group_id} groups={this.state.groups}/>
           </section>
         </div>
       </>

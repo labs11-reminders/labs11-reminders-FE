@@ -210,13 +210,6 @@ class Sidebar extends Component {
 
         <section className="groupsSection cube">
           <h6>YOUR GROUPS</h6>
-
-          <NavLink id="createLink" onClick={this.toggle}>
-            <i className="fas fa-plus-circle" /> &nbsp; Create Group
-          </NavLink>
-
-          {/*<p> NEED GROUP NAME FOR THIS USER </p> */}
-          
          
             {this.state.groups.map(group => {
               return (
@@ -227,6 +220,9 @@ class Sidebar extends Component {
               )
             })}
          
+          <NavLink id="createLink" onClick={this.toggle}>
+            <i className="fas fa-plus-circle" /> &nbsp; Create Group
+          </NavLink>
 
         </section>
         <section className="convSection cube">
