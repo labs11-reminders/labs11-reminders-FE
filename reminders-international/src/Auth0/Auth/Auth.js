@@ -129,7 +129,15 @@ export default class Auth {
   }
 
   getProfile(cb) {
-    this.auth0.client.userInfo(this.accessToken, (err, profile) => {
+      // Get access token from local storage if not defined.
+      if (this.accessToken) 
+      {
+        var accessToken = this.accessToken
+      } else
+      {
+        var accessToken = localStorage.getItem('accessToken');
+      }
+      this.auth0.client.userInfo(accessToken, (err, profile) => {
       if (profile) {
         this.userProfile = profile;
         // Populate user profile with backend data
@@ -138,6 +146,8 @@ export default class Auth {
             auth0_sub: profile.sub,
           })
           .then(res => {
+            console.log('This shows when it works');
+
             console.log(res.data);
             this.userProfile.org_id = res.data.org_id;
             this.userProfile.role_id = res.data.role_id;
@@ -145,6 +155,7 @@ export default class Auth {
             this.userProfile.phone = res.data.phone;
           })
           .catch(err => {
+            console.log('this shows when it doesnt work');
             console.log(err);
           });
       }
