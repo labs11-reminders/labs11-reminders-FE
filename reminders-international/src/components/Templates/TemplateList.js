@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import { Container, Col, Row } from 'reactstrap';
 import axios from 'axios';
 import TemplateCard from './TemplateCard';
+import MessageModal from '../MessageModal/MessageModal';
 import {
   // TabContent,
   // TabPane,
@@ -27,7 +28,7 @@ export default class TemplateList extends Component {
   }
 
   getAllReminders = () => {
-    axios.get("https://reminders-international.herokuapp.com/api/reminders", this.state.reminders)
+    axios.get(`${process.env.REACT_APP_BACKEND}/api/reminders`, this.state.reminders)
       .then(res => {
         this.setState({
           reminders: res.data
@@ -37,18 +38,6 @@ export default class TemplateList extends Component {
         console.log(err);
     });
   }
-
-  // editReminder = props => {
-  //   console.log(props)
-  //   const newReminder = { newReminder: this.state.editedReminder}
-  //   axios
-  //     .put(`http://reminders-international.herokuapp.com/api/reminders${this.props.reminder.id}`, newReminder)
-  //     .then(response => {
-  //       console.log("PUT RESPONSE:", response)
-  //       this.setState({ remindersData: response.data})
-  //     })
-  //     .catch(error => console.log(error))
-  // }
 
 
 
@@ -60,11 +49,13 @@ export default class TemplateList extends Component {
   render() {
     console.log("Template list this.state", this.state)
     return (
+      <div>
       <CardColumns className="template-list" sm="6">
         {this.state.reminders.map((reminder, index) => 
           <Card>
             <CardBody key={reminder.id}> 
               <TemplateCard 
+                id={reminder.id}
                 name={reminder.name}
                 description={reminder.description}
                 created_at={reminder.created_at}
@@ -78,6 +69,8 @@ export default class TemplateList extends Component {
           </Card>
         )}
       </CardColumns>
+      <MessageModal buttonLabel="Compose New Template"/>
+      </div>
     )
   }
 

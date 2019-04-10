@@ -43,7 +43,7 @@ class ScheduledMessageCard extends Component{
 
 fetchReminder = id => {
   axios
-    .get(`https://reminders-international.herokuapp.com/api/reminders/${id}`)
+    .get(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
     .then(response => {
       // console.log(response.data)
       this.setState(() => ({ message:{
@@ -83,7 +83,7 @@ fetchReminder = id => {
     const id = this.state.message.id
     //const date = moment.utc(this.state.message.date)
     axios
-    .put(`https://reminders-international.herokuapp.com/api/reminders/${id}`,  
+    .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`,  
     {   message:{
         id:this.state.id,
         title: this.state.title, 
@@ -138,7 +138,7 @@ fetchReminder = id => {
 
   onDelete = () => {  //BLOCKER - call not working 
     const id = this.props.id
-      axios.delete(`https://reminders-international.herokuapp.com/api/reminders/${id}`, {message: this.state.message})
+      axios.delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, {message: this.state.message})
       .then(res => {
           window.location.reload();
       })

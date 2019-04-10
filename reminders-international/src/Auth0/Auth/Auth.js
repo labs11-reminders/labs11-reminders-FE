@@ -23,6 +23,7 @@ export default class Auth {
     audience: 'https://localhost:3000/users',
     // scope: 'openid profile',
     scope: 'openid profile admin:access',
+    prompt: 'none',
   });
 
   constructor() {
@@ -102,7 +103,7 @@ export default class Auth {
     localStorage.setItem('idToken', authResult.idToken);
 
     // Set the time that the access token will expire at
-    let expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
+    let expiresAt = authResult.expiresIn * 5000 + new Date().getTime();
     this.accessToken = authResult.accessToken;
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
@@ -129,27 +130,37 @@ export default class Auth {
   }
 
   getProfile(cb) {
-    this.auth0.client.userInfo(this.accessToken, (err, profile) => {
-      if (profile) {
-        this.userProfile = profile;
-        // Populate user profile with backend data
-        axios
-          .post(`${process.env.REACT_APP_BACKEND}/api/users/auth`, {
-            auth0_sub: profile.sub,
-          })
-          .then(res => {
-            console.log(res.data);
-            this.userProfile.org_id = res.data.org_id;
-            this.userProfile.role_id = res.data.role_id;
-            this.userProfile.country = res.data.country;
-            this.userProfile.phone = res.data.phone;
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      }
-      cb(err, profile);
-    });
+    // Get access token from local storage if not defined.
+    if (this.accessToken) 
+    {
+      var accessToken = this.accessToken
+    } else
+    {
+      var accessToken = localStorage.getItem('accessToken');
+    }
+      this.auth0.client.userInfo(accessToken, (err, profile) => {
+        console.log('checking for access token');
+        if (profile) {
+          this.userProfile = profile;
+          // Populate user profile with backend data..
+          axios
+            .post(`${process.env.REACT_APP_BACKEND}/api/users/auth`, {
+              auth0_sub: profile.sub,
+            })
+            .then(res => {
+              console.log(res.data);
+              this.userProfile.org_id = res.data.org_id;
+              this.userProfile.role_id = res.data.role_id;
+              this.userProfile.country = res.data.country;
+              this.userProfile.phone = res.data.phone;
+            })
+            .catch(err => {
+              console.log(err);
+              console.log('This is a get profile error');
+            });
+        }
+        cb(err, profile);
+      });
   }
 
   logout() {

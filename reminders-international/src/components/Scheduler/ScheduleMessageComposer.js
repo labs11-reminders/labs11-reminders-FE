@@ -14,7 +14,7 @@ class ScheduleMessageComposer extends Component {
 
   
       getAllReminders = () => {
-        axios.get(`https://reminders-international.herokuapp.com/api/reminders`, this.state.reminders)
+        axios.get(`${process.env.REACT_APP_BACKEND}/api/reminders`, this.state.reminders)
           .then(res => {
            console.log('list of all reminders', res.data);
             this.setState({

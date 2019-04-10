@@ -20,7 +20,7 @@ class Org extends Component {
   }
 
   getAllOrgs = () => {
-    axios.get("https://reminders-international.herokuapp.com/api/orgs", this.state.orgs)
+    axios.get(`${process.env.REACT_APP_BACKEND}/api/orgs`, this.state.orgs)
     // axios.get("https://localhost:3333/api/orgs", this.state.orgs)
       .then(res => {
         this.setState({

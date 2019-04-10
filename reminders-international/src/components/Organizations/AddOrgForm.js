@@ -22,7 +22,7 @@ class AddOrgForm extends Component {
       description: description,
     }
     console.log("orgObj", orgObj)
-    axios.post("https://reminders-international.herokuapp.com/api/orgs", orgObj)
+    axios.post(`${process.env.REACT_APP_BACKEND}/api/orgs`, orgObj)
     // axios.post("https://localhost:3333/api/orgs", orgObj)
       .then(res => {
         console.log('POST RESPONSE', res);

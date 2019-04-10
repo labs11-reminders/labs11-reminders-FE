@@ -1,4 +1,11 @@
 import React, { Component } from 'react';
+import {
+  Input,
+  Form,
+  FormGroup,
+  Button,
+  Label
+} from "reactstrap";
 import './SMSForm.css';
 
 class SMSForm extends Component {
@@ -58,33 +65,33 @@ class SMSForm extends Component {
   render() {
     console.log("SMSForm render", this.state)
     return (
-      <form
+      <Form
         onSubmit={this.onSubmit}
         className={this.state.error ? 'error sms-form' : 'sms-form'}
       >
-        <div>
-          <label htmlFor="to">To:</label>
-          <input
+        <FormGroup>
+          <Label htmlFor="to">To:</Label>
+          <Input
             type="tel"
             name="to"
             id="to"
             value={this.state.message.to}
             onChange={this.onHandleChange}
           />
-        </div>
-        <div>
-          <label htmlFor="body">Body:</label>
-          <textarea 
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="body">Body:</Label>
+          <Input 
             name="body" 
             id="body"
             value={this.state.message.body}
             onChange={this.onHandleChange}
           />
-        </div>
-        <button type="submit" disabled={this.state.submitting}>
+        </FormGroup>
+        <Button type="submit" disabled={this.state.submitting}>
           Send message
-        </button>
-      </form>
+        </Button>
+      </Form>
     );
   }
 }
