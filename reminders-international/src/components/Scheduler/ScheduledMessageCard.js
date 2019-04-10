@@ -66,7 +66,6 @@ fetchReminder = id => {
     console.log(this)
     const id = this.props.id
     this.fetchReminder(id);
-    
   }
   getProfile = (cb) => {
     this.auth0.client.userInfo(this.accessToken, (err, profile) => {
@@ -80,73 +79,60 @@ fetchReminder = id => {
   }
 
   handleChange = () => { // BLOCKER - Called in onDatePicker() and toggleApproved()
-    const id = this.state.message.id
-    //const date = moment.utc(this.state.message.date)
-    axios
-    .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`,  
-    {   message:{
-        id:this.state.id,
-        title: this.state.title, 
-        to: this.state.to,
-        body: this.state.body,
-        approved: true, 
-        date: this.state.date,
-        scheduled: true
-    }
-    }).then(res => {
-        window.location.reload();
-    }).catch(err => {
-        console.log(err);
-    })}
- 
-  toggleApprove() {
-  //console.log(this.state.message)
-    if (this.state.message.approved === false) {
-      this.setState({message:{
-        id:this.state.id,
-        title: this.state.title, 
-        to: this.state.to,
-        body: this.state.body,
-        approved: true, 
-        date: this.state.date,
-        scheduled: true }});
-    } else if (this.state.message.approved === true) {
-      this.setState({message:{
-        id:this.state.id,
-        title: this.state.title, 
-        to: this.state.to,
-        body: this.state.body,
-        approved: false, 
-        date: this.state.date, 
-        scheduled: true }});
-    } 
-    console.log(this.state.message.approved)
-    this.handleChange(); 
-    //const id = this.props.id
-    //this.fetchReminder(id)
-  }
-
-  onDatePicker = (event) => {  //need to have state re-render properly 
-    //console.log(this.state.message.date)
-    const date = event
-    this.setState({
-      message: { ...this.state.message, date:date}
-    });
-    //console.log(this.state.message.date)
-    this.handleChange();
-    }
-
-  onDelete = () => {  //BLOCKER - call not working 
     const id = this.props.id
-      axios.delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, {message: this.state.message})
-      .then(res => {
-          window.location.reload();
+    const editObj ={approved:this.state.message.approved, scheduled_date: this.state.message.date};
+    axios
+      .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
+      .then(response => {
+        console.log("PUT RESPONSE:", response.data)
+        this.setState({ message: response.data})
+      })
+      .catch(error => console.log(error))
+    }
+  toggleApprove(event) {
+    const id = this.props.id
+    const editObj ={approved:event.target.checked};
+    axios
+      .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
+      .then(response => {
+        console.log("PUT RESPONSE:", response.data)
+        this.setState({ message: response.data})
+      })
+      .catch(error => console.log(error))
+    }
+
+  onDatePicker = (event) => {  //need to have card state re-render properly 
+    
+    const new_date = event
+    const date_format = moment(new_date).format('YYYY-MM-DD HH:mm:ss')
+    const id = this.props.id
+    const editObj ={scheduled_date:date_format};
+
+    axios
+      .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
+      .then(response => {
+        console.log("PUT RESPONSE:", response.data)
+        this.setState({ message: response.data})
+        this.fetchReminder(id);
+      })
+      .catch(error => console.log(error))
+    }
+
+  onDelete = (event) => {  //need to work on card rendering 
+    const id = this.props.id
+    console.log("ID", id)
+    if (event.target.checked == true) {
+      axios
+      .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
+      .then(response => {
+          console.log("DELETE RESPONSE:", response.data)
+          
       })
       .catch(err => {
           console.log(err);
-        })
+      })
     }
-     
+    }
       
 
   render(){
