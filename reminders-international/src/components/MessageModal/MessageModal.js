@@ -24,16 +24,25 @@ class MessageModal extends React.Component {
     };
 
     this.toggle = this.toggle.bind(this);
-  }
-  
-  toggle(tab){
-    if (this.state.activeTab !==tab) {
-      this.setState({
-        activeTab:tab,
-      })
-    }
+    this.toggleTab = this.toggleTab.bind(this);
   }
 
+  // TOGGLE TO OPEN MODEL
+  toggle() {
+    this.setState(prevState => ({
+      modal: !prevState.modal,
+    }));
+  }
+
+
+    // TRYING TOGGLE FOR TYPE OF BUTTON PRESSED
+    toggleTab(tab){
+      if (this.state.activeTab !== tab) {
+        this.setState({
+          activeTab: tab
+        })
+      }
+    }
 
   // getUserData = () => {
   //   axios.get(`${process.env.REACT_APP_BACKEND}/api/users/data/${id}`, this.state.user.id)
@@ -149,9 +158,14 @@ class MessageModal extends React.Component {
             </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Save Draft</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>Schedule</Button>{/* <---- toggle scheduled to true, and direct user to scheduled component*/}
-            <Button color="secondary" onClick={this.onSubmit}>Send</Button>
+            <Row>
+            <Button color="primary" onClick={this.onSubmit}>Send Group Message</Button>{' '}
+            </Row>
+            <Row>
+              <Button color="secondary" onClick={this.toggleTab()}>Schedule</Button>{/* <---- toggle scheduled to true, and direct user to scheduled component*/}
+              <Button color="secondary" onClick={this.toggleTab()}>Save Template</Button>
+              <Button color="secondary" onClick={this.toggleTab()}>Save Draft</Button>
+            </Row>
           </ModalFooter>
         </Modal>
       </div>
