@@ -17,7 +17,7 @@
 
 //   getReminderById = id => {
 //     axios
-//       .get(`https://reminders-international.herokuapp.com/api/reminders/${id}`, this.state.template)
+//       .get(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, this.state.template)
 //       .then(response => {
 //         this.setState(() => ({ template: response.data }));
 //       })

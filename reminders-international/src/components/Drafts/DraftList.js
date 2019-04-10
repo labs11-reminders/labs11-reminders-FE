@@ -26,7 +26,7 @@ export default class DraftList extends Component {
   }
 
   getAllReminders = () => {
-    axios.get("https://reminders-international.herokuapp.com/api/reminders", this.state.reminders)
+    axios.get(`${process.env.REACT_APP_BACKEND}/api/reminders`, this.state.reminders)
       .then(res => {
         this.setState({
           reminders: res.data

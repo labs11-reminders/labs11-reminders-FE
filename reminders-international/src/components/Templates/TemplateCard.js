@@ -21,6 +21,7 @@ import {
   FormGroup,
   Label,
   Input,
+  Alert,
 
 } from 'reactstrap';
 
@@ -41,6 +42,8 @@ class TemplateCard extends Component {
       groups: [],
       users: [],
       message: '',
+      reminder: '',
+      deleteVisible: false,
     };
     this.toggle = this.toggle.bind(this);
     this.toggleNested = this.toggleNested.bind(this);
@@ -59,6 +62,12 @@ class TemplateCard extends Component {
     });
   }
 
+  onDismiss = () => {
+    this.setState({ 
+      deleteVisible: !this.state.deleteVisible, 
+    })
+  }
+
   getReminders = () => {
   axios.get(`${process.env.REACT_APP_BACKEND}/api/reminders`)
       .then(res => {
@@ -68,29 +77,6 @@ class TemplateCard extends Component {
       })
   }
 
-  componentDidMount(){
-    this.getReminders();
-    this.getAllGroups();
-    // this.editReminder();
-  }
-
-
-  /*   ------ Edit  handlers triggered in ScheduledMessageCard --------
-
-      onEditTitle  = (event, id) => {
-        const title_input = event.target.getAttribute('title');
-        this.setState({
-          title: { ...this.state.title, [title_input]: event.target.value }
-        });
-        this.handleChange(event,id);
-      }
-      onEditMessage = (event, id) => {
-        const message_input = event.target.getAttribute('message');
-        this.setState({
-          message: { ...this.state.message, [message_input]: event.target.value }
-        });
-        this.handleChange(event,id);
-      } */
   editReminder = id => {
     console.log("editReminder ID", id)
     const editObj ={ name: this.state.reminders.name, description: this.state.reminders.description };
@@ -98,9 +84,21 @@ class TemplateCard extends Component {
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
         console.log("PUT RESPONSE:", response.data)
-        this.setState({ remindersData: response.data})
+        this.setState({ reminders: response.data})
       })
       .catch(error => console.log(error))
+  }
+
+  deleteReminder = id => {
+    axios
+      .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
+      .then(response => {
+          console.log("PUT RESPONSE:", response.data)
+          this.setState({ reminders: response.data, reminder: "" })
+      })
+      .catch(err => {
+          console.log(err);
+      })
   }
 
   getAllGroups = () => {
@@ -124,9 +122,15 @@ class TemplateCard extends Component {
     this.setState({ reminders: { ...this.state.reminders, [name]: value } });
   };
 
+  componentDidMount(){
+    this.getReminders();
+    this.getAllGroups();
+    // this.editReminder();
+  }
+
   render() {
     // console.log("TemplateCard this.state", this.state)
-    console.log("this.props", this.props)
+    // console.log("this.props", this.props)
     return (
       <div className="template-card">
         {this.props.template ? (
@@ -134,14 +138,22 @@ class TemplateCard extends Component {
         
             <CardTitle>{this.props.name}</CardTitle>
             <NavLink id="createLink" onClick={this.toggle} >
-              <i className="fas fa-pencil-alt" /> &nbsp; </NavLink>
-            <NavLink id="createLink" >
+              <i className="fas fa-pencil-alt" /> &nbsp; 
+            </NavLink>
+            <NavLink id="createLink" onClick={()=>this.deleteReminder(this.props.id)}>
               <i className="fas fa-trash-alt" /> &nbsp;
             </NavLink>
+            {/* <Alert 
+              color="danger" 
+              isOpen={this.state.deleteVisible} 
+              toggle={this.onDismiss} 
+              fade={false}>
+                Are you sure you want to delete this reminder?
+            </Alert> */}
             <Modal
               isOpen={this.state.modal}
               toggle={this.toggle}
-              className="groupModal"
+              className={this.props.className}
               size="lg"
             >
             <ModalHeader toggle={this.toggle}>
@@ -197,7 +209,7 @@ class TemplateCard extends Component {
           </ModalBody>
 
           <ModalFooter>
-            <Button color="primary" onClick={()=>this.editReminder(this.props.id)}>
+            <Button color="primary" onClick={()=>this.editReminder(this.props.id)} >
               Edit
             </Button>{' '}
             <Button color="secondary" onClick={this.toggle}>
