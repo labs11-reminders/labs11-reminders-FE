@@ -205,6 +205,7 @@ class Sidebar extends Component {
             if (group.org_id === this.props.profile.org_id) {
               return (
                 <Link
+                  to={null}
                   onClick={() => {
                     console.log('setActiveGroup Clicked', group.id);
                     this.props.setActiveGroup(group.id);
