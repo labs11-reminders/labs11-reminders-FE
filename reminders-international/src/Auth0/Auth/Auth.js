@@ -138,6 +138,8 @@ export default class Auth {
             auth0_sub: profile.sub,
           })
           .then(res => {
+            console.log('This shows when it works');
+
             console.log(res.data);
             this.userProfile.org_id = res.data.org_id;
             this.userProfile.role_id = res.data.role_id;
@@ -145,6 +147,7 @@ export default class Auth {
             this.userProfile.phone = res.data.phone;
           })
           .catch(err => {
+            console.log('this shows when it doesnt work');
             console.log(err);
           });
       }
