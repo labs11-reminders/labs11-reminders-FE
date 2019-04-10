@@ -133,7 +133,7 @@ class DraftCard extends Component {
     // console.log("DraftCard this.state", this.state)
     // console.log("this.props", this.props)
     return (
-      <div className="draft-card">
+      <div className="template-card">
         {this.props.draft ? (
           <div className="if-undefined-make-invisible-or-hidden">
         
@@ -230,7 +230,7 @@ class DraftCard extends Component {
             </Button>
           </ModalFooter>
         </Modal>
-            <div className="draft-description">
+            <div className="template-description">
               <CardSubtitle>Message</CardSubtitle>
               <CardText>{this.props.description}</CardText>
             </div>
