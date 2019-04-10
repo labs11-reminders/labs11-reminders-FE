@@ -12,6 +12,7 @@ class Dashboard extends Component {
       group_id: null,
       user_id: null,
       groups: [],
+      activeGroup: null,
     };
   }
 
@@ -22,33 +23,37 @@ class Dashboard extends Component {
   }
 
   getUsers = () => {
-    axios.get(`${process.env.REACT_APP_BACKEND}/api/users`, this.state.users)
+    axios
+      .get(`${process.env.REACT_APP_BACKEND}/api/users`, this.state.users)
       .then(res => {
-      //  console.log('list of 500 users', res.data);
+        //  console.log('list of 500 users', res.data);
         this.setState({
-        users: res.data
+          users: res.data,
         });
         //  console.log('getUsers this.state.users', this.state.users);
-    });     
-  }
+      });
+  };
 
   getOrgGroups = () => {
     console.log('***********************');
     console.log('Calling for group list');
     console.log(this.state.profile);
-    axios.get(`${process.env.REACT_APP_BACKEND}/api/orgs/${this.state.profile.org_id}/groups`)
+    axios
+      .get(
+        `${process.env.REACT_APP_BACKEND}/api/orgs/${
+          this.state.profile.org_id
+        }/groups`,
+      )
       .then(res => {
-       console.log('list of all groups', res);
-      this.setState({
-        groups: res.data
-      });
-    })
-    .catch(err => {
+        console.log('list of all groups', res);
+        this.setState({
+          groups: res.data,
+        });
+      })
+      .catch(err => {
         console.log(err);
-    });
-   }
-
-
+      });
+  };
 
   componentWillMount() {
     this.setState({ profile: {} });
@@ -67,15 +72,31 @@ class Dashboard extends Component {
     this.getUsers();
   }
 
+  setActiveGroup(event) {
+    event.preventDefault();
+    if (this.state.activeGroup !== event) {
+      console.log('EVENT', event);
+      this.setState({ activeGroup: event });
+    }
+  }
+
   render() {
-    console.log("Dashboard Render this", this.state)
+    console.log('Dashboard Render this', this.state);
     return (
       <>
-          {/* This needs to remain {this.state.profile.nickname} in order to render correctly -Rachel */}
+        {/* This needs to remain {this.state.profile.nickname} in order to render correctly -Rachel */}
         <h1> {this.state.profile.nickname}'s Dashboard </h1>
         <div className="mainContainer">
           <section className="sidebar">
+<<<<<<< HEAD
             <Sidebar groups={this.state.groups} profile={this.state.profile} onClick={this.setGroup}/>
+=======
+            <Sidebar
+              setActiveGroup={this.setActiveGroup}
+              groups={this.state.groups}
+              profile={this.state.profile}
+            />
+>>>>>>> e7aefa20d7f6c600a7f171a3b90812ed390edea0
           </section>
           <section className="content">
             <MainContent profile={this.state.profile} group={this.state.group_id} groups={this.state.groups}/>

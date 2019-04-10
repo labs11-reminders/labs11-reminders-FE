@@ -169,10 +169,8 @@ class Sidebar extends Component {
     this.getGroups();
   }
 
-  componentWillReceiveProps() {}
-
   render() {
-    console.log('state', this.state.groups);
+    console.log('PROPS', this.props);
     // const { profile } = this.state
     const profileImg =
       'https://tk-assets.lambdaschool.com/ecd33d34-c124-4b75-92d2-e5c52c171ed8_11201517_887808411287357_1307163552_a.jpg';
@@ -205,11 +203,23 @@ class Sidebar extends Component {
             <i className="fas fa-plus-circle" /> &nbsp; Create Group
           </NavLink>
           {/*<p> NEED GROUP NAME FOR THIS USER </p> */}
+
+          {/********************************************************************** LINK ***********************************/}
           {this.state.groups.map(group => {
             console.log('group console', group.org_id);
             console.log('PROFILE', this.props.profile);
             if (group.org_id === this.props.profile.org_id) {
-              return <ClickableCard key={group.id} name={group.name} />;
+              return (
+                <Link
+                  onClick={() => {
+                    console.log('setActiveGroup Clicked', group.id);
+                    this.props.setActiveGroup(group.id);
+                  }}
+                >
+                  {' '}
+                  <ClickableCard key={group.id} name={group.name} />{' '}
+                </Link>
+              );
             }
           })}
         </section>
