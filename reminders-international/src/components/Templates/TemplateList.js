@@ -65,6 +65,7 @@ export default class TemplateList extends Component {
           <Card>
             <CardBody key={reminder.id}> 
               <TemplateCard 
+                id={reminder.id}
                 name={reminder.name}
                 description={reminder.description}
                 created_at={reminder.created_at}
