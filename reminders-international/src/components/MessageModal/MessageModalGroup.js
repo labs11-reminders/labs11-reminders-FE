@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input, Row } from 'reactstrap';
-import SMSForm from '../SMSForm/SMSForm';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, 
+  Form, FormGroup, Label, Input, Row, ButtonGroup } from 'reactstrap';
+import SMSFormGroup from '../SMSForm/SMSFormGroup';
 
 import axios from 'axios';
 
@@ -22,10 +23,12 @@ class MessageModal extends React.Component {
         submitting: false,
         error: false,
         groups: [],
+        cSelected: []
     };
 
     this.toggle = this.toggle.bind(this);
     this.toggleTab = this.toggleTab.bind(this);
+    this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
   }
 
   // TOGGLE TO OPEN MODEL
@@ -109,6 +112,16 @@ class MessageModal extends React.Component {
     this.handleChange(event,id);
   }
 
+  onCheckboxBtnClick(selected) {
+    const index = this.state.cSelected.indexOf(selected);
+    if (index < 0) {
+      this.state.cSelected.push(selected);
+    } else {
+      this.state.cSelected.splice(index, 1);
+    }
+    this.setState({ cSelected: [...this.state.cSelected] });
+  }
+
   onSubmit = (event) => {
     event.preventDefault();
     this.setState({ submitting: true });
@@ -155,17 +168,37 @@ class MessageModal extends React.Component {
             <FormGroup>
               {/* <Label for="messageText">Write Message Here</Label>
               <Input type="textarea" name="body" id="messageText"/> */}
-              <SMSForm groups={this.props.groups}/>
+              <SMSFormGroup groups={this.props.groups}/>
             </FormGroup>
           </ModalBody>
           <ModalFooter>
             <Row>
-            <Button color="primary" onClick={this.onSubmit}>Send Group Message</Button>{' '}
+            {/* <Button color="primary" onClick={this.onSubmit}>Send Group Message</Button>{' '} */}
             </Row>
             <Row>
-              <Button color="secondary" onClick={this.toggleTab()}>Schedule</Button>{/* <---- toggle scheduled to true, and direct user to scheduled component*/}
-              <Button color="secondary" onClick={this.toggleTab()}>Save Template</Button>
-              <Button color="secondary" onClick={this.toggleTab()}>Save Draft</Button>
+              
+            <FormGroup check inline>
+            <Label for="checkboxSchedule" check> Schedule &nbsp;</Label>{' '}
+              {' '}<Input type="checkbox" id="checkboxSchedule" />
+              </FormGroup>
+              <FormGroup check inline>
+            <Label for="checkboxTemplate" check> Template &nbsp;</Label>{' '}
+              <Input type="checkbox" id="checkboxTemplate" />
+              </FormGroup>
+              <FormGroup check inline>
+            <Label for="checkboxDraft" check> Draft &nbsp;</Label>{' '}
+              <Input type="checkbox" id="checkboxDraft" />
+              </FormGroup>
+
+            </Row>
+            <Row>
+            {/* <p>Selected: {JSON.stringify(this.state.cSelected)}</p> */}
+              {/* <Button color="secondary" onClick={()=>{this.toggleTab()}>Schedule</Button> */}
+              
+              {/*toggle scheduled to true, and direct user to scheduled component*/}
+
+              {/* <Button color="secondary" onClick={this.toggleTab()}>Save Template</Button> */}
+              {/* <Button color="secondary" onClick={this.toggleTab()}>Save Draft</Button> */}
             </Row>
           </ModalFooter>
         </Modal>
@@ -175,21 +208,3 @@ class MessageModal extends React.Component {
 }
 
 export default MessageModal;
-
-
-/*   ------ Edit  handlers triggered in ScheduledMessageCard --------
-
-      onEditTitle  = (event, id) => {
-        const title_input = event.target.getAttribute('title');
-        this.setState({
-          title: { ...this.state.title, [title_input]: event.target.value }
-        });
-        this.handleChange(event,id);
-      }
-      onEditMessage = (event, id) => {
-        const message_input = event.target.getAttribute('message');
-        this.setState({
-          message: { ...this.state.message, [message_input]: event.target.value }
-        });
-        this.handleChange(event,id);
-      } */
