@@ -121,7 +121,7 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
       } else if (err) {
-        this.logout();
+        //this.logout();
         console.log(
           `Could not get a new token (${err.error}: ${err.error_description}).`,
         );

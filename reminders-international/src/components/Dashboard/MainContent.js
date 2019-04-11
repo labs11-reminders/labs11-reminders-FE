@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import TabsSection from './Tabs';
+import AddContactModal from '../AddContacts/AddContactModal';
+import axios from 'axios';
 
 class MainContent extends Component {
   state = {};
+
+  getGroupById = () => {
+    axios.get(`${process.env.REACT_BACKEND_}`)
+  }
+
   render() {
     return (
       <div className="mainContentWrapper">
@@ -20,7 +27,7 @@ class MainContent extends Component {
           </div>
           <div className="topBtn">
             <Button outline color="primary">
-              Add Contacts
+              <AddContactModal buttonLabel = "Add Contact" />
             </Button>
           </div>
         </section>

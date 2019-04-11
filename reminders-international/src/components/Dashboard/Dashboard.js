@@ -16,9 +16,10 @@ class Dashboard extends Component {
     };
   }
 
-  setGroup = (group_id, e) => {
+  setGroup(group_id) {
+    console.log('setting group');
     this.setState({
-      group_id: this.state.profile.group_id
+      group_id: group_id
     });
   }
 
@@ -89,13 +90,17 @@ class Dashboard extends Component {
         <div className="mainContainer">
           <section className="sidebar">
             <Sidebar
-              setActiveGroup={this.setActiveGroup}
+              setActiveGroup={this.setGroup}
               groups={this.state.groups}
               profile={this.state.profile}
             />
           </section>
           <section className="content">
-            <MainContent profile={this.state.profile} group={this.state.group_id} groups={this.state.groups}/>
+            <MainContent 
+              profile={this.state.profile} 
+              group={this.state.group_id} 
+              groups={this.state.groups}
+            />
           </section>
         </div>
       </>

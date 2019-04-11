@@ -169,6 +169,11 @@ class Sidebar extends Component {
     this.getGroups();
   }
 
+  callSetGroup = (e, id) => {
+    e.preventDefault();
+    this.props.setActiveGroup(id);
+  }
+
   render() {
     console.log('PROPS', this.props);
     // const { profile } = this.state
@@ -213,7 +218,7 @@ class Sidebar extends Component {
                 <Link
                   onClick={() => {
                     console.log('setActiveGroup Clicked', group.id);
-                    this.props.setActiveGroup(group.id);
+                    this.callSetGroup(group.id);
                   }}
                 >
                   {' '}
