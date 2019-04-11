@@ -3,8 +3,12 @@ import { Button } from 'reactstrap';
 import TabsSection from './Tabs';
 
 class MainContent extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    console.log('MAIN CONTENT PROPS', this.props);
     return (
       <div className="mainContentWrapper">
         <section className="profileInfo">
@@ -12,7 +16,22 @@ class MainContent extends Component {
             <span id="grpImage">Image</span> &nbsp;
             <div className="grpName">
               <span>
-                <strong>Group Name</strong>
+                <strong>
+                  {!this.props.state.activeGroup === null ? (
+                    <p>Group Name</p>
+                  ) : (
+                    this.props.state.groups.map(group => {
+                      console.log(
+                        '************************************',
+                        group,
+                        this.props.state.activeGroup,
+                      );
+                      if (this.props.state.activeGroup === group.id) {
+                        return group.name;
+                      }
+                    })
+                  )}
+                </strong>
               </span>{' '}
               &nbsp;
               <span>@groupname</span>
@@ -26,7 +45,6 @@ class MainContent extends Component {
         </section>
         <section className="tabSection">
           <TabsSection />
-          
         </section>
       </div>
     );

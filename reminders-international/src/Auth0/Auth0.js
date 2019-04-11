@@ -52,12 +52,11 @@ class Auth0 extends Component {
               onClick={this.goSignUp}>
             Sign-up
           </Button> */}
-          {!isAuthenticated() && (
+          {!localStorage.getItem('isLoggedIn') ? (
             <Button color="primary" onClick={this.login.bind(this)}>
               Log In
             </Button>
-          )}
-          {isAuthenticated() && (
+          ) : (
             <Button color="primary" onClick={this.logout.bind(this)}>
               Log Out
             </Button>
