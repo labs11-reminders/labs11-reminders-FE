@@ -14,38 +14,30 @@ class ScheduleMessageComposer extends Component {
         }
     }
 
-  
-      getAllReminders = () => {
-        axios.get(`${process.env.REACT_APP_BACKEND}/api/reminders`, this.state.reminders)
-          .then(res => {
-           console.log('list of all reminders', res.data);
+    getRemindersByGroup = () => {
+      console.log("People --  getUsersByGroup this.state", this.props.activeGroup)
+      console.log("this.state.group", this.props.activeGroup)
+      // if (!this.state.group.id) {
+      //   this.state.group.id = 2;
+      // }          
+        console.log('getting users by group');
+        axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/reminders/${this.props.activeGroup}`, this.state.group_reminders)
+          .then(res => { 
+            console.log(res, res.data) 
             this.setState({
-              reminders: res.data,
-              activeGroup: this.props.state.activeGroup
+                users: res.data
             });
-             console.log('getAllReminders this.state.reminders', this.state.group_reminders);
         })
-          .catch(err => {
+        .catch(err => {
             console.log(err);
         });
-       // this.populateScheduledReminders()
-      }
+    }
 
-      groupReminders () {
-        console.log("FILTERED BY GROUP")
-        for (let i = 0; i < this.state.reminders; i++) {
-          if (this.state.reminder.group_id == this.state.activeGroup) {
-            this.state.group_reminders.push(i);
-          }
-        }
-        
-      }
-      
     
       componentDidMount () {
         console.log("mounted")
-        this.getAllReminders();
-        this.groupReminders();
+        this.getRemindersByGroup();
+        console.log("FILTERED BY GROUP", this.state.group_reminders)
       }
   
 
