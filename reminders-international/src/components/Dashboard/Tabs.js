@@ -16,7 +16,7 @@ import {
 import NewGroupMessage from '../NewGroupMessage/NewGroupMessage';
 import TemplateList  from '../Templates/TemplateList';
 import DraftList  from '../Drafts/DraftList';
-import Scheduler from '../Scheduler/ScheduleMessageComposer';
+import ScheduleMessageComposer from '../Scheduler/ScheduleMessageComposer';
 import People from '../People/People';
 import classnames from 'classnames';
 
@@ -25,8 +25,6 @@ export default class TabsSection extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.toggle = this.toggle.bind(this);
     this.state = {
       activeTab: '1',
       user_id: null,
@@ -34,6 +32,7 @@ export default class TabsSection extends React.Component {
       org_id: null,
       group_id: null,
     };
+    this.toggle = this.toggle.bind(this);
   }
 
   toggle(tab) {
@@ -111,13 +110,13 @@ export default class TabsSection extends React.Component {
           <TabPane tabId="1">
             <Row>
               <Col sm="12">
-                <NewGroupMessage state = {this.props.state} activeGroup={this.props.activeGroup}/>
+                <NewGroupMessage state = {this.props.state} groups = {this.props.groups} activeGroup={this.props.activeGroup}/>
               </Col>
             </Row>
           
           </TabPane>
           <TabPane tabId="2">
-            <Scheduler activeGroup={this.props.activeGroup}/>
+            <ScheduleMessageComposer activeGroup={this.props.activeGroup}/>
           </TabPane>
           <TabPane tabId="3">
             <Row>

@@ -39,9 +39,9 @@ class MessageModal extends React.Component {
 
   // TOGGLE TO OPEN MODEL
     toggle() {
-      console.log(this.props.state)
     this.setState(prevState => ({
       modal: !prevState.modal,
+      groups:this.props.groups,
      
     }));
     }

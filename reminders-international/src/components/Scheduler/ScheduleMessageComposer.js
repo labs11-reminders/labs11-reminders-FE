@@ -10,12 +10,12 @@ class ScheduleMessageComposer extends Component {
         this.state = {
           reminders:[],
           group_reminders: []
-        }
+        };
     }
 
     getRemindersByGroup = () => {
-      console.log("Reminders --  getUsersByGroup this.state", this.props.activeGroup)
-        
+      console.log("Reminders --  active group", this.props.activeGroup)
+      
       axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/reminders/${this.props.activeGroup}`, this.state.group_reminders)
           .then(res => { 
             console.log(res, res.data) 
@@ -38,6 +38,7 @@ class ScheduleMessageComposer extends Component {
 
   
       render() {
+        console.log("FILTERED BY GROUP", this.state.group_reminders)
         return (
           <div> 
            <h3>ScheduledMessageComposer</h3>
