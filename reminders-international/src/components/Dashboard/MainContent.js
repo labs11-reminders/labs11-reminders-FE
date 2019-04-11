@@ -47,6 +47,7 @@ class MainContent extends Component {
         </section>
         <section className="tabSection">
           <TabsSection state={this.props.state} activeGroup={this.props.activeGroup} />
+          
         </section>
       </div>
     );

@@ -129,8 +129,8 @@ class TemplateCard extends Component {
   }
 
   render() {
-    // console.log("TemplateCard this.state", this.state)
-    // console.log("this.props", this.props)
+    console.log("TemplateCard this.state", this.state)
+    console.log("this.props", this.props)
     return (
       <div className="template-card">
         {this.props.template ? (

@@ -48,26 +48,6 @@ class Dashboard extends Component {
       });
   };
 
-  // getOrgGroups = () => {
-  //   console.log('***********************');
-  //   console.log('Calling for group list');
-  //   console.log(this.state.profile);
-  //   axios
-  //     .get(
-  //       `${process.env.REACT_APP_BACKEND}/api/orgs/${
-  //         this.state.profile.org_id
-  //       }/groups`,
-  //     )
-  //     .then(res => {
-  //       console.log('list of all groups', res);
-  //       this.setState({
-  //         groups: res.data,
-  //       });
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // };
 
 
   componentWillMount() {
@@ -118,6 +98,8 @@ class Dashboard extends Component {
   render() {
     console.log('Dashboard Render this', this.state);
     console.log('DASHBOARD- Active Group', this.state.activeGroup);
+    console.log('USERS Dashboard Render this', this.state.users);
+    
     return (
       <>
         {/* This needs to remain {this.state.profile.nickname} in order to render correctly -Rachel */}
@@ -152,3 +134,25 @@ class Dashboard extends Component {
 }
 
 export default Dashboard;
+
+
+  // getOrgGroups = () => {
+  //   console.log('***********************');
+  //   console.log('Calling for group list');
+  //   console.log(this.state.profile);
+  //   axios
+  //     .get(
+  //       `${process.env.REACT_APP_BACKEND}/api/orgs/${
+  //         this.state.profile.org_id
+  //       }/groups`,
+  //     )
+  //     .then(res => {
+  //       console.log('list of all groups', res);
+  //       this.setState({
+  //         groups: res.data,
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // };
