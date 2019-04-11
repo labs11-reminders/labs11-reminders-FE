@@ -8,7 +8,7 @@ class SearchBar extends Component {
         super(props);
         this.state = {
           users: [],
-          query: ''
+          query: '',
         };
     }
 
@@ -18,11 +18,19 @@ class SearchBar extends Component {
           query: this.search.value
         }, () => {
           if (this.state.query && this.state.query.length > 1) {
-            if (this.state.query.length % 2 === 0) {
-              this.searchUsers()
-            }
-          } 
-        })
+            console.log('Are you searching')
+            
+            this.searchUsers();
+            // if (this.state.query.length % 2 === 0) {
+            //   this.searchUsers();
+            // }
+          } else {
+            console.log('Not long enough');
+            console.log(this.state.query);
+            console.log(this.search.input);
+          }
+
+          })
       }
 
     searchUsers = () => {
@@ -58,16 +66,16 @@ class SearchBar extends Component {
     render() {
         return (
      
-
-        <FormGroup>
-          <Input
+        //can't be changed to a reactstrap styled component because it messes with the querying functionality  -Rachel
+        <form className="UserSearch"> 
+          <input
             placeholder="Search for user..."
             ref={input => this.search = input}
             onChange={this.handleChanges}
           />
           
           <SearchTable users={this.state.users} group_id={this.props.activeGroup} />
-        </FormGroup>
+        </form>
         
         );
     }
