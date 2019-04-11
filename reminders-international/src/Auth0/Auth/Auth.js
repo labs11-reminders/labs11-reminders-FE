@@ -75,13 +75,13 @@ export default class Auth {
   handleAuthentication() {
     console.log('Auth0: Executing Authentication handler.');
     this.auth0.parseHash((err, authResult) => {
-      console.log(authResult);
+      console.log('AUTH-RESULT', authResult);
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        console.log('Auth0: success.');
+        console.log('Auth0: success.', authResult);
       } else if (err) {
         history.replace('/');
-        console.log('Auth0: failure.');
+        console.log('Auth0: failure.', authResult);
         console.log(err);
         // alert(`Error: ${err.error}. Check the console for further details!!`);
       }
@@ -120,6 +120,14 @@ export default class Auth {
     this.auth0.checkSession({}, (err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
+        console.log(
+          'Result',
+          authResult,
+          'accessToken',
+          authResult.accessToken,
+          'idToken',
+          authResult.idToken,
+        );
       } else if (err) {
         //this.logout();
         console.log(
@@ -131,6 +139,7 @@ export default class Auth {
 
   getProfile(cb) {
     // Get access token from local storage if not defined.
+<<<<<<< HEAD
     if (this.accessToken) 
     {
       var accessToken = this.accessToken
@@ -161,6 +170,37 @@ export default class Auth {
         }
         cb(err, profile);
       });
+=======
+    if (this.accessToken) {
+      var accessToken = this.accessToken;
+    } else {
+      var accessToken = localStorage.getItem('accessToken');
+    }
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        this.userProfile = profile;
+        // Populate user profile with backend data
+        axios
+          .post(`${process.env.REACT_APP_BACKEND}/api/users/auth`, {
+            auth0_sub: profile.sub,
+          })
+          .then(res => {
+            console.log('This shows when it works');
+
+            console.log(res.data);
+            this.userProfile.org_id = res.data.org_id;
+            this.userProfile.role_id = res.data.role_id;
+            this.userProfile.country = res.data.country;
+            this.userProfile.phone = res.data.phone;
+          })
+          .catch(err => {
+            console.log('this shows when it doesnt work');
+            console.log(err);
+          });
+      }
+      cb(err, profile);
+    });
+>>>>>>> b32f241ebf4aeb663d321ea6fa055de1189792c0
   }
 
   logout() {
@@ -179,6 +219,7 @@ export default class Auth {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('accessToken');
     localStorage.removeItem('idToken');
+    localStorage.removeItem('expiresIn');
 
     // clear our Auth0 session
     this.auth0.logout({

@@ -176,6 +176,7 @@ class Sidebar extends Component {
 
   render() {
     console.log('PROPS', this.props);
+    console.log('GROUPS', this.props.groups);
     // const { profile } = this.state
     const profileImg =
       'https://tk-assets.lambdaschool.com/ecd33d34-c124-4b75-92d2-e5c52c171ed8_11201517_887808411287357_1307163552_a.jpg';
@@ -203,7 +204,7 @@ class Sidebar extends Component {
         </section>
 
         <section className="groupsSection cube">
-          <h6>YOUR GROUPS</h6>
+          <h6>YOUR GROUP(s)</h6>
           <NavLink id="createLink" onClick={this.toggle}>
             <i className="fas fa-plus-circle" /> &nbsp; Create Group
           </NavLink>
@@ -211,11 +212,10 @@ class Sidebar extends Component {
 
           {/********************************************************************** LINK ***********************************/}
           {this.state.groups.map(group => {
-            console.log('group console', group.org_id);
-            console.log('PROFILE', this.props.profile);
             if (group.org_id === this.props.profile.org_id) {
               return (
                 <Link
+                  to="#"
                   onClick={() => {
                     console.log('setActiveGroup Clicked', group.id);
                     this.callSetGroup(group.id);
@@ -256,9 +256,7 @@ class Sidebar extends Component {
           className="groupModal"
           size="lg"
         >
-          <ModalHeader toggle={this.toggle}>
-            <h5>Create a Group</h5>
-          </ModalHeader>
+          <ModalHeader toggle={this.toggle}>Create a Group</ModalHeader>
           <ModalBody className="modalBody">
             <Form className="createGroup" onSubmit={this.addGroup}>
               <div className="modalProfile">
