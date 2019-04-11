@@ -5,15 +5,8 @@ import AddContactModal from '../AddContacts/AddContactModal';
 import axios from 'axios';
 
 class MainContent extends Component {
-<<<<<<< HEAD
-  state = {};
-
-  getGroupById = () => {
-    axios.get(`${process.env.REACT_BACKEND_}`)
-=======
   constructor(props) {
     super(props);
->>>>>>> b32f241ebf4aeb663d321ea6fa055de1189792c0
   }
 
   render() {
@@ -25,9 +18,6 @@ class MainContent extends Component {
             <span id="grpImage">Image</span> &nbsp;
             <div className="grpName">
               <span>
-<<<<<<< HEAD
-                <strong>{this.state.groups}</strong>
-=======
                 <strong>
                   {!this.props.state.activeGroup === null ? (
                     <p>Group Name</p>
@@ -44,7 +34,6 @@ class MainContent extends Component {
                     })
                   )}
                 </strong>
->>>>>>> b32f241ebf4aeb663d321ea6fa055de1189792c0
               </span>{' '}
               &nbsp;
               <span>@groupname</span>

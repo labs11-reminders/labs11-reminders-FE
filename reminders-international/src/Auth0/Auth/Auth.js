@@ -139,38 +139,6 @@ export default class Auth {
 
   getProfile(cb) {
     // Get access token from local storage if not defined.
-<<<<<<< HEAD
-    if (this.accessToken) 
-    {
-      var accessToken = this.accessToken
-    } else
-    {
-      var accessToken = localStorage.getItem('accessToken');
-    }
-      this.auth0.client.userInfo(accessToken, (err, profile) => {
-        console.log('checking for access token');
-        if (profile) {
-          this.userProfile = profile;
-          // Populate user profile with backend data..
-          axios
-            .post(`${process.env.REACT_APP_BACKEND}/api/users/auth`, {
-              auth0_sub: profile.sub,
-            })
-            .then(res => {
-              console.log(res.data);
-              this.userProfile.org_id = res.data.org_id;
-              this.userProfile.role_id = res.data.role_id;
-              this.userProfile.country = res.data.country;
-              this.userProfile.phone = res.data.phone;
-            })
-            .catch(err => {
-              console.log(err);
-              console.log('This is a get profile error');
-            });
-        }
-        cb(err, profile);
-      });
-=======
     if (this.accessToken) {
       var accessToken = this.accessToken;
     } else {
@@ -200,7 +168,6 @@ export default class Auth {
       }
       cb(err, profile);
     });
->>>>>>> b32f241ebf4aeb663d321ea6fa055de1189792c0
   }
 
   logout() {

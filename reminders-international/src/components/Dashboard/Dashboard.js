@@ -99,25 +99,6 @@ class Dashboard extends Component {
     return (
       <>
         {/* This needs to remain {this.state.profile.nickname} in order to render correctly -Rachel */}
-<<<<<<< HEAD
-        <h1> {this.state.profile.nickname}'s Dashboard </h1>
-        <div className="mainContainer">
-          <section className="sidebar">
-            <Sidebar
-              setActiveGroup={this.setGroup}
-              groups={this.state.groups}
-              profile={this.state.profile}
-            />
-          </section>
-          <section className="content">
-            <MainContent 
-              profile={this.state.profile} 
-              group={this.state.group_id} 
-              groups={this.state.groups}
-            />
-          </section>
-        </div>
-=======
         {this.state.profile === undefined ? (
           <div>
             <h5>Error displaying Page. Please Login!</h5>
@@ -139,7 +120,6 @@ class Dashboard extends Component {
             </div>
           </>
         )}
->>>>>>> b32f241ebf4aeb663d321ea6fa055de1189792c0
       </>
     );
   }
