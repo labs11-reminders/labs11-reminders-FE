@@ -64,6 +64,7 @@ export default class TabsSection extends React.Component {
             <NavLink
               className={classnames({ active: this.state.activeTab === '2' })}
               onClick={() => {
+                console.log("SCHEDULER")
                 this.toggle('2');
               }}
             >
@@ -109,7 +110,7 @@ export default class TabsSection extends React.Component {
           <TabPane tabId="1">
             <Row>
               <Col sm="12">
-                <NewGroupMessage />
+                <NewGroupMessage state = {this.props.state}/>
               </Col>
             </Row>
           

@@ -16,18 +16,17 @@ class ScheduleMessageComposer extends Component {
 
   
       getAllReminders = () => {
+        console.log("getting reminders")
         axios.get(`${process.env.REACT_APP_BACKEND}/api/reminders`, this.state.reminders)
           .then(res => {
-           console.log('list of all reminders', res.data);
-            this.setState({
+             this.setState({
               reminders: res.data,
-              activeGroup: this.props.state.activeGroup
             });
-             console.log('getAllReminders this.state.reminders', this.state.group_reminders);
-        })
+           })
           .catch(err => {
-            console.log(err);
+            console.log("failed to get",err);
         });
+        console.log("maybe",this.state.reminders);
        // this.populateScheduledReminders()
       }
 
@@ -38,6 +37,7 @@ class ScheduleMessageComposer extends Component {
             this.state.group_reminders.push(i);
           }
         }
+       
         
       }
       
@@ -46,6 +46,8 @@ class ScheduleMessageComposer extends Component {
         console.log("mounted")
         this.getAllReminders();
         this.groupReminders();
+        console.log("REMINDERS", this.state.reminders)
+        console.log("FILTERED BY GROUP", this.state.reminders.group_reminders)
       }
   
 
