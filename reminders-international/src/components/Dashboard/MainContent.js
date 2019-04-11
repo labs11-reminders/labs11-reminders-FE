@@ -10,7 +10,7 @@ class MainContent extends Component {
   }
 
   render() {
-    console.log('MAIN CONTENT PROPS', this.props);
+    console.log('MAIN CONTENT PROPS', this.props.state);
     return (
       <div className="mainContentWrapper">
         <section className="profileInfo">
@@ -46,7 +46,7 @@ class MainContent extends Component {
           </div>
         </section>
         <section className="tabSection">
-          <TabsSection state={this.props.state} activeGroup={this.props.activeGroup} />
+          <TabsSection state={this.props.state} activeGroup={this.props.activeGroup} groups={this.props.groups} />
           
         </section>
       </div>

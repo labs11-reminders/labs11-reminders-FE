@@ -121,7 +121,7 @@ class Dashboard extends Component {
                 />
               </section>
               <section className="content">
-                <MainContent activeGroup={this.state.activeGroup} groups={this.state.groups} />
+                <MainContent state={this.state} activeGroup={this.state.activeGroup} groups={this.state.groups} />
               </section>
               </>
             ) : (<span>Loading profile...</span>)}
