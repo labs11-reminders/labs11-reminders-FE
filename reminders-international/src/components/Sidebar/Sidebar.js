@@ -95,7 +95,7 @@ class Sidebar extends Component {
   getGroups = () => {
     console.log('***********************');
     console.log('Calling for group list');
-    console.log(this.props.profile);
+    console.log('Our current org is', this.props.profile.org_id);
     axios
       .get(`${process.env.REACT_APP_BACKEND}/api/groups`)
       .then(res => {
@@ -105,7 +105,7 @@ class Sidebar extends Component {
         });
       })
       .catch(err => {
-        console.log(err);
+        console.log('There was an error', err);
       });
   };
 
@@ -187,10 +187,18 @@ class Sidebar extends Component {
     });
   };
 
+  setOrg() {
+    this.setState({
+      org_id: this.props.profile.org_id
+    });
+  }
+
   componentDidMount() {
+    console.log("Sidebar mounted.")
     this.getAllOrgs();
     this.getAllReminders();
     this.getGroups();
+    this.setOrg();
     this.getUsersByGroup();
   }
 
@@ -209,6 +217,7 @@ class Sidebar extends Component {
           <div id="profileName">
             {/* This needs to remain {this.props.profile.nickname} in order to render correctly. -Rachel */}
             <span>Hello, {this.props.profile.nickname} </span>
+           
           </div>
         </section>
         <section className="orgSection cube">
@@ -232,6 +241,7 @@ class Sidebar extends Component {
 
           {/********************************************************************** LINK ***********************************/}
           {this.state.groups.map(group => {
+            console.log('Our current org is', this.props.profile.org_id);
             if (group.org_id === this.props.profile.org_id) {
               return (
                 <Link

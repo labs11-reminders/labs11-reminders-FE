@@ -38,14 +38,14 @@ class PeopleTable extends Component {
     }
 
     getUsersByGroup = () => {
-      console.log("PeopleTable getUsersByGroup this.state", this.state)
-      console.log("this.state.group", this.state)
+      console.log("PeopleTable getUsersByGroup this.state", this.props.activeGroup)
+      console.log("this.state.group", this.props.activeGroup)
       // if (!this.state.group.id) {
       //   this.state.group.id = 2;
       // }
         //group id is hardcoded in - need to change it to pull id from props
         console.log('getting users by group');
-        axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/${this.state.group.id}/users`, this.state.users)
+        axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/${this.props.activeGroup}/users`, this.state.users)
           .then(res => { 
             console.log(res, res.data) 
             this.setState({
@@ -58,10 +58,12 @@ class PeopleTable extends Component {
     }
 
     componentDidMount() {
+        console.log('People table mounted');
         this.getUsersByGroup();
     }
 
     render() {
+        
         return (
             <Table>
             <thead>
@@ -75,9 +77,11 @@ class PeopleTable extends Component {
               </tr>
             </thead>
             <tbody>
+
                 {this.state.users.map(user => 
-                   <RowElement key={user.id} value={user.id} user={user} group={this.state.group} show_delete={true} /> 
+                   <RowElement key={user.id} value={user.id} user={user} group_id={this.props.activeGroup} show_delete={true} /> 
                 )}
+                
             </tbody>
             </Table>
             

@@ -13,7 +13,7 @@ class RowElement extends Component {
     }
 
     addUserToGroup = () => {
-        axios.post(`${process.env.REACT_APP_BACKEND}/api/groups/add/user`, {user_id: this.props.user.id, group_id: this.props.group_id})
+        axios.post(`${process.env.REACT_APP_BACKEND}/api/groups/add/user`, {user_id: this.props.user.id, group_id: this.props.group.id})
         .then(res => {
             window.location.reload();
         })
@@ -23,8 +23,8 @@ class RowElement extends Component {
     } 
 
     removeUserFromGroup = () => {
-        console.log('Deleting user_id:', this.props.user.id, ' from group_id:', this.props.group_id);
-        axios.post(`${process.env.REACT_APP_BACKEND}/api/groups/remove/user`, {user_id: this.props.user.id, group_id: this.props.group_id})
+        console.log('Deleting user_id:', this.props.user.id, ' from group_id:', this.props.group.id);
+        axios.post(`${process.env.REACT_APP_BACKEND}/api/groups/remove/user`, {user_id: this.props.user.id, group_id: this.props.group.id})
         .then(res => {
             window.location.reload();
         })

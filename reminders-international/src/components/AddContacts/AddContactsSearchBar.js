@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { InputGroup, InputGroupAddon, Input, Button, FormGroup} from 'reactstrap';
-import SearchTable from './SearchTable';
+import SearchTable from './AddContactsSearchTable';
 
 class SearchBar extends Component {
     constructor(props) {
@@ -66,7 +66,7 @@ class SearchBar extends Component {
             onChange={this.handleChanges}
           />
           
-          <SearchTable users={this.state.users} group_id={this.props.activeGroup} />
+          <SearchTable users={this.state.users} />
         </FormGroup>
         
         );

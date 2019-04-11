@@ -15,6 +15,13 @@ class Dashboard extends Component {
     this.setActiveGroup = this.setActiveGroup.bind(this);
   }
 
+  setGroup(group_id) {
+    console.log('setting group');
+    this.setState({
+      group_id: group_id
+    });
+  }
+
   getUsers = () => {
     axios
       .get(`${process.env.REACT_APP_BACKEND}/api/users`, this.state.users)
@@ -42,8 +49,8 @@ class Dashboard extends Component {
   };
 
 
+
   componentWillMount() {
-    this.setState({ profile: {} });
     const { userProfile, getProfile } = this.props.auth;
     if (!userProfile) {
       getProfile((err, profile) => {
@@ -55,7 +62,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    this.getUsers();
+    //this.getUsers();
     this.getGroups();
   }
 
@@ -64,11 +71,33 @@ class Dashboard extends Component {
       console.log('***ID***', id);
       this.setState({ activeGroup: id });
       console.log('ACTIVE', this.state.activeGroup);
+      this.getUsersByGroup();
     }
+  }
+
+  getUsersByGroup = () => {
+    console.log("PeopleTable getUsersByGroup this.state", this.state.activeGroup)
+    console.log("this.state.group", this.state.activeGroup)
+    // if (!this.state.group.id) {
+    //   this.state.group.id = 2;
+    // }
+      //group id is hardcoded in - need to change it to pull id from props
+      console.log('getting users by group');
+      axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/${this.state.activeGroup}/users`, this.state.users)
+        .then(res => { 
+          console.log(res, res.data) 
+          this.setState({
+              users: res.data
+          });
+      })
+      .catch(err => {
+          console.log(err);
+      });
   }
 
   render() {
     console.log('Dashboard Render this', this.state);
+    console.log('DASHBOARD- Active Group', this.state.activeGroup);
     console.log('USERS Dashboard Render this', this.state.users);
     
     return (
@@ -82,6 +111,8 @@ class Dashboard extends Component {
           <>
             <h1> {this.state.profile.nickname}'s Dashboard </h1>
             <div className="mainContainer">
+            {this.state.profile.nickname ? (
+              <>
               <section className="sidebar">
                 <Sidebar
                   setActiveGroup={this.setActiveGroup}
@@ -90,8 +121,10 @@ class Dashboard extends Component {
                 />
               </section>
               <section className="content">
-                <MainContent state={this.state} />
+                <MainContent activeGroup={this.state.activeGroup} groups={this.state.groups} />
               </section>
+              </>
+            ) : (<span>Loading profile...</span>)}
             </div>
           </>
         )}

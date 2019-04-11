@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import TabsSection from './Tabs';
+import AddContactModal from '../AddContacts/AddContactModal';
+import axios from 'axios';
 
 class MainContent extends Component {
   constructor(props) {
@@ -17,16 +19,16 @@ class MainContent extends Component {
             <div className="grpName">
               <span>
                 <strong>
-                  {!this.props.state.activeGroup === null ? (
+                  {!this.props.activeGroup === null ? (
                     <p>Group Name</p>
                   ) : (
-                    this.props.state.groups.map(group => {
+                    this.props.groups.map(group => {
                       console.log(
                         '************************************',
                         group,
-                        this.props.state.activeGroup,
+                        this.props.activeGroup,
                       );
-                      if (this.props.state.activeGroup === group.id) {
+                      if (this.props.activeGroup === group.id) {
                         return group.name;
                       }
                     })
@@ -39,12 +41,13 @@ class MainContent extends Component {
           </div>
           <div className="topBtn">
             <Button outline color="primary">
-              Add Contacts
+              <AddContactModal buttonLabel = "Add Contact" />
             </Button>
           </div>
         </section>
         <section className="tabSection">
-          <TabsSection state={this.props.state} />
+          <TabsSection state={this.props.state} activeGroup={this.props.activeGroup} />
+          
         </section>
       </div>
     );
