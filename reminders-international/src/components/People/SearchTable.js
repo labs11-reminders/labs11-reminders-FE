@@ -6,10 +6,9 @@ class SearchTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            group: {
-                id: 2,
-            }
-          };
+            group_id: ''
+                          
+        };
     }
 
     emptyTable = () => {
@@ -43,7 +42,7 @@ class SearchTable extends Component {
             <tbody>
                 
                 {this.props.users.map(user => 
-                    <RowElement key={user.id} value={user.id} user={user} group={this.state.group} show_add={true} />
+                    <RowElement key={user.id} value={user.id} user={user} group_id={this.props.activeGroup} show_add={true} />
                 )}
             </tbody>
             </Table>

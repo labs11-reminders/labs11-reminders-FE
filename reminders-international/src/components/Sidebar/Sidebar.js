@@ -186,7 +186,7 @@ class Sidebar extends Component {
           <div id="profileName">
             {/* This needs to remain {this.props.profile.nickname} in order to render correctly. -Rachel */}
             <span>Hello, {this.props.profile.nickname} </span>
-            <span>Your Org ID: {this.props.profile.org_id}</span>
+           
           </div>
         </section>
         <section className="orgSection cube">

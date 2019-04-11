@@ -9,7 +9,8 @@ class People extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          users: []
+          users: [],
+          
         };
     }
 
@@ -38,8 +39,7 @@ class People extends Component {
         console.log("this.state.group", this.props.activeGroup)
         // if (!this.state.group.id) {
         //   this.state.group.id = 2;
-        // }
-          //group id is hardcoded in - need to change it to pull id from props
+        // }          
           console.log('getting users by group');
           axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/${this.props.activeGroup}/users`, this.state.users)
             .then(res => { 
@@ -63,7 +63,7 @@ class People extends Component {
         console.log("**********")
         return (
             <div>
-                <SearchBar activeGroup={this.props.activeGroup} />
+                <SearchBar  activeGroup={this.props.activeGroup}/>
                 {this.state.users.length > 0 ? (
                 <PeopleTable activeGroup={this.props.activeGroup}/>
                 ) : ( <span>No people to display.</span>)}

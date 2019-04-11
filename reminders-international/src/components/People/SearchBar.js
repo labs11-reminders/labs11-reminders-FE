@@ -66,7 +66,7 @@ class SearchBar extends Component {
             onChange={this.handleChanges}
           />
           
-          <SearchTable users={this.state.users} />
+          <SearchTable users={this.state.users} group_id={this.props.activeGroup} />
         </FormGroup>
         
         );
