@@ -104,38 +104,57 @@ export default class TabsSection extends React.Component {
               <strong id="tabNav">PEOPLE</strong>
             </NavLink>
           </NavItem>
+
+          <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '6' })}
+              onClick={() => {
+                this.toggle('6');
+              }}
+            >
+              <strong id="tabNav">ADMIN</strong>
+            </NavLink>
+          </NavItem>
         </Nav>
-        <TabContent activeTab={this.state.activeTab}>
+        <TabContent activeTab={this.state.activeTab} activeGroup={this.props.activeGroup}>
           
           <TabPane tabId="1">
             <Row>
               <Col sm="12">
-                <NewGroupMessage state = {this.props.state}/>
+                <NewGroupMessage state = {this.props.state} activeGroup={this.props.activeGroup}/>
               </Col>
             </Row>
           
           </TabPane>
           <TabPane tabId="2">
-            <Scheduler state = {this.props.state}/>
+            <Scheduler state={this.props.state} activeGroup={this.props.activeGroup}/>
           </TabPane>
           <TabPane tabId="3">
             <Row>
               <Col sm="12">
-                <TemplateList />
+                <TemplateList activeGroup={this.props.activeGroup}/>
               </Col>
             </Row>
           </TabPane>
           <TabPane tabId="4">
             <Row>
               <Col sm="12">
-                <DraftList />
+                <DraftList activeGroup={this.props.activeGroup}/>
               </Col>
             </Row>
           </TabPane>
           <TabPane tabId="5">
             <Row>
               <Col sm="12">
-                <People />
+                <People activeGroup={this.props.activeGroup} />
+              </Col>
+            </Row>
+          </TabPane>
+          <TabPane tabId="6">
+            <Row>
+              <Col sm="12">
+                <h2>Edit your orgs and groups</h2>
+                
               </Col>
             </Row>
           </TabPane>
