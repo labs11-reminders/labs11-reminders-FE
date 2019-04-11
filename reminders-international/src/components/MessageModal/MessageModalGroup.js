@@ -39,9 +39,10 @@ class MessageModal extends React.Component {
 
   // TOGGLE TO OPEN MODEL
     toggle() {
+      console.log(this.props.state)
     this.setState(prevState => ({
       modal: !prevState.modal,
-      groups: this.props.state.groups
+     
     }));
     }
 
@@ -139,7 +140,7 @@ class MessageModal extends React.Component {
 
     onGroupSelect = (event) => { //when group is selected from drop down group id is assigned
       this.setState({
-        message: { ...this.state.message, group_id: event.target.id }
+        message: { ...this.state.message, group_id:event.target.id }
       });
     }
 
@@ -241,6 +242,10 @@ class MessageModal extends React.Component {
               </FormGroup>
               <FormGroup>
               <Button color="primary" onClick = {this.createSavedReminder}>Save</Button>
+              </FormGroup>
+              <FormGroup>
+              <Button>Send Now
+              </Button>
               </FormGroup>
 
             </Row>

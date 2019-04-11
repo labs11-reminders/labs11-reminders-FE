@@ -8,6 +8,7 @@ class NewGroupMessage extends Component {
     
 
     render() {
+        console.log(this.props.state)
         return (
             <div className="NewMessage">
                 {/* <MessageModal buttonLabel="Compose New Message" />  */}

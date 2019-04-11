@@ -10,7 +10,7 @@ class MainContent extends Component {
   }
 
   render() {
-    console.log('MAIN CONTENT PROPS', this.props);
+    console.log('MAIN CONTENT PROPS', this.props.state);
     return (
       <div className="mainContentWrapper">
         <section className="profileInfo">

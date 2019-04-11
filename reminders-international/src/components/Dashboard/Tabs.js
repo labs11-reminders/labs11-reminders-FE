@@ -127,7 +127,7 @@ export default class TabsSection extends React.Component {
           
           </TabPane>
           <TabPane tabId="2">
-            <Scheduler state={this.props.state} activeGroup={this.props.activeGroup}/>
+            <Scheduler activeGroup={this.props.activeGroup}/>
           </TabPane>
           <TabPane tabId="3">
             <Row>
