@@ -18,7 +18,7 @@ class Dashboard extends Component {
   setGroup(group_id) {
     console.log('setting group');
     this.setState({
-      group_id: group_id
+      group_id: group_id,
     });
   }
 
@@ -48,8 +48,6 @@ class Dashboard extends Component {
       });
   };
 
-
-
   componentWillMount() {
     const { userProfile, getProfile } = this.props.auth;
     if (!userProfile) {
@@ -76,55 +74,72 @@ class Dashboard extends Component {
   }
 
   getUsersByGroup = () => {
-    console.log("PeopleTable getUsersByGroup this.state", this.state.activeGroup)
-    console.log("this.state.group", this.state.activeGroup)
+    console.log(
+      'PeopleTable getUsersByGroup this.state',
+      this.state.activeGroup,
+    );
+    console.log('this.state.group', this.state.activeGroup);
     // if (!this.state.group.id) {
     //   this.state.group.id = 2;
     // }
-      //group id is hardcoded in - need to change it to pull id from props
-      console.log('getting users by group');
-      axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/${this.state.activeGroup}/users`, this.state.users)
-        .then(res => { 
-          console.log(res, res.data) 
-          this.setState({
-              users: res.data
-          });
+    //group id is hardcoded in - need to change it to pull id from props
+    console.log('getting users by group');
+    axios
+      .get(
+        `${process.env.REACT_APP_BACKEND}/api/groups/${
+          this.state.activeGroup
+        }/users`,
+        this.state.users,
+      )
+      .then(res => {
+        console.log(res, res.data);
+        this.setState({
+          users: res.data,
+        });
       })
       .catch(err => {
-          console.log(err);
+        console.log(err);
       });
-  }
+  };
 
   render() {
-    console.log('Dashboard Render this', this.state);
-    console.log('DASHBOARD- Active Group', this.state.activeGroup);
-    console.log('USERS Dashboard Render this', this.state.users);
-    
+    console.log('Dashboard Render this', this.state, this.props);
     return (
       <>
         {/* This needs to remain {this.state.profile.nickname} in order to render correctly -Rachel */}
+
+        {/* This checks to see if the auth0 profile is undefined 
+        (which occurs when user token is expired) and then instead of an error message 
+        the h5 is displayed and local storage is cleared so the nav changes to 'logout'. */}
         {this.state.profile === undefined ? (
           <div>
+            {this.props.auth.logout()}
             <h5>Error displaying Page. Please Login!</h5>
           </div>
         ) : (
           <>
             <h1> {this.state.profile.nickname}'s Dashboard </h1>
             <div className="mainContainer">
-            {this.state.profile.nickname ? (
-              <>
-              <section className="sidebar">
-                <Sidebar
-                  setActiveGroup={this.setActiveGroup}
-                  groups={this.state.groups}
-                  profile={this.state.profile}
-                />
-              </section>
-              <section className="content">
-                <MainContent state={this.state} activeGroup={this.state.activeGroup} groups={this.state.groups} />
-              </section>
-              </>
-            ) : (<span>Loading profile...</span>)}
+              {this.state.profile.nickname ? (
+                <>
+                  <section className="sidebar">
+                    <Sidebar
+                      setActiveGroup={this.setActiveGroup}
+                      groups={this.state.groups}
+                      profile={this.state.profile}
+                    />
+                  </section>
+                  <section className="content">
+                    <MainContent
+                      state={this.state}
+                      activeGroup={this.state.activeGroup}
+                      groups={this.state.groups}
+                    />
+                  </section>
+                </>
+              ) : (
+                <span>Loading profile...</span>
+              )}
             </div>
           </>
         )}
@@ -135,24 +150,23 @@ class Dashboard extends Component {
 
 export default Dashboard;
 
-
-  // getOrgGroups = () => {
-  //   console.log('***********************');
-  //   console.log('Calling for group list');
-  //   console.log(this.state.profile);
-  //   axios
-  //     .get(
-  //       `${process.env.REACT_APP_BACKEND}/api/orgs/${
-  //         this.state.profile.org_id
-  //       }/groups`,
-  //     )
-  //     .then(res => {
-  //       console.log('list of all groups', res);
-  //       this.setState({
-  //         groups: res.data,
-  //       });
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // };
+// getOrgGroups = () => {
+//   console.log('***********************');
+//   console.log('Calling for group list');
+//   console.log(this.state.profile);
+//   axios
+//     .get(
+//       `${process.env.REACT_APP_BACKEND}/api/orgs/${
+//         this.state.profile.org_id
+//       }/groups`,
+//     )
+//     .then(res => {
+//       console.log('list of all groups', res);
+//       this.setState({
+//         groups: res.data,
+//       });
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// };
