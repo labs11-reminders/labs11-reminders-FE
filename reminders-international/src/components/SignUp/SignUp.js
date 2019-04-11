@@ -13,11 +13,11 @@ class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            step: 1,
-            role_id: null,
-            org_id: null,
-            group_id: null,
-            user_id: null,
+                step: 1,
+                role_id: null,
+                org_id: null,
+                group_id: null,
+                user_id: null,
         }
     };
 

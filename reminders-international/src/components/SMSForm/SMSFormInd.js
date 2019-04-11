@@ -6,12 +6,6 @@ import {
   FormGroup,
   Button,
   Label,
-  Col,
-  Row,
-  ButtonDropdown,
-  Collapse,
-
-  
 
 } from "reactstrap";
 import './SMSForm.css';
@@ -59,14 +53,6 @@ class SMSForm extends Component {
     });
   }
 
-  toggleCollapseInd = () => {
-    this.setState(state => ({ collapseInd: !state.collapseInd}));
-  }
-
-  toggleCollapseGroup = () => {
-    this.setState(state => ({ collapseGroup: !state.collapseGroup}));
-  }
-
 
   onSubmit = (event) => {
     event.preventDefault();
@@ -111,47 +97,6 @@ class SMSForm extends Component {
       >
         <FormGroup>
           <Label for="messageTo">To:</Label>
-            {/* <FormGroup row> */}
-              {/* <Col > */}
-              {/* <Row> */}
-                {/* <Label for="templateGroup"> */}
-                  {/* <i className="fas fa-plus-circle" /> &nbsp; Groups */}
-                {/* </Label> */}
-                {/* <Button onClick={this.toggleCollapseInd}>
-                  <i className="fas fa-plus-circle" /> &nbsp; Individuals
-                </Button> */}
-                {/* <Collapse isOpen={this.state.collapseInd}> */}
-                  {/* <Input
-                    placeholder="442071838750"
-                    type="tel"
-                    name="to"
-                    id="to"
-                    value={this.state.message.to}
-                    onChange={this.onHandleChange}
-                  /> */}
-                {/* </Collapse> */}
-                {/* <Button onClick={this.toggleCollapseGroup}>
-                  <i className="fas fa-plus-circle" /> &nbsp; Groups
-                </Button>
-                <Collapse isOpen={this.state.collapseGroup}>
-                  <Input
-                    type="select"
-                    placeholder="Select Group(s)"
-                    name="group"
-                    id="templateGroup"
-                    onChange={this.handleInputChange}
-                    value={this.state.groups.name}
-                    multiple
-                  > */}
-                    {/* <option>--&nbsp; Select Group(s)</option>
-                    {this.state.groups.map(group => (
-                      <option key={group.id}>{group.name}</option>
-                    ))}{' '} */}
-                  {/* </Input>
-                </Collapse> 
-                </Row>  */}
-              {/* </Col> */}
-            {/* </FormGroup> */}
           <Input
             type="tel"
             name="to"
@@ -169,12 +114,6 @@ class SMSForm extends Component {
             value={this.state.message.body}
             onChange={this.onHandleChange}
             />
-          {/* <In
-            name="body" 
-            id="body"
-            value={this.state.message.body}
-            onChange={this.onHandleChange}
-          /> */}
         </FormGroup>
         <Button type="submit" disabled={this.state.submitting}>
           Send Direct Message

@@ -16,6 +16,8 @@ import {
   FormGroup,
   Col,
 } from 'reactstrap';
+import AddContactModal from '../AddContacts/AddContactModal';
+import axios from 'axios';
 
 class MainContent extends Component {
   constructor(props) {
@@ -76,7 +78,7 @@ class MainContent extends Component {
   };
 
   render() {
-    console.log('MAIN CONTENT PROPS', this.props);
+    console.log('MAIN CONTENT PROPS', this.props.state);
     return (
       <div className="mainContentWrapper">
         <section className="profileInfo">
@@ -85,16 +87,16 @@ class MainContent extends Component {
             <div className="grpName">
               <span>
                 <strong>
-                  {!this.props.state.activeGroup === null ? (
+                  {!this.props.activeGroup === null ? (
                     <p>Group Name</p>
                   ) : (
-                    this.props.state.groups.map(group => {
+                    this.props.groups.map(group => {
                       console.log(
                         '************************************',
                         group,
-                        this.props.state.activeGroup,
+                        this.props.activeGroup,
                       );
-                      if (this.props.state.activeGroup === group.id) {
+                      if (this.props.activeGroup === group.id) {
                         return group.name;
                       }
                     })
@@ -107,8 +109,8 @@ class MainContent extends Component {
           </div>
           <div className="topBtn">
             <Button outline color="primary">
-              Add Contacts
-            </Button>{' '}
+              <AddContactModal buttonLabel="Add Contact" />
+            </Button>
             &nbsp;
             {/********************************************************** SETTINGS DROPDOWN ********************************************/}
             <Dropdown
@@ -299,7 +301,11 @@ class MainContent extends Component {
           </Modal>
         </section>
         <section className="tabSection">
-          <TabsSection />
+          <TabsSection
+            state={this.props.state}
+            activeGroup={this.props.activeGroup}
+            groups={this.props.groups}
+          />
         </section>
       </div>
     );

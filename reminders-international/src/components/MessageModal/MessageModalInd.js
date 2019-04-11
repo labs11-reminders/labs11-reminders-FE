@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input, Row } from 'reactstrap';
-import SMSForm from '../SMSForm/SMSForm';
+import SMSForm from '../SMSForm/SMSFormInd';
 
 import axios from 'axios';
 
@@ -45,17 +45,6 @@ class MessageModal extends React.Component {
       }
     }
 
-  // getUserData = () => {
-  //   axios.get(`${process.env.REACT_APP_BACKEND}/api/users/data/${id}`, this.state.user.id)
-  //     .then(res => {
-  //       this.setState({
-  //         user: res.data
-  //       })
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }
 
   createSavedReminder = () => {
     axios.post(`${process.env.REACT_APP_BACKEND}/api/reminders`, this.state.message)
@@ -70,30 +59,6 @@ class MessageModal extends React.Component {
       });
   }
 
-
-
-  // toggleSavedAsDraft() {
-  //   this.setState(prevState => ({
-  //     draft: !prevState.draft })), () => {
-  //      this.createSavedReminder();
-  //   };
-  // }
-
-  // toggleSavedAsTemplate() {
-  //   this.setState(prevState => ({
-  //     template: !prevState.template
-  //   })), () => {
-  //     this.createSavedReminder()
-  //   };
-  // }
-
-  // toggleSavedAsTemplate() {
-  //   this.setState(prevState => ({
-  //     scheduled: !prevState.scheduled
-  //   })), () => {
-  //     this.createSavedReminder()
-  //   };
-  // }
 
   onHandleChange = (event) => {
     const name = event.target.getAttribute('name');
@@ -153,21 +118,10 @@ class MessageModal extends React.Component {
           <ModalHeader toggle={this.toggle}>Create a Message</ModalHeader>
           <ModalBody>
             <FormGroup>
-              {/* <Label for="messageText">Write Message Here</Label>
-              <Input type="textarea" name="body" id="messageText"/> */}
               <SMSForm groups={this.props.groups}/>
             </FormGroup>
           </ModalBody>
-          <ModalFooter>
-            <Row>
-            <Button color="primary" onClick={this.onSubmit}>Send Group Message</Button>{' '}
-            </Row>
-            <Row>
-              <Button color="secondary" onClick={this.toggleTab()}>Schedule</Button>{/* <---- toggle scheduled to true, and direct user to scheduled component*/}
-              <Button color="secondary" onClick={this.toggleTab()}>Save Template</Button>
-              <Button color="secondary" onClick={this.toggleTab()}>Save Draft</Button>
-            </Row>
-          </ModalFooter>
+
         </Modal>
       </div>
     );
@@ -175,21 +129,18 @@ class MessageModal extends React.Component {
 }
 
 export default MessageModal;
+            {/* <Label for="messageText">Write Message Here</Label>
+              <Input type="textarea" name="body" id="messageText"/> */}
 
 
-/*   ------ Edit  handlers triggered in ScheduledMessageCard --------
-
-      onEditTitle  = (event, id) => {
-        const title_input = event.target.getAttribute('title');
-        this.setState({
-          title: { ...this.state.title, [title_input]: event.target.value }
-        });
-        this.handleChange(event,id);
-      }
-      onEditMessage = (event, id) => {
-        const message_input = event.target.getAttribute('message');
-        this.setState({
-          message: { ...this.state.message, [message_input]: event.target.value }
-        });
-        this.handleChange(event,id);
-      } */
+          {/* <ModalFooter>
+            <Row>
+            <Button color="primary" onClick={this.onSubmit}>Send Group Message</Button>{' '}
+            </Row>
+            <Row>
+              <Button color="secondary" onClick={this.toggleTab()}>Schedule</Button> */}
+              {/* <---- toggle scheduled to true, and direct user to scheduled component*/}
+              {/* <Button color="secondary" onClick={this.toggleTab()}>Save Template</Button>
+              <Button color="secondary" onClick={this.toggleTab()}>Save Draft</Button>
+            </Row>
+          </ModalFooter> */}

@@ -98,7 +98,10 @@ class App extends Component {
           render={props => <NewGroupMessage {...props} />}
         />
 
-        <Route exact path="/people" component={People} />
+        <Route 
+          exact path="/people" 
+          render={props => <People {...props} />}
+        />
 
         <Route exact path="/select-role" component={Roles} />
 

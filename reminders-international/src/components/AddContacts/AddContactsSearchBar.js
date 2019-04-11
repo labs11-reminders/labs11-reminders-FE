@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { InputGroup, InputGroupAddon, Input, Button, FormGroup} from 'reactstrap';
-import SearchTable from './SearchTable';
+import SearchTable from './AddContactsSearchTable';
 
 class SearchBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
           users: [],
-          query: '',
+          query: ''
         };
     }
 
@@ -18,19 +18,11 @@ class SearchBar extends Component {
           query: this.search.value
         }, () => {
           if (this.state.query && this.state.query.length > 1) {
-            console.log('Are you searching')
-            
-            this.searchUsers();
-            // if (this.state.query.length % 2 === 0) {
-            //   this.searchUsers();
-            // }
-          } else {
-            console.log('Not long enough');
-            console.log(this.state.query);
-            console.log(this.search.input);
-          }
-
-          })
+            if (this.state.query.length % 2 === 0) {
+              this.searchUsers()
+            }
+          } 
+        })
       }
 
     searchUsers = () => {
@@ -66,16 +58,16 @@ class SearchBar extends Component {
     render() {
         return (
      
-        //can't be changed to a reactstrap styled component because it messes with the querying functionality  -Rachel
-        <form className="UserSearch"> 
-          <input
+
+        <FormGroup>
+          <Input
             placeholder="Search for user..."
             ref={input => this.search = input}
             onChange={this.handleChanges}
           />
           
-          <SearchTable users={this.state.users} group_id={this.props.activeGroup} />
-        </form>
+          <SearchTable users={this.state.users} />
+        </FormGroup>
         
         );
     }
