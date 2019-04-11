@@ -105,16 +105,6 @@ export default class TabsSection extends React.Component {
             </NavLink>
           </NavItem>
 
-          <NavItem>
-            <NavLink
-              className={classnames({ active: this.state.activeTab === '6' })}
-              onClick={() => {
-                this.toggle('6');
-              }}
-            >
-              <strong id="tabNav">ADMIN</strong>
-            </NavLink>
-          </NavItem>
         </Nav>
         <TabContent activeTab={this.state.activeTab} activeGroup={this.props.activeGroup}>
           
