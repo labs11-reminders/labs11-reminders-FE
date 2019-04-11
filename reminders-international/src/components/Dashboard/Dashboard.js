@@ -71,29 +71,29 @@ class Dashboard extends Component {
       console.log('***ID***', id);
       this.setState({ activeGroup: id });
       console.log('ACTIVE', this.state.activeGroup);
-      this.getUsersByGroup();
+      // this.getUsersByGroup();
     }
   }
 
-  getUsersByGroup = () => {
-    console.log("PeopleTable getUsersByGroup this.state", this.state.activeGroup)
-    console.log("this.state.group", this.state.activeGroup)
-    // if (!this.state.group.id) {
-    //   this.state.group.id = 2;
-    // }
-      //group id is hardcoded in - need to change it to pull id from props
-      console.log('getting users by group');
-      axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/${this.state.activeGroup}/users`, this.state.users)
-        .then(res => { 
-          console.log(res, res.data) 
-          this.setState({
-              users: res.data
-          });
-      })
-      .catch(err => {
-          console.log(err);
-      });
-  }
+  // getUsersByGroup = () => {
+  //   console.log("PeopleTable getUsersByGroup this.state", this.state.activeGroup)
+  //   console.log("this.state.group", this.state.activeGroup)
+  //   // if (!this.state.group.id) {
+  //   //   this.state.group.id = 2;
+  //   // }
+  //     //group id is hardcoded in - need to change it to pull id from props
+  //     console.log('getting users by group');
+  //     axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/${this.state.activeGroup}/users`, this.state.users)
+  //       .then(res => { 
+  //         console.log(res, res.data) 
+  //         this.setState({
+  //             users: res.data
+  //         });
+  //     })
+  //     .catch(err => {
+  //         console.log(err);
+  //     });
+  // }
 
   render() {
     console.log('Dashboard Render this', this.state);

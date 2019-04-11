@@ -14,7 +14,7 @@ class UserGroupList extends Component {
 
     getUsersByGroup = () => {
         //group id is hardcoded in - need to change it to pull id from props
-        axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/2/users`, this.state.users)
+        axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/${this.props.activeGroup}/users`, this.state.users)
           .then(res => {  
             this.setState({
                 users: res.data
