@@ -149,14 +149,6 @@ export default class TabsSection extends React.Component {
               </Col>
             </Row>
           </TabPane>
-          <TabPane tabId="6">
-            <Row>
-              <Col sm="12">
-                <h2>Edit your orgs and groups</h2>
-                
-              </Col>
-            </Row>
-          </TabPane>
         </TabContent>
       </div>
     );

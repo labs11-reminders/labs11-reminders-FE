@@ -13,6 +13,7 @@ class RowElement extends Component {
     }
 
     addUserToGroup = () => {
+        console.log('Adding user:', this.props.user.id, 'to', this.props.group_id); 
         axios.post(`${process.env.REACT_APP_BACKEND}/api/groups/add/user`, {user_id: this.props.user.id, group_id: this.props.group_id})
         .then(res => {
             window.location.reload();
