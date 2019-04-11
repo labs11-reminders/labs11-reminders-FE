@@ -45,6 +45,7 @@ export default class TabsSection extends React.Component {
   }
 
   render() {
+  
     return (
       <div>
         <Nav tabs>
@@ -114,7 +115,7 @@ export default class TabsSection extends React.Component {
           
           </TabPane>
           <TabPane tabId="2">
-            <Scheduler/>
+            <Scheduler state = {this.props.state}/>
           </TabPane>
           <TabPane tabId="3">
             <Row>

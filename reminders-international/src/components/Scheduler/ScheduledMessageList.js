@@ -2,24 +2,10 @@ import React, { Component } from 'react';
 import ScheduledMessageCard from './ScheduledMessageCard';
 //import { Link } from 'react-router-dom';
 import {
-  // TabContent,
-  // TabPane,
-  // Nav,
-  // NavItem,
-  // NavLink,
   Card,
-  // CardDeck,
   CardColumns,
   CardBody,
-  // Button,
-  // CardTitle,
-  // CardText,
 } from 'reactstrap';
-
-//TODO: update imports as needed
-//TODO: connect to user account
-//TODO: and connection to current group selection...
-// ... (I guess group selection will be where scheduled messages are rendered from)
 
 export default class ScheduledMessageList extends Component {
   constructor(props) {
@@ -32,22 +18,22 @@ export default class ScheduledMessageList extends Component {
     <div className="scheduled-list">
     ScheduledMessageList
     <CardColumns sm="6">
-        {this.props.reminders.map(reminder => { //change to scheduled reminders when whe have them 
+        {this.props.group_reminders.map(group_reminder => { //change to scheduled reminders when whe have them 
           return (
               <Card>
-              <CardBody key={reminder.id}>
+              <CardBody key={group_reminder.id}>
               <ScheduledMessageCard //ADD approved and date
-              key={reminder.id}
-              id={reminder.id}
-              title={reminder.name}
-              message={reminder.description}
-              to={reminder.phone_send}
-              date={reminder.scheduled_date}
-              approved={reminder.approved}
-              created_at={reminder.created_at}
-              group_id={reminder.group_id}
-              user_id={reminder.user_id}
-              scheduled={reminder.scheduled}
+              key={group_reminder.id}
+              id={group_reminder.id}
+              title={group_reminder.name}
+              message={group_reminder.description}
+              to={group_reminder.phone_send}
+              date={group_reminder.scheduled_date}
+              approved={group_reminder.approved}
+              created_at={group_reminder.created_at}
+              group_id={group_reminder.group_id}
+              user_id={group_reminder.user_id}
+              scheduled={group_reminder.scheduled}
             >ScheduledMessageCard</ScheduledMessageCard>
             </CardBody>
             </Card>
