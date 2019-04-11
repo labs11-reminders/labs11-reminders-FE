@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import TabsSection from './Tabs';
+import AddContactModal from '../AddContacts/AddContactModal';
+import axios from 'axios';
 
 class MainContent extends Component {
   constructor(props) {
@@ -39,7 +41,7 @@ class MainContent extends Component {
           </div>
           <div className="topBtn">
             <Button outline color="primary">
-              Add Contacts
+              <AddContactModal buttonLabel = "Add Contact" />
             </Button>
           </div>
         </section>

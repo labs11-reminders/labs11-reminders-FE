@@ -15,6 +15,13 @@ class Dashboard extends Component {
     this.setActiveGroup = this.setActiveGroup.bind(this);
   }
 
+  setGroup(group_id) {
+    console.log('setting group');
+    this.setState({
+      group_id: group_id
+    });
+  }
+
   getUsers = () => {
     axios
       .get(`${process.env.REACT_APP_BACKEND}/api/users`, this.state.users)
