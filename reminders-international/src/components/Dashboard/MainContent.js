@@ -1,10 +1,39 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import TabsSection from './Tabs';
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 
 class MainContent extends Component {
   constructor(props) {
     super(props);
+
+    this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.state = {
+      dropdownOpen: false,
+    };
+  }
+
+  toggleDropdown() {
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen,
+    }));
+  }
+
+  editUser() {
+    console.log('Edit User Clicked');
+  }
+
+  editGroup() {
+    console.log('Edit Group Clicked');
+  }
+
+  editOrg() {
+    console.log('Edit Org Clicked');
   }
 
   render() {
@@ -40,7 +69,31 @@ class MainContent extends Component {
           <div className="topBtn">
             <Button outline color="primary">
               Add Contacts
-            </Button>
+            </Button>{' '}
+            &nbsp;
+            {/********************************************************** SETTINGS DROPDOWN ********************************************/}
+            <Dropdown
+              id="topSettings"
+              isOpen={this.state.dropdownOpen}
+              toggle={this.toggleDropdown}
+            >
+              <DropdownToggle tag="a" caret>
+                <i class="fas fa-cog fa-2x" />
+              </DropdownToggle>
+              <DropdownMenu id="drpMenu">
+                <DropdownItem onClick={this.editUser} id="drpItem">
+                  Edit User
+                </DropdownItem>
+
+                <DropdownItem onClick={this.editGroup} id="drpItem">
+                  Edit Group
+                </DropdownItem>
+
+                <DropdownItem onClick={this.editOrg} id="drpItem">
+                  Edit Organization
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
           </div>
         </section>
         <section className="tabSection">

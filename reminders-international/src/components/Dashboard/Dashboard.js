@@ -88,12 +88,17 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log('Dashboard Render this', this.state);
+    console.log('Dashboard Render this', this.state, this.props);
     return (
       <>
         {/* This needs to remain {this.state.profile.nickname} in order to render correctly -Rachel */}
+
+        {/* This checks to see if the auth0 profile is undefined 
+        (which occurs when user token is expired) and then instead of an error message 
+        the h5 is displayed and local storage is cleared so the nav changes to 'logout'. */}
         {this.state.profile === undefined ? (
           <div>
+            {this.props.auth.logout()}
             <h5>Error displaying Page. Please Login!</h5>
           </div>
         ) : (
