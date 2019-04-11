@@ -109,7 +109,6 @@ class Sidebar extends Component {
   addGroup = event => {
     event.preventDefault();
 
-    console.log('newGroup', this.state.newGroup);
     {
       this.state.newGroup.name === undefined
         ? this.toggleNested()
