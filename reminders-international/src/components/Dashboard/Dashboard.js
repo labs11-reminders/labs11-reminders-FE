@@ -7,13 +7,12 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      role_id: null,
-      org_id: null,
-      group_id: null,
-      user_id: null,
       groups: [],
       activeGroup: null,
+      profile: {},
+      users: [],
     };
+    this.setActiveGroup = this.setActiveGroup.bind(this);
   }
 
   getUsers = () => {
@@ -28,26 +27,40 @@ class Dashboard extends Component {
       });
   };
 
-  getOrgGroups = () => {
-    console.log('***********************');
-    console.log('Calling for group list');
-    console.log(this.state.profile);
+  getGroups = () => {
     axios
-      .get(
-        `${process.env.REACT_APP_BACKEND}/api/orgs/${
-          this.state.profile.org_id
-        }/groups`,
-      )
+      .get(`${process.env.REACT_APP_BACKEND}/api/groups`)
       .then(res => {
-        console.log('list of all groups', res);
+        console.log('List of all groups', res.data);
         this.setState({
           groups: res.data,
         });
       })
       .catch(err => {
-        console.log(err);
+        console.log({ errMessage: 'Groups api call error', err });
       });
   };
+
+  // getOrgGroups = () => {
+  //   console.log('***********************');
+  //   console.log('Calling for group list');
+  //   console.log(this.state.profile);
+  //   axios
+  //     .get(
+  //       `${process.env.REACT_APP_BACKEND}/api/orgs/${
+  //         this.state.profile.org_id
+  //       }/groups`,
+  //     )
+  //     .then(res => {
+  //       console.log('list of all groups', res);
+  //       this.setState({
+  //         groups: res.data,
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // };
 
   componentWillMount() {
     this.setState({ profile: {} });
@@ -55,7 +68,6 @@ class Dashboard extends Component {
     if (!userProfile) {
       getProfile((err, profile) => {
         this.setState({ profile });
-        this.getOrgGroups();
       });
     } else {
       this.setState({ profile: userProfile });
@@ -64,13 +76,14 @@ class Dashboard extends Component {
 
   componentDidMount() {
     this.getUsers();
+    this.getGroups();
   }
 
-  setActiveGroup(event) {
-    event.preventDefault();
-    if (this.state.activeGroup !== event) {
-      console.log('EVENT', event);
-      this.setState({ activeGroup: event });
+  setActiveGroup(id) {
+    if (this.state.activeGroup !== id) {
+      console.log('***ID***', id);
+      this.setState({ activeGroup: id });
+      console.log('ACTIVE', this.state.activeGroup);
     }
   }
 
@@ -79,19 +92,27 @@ class Dashboard extends Component {
     return (
       <>
         {/* This needs to remain {this.state.profile.nickname} in order to render correctly -Rachel */}
-        <h1> {this.state.profile.nickname}'s Dashboard </h1>
-        <div className="mainContainer">
-          <section className="sidebar">
-            <Sidebar
-              setActiveGroup={this.setActiveGroup}
-              groups={this.state.groups}
-              profile={this.state.profile}
-            />
-          </section>
-          <section className="content">
-            <MainContent />
-          </section>
-        </div>
+        {this.state.profile === undefined ? (
+          <div>
+            <h5>Error displaying Page. Please Login!</h5>
+          </div>
+        ) : (
+          <>
+            <h1> {this.state.profile.nickname}'s Dashboard </h1>
+            <div className="mainContainer">
+              <section className="sidebar">
+                <Sidebar
+                  setActiveGroup={this.setActiveGroup}
+                  groups={this.state.groups}
+                  profile={this.state.profile}
+                />
+              </section>
+              <section className="content">
+                <MainContent state={this.state} />
+              </section>
+            </div>
+          </>
+        )}
       </>
     );
   }
