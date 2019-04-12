@@ -3,17 +3,19 @@ import axios from 'axios';
 
 import { Button } from 'reactstrap';
 
-class RowElement extends Component {
+class SearchElement extends Component {
     constructor(props) {
         super(props);
     }
 
     handleAdd = e => {
+        console.log('Add contact clicked.');
         this.addUserToGroup();
     }
 
     addUserToGroup = () => {
-        axios.post(`${process.env.REACT_APP_BACKEND}/api/groups/add/user`, {user_id: this.props.user.id, group_id: this.props.group.id})
+        console.log('Adding user_id:', this.props.user.id, ' to group_id:', this.props.activeGroup);
+        axios.post(`${process.env.REACT_APP_BACKEND}/api/groups/add/user`, {user_id: this.props.user.id, group_id: this.props.activeGroup})
         .then(res => {
             window.location.reload();
         })
@@ -23,8 +25,8 @@ class RowElement extends Component {
     } 
 
     removeUserFromGroup = () => {
-        console.log('Deleting user_id:', this.props.user.id, ' from group_id:', this.props.group.id);
-        axios.post(`${process.env.REACT_APP_BACKEND}/api/groups/remove/user`, {user_id: this.props.user.id, group_id: this.props.group.id})
+        console.log('Deleting user_id:', this.props.user.id, ' from group_id:', this.props.activeGroup);
+        axios.post(`${process.env.REACT_APP_BACKEND}/api/groups/remove/user`, {user_id: this.props.user.id, group_id: this.props.activeGroup})
         .then(res => {
             window.location.reload();
         })
@@ -41,20 +43,13 @@ class RowElement extends Component {
                 <td>{this.props.user.email}</td>
                 <td>{this.props.user.phone}</td>
                 <td>
-                {
-                    this.props.show_add && ( 
-                        <Button color="success" onClick={this.handleAdd}>+</Button>
-                    )
-                }
-                {
-                    this.props.show_delete && (
-                        <Button color="danger" onClick={this.removeUserFromGroup}>X</Button>
-                    )
-                }
+                
+                    <Button color="success" onClick={this.handleAdd}>+</Button>
+             
                 </td>
             </tr>
         )
     }
 }
 
-export default RowElement;
+export default SearchElement;

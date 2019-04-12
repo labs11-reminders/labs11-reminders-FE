@@ -63,7 +63,8 @@ class PeopleTable extends Component {
       this.getUsersByGroup();
   }
 
-  
+
+
     render() {
         
         return (

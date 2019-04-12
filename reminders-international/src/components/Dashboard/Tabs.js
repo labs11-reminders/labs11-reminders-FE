@@ -171,7 +171,7 @@ export default class TabsSection extends React.Component {
           <TabPane tabId="1">
             <Row>
               <Col sm="12">
-                <NewGroupMessage state = {this.props.state}  groups = {this.props.groups}  />
+                <NewGroupMessage activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
               </Col>
             </Row>
           
@@ -182,7 +182,9 @@ export default class TabsSection extends React.Component {
           <TabPane tabId="3">
             <Row>
               <Col sm="12">
-                <TemplateList activeGroup={this.props.activeGroup} />
+
+                <TemplateList activeGroup={this.props.activeGroup} activeGroupReminders={this.props.activeGroupReminders}/>
+
               </Col>
             </Row>
           </TabPane>

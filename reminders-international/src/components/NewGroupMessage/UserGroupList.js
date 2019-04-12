@@ -12,25 +12,10 @@ class UserGroupList extends Component {
         };
     }
 
-    getUsersByGroup = () => {
-        //group id is hardcoded in - need to change it to pull id from props
-        axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/2/users`, this.state.users)
-          .then(res => {  
-            this.setState({
-                users: res.data
-            });
-        })
-        .catch(err => {
-            console.log(err);
-        });
-    }
-
-    componentDidMount() {
-        this.getUsersByGroup();
-    }
-
     render() {
+      console.log('++++++++++++++++++++ USER GROUP LIST ++++++++++++++++',this.state);
         return (
+          
           <Table borderless>
             <thead>
               <tr>
@@ -39,9 +24,9 @@ class UserGroupList extends Component {
               </tr>
             </thead>
             <tbody>
-                {this.state.users.map(user =>
+                {this.props.activeGroupUsers.map(user =>
                     <tr>
-                    <th scope="row">
+                    <td scope="row">
                         <Col sm={{ size: 10 }}>
                             <FormGroup check>
                                 <Label check>
@@ -50,7 +35,7 @@ class UserGroupList extends Component {
                                 </Label>
                             </FormGroup>
                         </Col>
-                    </th>
+                    </td>
                     <td>{user.name}</td>
                     </tr>
               )}
