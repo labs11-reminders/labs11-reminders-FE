@@ -12,9 +12,8 @@ class NewGroupMessage extends Component {
         return (
             <div className="NewMessage">
                 {/* <MessageModal buttonLabel="Compose New Message" />  */}
-                <MessageModalGroup groups = {this.props.groups}  state ={this.props.state} buttonLabel="Compose Group Message" />  
-                <UserGroupList />
-                          
+                <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Compose Group Message" />  
+                <UserGroupList activeGroupUsers={this.props.activeGroupUsers} activeGroup={this.props.activeGroup} />                         
             </div>
         );
     }
