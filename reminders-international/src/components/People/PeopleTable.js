@@ -57,9 +57,14 @@ class PeopleTable extends Component {
         });
     }
 
+    componentWillReceiveProps() {
+      console.log('People table mounted');
+      this.getUsersByGroup();
+    }
+
     componentDidMount() {
-        console.log('People table mounted');
-        this.getUsersByGroup();
+      console.log('People table mounted');
+      this.getUsersByGroup();
     }
 
     render() {

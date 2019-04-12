@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import RowElement from './RowElement.js'
+import SearchElement from './SearchElement.js';
 import { Table } from 'reactstrap';
 
 class AddContactSearchTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            group: {
-                id: 2,
-            }
+            users: []
           };
     }
 
-    emptyTable = () => {
+    searchTable = () => {
         if (this.props.users.length === 0) {
             return false;
         } else {
@@ -25,7 +23,7 @@ class AddContactSearchTable extends Component {
         return (
             <div>
             {
-                this.emptyTable() && (
+                this.searchTable() && (
             <Table>
                 
                 
@@ -43,7 +41,7 @@ class AddContactSearchTable extends Component {
             <tbody>
                 
                 {this.props.users.map(user => 
-                    <RowElement key={user.id} value={user.id} user={user} group={this.state.group} show_add={true} />
+                    <SearchElement key={user.id} value={user.id} user={user} activeGroup={this.props.activeGroup} show_add={true} />
                 )}
             </tbody>
             </Table>

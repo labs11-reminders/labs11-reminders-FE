@@ -8,7 +8,8 @@ class AddContactSearchBar extends Component {
         super(props);
         this.state = {
           users: [],
-          query: ''
+          query: '',
+          group: ''
         };
     }
 
@@ -59,15 +60,15 @@ class AddContactSearchBar extends Component {
         return (
      
 
-        <FormGroup>
-          <Input
+        <form>
+          <input
             placeholder="Search for user..."
             ref={input => this.search = input}
             onChange={this.handleChanges}
           />
           
-          <SearchTable users={this.state.users} />
-        </FormGroup>
+          <SearchTable users={this.state.users} activeGroup={this.props.activeGroup}/>
+        </form>
         
         );
     }

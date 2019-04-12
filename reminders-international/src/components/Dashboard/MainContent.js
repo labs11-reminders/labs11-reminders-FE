@@ -109,7 +109,7 @@ class MainContent extends Component {
           </div>
           <div className="topBtn">
             <Button outline color="primary">
-              <AddContactModal buttonLabel="Add Contact" />
+              <AddContactModal activeGroup={this.props.activeGroup} buttonLabel="Add Contact" />
             </Button>
             &nbsp;
             {/********************************************************** SETTINGS DROPDOWN ********************************************/}
