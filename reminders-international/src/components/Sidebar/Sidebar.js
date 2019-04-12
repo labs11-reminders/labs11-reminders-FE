@@ -167,18 +167,18 @@ class Sidebar extends Component {
       });
   };
 
-  getUsersByGroup = () => {
-    //group id is hardcoded in - need to change it to pull id from props
-    axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/2/users`, this.state.users)
-      .then(res => {  
-        this.setState({
-            users: res.data
-        });
-    })
-    .catch(err => {
-        console.log(err);
-    });
-}
+//   getUsersByGroup = () => {
+//     //group id is hardcoded in - need to change it to pull id from props
+//     axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/2/users`, this.state.users)
+//       .then(res => {  
+//         this.setState({
+//             users: res.data
+//         });
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     });
+// }
 
   handleInputChange = ev => {
     this.setState({
@@ -198,7 +198,7 @@ class Sidebar extends Component {
     this.getAllReminders();
     this.getGroups();
     this.setOrg();
-    this.getUsersByGroup();
+    //this.getUsersByGroup();
   }
 
   render() {

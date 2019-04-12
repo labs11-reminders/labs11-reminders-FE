@@ -48,6 +48,19 @@ class Org extends Component {
   render() {
     console.log("Org render this.state", this.state)
     return (
+      <>
+      {this.props.role < 3 ? (
+        <div>
+          <h3>Welcome!</h3>          
+        </div> 
+      ) : (
+        <>
+          <h3>Welcome!</h3>
+          <AddOrgForm />
+        </>
+      )
+      }
+     
       <Container className="Org">
       <h2>What's the name of your organization?</h2>
       <Form className = "org-form">
@@ -71,8 +84,9 @@ class Org extends Component {
         </FormGroup>
 
       </Form>
-      <AddOrgForm />
+      
       </Container>
+      </>
     );
   }
 }
