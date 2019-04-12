@@ -81,6 +81,7 @@ class Dashboard extends Component {
   }
 
   setActiveGroup(id) {
+    if (this.state.activeGroup !== id) {
       console.log('Setting ActiveGroup', id);
       // using callback to ensure that activeGroup is set before fetching users.
       this.setState({ activeGroup: id }, () => {
@@ -88,6 +89,7 @@ class Dashboard extends Component {
         this.getUsersByGroup();
         this.getRemindersByGroup();
       });
+    }
   }
 
   getUsersByGroup = () => {
