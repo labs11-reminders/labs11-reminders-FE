@@ -12,7 +12,7 @@ class MessageModal extends React.Component {
       user: {},
       modal: false,
       message: {
-        to: '',
+        users: [],
         title:'',
         body: '',
         scheduled: false,
@@ -60,19 +60,19 @@ class MessageModal extends React.Component {
       this.setState({
         message: { ...this.state.message, scheduled: event.target.checked }
       });
-     console.log(this)
+  
     }
     toggleDraft(event) { //connected to draft checkbox
       this.setState({
         message: { ...this.state.message, draft: event.target.checked }
     });
-    console.log(this)
+
     }
     toggleTemplate(event) { //connected to template checkbox
       this.setState({
       message: { ...this.state.message, template: event.target.checked }
      });
-      console.log(this)
+ 
     }
 
     createSavedReminder = () => { //connected to save button
@@ -113,12 +113,6 @@ class MessageModal extends React.Component {
     });
     }
 
-  //toggleDraft(event, id) {
-   // this.setState(prevState => ({
-    //  draft: !prevState
-   // }));
-   // this.handleChange(event,id);
-  //}
 
     onCheckboxBtnClick(selected) {
     const index = this.state.cSelected.indexOf(selected);
@@ -130,18 +124,50 @@ class MessageModal extends React.Component {
     this.setState({ cSelected: [...this.state.cSelected] });
     }
     
-
+    getUserInfo = () => {
+      this.auth0.client.userInfo(this.accessToken, (err, profile) => {
+        if (profile) {
+          axios.post(`${process.env.REACT_APP_BACKEND}/api/users/auth`, {auth0_sub: profile.sub})
+            .then(res => {
+              return axios.get(`${process.env.REACT_APP_BACKEND}/api/users/data/${this.user.id}`, this.user.auth0_sub)
+            })
+            .then(res => {
+              this.setState({
+                user: res.data
+              });
+            })
+            .catch(err => {
+              console.log(err);
+            })     
+        }
+      });   
+    }
+    
     onGroupToggle() { //select group button
       this.setState(prevState => ({
         dropdownOpen: !prevState.dropdownOpen
         }));
     }
 
+    fetchGroupUsers = id => {
+      console.log("FETCHING USERS")
+      axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/${id}/users`, this.state.toggleDraft)
+        .then(res => { 
+          console.log(res, res.data) 
+          this.setState({
+            message: { ...this.state.message, to:res.data, }
+          });
+      })
+      .catch(err => {
+          console.log(err);
+      });
+    }
 
     onGroupSelect = (event) => { //when group is selected from drop down group id is assigned
       this.setState({
-        message: { ...this.state.message, group_id:event.target.id }
+        message: { ...this.state.message, group_id:event.target.id, }
       });
+      this.fetchGroupUsers(event.target.id);
     }
 
 
@@ -244,7 +270,7 @@ class MessageModal extends React.Component {
               <Button color="primary" onClick = {this.createSavedReminder}>Save</Button>
               </FormGroup>
               <FormGroup>
-              <Button>Send Now
+              <Button  onClick = {this.onSubmit} >Send Now
               </Button>
               </FormGroup>
 
