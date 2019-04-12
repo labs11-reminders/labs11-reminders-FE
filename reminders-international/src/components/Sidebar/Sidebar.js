@@ -194,7 +194,7 @@ class Sidebar extends Component {
     const profileImg =
       'https://tk-assets.lambdaschool.com/ecd33d34-c124-4b75-92d2-e5c52c171ed8_11201517_887808411287357_1307163552_a.jpg';
     console.log('SIDEBAR this.props', this.state, this.props);
-    console.log('SIDEBAR RENDER this.props.profile', this.props.profile);
+
     return (
       <div className="sidebarWrapper">
         <section className="profileSection cube">
@@ -233,6 +233,7 @@ class Sidebar extends Component {
                   onClick={() => {
                     console.log('setActiveGroup Clicked', group.id);
                     this.props.setActiveGroup(group.id);
+                    this.props.setActiveGroupName(group.name);
                   }}
                 >
                   {' '}
