@@ -6,13 +6,14 @@ import SearchBar from './SearchBar.js';
 import PeopleTable from './PeopleTable.js';
 
 class People extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          users: [],
-          
-        };
-    }
+  constructor(props) {
+      super(props);
+      this.state = {
+        users: [],
+        
+      };
+  }
+
 
 
     getUserInfo = () => {
@@ -39,6 +40,7 @@ class People extends Component {
         group_id: this.props.activeGroup
       });
     }
+
 
     render() {
         console.log("**********")
