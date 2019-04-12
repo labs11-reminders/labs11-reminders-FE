@@ -155,7 +155,7 @@ class MessageModal extends React.Component {
         .then(res => { 
           console.log(res, res.data) 
           this.setState({
-            message: { ...this.state.message, to:res.data, }
+            message: { ...this.state.message, users:res.data, }
           });
       })
       .catch(err => {
