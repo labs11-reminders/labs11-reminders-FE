@@ -9,17 +9,23 @@ import 'react-day-picker/lib/style.css';
 import axios from 'axios';
 //import requiresAuth from '../../Auth0/Auth/requiresAuth.js'
 import {
-   Card,
-   CardTitle,
+  NavLink,
+  Card,
+  Button,
+  CardTitle,
   CardSubtitle,
   CardText,
-  Input, 
+  // Row,
+  Col,
+  Form,
   FormGroup,
   Label,
-
+  Input,
+  Alert,
 
 } from 'reactstrap';
 import moment from "moment";
+import SchedMessageModal from './SchedMessageModal'
 
 
 class ScheduledMessageCard extends Component{
@@ -29,18 +35,31 @@ class ScheduledMessageCard extends Component{
       message: {
         id:'',
         title: '', 
-        to: '',// TODO: props from user group list 
+        to: '',
         body: '',
-        approved: false, // TODO: Change worker.py to reflect change
-        date: '',//TODO: set from react datetime selector 
-        scheduled: true 
+        approved: false, 
+        date: '',
+        scheduled: true,
+        group_id:'' 
       },
     submitting: false,
     error: false
   };
   this.toggleApprove = this.toggleApprove.bind(this);
+  this.toggle = this.toggle.bind(this);
+  this.toggleNested = this.toggleNested.bind(this);
+}
+toggle() {
+  this.setState(prevState => ({
+    modal: !prevState.modal,
+  }));
 }
 
+toggleNested() {
+  this.setState({
+    nestedModal: !this.state.nestedModal,
+  });
+}
 fetchReminder = id => {
   axios
     .get(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
@@ -53,6 +72,7 @@ fetchReminder = id => {
         approved: response.data.approved, 
         date: response.data.scheduled_date,
         scheduled: response.data.scheduled,
+
         id:response.data.id
         }}));
   
@@ -117,6 +137,19 @@ fetchReminder = id => {
       })
       .catch(error => console.log(error))
     }
+  
+  editReminder = id => {
+    console.log("editReminder ID", id)
+    const editObj ={name: this.state.message.title, description: this.state.message.body};
+    axios
+      .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
+      .then(response => {
+        console.log("PUT RESPONSE:", response.data)
+        this.setState({ message: response.data})
+        this.fetchReminder(id);
+      })
+      .catch(error => console.log(error))
+  }
 
   onDelete = (event) => {  //need to work on card rendering 
     const id = this.props.id
@@ -140,7 +173,7 @@ fetchReminder = id => {
   return (
     <div className="scheduled-card">
            
-     {/* {this.props.scheduled ? ( //conditional rendering based on if scheduled is true or false*/}
+     {this.props.scheduled ? ( //conditional rendering based on if scheduled is true or false*/}
         <div>
           <Card>
           <CardTitle>{this.props.title}</CardTitle>
@@ -148,6 +181,11 @@ fetchReminder = id => {
       <div className="scheduled-description">
         <CardSubtitle>Message</CardSubtitle>
         <CardText>{this.props.message}</CardText>
+        <NavLink id="createLink" onClick={this.toggle} >
+              <i className="fas fa-pencil-alt" /> &nbsp; 
+        </NavLink>
+        <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message"/>  
+    
         <div className="schedule-functions">
         <CardText>Currently scheduled for {this.props.date}</CardText>
         <DayPickerInput
@@ -174,7 +212,7 @@ fetchReminder = id => {
 
           </Card>
         </div>
-     {/* ): undefined }*/}
+      ): undefined }
 
     </div>
   );

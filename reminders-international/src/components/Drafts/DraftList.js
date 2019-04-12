@@ -48,8 +48,10 @@ export default class DraftList extends Component {
     return (
       <div className="template-list">
       <CardColumns sm="6">
-          {this.state.reminders.map(reminder => {
-            return (
+          {this.state.reminders.map((reminder, index) => {
+           if (reminder.group_id == this.props.activeGroup) {
+            console.log("RENDERING DRAFT CARD ", reminder)
+          return (
               <Card>
                 <CardBody key={reminder.id}>
               <DraftCard 
@@ -65,7 +67,7 @@ export default class DraftList extends Component {
               />
               </CardBody>
               </Card>
-            )
+           )}
           })}
         </CardColumns>
       </div>

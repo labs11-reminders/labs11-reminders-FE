@@ -36,6 +36,10 @@ class MainContent extends Component {
       editGroupModal: false,
       editOrgModal: false,
       warningModal: false,
+      groupName: '',
+      orgName: '',
+      description: '',
+      deleting: 0,
     };
   }
 
@@ -57,6 +61,7 @@ class MainContent extends Component {
     this.setState(prevState => ({
       editGroupModal: !prevState.editGroupModal,
     }));
+    this.setState({ deleting: 1 });
   }
 
   toggleEditOrg() {
@@ -64,6 +69,7 @@ class MainContent extends Component {
     this.setState(prevState => ({
       editOrgModal: !prevState.editOrgModal,
     }));
+    this.setState({ deleting: 2 });
   }
 
   toggleDeleteWarning() {
@@ -77,8 +83,72 @@ class MainContent extends Component {
     this.setState({ [ev.target.name]: ev.target.value });
   };
 
+  editGroup = () => {
+    console.log(
+      '************ GROUP UPDATE***************',
+      this.props.state.activeGroup,
+      'STATE GROUPNAME:',
+      this.state.groupName,
+    );
+
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKEND}/api/groups/${
+          this.props.state.activeGroup
+        }`,
+        { name: this.state.groupName },
+      )
+      .then(res => {
+        console.log('Updated groups', res);
+        if (res.status === 200 || res.status === 201) {
+          this.setState({
+            groupName: '',
+          });
+          this.setState(prevState => ({
+            editGroupModal: !prevState.editGroupModal,
+          }));
+          this.props.getGroups();
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  deleteGroup = () => {
+    console.log(
+      '************ GROUP DELETE***************',
+      this.props.state.activeGroup,
+    );
+
+    axios
+      .delete(
+        `${process.env.REACT_APP_BACKEND}/api/groups/${
+          this.props.state.activeGroup
+        }`,
+      )
+      .then(res => {
+        console.log('Deleted Group', res);
+        if (res.status === 200 || res.status === 201) {
+          this.setState({
+            deleting: 0,
+          });
+          this.setState(prevState => ({
+            warningModal: !prevState.warningModal,
+          }));
+          this.setState(prevState => ({
+            editGroupModal: !prevState.editGroupModal,
+          }));
+          this.props.getGroups();
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
-    console.log('MAIN CONTENT PROPS', this.props.state);
+    console.log('THE MAIN CONTENT PROPS', this.props.state, this.state);
     return (
       <div className="mainContentWrapper">
         <section className="profileInfo">
@@ -208,16 +278,20 @@ class MainContent extends Component {
           >
             <ModalHeader toggle={this.toggleEditGroup}>Edit Group</ModalHeader>
             <ModalBody className="modalBody">
-              <Form className="createGroup" onSubmit={null}>
+              <Form className="createGroup" onSubmit={this.editGroup}>
                 <FormGroup row>
-                  <Label for="name">Group Name</Label>
+                  <Label for="groupName">Group Name</Label>
                   <Col sm={10}>
                     <Input
                       onChange={this.handleInputChange}
-                      placeholder="Name"
+                      placeholder={
+                        this.props.state.activeGroup === null
+                          ? 'Name'
+                          : this.props.state.activeGroupName
+                      }
                       value={this.state.groupName}
-                      name="name"
-                      id="name"
+                      name="groupName"
+                      id="groupName"
                     />
                   </Col>
                 </FormGroup>
@@ -281,19 +355,26 @@ class MainContent extends Component {
             </ModalFooter>
           </Modal>
 
-          {/************************************ Nested modal for Delete Warning popup ************************************/}
+          {/************************************ Nested Modal for Delete Warning popup ************************************/}
           <Modal
             id="alertModalWrap"
             isOpen={this.state.warningModal}
             toggle={this.toggleDeleteWarning}
           >
             <ModalBody id="alertModal">
-              Are you sure you want to delete? This is NOT Reversible!
+              Are you sure you want to delete {this.props.state.activeGroupName}
+              ? This is NOT Reversible!
             </ModalBody>
             <ModalFooter id="alertModalFooter">
-              <Button color="danger" onClick={this.toggleDeleteWarning}>
-                Yes!
-              </Button>
+              {this.state.deleting === 1 ? (
+                <Button color="danger" onClick={this.deleteGroup}>
+                  Yes!
+                </Button>
+              ) : (
+                <Button color="danger" onClick={this.toggleDeleteWarning}>
+                  Yes!
+                </Button>
+              )}
               <Button color="primary" onClick={this.toggleDeleteWarning}>
                 No!
               </Button>

@@ -9,12 +9,14 @@ class Dashboard extends Component {
     this.state = {
       groups: [],
       activeGroup: null,
+      activeGroupName: '',
       profile: {},
       users: [],
       activeGroupUsers: [],
       activeGroupReminders: [],
     };
     this.setActiveGroup = this.setActiveGroup.bind(this);
+    this.setActiveGroupName = this.setActiveGroupName.bind(this);
   }
 
   setGroup(group_id) {
@@ -91,6 +93,14 @@ class Dashboard extends Component {
       });
     }
   }
+  // Gets the name of the active group and sets state so name can be used in dashboard
+  setActiveGroupName(groupName) {
+    if (this.state.activeGroupName !== groupName) {
+      console.log('***ID***', groupName);
+      this.setState({ activeGroupName: groupName });
+      console.log('ACTIVE', this.state.activeGroupName);
+    }
+  }
 
   getUsersByGroup = () => {
     console.log(
@@ -138,6 +148,8 @@ class Dashboard extends Component {
                   <section className="sidebar">
                     <Sidebar
                       setActiveGroup={this.setActiveGroup}
+                      setActiveGroupName={this.setActiveGroupName}
+                      getGroups={this.getGroups}
                       groups={this.state.groups}
                       profile={this.state.profile}
                     />
@@ -145,6 +157,7 @@ class Dashboard extends Component {
                   <section className="content">
                     <MainContent
                       state={this.state}
+                      getGroups={this.getGroups}
                       activeGroup={this.state.activeGroup}
                       groups={this.state.groups}
                       activeGroupUsers={this.state.activeGroupUsers}
