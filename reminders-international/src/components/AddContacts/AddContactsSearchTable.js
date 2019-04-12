@@ -11,7 +11,7 @@ class AddContactSearchTable extends Component {
     }
 
     searchTable = () => {
-        if (this.props.users.length === 0) {
+        if (!this.props.users) {
             return false;
         } else {
             return true;
