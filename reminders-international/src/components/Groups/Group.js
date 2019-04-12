@@ -48,12 +48,24 @@ class Group extends Component {
   render() {
     console.log("Group render this.state", this.state)
     return (
-      <Container className="Groups">
-      <h2>Create a group</h2>
-      <p>Once you create a group, you can invite members, send announcements, and start conversations</p>
-      <Form className = "groups-form">
+       <Container className="Groups">
+        {this.props.role == 2 ? (
+          <div></div>
+        ) : (
+          <div>
+            
+            <h2>Create a group</h2>
+            <p>Once you create a group, you can invite members, send announcements, and start conversations</p>
+            <Form className = "groups-form">
+              <FormGroup>
+              <AddGroupForm org_id={this.props.org_id} handleGroup={this.props.handleGroup}/>
+              </FormGroup>
+            </Form>
+          </div>
+        )
+        }
+        
         <FormGroup>
-        <AddGroupForm /> 
         <h3>Looking for a group? </h3>
         <Label for="groupName" >Join a group</Label>
           <Input 
@@ -73,11 +85,9 @@ class Group extends Component {
             {/* </option> */}
           </Input>
           <Button onClick={this.handleNext}>Next</Button>
-        </FormGroup>
-
-      </Form>
-      
+        </FormGroup>      
       </Container>
+     
     );
   }
 }
