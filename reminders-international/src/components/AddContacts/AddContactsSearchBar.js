@@ -3,7 +3,7 @@ import axios from 'axios';
 import { InputGroup, InputGroupAddon, Input, Button, FormGroup} from 'reactstrap';
 import SearchTable from './AddContactsSearchTable';
 
-class SearchBar extends Component {
+class AddContactSearchBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -73,4 +73,4 @@ class SearchBar extends Component {
     }
 }
 
-export default SearchBar;
+export default AddContactSearchBar;

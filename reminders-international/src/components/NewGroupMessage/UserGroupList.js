@@ -18,6 +18,7 @@ class UserGroupList extends Component {
           .then(res => {  
             this.setState({
                 users: res.data
+                
             });
         })
         .catch(err => {
@@ -30,7 +31,9 @@ class UserGroupList extends Component {
     }
 
     render() {
+      console.log('++++++++++++++++++++ USER GROUP LIST ++++++++++++++++',this.state);
         return (
+          
           <Table borderless>
             <thead>
               <tr>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import RowElement from './RowElement.js'
 import { Table } from 'reactstrap';
 
-class SearchTable extends Component {
+class AddContactSearchTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -53,4 +53,4 @@ class SearchTable extends Component {
     }
 }
 
-export default SearchTable;
+export default AddContactSearchTable;
