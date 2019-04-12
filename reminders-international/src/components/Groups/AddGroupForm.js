@@ -16,20 +16,22 @@ class AddGroupForm extends Component {
 
   addGroup = event => {
     event.preventDefault();
-    const { name, user_id } = this.state.groups
+    const { name, org_id } = this.state.groups
     const groupObj = {
       name: name,
-      user_id: user_id,
+      org_id: this.props.org_id,
     }
     console.log("groupObj", groupObj)
     axios.post(`${process.env.REACT_APP_BACKEND}/api/groups`, groupObj)
     // axios.post("https://localhost:3333/api/orgs", orgObj)
       .then(res => {
-        console.log('POST RESPONSE', res);
+        console.log('POST RESPONSE', res.data);
         if(res.status === 200 || res.status === 201) {
           this.setState({
             message: 'You added a Group!!!',
             groups: { ...groupObj }
+            }, () => {
+              this.props.handleGroup(res.data);
             });
         }
           console.log('addGroup this.state.groups', this.state.groups);

@@ -87,7 +87,7 @@ class SignUp extends Component {
                 { 
                     this.state.step === 3 && (
                         <div>
-                        <Group handleGroup={this.handleGroup} role={this.state.role_id}/>
+                        <Group handleGroup={this.handleGroup} role={this.state.role_id} org_id={this.state.org_id}/>
                         </div>
                     )
                 }

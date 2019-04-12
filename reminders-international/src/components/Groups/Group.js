@@ -58,7 +58,7 @@ class Group extends Component {
             <p>Once you create a group, you can invite members, send announcements, and start conversations</p>
             <Form className = "groups-form">
               <FormGroup>
-              <AddGroupForm />
+              <AddGroupForm org_id={this.props.org_id} handleGroup={this.props.handleGroup}/>
               </FormGroup>
             </Form>
           </div>
