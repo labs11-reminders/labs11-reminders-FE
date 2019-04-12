@@ -305,6 +305,7 @@ class MainContent extends Component {
             state={this.props.state}
             activeGroup={this.props.activeGroup}
             groups={this.props.groups}
+            activeGroupUsers={this.props.activeGroupUsers}
           />
         </section>
       </div>

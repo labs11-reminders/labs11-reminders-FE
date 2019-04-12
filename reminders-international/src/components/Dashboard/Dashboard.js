@@ -11,6 +11,7 @@ class Dashboard extends Component {
       activeGroup: null,
       profile: {},
       users: [],
+      activeGroupUsers: []
     };
     this.setActiveGroup = this.setActiveGroup.bind(this);
   }
@@ -65,36 +66,30 @@ class Dashboard extends Component {
   }
 
   setActiveGroup(id) {
-    if (this.state.activeGroup !== id) {
-      console.log('***ID***', id);
-      this.setState({ activeGroup: id });
-      console.log('ACTIVE', this.state.activeGroup);
-      // this.getUsersByGroup();
-    }
+      console.log('Setting ActiveGroup', id);
+      // using callback to ensure that activeGroup is set before fetching users.
+      this.setState({ activeGroup: id }, () => {
+        console.log('ActiveGroup now', this.state.activeGroup);
+        this.getUsersByGroup();
+      });
   }
 
   getUsersByGroup = () => {
     console.log(
-      'PeopleTable getUsersByGroup this.state',
+      'Dashboard fetching Users By Group',
       this.state.activeGroup,
     );
-    console.log('this.state.group', this.state.activeGroup);
-    // if (!this.state.group.id) {
-    //   this.state.group.id = 2;
-    // }
-    //group id is hardcoded in - need to change it to pull id from props
-    console.log('getting users by group');
     axios
       .get(
         `${process.env.REACT_APP_BACKEND}/api/groups/${
           this.state.activeGroup
         }/users`,
-        this.state.users,
+        this.state.activeGroupUsers,
       )
       .then(res => {
         console.log(res, res.data);
         this.setState({
-          users: res.data,
+          activeGroupUsers: res.data,
         });
       })
       .catch(err => {
@@ -134,6 +129,7 @@ class Dashboard extends Component {
                       state={this.state}
                       activeGroup={this.state.activeGroup}
                       groups={this.state.groups}
+                      activeGroupUsers={this.state.activeGroupUsers}
                     />
                   </section>
                 </>

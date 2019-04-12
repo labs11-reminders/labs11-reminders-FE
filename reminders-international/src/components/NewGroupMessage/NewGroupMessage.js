@@ -13,7 +13,7 @@ class NewGroupMessage extends Component {
             <div className="NewMessage">
                 {/* <MessageModal buttonLabel="Compose New Message" />  */}
                 <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Compose Group Message" />  
-                <UserGroupList activeGroup={this.props.activeGroup} />                         
+                <UserGroupList activeGroupUsers={this.props.activeGroupUsers} activeGroup={this.props.activeGroup} />                         
             </div>
         );
     }
