@@ -306,6 +306,7 @@ class MainContent extends Component {
             activeGroup={this.props.activeGroup}
             groups={this.props.groups}
             activeGroupUsers={this.props.activeGroupUsers}
+            activeGroupReminders={this.props.activeGroupReminders}
           />
         </section>
       </div>

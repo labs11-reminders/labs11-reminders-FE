@@ -11,7 +11,8 @@ class Dashboard extends Component {
       activeGroup: null,
       profile: {},
       users: [],
-      activeGroupUsers: []
+      activeGroupUsers: [],
+      activeGroupReminders: [],
     };
     this.setActiveGroup = this.setActiveGroup.bind(this);
   }
@@ -49,6 +50,20 @@ class Dashboard extends Component {
       });
   };
 
+  getRemindersByGroup = () => {
+    axios
+      .post(`${process.env.REACT_APP_BACKEND}/api/groups/reminders/${this.state.activeGroup}`)
+      .then(res => {
+        console.log('List of all reminders', res.data);
+        this.setState({
+          activeGroupReminders: res.data,
+        });
+      })
+      .catch(err => {
+        console.log({ errMessage: 'Getting reminders call error', err });
+      });
+  }
+
   componentWillMount() {
     const { userProfile, getProfile } = this.props.auth;
     if (!userProfile) {
@@ -71,6 +86,7 @@ class Dashboard extends Component {
       this.setState({ activeGroup: id }, () => {
         console.log('ActiveGroup now', this.state.activeGroup);
         this.getUsersByGroup();
+        this.getRemindersByGroup();
       });
   }
 
@@ -130,6 +146,7 @@ class Dashboard extends Component {
                       activeGroup={this.state.activeGroup}
                       groups={this.state.groups}
                       activeGroupUsers={this.state.activeGroupUsers}
+                      activeGroupReminders={this.state.activeGroupReminders}
                     />
                   </section>
                 </>

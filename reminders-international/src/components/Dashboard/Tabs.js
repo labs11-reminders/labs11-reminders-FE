@@ -121,7 +121,7 @@ export default class TabsSection extends React.Component {
           <TabPane tabId="3">
             <Row>
               <Col sm="12">
-                <TemplateList activeGroup={this.props.activeGroup}/>
+                <TemplateList activeGroup={this.props.activeGroup} activeGroupReminders={this.props.activeGroupReminders}/>
               </Col>
             </Row>
           </TabPane>
