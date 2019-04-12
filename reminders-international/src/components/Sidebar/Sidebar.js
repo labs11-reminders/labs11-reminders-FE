@@ -16,14 +16,14 @@ import {
   CardImage,
   CardText,
   CardBody,
-  CardTitle, 
+  CardTitle,
   CardSubtitle,
 } from 'reactstrap';
 
 import axios from 'axios';
 import SideTemplateCard from './SideTemplateCard';
-import SideMessageInd from './SideMessageInd'
-import MessageModalInd from '../MessageModal/MessageModalInd'
+import SideMessageInd from './SideMessageInd';
+import MessageModalInd from '../MessageModal/MessageModalInd';
 import ClickableCard from './ClickableCard';
 
 class Sidebar extends Component {
@@ -33,7 +33,6 @@ class Sidebar extends Component {
       modal: false,
       nestedModal: false,
       orgs: [],
-      groups: [],
       newGroup: { name: '', org_id: null },
       reminders: [],
       users: [],
@@ -92,23 +91,6 @@ class Sidebar extends Component {
     }));
   }
 
-  getGroups = () => {
-    console.log('***********************');
-    console.log('Calling for group list');
-    console.log('Our current org is', this.props.profile.org_id);
-    axios
-      .get(`${process.env.REACT_APP_BACKEND}/api/groups`)
-      .then(res => {
-        console.log('List of all groups', res.data);
-        this.setState({
-          groups: res.data,
-        });
-      })
-      .catch(err => {
-        console.log('There was an error', err);
-      });
-  };
-
   getAllOrgs = () => {
     axios
       .get(`${process.env.REACT_APP_BACKEND}/api/orgs`, this.state.orgs)
@@ -141,6 +123,7 @@ class Sidebar extends Component {
                 this.setState(prevState => ({
                   modal: !prevState.modal,
                 }));
+                this.props.getGroups();
               }
             })
             .catch(err => {
@@ -169,16 +152,20 @@ class Sidebar extends Component {
 
   getUsersByGroup = () => {
     //group id is hardcoded in - need to change it to pull id from props
-    axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/2/users`, this.state.users)
-      .then(res => {  
+    axios
+      .get(
+        `${process.env.REACT_APP_BACKEND}/api/groups/2/users`,
+        this.state.users,
+      )
+      .then(res => {
         this.setState({
-            users: res.data
+          users: res.data,
         });
-    })
-    .catch(err => {
+      })
+      .catch(err => {
         console.log(err);
-    });
-}
+      });
+  };
 
   handleInputChange = ev => {
     this.setState({
@@ -188,15 +175,14 @@ class Sidebar extends Component {
 
   setOrg() {
     this.setState({
-      org_id: this.props.profile.org_id
+      org_id: this.props.profile.org_id,
     });
   }
 
   componentDidMount() {
-    console.log("Sidebar mounted.")
+    console.log('Sidebar mounted.');
     this.getAllOrgs();
     this.getAllReminders();
-    this.getGroups();
     this.setOrg();
     this.getUsersByGroup();
   }
@@ -216,7 +202,6 @@ class Sidebar extends Component {
           <div id="profileName">
             {/* This needs to remain {this.props.profile.nickname} in order to render correctly. -Rachel */}
             <span>Hello, {this.props.profile.nickname} </span>
-           
           </div>
         </section>
         <section className="orgSection cube">
@@ -239,8 +224,8 @@ class Sidebar extends Component {
           {/*<p> NEED GROUP NAME FOR THIS USER </p> */}
 
           {/********************************************************************** LINK ***********************************/}
-          {this.state.groups.map(group => {
-            console.log('Our current org is', this.props.profile.org_id);
+          {this.props.groups.map(group => {
+            console.log('PROPS PASSED DOWN FROM DASH', this.props);
             if (group.org_id === this.props.profile.org_id) {
               return (
                 <Link
@@ -275,9 +260,9 @@ class Sidebar extends Component {
             );
           })}
         </section>
-          <Card>
-            <CardTitle>CONVERSATION</CardTitle>
-            {/* <NavLink id="createLink" onClick={this.toggleMessage}>
+        <Card>
+          <CardTitle>CONVERSATION</CardTitle>
+          {/* <NavLink id="createLink" onClick={this.toggleMessage}>
               <i className="fas fa-plus-circle" /> Message Individual
           </NavLink> */}
           {/* {this.state.users.map(user => {
@@ -287,10 +272,9 @@ class Sidebar extends Component {
               />
             )
           })} */}
-          <MessageModalInd buttonLabel="Message Individual"/>
-          </Card>
-          
-          
+          <MessageModalInd buttonLabel="Message Individual" />
+        </Card>
+
         <Modal
           isOpen={this.state.modal}
           toggle={this.toggle}

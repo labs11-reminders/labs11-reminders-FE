@@ -125,6 +125,7 @@ class Dashboard extends Component {
                   <section className="sidebar">
                     <Sidebar
                       setActiveGroup={this.setActiveGroup}
+                      getGroups={this.getGroups}
                       groups={this.state.groups}
                       profile={this.state.profile}
                     />
@@ -132,6 +133,7 @@ class Dashboard extends Component {
                   <section className="content">
                     <MainContent
                       state={this.state}
+                      getGroups={this.getGroups}
                       activeGroup={this.state.activeGroup}
                       groups={this.state.groups}
                     />

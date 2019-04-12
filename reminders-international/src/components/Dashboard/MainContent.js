@@ -36,6 +36,9 @@ class MainContent extends Component {
       editGroupModal: false,
       editOrgModal: false,
       warningModal: false,
+      groupName: '',
+      orgName: '',
+      description: '',
     };
   }
 
@@ -77,8 +80,40 @@ class MainContent extends Component {
     this.setState({ [ev.target.name]: ev.target.value });
   };
 
+  editGroup = () => {
+    console.log(
+      '************ GROUP UPDATE***************',
+      this.props.state.activeGroup,
+      'STATE GROUPNAME:',
+      this.state.groupName,
+    );
+
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKEND}/api/groups/${
+          this.props.state.activeGroup
+        }`,
+        { name: this.state.groupName },
+      )
+      .then(res => {
+        console.log('Updated groups', res);
+        if (res.status === 200 || res.status === 201) {
+          this.setState({
+            groupName: '',
+          });
+          this.setState(prevState => ({
+            editGroupModal: !prevState.editGroupModal,
+          }));
+          this.props.getGroups();
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
-    console.log('MAIN CONTENT PROPS', this.props.state);
+    console.log('THE MAIN CONTENT PROPS', this.props.state, this.state);
     return (
       <div className="mainContentWrapper">
         <section className="profileInfo">
@@ -208,16 +243,16 @@ class MainContent extends Component {
           >
             <ModalHeader toggle={this.toggleEditGroup}>Edit Group</ModalHeader>
             <ModalBody className="modalBody">
-              <Form className="createGroup" onSubmit={null}>
+              <Form className="createGroup" onSubmit={this.editGroup}>
                 <FormGroup row>
-                  <Label for="name">Group Name</Label>
+                  <Label for="groupName">Group Name</Label>
                   <Col sm={10}>
                     <Input
                       onChange={this.handleInputChange}
                       placeholder="Name"
                       value={this.state.groupName}
-                      name="name"
-                      id="name"
+                      name="groupName"
+                      id="groupName"
                     />
                   </Col>
                 </FormGroup>
