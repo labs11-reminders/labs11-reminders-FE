@@ -51,7 +51,10 @@ export default class TemplateList extends Component {
     return (
       <div>
       <CardColumns className="template-list" sm="6">
-        {this.state.reminders.map((reminder, index) => 
+        {this.state.reminders.map((reminder, index) => {
+           if (reminder.group_id == this.props.activeGroup) {
+            console.log("RENDERING TEMPLATE CARD ", reminder)
+          return (
           <Card>
             <CardBody key={reminder.id}> 
               <TemplateCard 
@@ -67,7 +70,8 @@ export default class TemplateList extends Component {
               />
             </CardBody>
           </Card>
-        )}
+          )}
+      })}
       </CardColumns>
       <MessageModal buttonLabel="Compose New Template"/>
       </div>

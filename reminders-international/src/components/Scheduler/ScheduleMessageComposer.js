@@ -13,37 +13,30 @@ class ScheduleMessageComposer extends Component {
         };
     }
 
-    getRemindersByGroup = () => {
-      console.log("Reminders --  active group", this.props.activeGroup)
-      
-      axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/reminders/${this.props.activeGroup}`, this.state.group_reminders)
+    getReminders = () => {
+      axios.get(`${process.env.REACT_APP_BACKEND}/api/reminders/`, this.state.group_reminders)
           .then(res => { 
-            console.log(res, res.data) 
             this.setState({
-                group_reminders: res.data
-            });
-        })
-        .catch(err => {
+              reminders: res.data
+            });})
+          .catch(err => {
             console.log(err);
-        });
-    }
-
+          });}
     
-      componentDidMount () {
-        console.log("mounted")
-        this.getRemindersByGroup();
-        console.log("FILTERED BY GROUP", this.state.group_reminders)
+   
+      componentWillReceiveProps() {
+        this.getReminders();
+        console.log("ACTIVE ID - COMPOSER- will recieve", this.props.activeGroup)
       }
-  
 
-  
+      
       render() {
-        console.log("FILTERED BY GROUP", this.state.group_reminders)
+        console.log("RENDERING SCHEDULED MESSAGE LIST ", this.state.reminders)
+        console.log("ACTIVE ID - COMPOSER - render", this.props.activeGroup)
         return (
           <div> 
            <h3>ScheduledMessageComposer</h3>
-            <ScheduledMessageList group_reminders = {this.state.group_reminders} activeGroup={this.props.activeGroup}
-            />
+            <ScheduledMessageList activeGroup={this.props.activeGroup} reminders={this.state.reminders}/>
             <div>
             <Button>
                 <MessageModal buttonLabel="Add Scheduled Message" />  

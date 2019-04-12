@@ -140,7 +140,7 @@ fetchReminder = id => {
   return (
     <div className="scheduled-card">
            
-     {/* {this.props.scheduled ? ( //conditional rendering based on if scheduled is true or false*/}
+     {this.props.scheduled ? ( //conditional rendering based on if scheduled is true or false*/}
         <div>
           <Card>
           <CardTitle>{this.props.title}</CardTitle>
@@ -174,7 +174,7 @@ fetchReminder = id => {
 
           </Card>
         </div>
-     {/* ): undefined }*/}
+      ): undefined }
 
     </div>
   );
