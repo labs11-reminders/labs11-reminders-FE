@@ -12,7 +12,7 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-
+import axios from 'axios';
 import NewGroupMessage from '../NewGroupMessage/NewGroupMessage';
 import TemplateList  from '../Templates/TemplateList';
 import DraftList  from '../Drafts/DraftList';
@@ -41,8 +41,68 @@ export default class TabsSection extends React.Component {
         activeTab: tab,
       });
     }
+    console.log("TABS ACTIVE GROUP", this.props.activeGroup)
+    console.log("TABS GROUP REMINDERS", this.state.group_reminders)
+    console.log("TABS USERS", this.state.users)
+  }
+/*
+  getRemindersByGroup = () => {
+    console.log("Reminders --  active group", this.props.activeGroup)
+     axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/reminders/${this.props.activeGroup}`, this.state.group_reminders)
+         .then(res => { 
+            this.setState({
+             group_reminders: res.data
+           });})
+         .catch(err => {
+           console.log(err);
+         });}
+
+  getUserInfo = () => {
+    this.auth0.client.userInfo(this.accessToken, (err, profile) => {
+      if (profile) {
+        axios.post(`${process.env.REACT_APP_BACKEND}/api/users/auth`, {auth0_sub: profile.sub})
+            .then(res => {
+              return axios.get(`${process.env.REACT_APP_BACKEND}/api/users/data/${this.user.id}`, this.user.auth0_sub)
+            })
+            .then(res => {
+              this.setState({
+              user: res.data
+              });
+            })
+            .catch(err => {
+              console.log(err);
+            })     
+            }
+          });   
+        }
+
+  getUsersByGroup = () => {
+    console.log("PeopleTable getUsersByGroup this.state", this.props.activeGroup)
+    console.log("this.state.group", this.props.activeGroup)
+    // if (!this.state.group.id) {
+    //   this.state.group.id = 2;
+    // }
+      //group id is hardcoded in - need to change it to pull id from props
+      console.log('getting users by group');
+      axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/${this.props.activeGroup}/users`, this.state.users)
+        .then(res => { 
+          console.log(res, res.data) 
+          this.setState({
+              users: res.data
+          });
+      })
+      .catch(err => {
+          console.log(err);
+      });
   }
 
+  componentDidMount() {
+      console.log('People table mounted');
+      this.getUsersByGroup();
+      this.getRemindersByGroup();
+  } */
+
+ 
   render() {
   
     return (
@@ -68,11 +128,12 @@ export default class TabsSection extends React.Component {
               }}
             >
               <strong id="tabNav">SCHEDULER</strong>
-            </NavLink>
+          </NavLink>
           </NavItem>
 
           <NavItem>
             <NavLink
+              
               className={classnames({ active: this.state.activeTab === '3' })}
               onClick={() => {
                 this.toggle('3');
@@ -110,7 +171,7 @@ export default class TabsSection extends React.Component {
           <TabPane tabId="1">
             <Row>
               <Col sm="12">
-                <NewGroupMessage state = {this.props.state} groups = {this.props.groups} activeGroup={this.props.activeGroup}/>
+                <NewGroupMessage activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
               </Col>
             </Row>
           
@@ -121,7 +182,9 @@ export default class TabsSection extends React.Component {
           <TabPane tabId="3">
             <Row>
               <Col sm="12">
-                <TemplateList activeGroup={this.props.activeGroup}/>
+
+                <TemplateList activeGroup={this.props.activeGroup} activeGroupReminders={this.props.activeGroupReminders}/>
+
               </Col>
             </Row>
           </TabPane>
@@ -135,7 +198,7 @@ export default class TabsSection extends React.Component {
           <TabPane tabId="5">
             <Row>
               <Col sm="12">
-                <People activeGroup={this.props.activeGroup} />
+                <People activeGroup={this.props.activeGroup}  />
               </Col>
             </Row>
           </TabPane>
@@ -144,3 +207,4 @@ export default class TabsSection extends React.Component {
     );
   }
 }
+ 

@@ -3,12 +3,13 @@ import axios from 'axios';
 import { InputGroup, InputGroupAddon, Input, Button, FormGroup} from 'reactstrap';
 import SearchTable from './AddContactsSearchTable';
 
-class SearchBar extends Component {
+class AddContactSearchBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
           users: [],
-          query: ''
+          query: '',
+          group: ''
         };
     }
 
@@ -59,18 +60,18 @@ class SearchBar extends Component {
         return (
      
 
-        <FormGroup>
-          <Input
+        <form>
+          <input
             placeholder="Search for user..."
             ref={input => this.search = input}
             onChange={this.handleChanges}
           />
           
-          <SearchTable users={this.state.users} />
-        </FormGroup>
+          <SearchTable users={this.state.users} activeGroup={this.props.activeGroup}/>
+        </form>
         
         );
     }
 }
 
-export default SearchBar;
+export default AddContactSearchBar;

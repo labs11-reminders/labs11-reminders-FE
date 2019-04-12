@@ -6,13 +6,14 @@ import SearchBar from './SearchBar.js';
 import PeopleTable from './PeopleTable.js';
 
 class People extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          users: [],
-          
-        };
-    }
+  constructor(props) {
+      super(props);
+      this.state = {
+        users: [],
+        
+      };
+  }
+
 
 
     getUserInfo = () => {
@@ -34,29 +35,11 @@ class People extends Component {
         });   
       }
   
-      getUsersByGroup = () => {
-        console.log("People --  getUsersByGroup this.state", this.props.activeGroup)
-        console.log("this.state.group", this.props.activeGroup)
-        // if (!this.state.group.id) {
-        //   this.state.group.id = 2;
-        // }          
-          console.log('getting users by group');
-          axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/${this.props.activeGroup}/users`, this.state.users)
-            .then(res => { 
-              console.log(res, res.data) 
-              this.setState({
-                  users: res.data
-              });
-          })
-          .catch(err => {
-              console.log(err);
-          });
-      }
-  
-      componentWillReceiveProps() {
-          console.log('People table mounted');
-          this.getUsersByGroup();
-      }
+    componentWillReceiveProps(){
+      this.setState({
+        group_id: this.props.activeGroup
+      });
+    }
 
 
     render() {
@@ -64,8 +47,8 @@ class People extends Component {
         return (
             <div>
                 <SearchBar  activeGroup={this.props.activeGroup}/>
-                {this.state.users.length > 0 ? (
-                <PeopleTable activeGroup={this.props.activeGroup}/>
+                {this.state.group_id ? (
+                <PeopleTable activeGroup={this.state.group_id}/>
                 ) : ( <span>No people to display.</span>)}
 
             </div>

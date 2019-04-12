@@ -12,6 +12,8 @@ class Dashboard extends Component {
       activeGroupName: '',
       profile: {},
       users: [],
+      activeGroupUsers: [],
+      activeGroupReminders: [],
     };
     this.setActiveGroup = this.setActiveGroup.bind(this);
     this.setActiveGroupName = this.setActiveGroupName.bind(this);
@@ -50,6 +52,20 @@ class Dashboard extends Component {
       });
   };
 
+  getRemindersByGroup = () => {
+    axios
+      .post(`${process.env.REACT_APP_BACKEND}/api/groups/reminders/${this.state.activeGroup}`)
+      .then(res => {
+        console.log('List of all reminders', res.data);
+        this.setState({
+          activeGroupReminders: res.data,
+        });
+      })
+      .catch(err => {
+        console.log({ errMessage: 'Getting reminders call error', err });
+      });
+  }
+
   componentWillMount() {
     const { userProfile, getProfile } = this.props.auth;
     if (!userProfile) {
@@ -68,10 +84,13 @@ class Dashboard extends Component {
 
   setActiveGroup(id) {
     if (this.state.activeGroup !== id) {
-      console.log('***ID***', id);
-      this.setState({ activeGroup: id });
-      console.log('ACTIVE', this.state.activeGroup);
-      this.getUsersByGroup();
+      console.log('Setting ActiveGroup', id);
+      // using callback to ensure that activeGroup is set before fetching users.
+      this.setState({ activeGroup: id }, () => {
+        console.log('ActiveGroup now', this.state.activeGroup);
+        this.getUsersByGroup();
+        this.getRemindersByGroup();
+      });
     }
   }
   // Gets the name of the active group and sets state so name can be used in dashboard
@@ -85,26 +104,20 @@ class Dashboard extends Component {
 
   getUsersByGroup = () => {
     console.log(
-      'PeopleTable getUsersByGroup this.state',
+      'Dashboard fetching Users By Group',
       this.state.activeGroup,
     );
-    console.log('this.state.group', this.state.activeGroup);
-    // if (!this.state.group.id) {
-    //   this.state.group.id = 2;
-    // }
-    //group id is hardcoded in - need to change it to pull id from props
-    console.log('getting users by group');
     axios
       .get(
         `${process.env.REACT_APP_BACKEND}/api/groups/${
           this.state.activeGroup
         }/users`,
-        this.state.users,
+        this.state.activeGroupUsers,
       )
       .then(res => {
         console.log(res, res.data);
         this.setState({
-          users: res.data,
+          activeGroupUsers: res.data,
         });
       })
       .catch(err => {
@@ -147,6 +160,8 @@ class Dashboard extends Component {
                       getGroups={this.getGroups}
                       activeGroup={this.state.activeGroup}
                       groups={this.state.groups}
+                      activeGroupUsers={this.state.activeGroupUsers}
+                      activeGroupReminders={this.state.activeGroupReminders}
                     />
                   </section>
                 </>

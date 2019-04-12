@@ -39,13 +39,11 @@ class AddContactModal extends React.Component {
         >
           <ModalHeader toggle={this.toggle}>Add Contact</ModalHeader>
           <ModalBody>
-            <AddContactSearchBar />
-            <AddContactSearchTable />
+            <AddContactSearchBar activeGroup={this.props.activeGroup}/>
+           
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>
-              Save Contact to Group
-            </Button>{' '}
+            
             <Button color="secondary" onClick={this.toggle}>
               Cancel
             </Button>
