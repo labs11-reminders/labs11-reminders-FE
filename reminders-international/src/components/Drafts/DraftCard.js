@@ -220,6 +220,18 @@ class DraftCard extends Component {
 
             <CardText className="draft-created">Date Created: {this.props.created_at}</CardText>
             <CardText className="draft-created">Created By: {this.props.user_id}</CardText>
+            <FormGroup check>
+          <Label check>
+            <Input type="checkbox" onClick={this.toggleSchedule} />{' '}
+            Add to scheduler
+          </Label>
+        </FormGroup>
+        <FormGroup check>
+          <Label check>
+            <Input type="checkbox" onClick={this.toggleSchedule} />{' '}
+            Add to Templates
+          </Label>
+        </FormGroup>
         
         </div>): undefined}
       </div>
