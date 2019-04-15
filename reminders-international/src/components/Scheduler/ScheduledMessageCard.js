@@ -7,40 +7,34 @@ import 'moment/locale/it';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import axios from 'axios';
-//import requiresAuth from '../../Auth0/Auth/requiresAuth.js'
 import {
   NavLink,
   Card,
-  Button,
   CardTitle,
   CardSubtitle,
   CardText,
-  // Row,
-  Col,
-  Form,
   FormGroup,
   Label,
   Input,
-  Alert,
 
 } from 'reactstrap';
 import moment from "moment";
 import SchedMessageModal from './SchedMessageModal'
 
-
+// Line 2:  'MomentLocaleUtils' is defined but never used  no-unused-vars
 class ScheduledMessageCard extends Component{
   constructor(props) {
     super(props);
     this.state = {
       message: {
-        id:'',
+        id: null,
         title: '', 
         to: '',
         body: '',
         approved: false, 
         date: '',
         scheduled: true,
-        group_id:'' 
+        group_id: null
       },
     submitting: false,
     error: false
@@ -154,7 +148,7 @@ fetchReminder = id => {
   onDelete = (event) => {  //need to work on card rendering 
     const id = this.props.id
     console.log("ID", id)
-    if (event.target.checked == true) {
+    if (event.target.checked) {
       axios
       .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
       .then(response => {

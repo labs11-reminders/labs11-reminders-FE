@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MessageModal from '../MessageModal/MessageModal';
+// import MessageModal from '../MessageModal/MessageModal';
 import MessageModalGroup from '../MessageModal/MessageModalGroup';
 import UserGroupList from './UserGroupList';
 
@@ -8,7 +8,7 @@ class NewGroupMessage extends Component {
     
 
     render() {
-        console.log(this.props.state)
+        console.log("NewGroupMessage Render", this.props.state)
         return (
             <div className="NewMessage">
                 {/* <MessageModal buttonLabel="Compose New Message" />  */}

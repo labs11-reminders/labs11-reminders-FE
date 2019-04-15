@@ -1,20 +1,10 @@
 import React, { Component } from 'react';
-// import { Container, Col, Row } from 'reactstrap';
 import axios from 'axios';
 import DraftCard from './DraftCard';
 import {
-  // TabContent,
-  // TabPane,
-  // Nav,
-  // NavItem,
-  // NavLink,
   Card,
-  // CardDeck,
   CardColumns,
   CardBody,
-  // Button,
-  // CardTitle,
-  // CardText,
 } from 'reactstrap';
 
 export default class DraftList extends Component {
@@ -49,8 +39,8 @@ export default class DraftList extends Component {
       <div className="template-list">
       <CardColumns sm="6">
           {this.state.reminders.map((reminder, index) => {
-           if (reminder.group_id == this.props.activeGroup) {
-            console.log("RENDERING DRAFT CARD ", reminder)
+           if (reminder.group_id === this.props.activeGroup) {
+            {/* console.log("RENDERING DRAFT CARD ", reminder) */}
           return (
               <Card>
                 <CardBody key={reminder.id}>

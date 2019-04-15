@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 import { Table, Col, FormGroup, Label, Input } from 'reactstrap';
 
@@ -11,9 +10,9 @@ class UserGroupList extends Component {
 
         };
     }
-
+//   Line 28:  The scope prop can only be used on <th> elements  jsx-a11y/scope
     render() {
-      console.log('++++++++++++++++++++ USER GROUP LIST ++++++++++++++++',this.state);
+      console.log('UserGroupList Render',this.state);
         return (
           
           <Table borderless>

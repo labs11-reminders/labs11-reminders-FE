@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input, Row } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Row } from 'reactstrap';
 import SMSForm from '../SMSForm/SMSForm';
 
 import axios from 'axios';
@@ -16,8 +16,8 @@ class MessageModal extends React.Component {
         scheduled: false,
         draft: false,
         template: false,
-        group_id: '',
-        user_id: '',
+        group_id: null,
+        user_id: null,
         },
         submitting: false,
         error: false,
@@ -45,18 +45,6 @@ class MessageModal extends React.Component {
       }
     }
 
-  // getUserData = () => {
-  //   axios.get(`${process.env.REACT_APP_BACKEND}/api/users/data/${id}`, this.state.user.id)
-  //     .then(res => {
-  //       this.setState({
-  //         user: res.data
-  //       })
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }
-
   createSavedReminder = () => {
     axios.post(`${process.env.REACT_APP_BACKEND}/api/reminders`, this.state.message)
       .then(res => {
@@ -69,31 +57,6 @@ class MessageModal extends React.Component {
         console.log(err);
       });
   }
-
-
-
-  // toggleSavedAsDraft() {
-  //   this.setState(prevState => ({
-  //     draft: !prevState.draft })), () => {
-  //      this.createSavedReminder();
-  //   };
-  // }
-
-  // toggleSavedAsTemplate() {
-  //   this.setState(prevState => ({
-  //     template: !prevState.template
-  //   })), () => {
-  //     this.createSavedReminder()
-  //   };
-  // }
-
-  // toggleSavedAsTemplate() {
-  //   this.setState(prevState => ({
-  //     scheduled: !prevState.scheduled
-  //   })), () => {
-  //     this.createSavedReminder()
-  //   };
-  // }
 
   onHandleChange = (event) => {
     const name = event.target.getAttribute('name');
@@ -145,7 +108,7 @@ class MessageModal extends React.Component {
 
 
   render() {
-    console.log(this.props)
+    console.log("MessageModal", this.props)
     return (
       <div>
         <Button color="primary" onClick={this.toggle}>{this.props.buttonLabel}</Button>
@@ -175,21 +138,3 @@ class MessageModal extends React.Component {
 }
 
 export default MessageModal;
-
-
-/*   ------ Edit  handlers triggered in ScheduledMessageCard --------
-
-      onEditTitle  = (event, id) => {
-        const title_input = event.target.getAttribute('title');
-        this.setState({
-          title: { ...this.state.title, [title_input]: event.target.value }
-        });
-        this.handleChange(event,id);
-      }
-      onEditMessage = (event, id) => {
-        const message_input = event.target.getAttribute('message');
-        this.setState({
-          message: { ...this.state.message, [message_input]: event.target.value }
-        });
-        this.handleChange(event,id);
-      } */

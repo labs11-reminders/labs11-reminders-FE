@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, 
-  Form, FormGroup, Label, Input, Row, ButtonGroup, Dropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap';
-import SMSFormGroup from '../SMSForm/SMSFormGroup';
+  FormGroup, Label, Input, Row } from 'reactstrap';
 
 import axios from 'axios';
 
@@ -10,14 +9,14 @@ class SchedMessageModal extends React.Component {
     super(props);
     this.state = {
         message: {
-            id:'',
+            id: null,
             title: '', 
             to: '',
             body: '',
             approved: false, 
             date: '',
             scheduled: true,
-            group_id:'' 
+            group_id: null, 
         },
     };
 
@@ -105,13 +104,6 @@ class SchedMessageModal extends React.Component {
     });
     }
 
-  //toggleDraft(event, id) {
-   // this.setState(prevState => ({
-    //  draft: !prevState
-   // }));
-   // this.handleChange(event,id);
-  //}
-
     onCheckboxBtnClick(selected) {
     const index = this.state.cSelected.indexOf(selected);
     if (index < 0) {
@@ -151,13 +143,9 @@ class SchedMessageModal extends React.Component {
                 value={this.state.message.body}
                 name="body"
               />
-              {/*<SMSFormGroup groups={this.props.groups}/>*/}
             </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Row>
-            {/* <Button color="primary" onClick={this.onSubmit}>Save Group Message</Button>{' '} */}
-            </Row>
             <Row>
             <FormGroup>
               <Button color="primary" onClick = {this.createSavedReminder}>Save</Button>
@@ -165,15 +153,6 @@ class SchedMessageModal extends React.Component {
               <FormGroup>
             </FormGroup>
 
-            </Row>
-            <Row>
-            {/* <p>Selected: {JSON.stringify(this.state.cSelected)}</p> */}
-              {/* <Button color="secondary" onClick={()=>{this.toggleTab()}>Schedule</Button> */}
-              
-              {/*toggle scheduled to true, and direct user to scheduled component*/}
-
-              {/* <Button color="secondary" onClick={this.toggleTab()}>Save Template</Button> */}
-              {/* <Button color="secondary" onClick={this.toggleTab()}>Save Draft</Button> */}
             </Row>
           </ModalFooter>
         </Modal>
@@ -183,38 +162,3 @@ class SchedMessageModal extends React.Component {
 }
 
 export default SchedMessageModal;
-
-
-  // toggleSavedAsDraft() {
-  //   this.setState(prevState => ({
-  //     draft: !prevState.draft })), () => {
-  //      this.createSavedReminder();
-  //   };
-  // }
-
-  // toggleSavedAsTemplate() {
-  //   this.setState(prevState => ({
-  //     template: !prevState.template
-  //   })), () => {
-  //     this.createSavedReminder()
-  //   };
-  // }
-
-  // toggleSavedAsTemplate() {
-  //   this.setState(prevState => ({
-  //     scheduled: !prevState.scheduled
-  //   })), () => {
-  //     this.createSavedReminder()
-  //   };
-  // }
-  // getUserData = () => {
-  //   axios.get(`${process.env.REACT_APP_BACKEND}/api/users/data/${id}`, this.state.user.id)
-  //     .then(res => {
-  //       this.setState({
-  //         user: res.data
-  //       })
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }

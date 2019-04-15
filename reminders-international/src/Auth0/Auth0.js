@@ -37,7 +37,7 @@ class Auth0 extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.auth;
+    // const { isAuthenticated } = this.props.auth;
     console.log('THIS');
     console.log(this.props.auth);
     //console.log("debugging...");

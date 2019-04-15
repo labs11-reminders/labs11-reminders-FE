@@ -31,8 +31,8 @@ class ScheduleMessageComposer extends Component {
 
       
       render() {
-        console.log("RENDERING SCHEDULED MESSAGE LIST ", this.state.reminders)
-        console.log("ACTIVE ID - COMPOSER - render", this.props.activeGroup)
+        // console.log("RENDERING SCHEDULED MESSAGE LIST ", this.state.reminders)
+        // console.log("ACTIVE ID - COMPOSER - render", this.props.activeGroup)
         return (
           <div> 
            <h3>ScheduledMessageComposer</h3>

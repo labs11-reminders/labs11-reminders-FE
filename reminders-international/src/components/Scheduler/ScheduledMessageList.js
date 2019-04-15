@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import ScheduledMessageCard from './ScheduledMessageCard';
-//import { Link } from 'react-router-dom';
-import axios from 'axios';
 import {
   Card,
   CardColumns,
@@ -23,8 +21,8 @@ export default class ScheduledMessageList extends Component {
       ScheduledMessageList
       <CardColumns sm="6">
           {this.props.reminders.map(group_reminder => { //change to scheduled reminders when whe have them 
-            if (group_reminder.group_id == this.props.activeGroup) {
-              console.log("RENDERING SCHEDULED CARD ", group_reminder)
+            if (group_reminder.group_id === this.props.activeGroup) {
+              {/* console.log("RENDERING SCHEDULED CARD ", group_reminder) */}
             return (
                 <Card>
                 <CardBody key={group_reminder.id}>

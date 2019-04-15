@@ -5,14 +5,11 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  FormGroup,
-  Label,
-  Input,
 } from 'reactstrap';
 
 import AddContactSearchBar from './AddContactsSearchBar.js';
-import AddContactSearchTable from './AddContactsSearchTable.js';
-import axios from 'axios';
+// import AddContactSearchTable from './AddContactsSearchTable.js';
+// import axios from 'axios';
 
 class AddContactModal extends React.Component {
   constructor(props) {
