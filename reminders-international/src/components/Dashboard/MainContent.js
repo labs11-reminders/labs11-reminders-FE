@@ -150,9 +150,7 @@ class MainContent extends Component {
   editUser = () => {
     console.log(
       '************ USER UPDATE***************',
-      this.props.state.profile.name,
-      'STATE SUB:',
-      this.state.profile.sub,
+      this.props.profile.name,
     );
 
     axios
@@ -236,14 +234,19 @@ class MainContent extends Component {
                 </strong>
               </span>{' '}
               &nbsp;
-              <span>@groupname</span>
+
+              {/* I'm commenting the below code out--do we need/like it? */}
+              {/* <span>@groupname</span> */}
+
             </div>
           </div>
           <div className="topBtn">
+
             {/* ******Add Contact Button****** Do we really need it? */}
             {/* <Button outline color="primary">
               <AddContactModal activeGroup={this.props.activeGroup} buttonLabel="Add Contact" />
             </Button> */}
+
             &nbsp;
             {/********************************************************** SETTINGS DROPDOWN ********************************************/}
             <Dropdown
@@ -256,16 +259,27 @@ class MainContent extends Component {
               </DropdownToggle>
               <DropdownMenu id="drpMenu">
                 <DropdownItem onClick={this.toggleEditUser} id="drpItem">
-                  Edit Your Info
+                  Edit Your Profile
                 </DropdownItem>
 
+                {/* Conditionally renders the edit this group ability for teachers through board members */}
+                {this.props.profile.role_id !== 2 ? (
                 <DropdownItem onClick={this.toggleEditGroup} id="drpItem">
                   Edit This Group
                 </DropdownItem>
+                ) : (
+                  null
+                )}
 
+                {/* Conditionally renders the edit organization to only show to country managers and board members */}
+                {this.props.profile.role_id > 2 ? (
                 <DropdownItem onClick={this.toggleEditOrg} id="drpItem">
                   Edit Your Organization
                 </DropdownItem>
+                ) : (
+                  null
+                )}
+
               </DropdownMenu>
             </Dropdown>
           </div>
