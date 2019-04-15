@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, FormGroup, Button } from 'reactstrap';
+import { Container, FormGroup, Button, Input } from 'reactstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
@@ -48,23 +48,25 @@ class AddOrgForm extends Component {
   render() {
     console.log("Add Org render", this.state)
     return (
-      <Container className="Add-Org-From" onSubmit={this.addOrg}>
+      <Container className="Add-Org-Form" onSubmit={this.addOrg}>
         <FormGroup>
           <p>Can't find your organization?</p> 
-          <input
+          <Input
             onChange={this.handleInputChange}
             placeholder="name"
             value={this.state.orgs.name}
             name="name"
           />
-          <input
+          </FormGroup>
+          <FormGroup>
+          <Input
             onChange={this.handleInputChange}
             placeholder="description"
             value={this.state.orgs.description}
             name="description"
           />
-          <Button type='submit' onClick={this.addOrg}>Add it here</Button>
-        </FormGroup>
+          <Button className='orgBtn' type='submit' onClick={this.addOrg}>Add it here</Button>
+          </FormGroup>
       </Container>
     );
   }
