@@ -55,7 +55,8 @@ class Org extends Component {
       <Form className = "org-form">
         <FormGroup>
           <Input 
-            type="select" 
+            className="org-form-select2"
+            type="select"
             name="name" 
             id="id" 
             value={this.state.orgs.name}
@@ -64,7 +65,7 @@ class Org extends Component {
             <option></option>
             {
               this.state.orgs.map(org =>
-              <option key={org.id} value={org.id}  > 
+              <option  key={org.id} value={org.id}  > 
                 {org.name}</option>
               )
             } 

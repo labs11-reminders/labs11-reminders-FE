@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, FormGroup, Button, Input } from 'reactstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import './Org.css';
 
 
 
@@ -52,6 +53,7 @@ class AddOrgForm extends Component {
         <FormGroup>
           <p>Can't find your organization?</p> 
           <Input
+            className="org-form-select"
             onChange={this.handleInputChange}
             placeholder="name"
             value={this.state.orgs.name}
@@ -60,6 +62,7 @@ class AddOrgForm extends Component {
           </FormGroup>
           <FormGroup>
           <Input
+            className="org-form-select"
             onChange={this.handleInputChange}
             placeholder="description"
             value={this.state.orgs.description}
