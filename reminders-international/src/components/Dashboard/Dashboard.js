@@ -139,7 +139,7 @@ class Dashboard extends Component {
           </div>
         ) : (
           <>
-            <h1> {this.state.profile.nickname}'s Dashboard </h1>
+            
             <div className="mainContainer">
               {this.state.profile.nickname ? (
                 <>
@@ -160,6 +160,7 @@ class Dashboard extends Component {
                       groups={this.state.groups}
                       activeGroupUsers={this.state.activeGroupUsers}
                       activeGroupReminders={this.state.activeGroupReminders}
+                      profile={this.state.profile}
                     />
                   </section>
                 </>
