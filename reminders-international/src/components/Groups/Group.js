@@ -49,7 +49,7 @@ class Group extends Component {
     console.log("Group render this.state", this.state)
     return (
        <Container className="Groups">
-        {this.props.role == 2 ? (
+        {this.props.role === 2 ? (
           <div></div>
         ) : (
           <div>
@@ -75,14 +75,12 @@ class Group extends Component {
             value={this.state.groups.name}
             onChange={this.onHandleChange}            
             >
-            {/* <option> */}
               {
                 this.state.groups.map(group =>
                 <option key={group.id} value={group.id}  > 
                   {group.name}</option>
                 )
               } 
-            {/* </option> */}
           </Input>
           <Button onClick={this.handleNext}>Next</Button>
         </FormGroup>      

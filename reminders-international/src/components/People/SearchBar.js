@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { InputGroup, InputGroupAddon, Input, Button, FormGroup} from 'reactstrap';
 import SearchTable from './SearchTable';
 
 class SearchBar extends Component {

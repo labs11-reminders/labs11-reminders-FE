@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import Roles from "../Roles/Roles.js"
 import Org from "../Organizations/Org.js";
 import Group from "../Groups/Group.js";
-//import AddGroupForm from "../Groups/AddGroupForm.js";
-//import AddOrgForm from "../Organizations/AddOrgForm.js";
 import UserDetailsForm from "./UserDetailsForm.js";
-
-
-//import { Table, Button } from 'reactstrap';
 
 class SignUp extends Component {
     constructor(props) {

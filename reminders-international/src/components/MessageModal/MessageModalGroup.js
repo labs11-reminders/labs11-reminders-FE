@@ -1,7 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, 
-  Form, FormGroup, Label, Input, Row, ButtonGroup, Dropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap';
-import SMSFormGroup from '../SMSForm/SMSFormGroup';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input, Row, Dropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap';
 
 import axios from 'axios';
 
@@ -18,8 +16,8 @@ class MessageModal extends React.Component {
         scheduled: false,
         draft: false,
         template: false,
-        group_id: '',
-        user_id: '',
+        group_id: null,
+        user_id: null,
         },
         submitting: false,
         error: false,
@@ -275,15 +273,6 @@ class MessageModal extends React.Component {
               </FormGroup>
 
             </Row>
-            <Row>
-            {/* <p>Selected: {JSON.stringify(this.state.cSelected)}</p> */}
-              {/* <Button color="secondary" onClick={()=>{this.toggleTab()}>Schedule</Button> */}
-              
-              {/*toggle scheduled to true, and direct user to scheduled component*/}
-
-              {/* <Button color="secondary" onClick={this.toggleTab()}>Save Template</Button> */}
-              {/* <Button color="secondary" onClick={this.toggleTab()}>Save Draft</Button> */}
-            </Row>
           </ModalFooter>
         </Modal>
       </div>
@@ -292,38 +281,3 @@ class MessageModal extends React.Component {
 }
 
 export default MessageModal;
-
-
-  // toggleSavedAsDraft() {
-  //   this.setState(prevState => ({
-  //     draft: !prevState.draft })), () => {
-  //      this.createSavedReminder();
-  //   };
-  // }
-
-  // toggleSavedAsTemplate() {
-  //   this.setState(prevState => ({
-  //     template: !prevState.template
-  //   })), () => {
-  //     this.createSavedReminder()
-  //   };
-  // }
-
-  // toggleSavedAsTemplate() {
-  //   this.setState(prevState => ({
-  //     scheduled: !prevState.scheduled
-  //   })), () => {
-  //     this.createSavedReminder()
-  //   };
-  // }
-  // getUserData = () => {
-  //   axios.get(`${process.env.REACT_APP_BACKEND}/api/users/data/${id}`, this.state.user.id)
-  //     .then(res => {
-  //       this.setState({
-  //         user: res.data
-  //       })
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }

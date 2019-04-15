@@ -30,11 +30,9 @@ class Dashboard extends Component {
     axios
       .get(`${process.env.REACT_APP_BACKEND}/api/users`, this.state.users)
       .then(res => {
-        //  console.log('list of 500 users', res.data);
         this.setState({
           users: res.data,
         });
-        //  console.log('getUsers this.state.users', this.state.users);
       });
   };
 
@@ -177,24 +175,3 @@ class Dashboard extends Component {
 }
 
 export default Dashboard;
-
-// getOrgGroups = () => {
-//   console.log('***********************');
-//   console.log('Calling for group list');
-//   console.log(this.state.profile);
-//   axios
-//     .get(
-//       `${process.env.REACT_APP_BACKEND}/api/orgs/${
-//         this.state.profile.org_id
-//       }/groups`,
-//     )
-//     .then(res => {
-//       console.log('list of all groups', res);
-//       this.setState({
-//         groups: res.data,
-//       });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// };

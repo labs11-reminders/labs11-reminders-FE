@@ -6,12 +6,7 @@ import {
   FormGroup,
   Button,
   Label,
-  Col,
-  Row,
-  ButtonDropdown,
   Collapse,
-
-  
 
 } from "reactstrap";
 import './SMSForm.css';
@@ -112,22 +107,6 @@ class SMSForm extends Component {
         <FormGroup>
           <Label for="messageTo">To:</Label>
             <FormGroup>
-                {/* <Label for="templateGroup">
-                  <i className="fas fa-plus-circle" /> &nbsp; Groups
-                </Label> */}
-                {/* <Button onClick={this.toggleCollapseInd}>
-                  <i className="fas fa-plus-circle" /> &nbsp; Individuals
-                </Button>
-                <Collapse isOpen={this.state.collapseInd}> */}
-                  {/* <Input
-                    placeholder="442071838750"
-                    type="tel"
-                    name="to"
-                    id="to"
-                    value={this.state.message.to}
-                    onChange={this.onHandleChange}
-                  /> */}
-                {/* </Collapse> */}
                 <Button onClick={this.toggleCollapseGroup}>
                   <i className="fas fa-plus-circle" /> &nbsp; Groups
                 </Button>
@@ -165,12 +144,6 @@ class SMSForm extends Component {
             value={this.state.message.body}
             onChange={this.onHandleChange}
             />
-          {/* <In
-            name="body" 
-            id="body"
-            value={this.state.message.body}
-            onChange={this.onHandleChange}
-          /> */}
         </FormGroup>
         <Button type="submit" disabled={this.state.submitting}>
           Send Group Message

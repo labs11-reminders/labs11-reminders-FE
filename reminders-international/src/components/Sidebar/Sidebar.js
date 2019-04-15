@@ -13,16 +13,12 @@ import {
   FormGroup,
   Col,
   Card,
-  CardImage,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
+  CardTitle
 } from 'reactstrap';
 
 import axios from 'axios';
 import SideTemplateCard from './SideTemplateCard';
-import SideMessageInd from './SideMessageInd';
+// import SideMessageInd from './SideMessageInd';
 import MessageModalInd from '../MessageModal/MessageModalInd';
 import ClickableCard from './ClickableCard';
 
@@ -42,23 +38,7 @@ class Sidebar extends Component {
     this.toggle = this.toggle.bind(this);
     this.toggleNested = this.toggleNested.bind(this);
     this.toggleMessage = this.toggleMessage.bind(this);
-    // this.getAllReminders = this.getAllReminders.bind(this);
-    // this.getAllGroups = this.getAllGroups.bind(this);
-    // this.getAllOrgs = this.getAllOrgs.bind(this);
-    // this.getProfile = this.getProfile.bind(this);
   }
-
-  // componentWillMount() {
-  //   this.setState({ profile: {} });
-  //   const { userProfile, getProfile } = this.props.auth;
-  //   if (!userProfile) {
-  //     getProfile((err, profile) => {
-  //       this.setState({ profile });
-  //     });
-  //   } else {
-  //     this.setState({ profile: userProfile });
-  //   }
-  // }
 
   getProfile = cb => {
     this.auth0.client.userInfo(this.accessToken, (err, profile) => {
@@ -107,8 +87,6 @@ class Sidebar extends Component {
 
   addGroup = event => {
     event.preventDefault();
-
-    {
       this.state.newGroup.name === undefined
         ? this.toggleNested()
         : axios
@@ -129,7 +107,6 @@ class Sidebar extends Component {
             .catch(err => {
               console.log(err);
             });
-    }
   };
 
   getAllReminders = () => {
@@ -164,7 +141,7 @@ class Sidebar extends Component {
   }
 
   componentDidMount() {
-    console.log('Sidebar mounted.');
+    // console.log('Sidebar mounted.');
     this.getAllOrgs();
     this.getAllReminders();
     this.setOrg();
@@ -172,8 +149,8 @@ class Sidebar extends Component {
   }
 
   render() {
-    console.log('PROPS', this.props);
-    console.log('GROUPS', this.props.groups);
+    // console.log('PROPS', this.props);
+    // console.log('GROUPS', this.props.groups);
     // const { profile } = this.state
     const profileImg =
       'https://tk-assets.lambdaschool.com/ecd33d34-c124-4b75-92d2-e5c52c171ed8_11201517_887808411287357_1307163552_a.jpg';
@@ -182,7 +159,7 @@ class Sidebar extends Component {
     return (
       <div className="sidebarWrapper">
         <section className="profileSection cube">
-          <img src={this.props.profile.picture} id="profilePicture" />
+          <img src={this.props.profile.picture} id="profilePicture" alt="first initial or icon" />
           <div id="profileName">
             {/* This needs to remain {this.props.profile.nickname} in order to render correctly. -Rachel */}
             <span>Hello, {this.props.profile.nickname} </span>
@@ -207,9 +184,10 @@ class Sidebar extends Component {
           </NavLink>
           {/*<p> NEED GROUP NAME FOR THIS USER </p> */}
 
-          {/********************************************************************** LINK ***********************************/}
+          {/* TODO TEAM: Need another if for group id LINK */}
           {this.props.groups.map(group => {
             console.log('PROPS PASSED DOWN FROM DASH', this.props);
+            console.log("Group.org_id", group, "Profile", this.props.profile)
             if (group.org_id === this.props.profile.org_id) {
               return (
                 <Link
@@ -247,16 +225,6 @@ class Sidebar extends Component {
         </section>
         <Card>
           <CardTitle>CONVERSATION</CardTitle>
-          {/* <NavLink id="createLink" onClick={this.toggleMessage}>
-              <i className="fas fa-plus-circle" /> Message Individual
-          </NavLink> */}
-          {/* {this.state.users.map(user => {
-            return (
-              <SideMessageInd
-                name={user.name}
-              />
-            )
-          })} */}
           <MessageModalInd buttonLabel="Message Individual" />
         </Card>
 

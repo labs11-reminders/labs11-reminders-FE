@@ -21,11 +21,8 @@ class AddOrgForm extends Component {
       name: name,
       description: description,
     }
-    console.log("orgObj", orgObj)
     axios.post(`${process.env.REACT_APP_BACKEND}/api/orgs`, orgObj)
-    // axios.post("https://localhost:3333/api/orgs", orgObj)
       .then(res => {
-        console.log('POST RESPONSE', res);
         if(res.status === 200 || res.status === 201) {
           this.setState({
             message: 'You added an Org!!!',

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { InputGroup, InputGroupAddon, Input, Button, FormGroup} from 'reactstrap';
 import SearchTable from './AddContactsSearchTable';
 
 class AddContactSearchBar extends Component {
@@ -27,7 +26,6 @@ class AddContactSearchBar extends Component {
       }
 
     searchUsers = () => {
-        console.log('search....');
         axios.interceptors.request.use(request => {
             console.log('Starting Request', request)
             return request
