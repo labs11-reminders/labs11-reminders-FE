@@ -156,6 +156,8 @@ export default class Auth {
             this.userProfile.role_id = res.data.role_id;
             this.userProfile.country = res.data.country;
             this.userProfile.phone = res.data.phone;
+            this.userProfile.user_id = res.data.id;
+            this.userProfile.nickname = res.data.name;
             console.log('User profile load complete.');
           })
           .catch(err => {

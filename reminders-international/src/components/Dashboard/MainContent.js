@@ -156,20 +156,20 @@ class MainContent extends Component {
     axios
       .put(
         `${process.env.REACT_APP_BACKEND}/api/users/${
-          this.props.state.activeGroup //needs to be changed to user id with functionality above for getting it using the auth0_sub id
+          this.props.profile.user_id
         }`,
-        { name: this.state.groupName },
+        { name: this.state.name, 
+          email: this.state.email,
+          phone: this.state.phone
+        },
       )
       .then(res => {
         console.log('Updated user', res);
         if (res.status === 200 || res.status === 201) {
-          this.setState({
-            groupName: '',
-          });
+          
           this.setState(prevState => ({
             editUserModal: !prevState.editUserModal,
           }));
-          this.props.getGroups();
         }
       })
       .catch(err => {
@@ -242,7 +242,7 @@ class MainContent extends Component {
           </div>
           <div className="topBtn">
 
-            {/* ******Add Contact Button****** Do we really need it? */}
+            {/* ******Add Contact Button****** Do we really need it? Is it going to change into some other useful component? */}
             {/* <Button outline color="primary">
               <AddContactModal activeGroup={this.props.activeGroup} buttonLabel="Add Contact" />
             </Button> */}
@@ -293,7 +293,7 @@ class MainContent extends Component {
           >
             <ModalHeader toggle={this.toggleEditUser}>Edit User</ModalHeader>
             <ModalBody className="modalBody">
-              <Form className="createGroup" onSubmit={null}>
+              <Form className="createGroup" onSubmit={this.editUser}>
                 <FormGroup row>
                   <Label for="name">Name</Label>
                   <Col sm={10}>
@@ -337,7 +337,7 @@ class MainContent extends Component {
             </ModalBody>
 
             <ModalFooter>
-              <Button color="primary" onClick={this.addGroup}>
+              <Button color="primary" onClick={this.editUser}>
                 Update
               </Button>
               <Button color="primary" onClick={this.toggleEditUser}>
