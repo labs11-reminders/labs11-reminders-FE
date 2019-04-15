@@ -382,14 +382,14 @@ class MainContent extends Component {
             <ModalBody className="modalBody">
               <Form className="createGroup" onSubmit={null}>
                 <FormGroup row>
-                  <Label for="name">Organization</Label>
+                  <Label for="orgName">Organization</Label>
                   <Col sm={10}>
                     <Input
                       onChange={this.handleInputChange}
                       placeholder="Name"
                       value={this.state.orgName}
-                      name="name"
-                      id="name"
+                      name="orgName"
+                      id="orgName"
                     />
                   </Col>
                 </FormGroup>
