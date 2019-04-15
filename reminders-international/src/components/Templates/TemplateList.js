@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
-// import { Container, Col, Row } from 'reactstrap';
 import axios from 'axios';
 import TemplateCard from './TemplateCard';
-import MessageModal from '../MessageModal/MessageModal';
+import MessageModalGroup from '../MessageModal/MessageModalGroup';
 import {
-  // TabContent,
-  // TabPane,
-  // Nav,
-  // NavItem,
-  // NavLink,
   Card,
-  // CardDeck,bo
   CardColumns,
   CardBody,
   // Button,
@@ -52,8 +45,7 @@ export default class TemplateList extends Component {
       <div>
       <CardColumns className="template-list" sm="6">
         {this.state.reminders.map((reminder, index) => {
-           if (reminder.group_id == this.props.activeGroup) {
-            console.log("RENDERING TEMPLATE CARD ", reminder)
+           if (reminder.group_id === this.props.activeGroup) {
           return (
           <Card>
             <CardBody key={reminder.id}> 
@@ -73,7 +65,7 @@ export default class TemplateList extends Component {
           )}
       })}
       </CardColumns>
-      <MessageModal buttonLabel="Compose New Template"/>
+      <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Add Group Message Template" />
       </div>
     )
   }

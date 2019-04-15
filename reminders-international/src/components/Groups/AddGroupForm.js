@@ -16,14 +16,12 @@ class AddGroupForm extends Component {
 
   addGroup = event => {
     event.preventDefault();
-    const { name, org_id } = this.state.groups
+    const { name } = this.state.groups
     const groupObj = {
       name: name,
       org_id: this.props.org_id,
     }
-    console.log("groupObj", groupObj)
     axios.post(`${process.env.REACT_APP_BACKEND}/api/groups`, groupObj)
-    // axios.post("https://localhost:3333/api/orgs", orgObj)
       .then(res => {
         console.log('POST RESPONSE', res.data);
         if(res.status === 200 || res.status === 201) {
@@ -62,21 +60,6 @@ class AddGroupForm extends Component {
             value={this.state.groups.name}
             name="name"
           />
-          {/* <Label>Country</Label> 
-            <Input
-              onChange={this.handleInputChange}
-              placeholder="country"
-              value={this.state.groups.name}
-              name="name"
-            />
-          <Label>Instructor</Label> 
-            <Input
-              onChange={this.handleInputChange}
-              placeholder="example: Jane Doe"
-              value={this.state.groups.name}
-              name="name"
-            /> */}
-
           <Button type='submit' onClick={this.addGroup}>Create</Button>
         </FormGroup>
       </Container>

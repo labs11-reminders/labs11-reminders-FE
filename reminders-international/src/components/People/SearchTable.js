@@ -7,7 +7,7 @@ class SearchTable extends Component {
         super(props);
         this.state = {
     
-            group_id: ''
+            group_id: null,
                           
         };
     }

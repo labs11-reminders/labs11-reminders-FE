@@ -5,24 +5,16 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  // TabContent,
-  // TabPane,
-  // Nav,
-  // NavItem,
   NavLink,
-  // Card,
   Button,
   CardTitle,
   CardSubtitle,
   CardText,
-  // Row,
   Col,
   Form,
   FormGroup,
   Label,
   Input,
-  Alert,
-
 } from 'reactstrap';
 
 // '/api/reminders/:id'
@@ -68,6 +60,7 @@ class TemplateCard extends Component {
     })
   }
 
+  // TODO TEAM: Get Reminders
   getReminders = () => {
   axios.get(`${process.env.REACT_APP_BACKEND}/api/reminders`)
       .then(res => {
@@ -129,8 +122,8 @@ class TemplateCard extends Component {
   }
 
   render() {
-    console.log("TemplateCard this.state", this.state)
-    console.log("this.props", this.props)
+    // console.log("TemplateCard this.state", this.state)
+    // console.log("this.props", this.props)
     return (
       <div className="template-card">
         {this.props.template ? (
@@ -143,13 +136,6 @@ class TemplateCard extends Component {
             <NavLink id="createLink" onClick={()=>this.deleteReminder(this.props.id)}>
               <i className="fas fa-trash-alt" /> &nbsp;
             </NavLink>
-            {/* <Alert 
-              color="danger" 
-              isOpen={this.state.deleteVisible} 
-              toggle={this.onDismiss} 
-              fade={false}>
-                Are you sure you want to delete this reminder?
-            </Alert> */}
             <Modal
               isOpen={this.state.modal}
               toggle={this.toggle}
@@ -236,7 +222,12 @@ class TemplateCard extends Component {
 
             <CardText className="template-created">Date Created: {this.props.created_at}</CardText>
             <CardText className="template-created">Created By: {this.props.user_id}</CardText>
-        
+            <FormGroup check>
+          <Label check>
+            <Input type="checkbox" onClick={this.toggleSchedule} />{' '}
+            Add to scheduler
+          </Label>
+        </FormGroup>
         </div>): undefined}
       </div>
     )

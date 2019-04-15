@@ -43,7 +43,7 @@ export default class Auth {
     console.log('starting user verification');
     this.auth0.client.userInfo(this.accessToken, (err, profile) => {
       if (profile) {
-        {
+        // {
           axios
             .post(`${process.env.REACT_APP_BACKEND}/api/users/auth`, {
               auth0_sub: profile.sub,
@@ -63,7 +63,7 @@ export default class Auth {
               console.log({ message: 'Error verifying Auth0 login' });
             });
         }
-      }
+      // }
     });
   }
 
@@ -138,10 +138,12 @@ export default class Auth {
 
   getProfile(cb) {
     // Get access token from local storage if not defined.
+    // Rachel, I removed var and initialized accessToken above if/else
+    let accessToken;
     if (this.accessToken) {
-      var accessToken = this.accessToken;
+      accessToken = this.accessToken;
     } else {
-      var accessToken = localStorage.getItem('accessToken');
+      accessToken = localStorage.getItem('accessToken');
     }
     this.auth0.client.userInfo(accessToken, (err, profile) => {
       if (profile) {

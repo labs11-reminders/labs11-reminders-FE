@@ -115,6 +115,7 @@ class MainContent extends Component {
       });
   };
 
+  // TODO TEAM: Delete Group 
   deleteGroup = () => {
     console.log(
       '************ GROUP DELETE***************',
@@ -429,7 +430,7 @@ class MainContent extends Component {
             </ModalFooter>
           </Modal>
 
-          {/************************************ Nested Modal for Delete Warning popup ************************************/}
+          {/** Nested Modal for Delete Warning popup **/}
           <Modal
             id="alertModalWrap"
             isOpen={this.state.warningModal}

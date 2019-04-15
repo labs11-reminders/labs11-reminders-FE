@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {
-  // TabContent,
-  // TabPane,
-  // Nav,
-  // NavItem,
   NavLink,
-  // Card,
   Button,
   CardTitle,
   CardSubtitle,
   CardText,
-  // Row,
   Col,
   Modal,
   ModalHeader,
@@ -21,9 +15,6 @@ import {
   FormGroup,
   Label,
   Input,
-
-  Alert,
-
 
 } from 'reactstrap';
 
@@ -69,6 +60,7 @@ class DraftCard extends Component {
     })
   }
 
+  // TODO TEAM: Get reminders
   getReminders = () => {
   axios.get(`${process.env.REACT_APP_BACKEND}/api/reminders`)
       .then(res => {
@@ -126,12 +118,10 @@ class DraftCard extends Component {
   componentDidMount(){
     this.getReminders();
     this.getAllGroups();
-    // this.editReminder();
   }
 
   render() {
     // console.log("DraftCard this.state", this.state)
-    // console.log("this.props", this.props)
     return (
       <div className="template-card">
         {this.props.draft ? (
@@ -144,13 +134,6 @@ class DraftCard extends Component {
             <NavLink id="createLink" onClick={()=>this.deleteReminder(this.props.id)}>
               <i className="fas fa-trash-alt" /> &nbsp;
             </NavLink>
-            {/* <Alert 
-              color="danger" 
-              isOpen={this.state.deleteVisible} 
-              toggle={this.onDismiss} 
-              fade={false}>
-                Are you sure you want to delete this reminder?
-            </Alert> */}
             <Modal
               isOpen={this.state.modal}
               toggle={this.toggle}
@@ -237,30 +220,23 @@ class DraftCard extends Component {
 
             <CardText className="draft-created">Date Created: {this.props.created_at}</CardText>
             <CardText className="draft-created">Created By: {this.props.user_id}</CardText>
+            <FormGroup check>
+          <Label check>
+            <Input type="checkbox" onClick={this.toggleSchedule} />{' '}
+            Add to scheduler
+          </Label>
+        </FormGroup>
+        <FormGroup check>
+          <Label check>
+            <Input type="checkbox" onClick={this.toggleSchedule} />{' '}
+            Add to Templates
+          </Label>
+        </FormGroup>
         
         </div>): undefined}
       </div>
     )
   };
 };
-//   return (
-//     <div className="draft-card">
-//       {props.draft ? (
-//         <div className="if-undefined-make-invisible-or-hidden">
-      
-//           <CardTitle>{props.name}</CardTitle>
-
-//           <div className="draft-description">
-//             <CardSubtitle>Message</CardSubtitle>
-//             <CardText>{props.description}</CardText>
-//           </div>
-
-//           <CardText className="draft-created">Date Created: {props.created_at}</CardText>
-//           <CardText className="draft-created">Created By: {props.user_id}</CardText>
-      
-//       </div>): undefined}
-//     </div>
-//   );
-// };
 
 export default DraftCard;

@@ -9,7 +9,6 @@ class SearchElement extends Component {
     }
 
     handleAdd = e => {
-        console.log('Add contact clicked.');
         this.addUserToGroup();
     }
 

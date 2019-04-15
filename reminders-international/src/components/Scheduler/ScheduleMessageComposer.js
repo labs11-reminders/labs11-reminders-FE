@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import ScheduledMessageList from './ScheduledMessageList';
-import MessageModal from '../MessageModal/MessageModal';
+import MessageModalGroup from '../MessageModal/MessageModalGroup';
 import axios from 'axios';
 
 class ScheduleMessageComposer extends Component {
@@ -31,16 +31,14 @@ class ScheduleMessageComposer extends Component {
 
       
       render() {
-        console.log("RENDERING SCHEDULED MESSAGE LIST ", this.state.reminders)
-        console.log("ACTIVE ID - COMPOSER - render", this.props.activeGroup)
+        // console.log("RENDERING SCHEDULED MESSAGE LIST ", this.state.reminders)
+        // console.log("ACTIVE ID - COMPOSER - render", this.props.activeGroup)
         return (
           <div> 
            <h3>ScheduledMessageComposer</h3>
             <ScheduledMessageList activeGroup={this.props.activeGroup} reminders={this.state.reminders}/>
             <div>
-            <Button>
-                <MessageModal buttonLabel="Add Scheduled Message" />  
-              </Button>
+            <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Schedule Group Message" />  
               </div>
           </div>
         );

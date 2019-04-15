@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input, Row } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, FormGroup } from 'reactstrap';
 import SMSForm from '../SMSForm/SMSFormInd';
 
 import axios from 'axios';
@@ -16,8 +16,8 @@ class MessageModal extends React.Component {
         scheduled: false,
         draft: false,
         template: false,
-        group_id: '',
-        user_id: '',
+        group_id: null,
+        user_id: null,
         },
         submitting: false,
         error: false,
@@ -129,18 +129,3 @@ class MessageModal extends React.Component {
 }
 
 export default MessageModal;
-            {/* <Label for="messageText">Write Message Here</Label>
-              <Input type="textarea" name="body" id="messageText"/> */}
-
-
-          {/* <ModalFooter>
-            <Row>
-            <Button color="primary" onClick={this.onSubmit}>Send Group Message</Button>{' '}
-            </Row>
-            <Row>
-              <Button color="secondary" onClick={this.toggleTab()}>Schedule</Button> */}
-              {/* <---- toggle scheduled to true, and direct user to scheduled component*/}
-              {/* <Button color="secondary" onClick={this.toggleTab()}>Save Template</Button>
-              <Button color="secondary" onClick={this.toggleTab()}>Save Draft</Button>
-            </Row>
-          </ModalFooter> */}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { InputGroup, InputGroupAddon, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Form, FormGroup, Label, Button } from 'reactstrap';
 
 class UserDetailsForm extends Component {
     constructor(props) {
