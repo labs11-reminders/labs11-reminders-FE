@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import AddOrgForm from './AddOrgForm';
 import { Container, Form, FormGroup, Input, Button } from 'reactstrap';
 import axios from 'axios';
-
+import './Org.css';
 
 class Org extends Component {
   constructor(props) {
@@ -48,21 +48,10 @@ class Org extends Component {
   render() {
     console.log("Org render this.state", this.state)
     return (
-      <>
-      {this.props.role < 3 ? (
-        <div>
-          <h3>Welcome!</h3>          
-        </div> 
-      ) : (
-        <>
-          <h3>Welcome!</h3>
-          <AddOrgForm />
-        </>
-      )
-      }
-     
-      <Container className="Org">
-      <h2>What's the name of your organization?</h2>
+      <div>
+      <Container className="orgsContainer">
+      <h2>Welcome!</h2>
+      <h3>What's the name of your organization?</h3>
       <Form className = "org-form">
         <FormGroup>
           <Input 
@@ -80,13 +69,22 @@ class Org extends Component {
               )
             } 
           </Input>
-          <Button onClick={this.handleNext}>Next</Button>
+          <Button className='orgBtn' onClick={this.handleNext}>Next</Button>
         </FormGroup>
 
       </Form>
-      
+      {this.props.role < 3 ? (
+        <div>
+                    
+        </div> 
+      ) : (
+        <>
+          <AddOrgForm />
+        </>
+      )
+      }
       </Container>
-      </>
+      </div>
     );
   }
 }
