@@ -46,7 +46,7 @@ class SMSFormInd extends Component {
   };
 
   componentDidMount(){
-    this.getAllGroups();
+    this.getAllUsers();
   }
 
   onHandleChange = (event) => {
