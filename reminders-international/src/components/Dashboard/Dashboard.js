@@ -139,7 +139,7 @@ class Dashboard extends Component {
           </div>
         ) : (
           <>
-            {/* <h1> {this.state.profile.nickname}'s Dashboard </h1> */}
+            
             <div className="mainContainer">
               {this.state.profile.nickname ? (
                 <>
