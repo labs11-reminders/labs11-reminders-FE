@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import TemplateCard from './TemplateCard';
-import MessageModal from '../MessageModal/MessageModal';
+import MessageModalGroup from '../MessageModal/MessageModalGroup';
 import {
   Card,
   CardColumns,
@@ -65,7 +65,7 @@ export default class TemplateList extends Component {
           )}
       })}
       </CardColumns>
-      <MessageModal buttonLabel="Compose New Template"/>
+      <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Add Group Message Template" />
       </div>
     )
   }

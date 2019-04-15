@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import DraftCard from './DraftCard';
+import MessageModalGroup from '../MessageModal/MessageModalGroup';
 import {
   Card,
   CardColumns,
@@ -60,6 +61,7 @@ export default class DraftList extends Component {
            )}
           })}
         </CardColumns>
+        <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Write Group Draft Message" />
       </div>
     )
   }

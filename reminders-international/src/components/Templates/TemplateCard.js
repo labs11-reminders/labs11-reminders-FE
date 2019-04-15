@@ -222,7 +222,12 @@ class TemplateCard extends Component {
 
             <CardText className="template-created">Date Created: {this.props.created_at}</CardText>
             <CardText className="template-created">Created By: {this.props.user_id}</CardText>
-        
+            <FormGroup check>
+          <Label check>
+            <Input type="checkbox" onClick={this.toggleSchedule} />{' '}
+            Add to scheduler
+          </Label>
+        </FormGroup>
         </div>): undefined}
       </div>
     )
