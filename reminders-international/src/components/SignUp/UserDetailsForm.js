@@ -44,7 +44,7 @@ class UserDetailsForm extends Component {
             country: this.country.value,
             phone: this.phone.value,
             org_id: this.props.org_id,
-            // group_id: this.props.group_id,
+            group_id: this.props.group_id,
             role_id: this.props.role_id,
             },
             // groups: {

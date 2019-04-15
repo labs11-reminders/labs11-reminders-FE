@@ -147,6 +147,68 @@ class MainContent extends Component {
       });
   };
 
+  editUser = () => {
+    console.log(
+      '************ USER UPDATE***************',
+      this.props.state.profile.name,
+      'STATE SUB:',
+      this.state.profile.sub,
+    );
+
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKEND}/api/users/${
+          this.props.state.activeGroup //needs to be changed to user id with functionality above for getting it using the auth0_sub id
+        }`,
+        { name: this.state.groupName },
+      )
+      .then(res => {
+        console.log('Updated user', res);
+        if (res.status === 200 || res.status === 201) {
+          this.setState({
+            groupName: '',
+          });
+          this.setState(prevState => ({
+            editUserModal: !prevState.editUserModal,
+          }));
+          this.props.getGroups();
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  editOrg = () => {
+    console.log(
+      '************ ORG UPDATE***************',
+      this.props.state.profile.org_id,
+    );
+
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKEND}/api/orgs/${
+          this.props.state.profile.org_id
+        }`,
+        { name: this.state.orgName },
+      )
+      .then(res => {
+        console.log('Updated org', res);
+        if (res.status === 200 || res.status === 201) {
+          this.setState({
+            orgName: '',
+          });
+          this.setState(prevState => ({
+            editOrgModal: !prevState.editOrgModal,
+          }));
+          this.props.getGroups();
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     console.log('THE MAIN CONTENT PROPS', this.props.state, this.state);
     return (
@@ -178,9 +240,10 @@ class MainContent extends Component {
             </div>
           </div>
           <div className="topBtn">
-            <Button outline color="primary">
+            {/* ******Add Contact Button****** Do we really need it? */}
+            {/* <Button outline color="primary">
               <AddContactModal activeGroup={this.props.activeGroup} buttonLabel="Add Contact" />
-            </Button>
+            </Button> */}
             &nbsp;
             {/********************************************************** SETTINGS DROPDOWN ********************************************/}
             <Dropdown
@@ -193,15 +256,15 @@ class MainContent extends Component {
               </DropdownToggle>
               <DropdownMenu id="drpMenu">
                 <DropdownItem onClick={this.toggleEditUser} id="drpItem">
-                  Edit User
+                  Edit Your Info
                 </DropdownItem>
 
                 <DropdownItem onClick={this.toggleEditGroup} id="drpItem">
-                  Edit Group
+                  Edit This Group
                 </DropdownItem>
 
                 <DropdownItem onClick={this.toggleEditOrg} id="drpItem">
-                  Edit Organization
+                  Edit Your Organization
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
@@ -346,12 +409,9 @@ class MainContent extends Component {
             </ModalBody>
 
             <ModalFooter>
-              <Button color="primary" onClick={this.toggleEditOrg}>
+              <Button color="primary" onClick={this.editOrg}>
                 Update
               </Button>{' '}
-              <Button color="danger" onClick={this.toggleDeleteWarning}>
-                Delete Organization
-              </Button>
             </ModalFooter>
           </Modal>
 

@@ -162,6 +162,7 @@ class Dashboard extends Component {
                       groups={this.state.groups}
                       activeGroupUsers={this.state.activeGroupUsers}
                       activeGroupReminders={this.state.activeGroupReminders}
+                      profile={this.state.profile}
                     />
                   </section>
                 </>
