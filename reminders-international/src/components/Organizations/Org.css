@@ -1,0 +1,10 @@
+
+.orgsContainer {
+  background-color: #3a9cd8;
+  background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654);
+  box-shadow: 0px 0px 7px rgb(110, 110, 110);
+}
+
+.orgBtn   {
+  margin: 10px;
+}

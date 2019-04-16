@@ -112,28 +112,30 @@ export default class TabsSection extends React.Component {
           
           </TabPane>
           <TabPane tabId="2">
-            <ScheduleMessageComposer activeGroup={this.props.activeGroup}/>
+          <Row>
+               <Col sm="12">
+            <ScheduleMessageComposer activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
+            </Col>
+           </Row>
           </TabPane>
           <TabPane tabId="3">
-            <Row>
-              <Col sm="12">
-
-                <TemplateList activeGroup={this.props.activeGroup} activeGroupReminders={this.props.activeGroupReminders}/>
-
+          <Row>
+               <Col sm="12">
+                <TemplateList activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
               </Col>
-            </Row>
+           </Row>
           </TabPane>
           <TabPane tabId="4">
             <Row>
               <Col sm="12">
-                <DraftList activeGroup={this.props.activeGroup}/>
+                <DraftList activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
               </Col>
             </Row>
           </TabPane>
           <TabPane tabId="5">
             <Row>
               <Col sm="12">
-                <People activeGroup={this.props.activeGroup}  />
+                <People activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}  />
               </Col>
             </Row>
           </TabPane>

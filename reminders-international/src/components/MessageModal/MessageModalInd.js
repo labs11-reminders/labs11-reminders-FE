@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, FormGroup } from 'reactstrap';
-import SMSForm from '../SMSForm/SMSFormInd';
+import SMSFormInd from '../SMSForm/SMSFormInd';
 
 import axios from 'axios';
 
-class MessageModal extends React.Component {
+class MessageModalInd extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +21,8 @@ class MessageModal extends React.Component {
         },
         submitting: false,
         error: false,
-        groups: [],
+        orgs: [],
+        users: [],
     };
 
     this.toggle = this.toggle.bind(this);
@@ -118,7 +119,7 @@ class MessageModal extends React.Component {
           <ModalHeader toggle={this.toggle}>Create a Message</ModalHeader>
           <ModalBody>
             <FormGroup>
-              <SMSForm groups={this.props.groups}/>
+              <SMSFormInd orgs={this.props.orgs}/>
             </FormGroup>
           </ModalBody>
 
@@ -128,4 +129,4 @@ class MessageModal extends React.Component {
   }
 }
 
-export default MessageModal;
+export default MessageModalInd;

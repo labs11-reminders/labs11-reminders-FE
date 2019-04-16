@@ -6,11 +6,12 @@ import {
   FormGroup,
   Button,
   Label,
+  Collapse,
 
 } from "reactstrap";
 import './SMSForm.css';
 
-class SMSForm extends Component {
+class SMSFormInd extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,13 +24,15 @@ class SMSForm extends Component {
       groups: [],
       collapseInd: false,
       collapseGroup: false,
+      orgs: [],
+      users: [],
     };
   }
 
-  getAllGroups = () => {
+  getAllUsers = () => {
     axios
       .get(
-        `${process.env.REACT_APP_BACKEND}/api/groups`,
+        `${process.env.REACT_APP_BACKEND}/api/users`,
         this.state.groups,
       )
       .then(res => {
@@ -43,7 +46,7 @@ class SMSForm extends Component {
   };
 
   componentDidMount(){
-    this.getAllGroups();
+    this.getAllUsers();
   }
 
   onHandleChange = (event) => {
@@ -96,7 +99,28 @@ class SMSForm extends Component {
         className={this.state.error ? 'error sms-form' : 'sms-form'}
       >
         <FormGroup>
-          <Label for="messageTo">To:</Label>
+          <Label for="messageToInd">To:</Label>
+            <FormGroup>
+                  <Button onClick={this.toggleCollapseGroup}>
+                    <i className="fas fa-plus-circle" /> &nbsp; Individuals
+                  </Button>
+                  <Collapse isOpen={this.state.collapseGroup}>
+                    <Input
+                      type="select"
+                      placeholder="Select Individual(s)"
+                      name="group"
+                      id="messageToInd"
+                      onChange={this.handleInputChange}
+                      value={this.state.users.name}
+                      multiple
+                    >
+                      <option>--&nbsp; Select Individuals(s)</option>
+                      {this.state.users.map(user => (
+                        <option key={user.id}>{user.name}</option>
+                      ))}{' '}
+                    </Input>
+                  </Collapse> 
+              </FormGroup>
           <Input
             type="tel"
             name="to"
@@ -124,4 +148,4 @@ class SMSForm extends Component {
 }
 
 
-export default SMSForm;
+export default SMSFormInd;

@@ -148,7 +148,66 @@ class MainContent extends Component {
       });
   };
 
-  // TODO TEAM Warning on line 165: Expected a return value ...
+  editUser = () => {
+    console.log(
+      '************ USER UPDATE***************',
+      this.props.profile.name,
+    );
+
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKEND}/api/users/${
+          this.props.profile.user_id
+        }`,
+        { name: this.state.name, 
+          email: this.state.email,
+          phone: this.state.phone
+        },
+      )
+      .then(res => {
+        console.log('Updated user', res);
+        if (res.status === 200 || res.status === 201) {
+          
+          this.setState(prevState => ({
+            editUserModal: !prevState.editUserModal,
+          }));
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  editOrg = () => {
+    console.log(
+      '************ ORG UPDATE***************',
+      this.props.state.profile.org_id,
+    );
+
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKEND}/api/orgs/${
+          this.props.state.profile.org_id
+        }`,
+        { name: this.state.orgName },
+      )
+      .then(res => {
+        console.log('Updated org', res);
+        if (res.status === 200 || res.status === 201) {
+          this.setState({
+            orgName: '',
+          });
+          this.setState(prevState => ({
+            editOrgModal: !prevState.editOrgModal,
+          }));
+          this.props.getGroups();
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     console.log('THE MAIN CONTENT PROPS', this.props.state, this.state);
     return (
@@ -176,13 +235,19 @@ class MainContent extends Component {
                 </strong>
               </span>{' '}
               &nbsp;
-              <span>@groupname</span>
+
+              {/* I'm commenting the below code out--do we need/like it? */}
+              {/* <span>@groupname</span> */}
+
             </div>
           </div>
           <div className="topBtn">
-            <Button outline color="primary">
+
+            {/* ******Add Contact Button****** Do we really need it? Is it going to change into some other useful component? */}
+            {/* <Button outline color="primary">
               <AddContactModal activeGroup={this.props.activeGroup} buttonLabel="Add Contact" />
-            </Button>
+            </Button> */}
+
             &nbsp;
             {/********************************************************** SETTINGS DROPDOWN ********************************************/}
             <Dropdown
@@ -195,16 +260,27 @@ class MainContent extends Component {
               </DropdownToggle>
               <DropdownMenu id="drpMenu">
                 <DropdownItem onClick={this.toggleEditUser} id="drpItem">
-                  Edit User
+                  Edit Your Profile
                 </DropdownItem>
 
+                {/* Conditionally renders the edit this group ability for teachers through board members */}
+                {this.props.profile.role_id !== 2 ? (
                 <DropdownItem onClick={this.toggleEditGroup} id="drpItem">
-                  Edit Group
+                  Edit This Group
                 </DropdownItem>
+                ) : (
+                  null
+                )}
 
+                {/* Conditionally renders the edit organization to only show to country managers and board members */}
+                {this.props.profile.role_id > 2 ? (
                 <DropdownItem onClick={this.toggleEditOrg} id="drpItem">
-                  Edit Organization
+                  Edit Your Organization
                 </DropdownItem>
+                ) : (
+                  null
+                )}
+
               </DropdownMenu>
             </Dropdown>
           </div>
@@ -218,7 +294,7 @@ class MainContent extends Component {
           >
             <ModalHeader toggle={this.toggleEditUser}>Edit User</ModalHeader>
             <ModalBody className="modalBody">
-              <Form className="createGroup" onSubmit={null}>
+              <Form className="createGroup" onSubmit={this.editUser}>
                 <FormGroup row>
                   <Label for="name">Name</Label>
                   <Col sm={10}>
@@ -262,7 +338,7 @@ class MainContent extends Component {
             </ModalBody>
 
             <ModalFooter>
-              <Button color="primary" onClick={this.addGroup}>
+              <Button color="primary" onClick={this.editUser}>
                 Update
               </Button>
               <Button color="primary" onClick={this.toggleEditUser}>
@@ -321,14 +397,14 @@ class MainContent extends Component {
             <ModalBody className="modalBody">
               <Form className="createGroup" onSubmit={null}>
                 <FormGroup row>
-                  <Label for="name">Organization</Label>
+                  <Label for="orgName">Organization</Label>
                   <Col sm={10}>
                     <Input
                       onChange={this.handleInputChange}
                       placeholder="Name"
                       value={this.state.orgName}
-                      name="name"
-                      id="name"
+                      name="orgName"
+                      id="orgName"
                     />
                   </Col>
                 </FormGroup>
@@ -348,12 +424,9 @@ class MainContent extends Component {
             </ModalBody>
 
             <ModalFooter>
-              <Button color="primary" onClick={this.toggleEditOrg}>
+              <Button color="primary" onClick={this.editOrg}>
                 Update
               </Button>{' '}
-              <Button color="danger" onClick={this.toggleDeleteWarning}>
-                Delete Organization
-              </Button>
             </ModalFooter>
           </Modal>
 
