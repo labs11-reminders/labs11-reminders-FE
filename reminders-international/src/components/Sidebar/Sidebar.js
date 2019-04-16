@@ -239,12 +239,12 @@ class Sidebar extends Component {
             <Form className="createGroup" onSubmit={this.addGroup}>
               <div className="modalProfile">
                 <img
-                  src={profileImg}
+                  src="https://i.imgur.com/HanMQyt.png" title="group"
                   alt="philzcoffee's thumbnail"
                   className="userThumb"
                 />
                 {/* <a href="#">edit icon</a> */}
-                <p>edit icon</p>
+               
               </div>
 
               <FormGroup row>
@@ -260,12 +260,12 @@ class Sidebar extends Component {
                 </Col>
               </FormGroup>
 
-              <FormGroup row>
+        {/* <FormGroup row>
                 <Label for="code">Group Code</Label>
                 <Col sm={10}>
                   <Input placeholder="@peru1" name="code" id="code" />
                 </Col>
-              </FormGroup>
+        </FormGroup>*/}
 
               <FormGroup row>
                 <Label for="country">Country</Label>
