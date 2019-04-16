@@ -158,7 +158,6 @@ componentDidMount() {
     // console.log("DraftCard this.state", this.state)
     return (
       <div className="template-card">
-        {this.props.draft ? (
             <div className="if-undefined-make-invisible-or-hidden">
               <CardTitle>{this.props.title}</CardTitle>
               <NavLink id="createLink" onClick={this.toggle} >
@@ -172,7 +171,7 @@ componentDidMount() {
               <div className="template-description">
               <CardText>{this.props.message}</CardText>
               </div>
-              <CardText className="template-created">Date Created: {dateConverter(this.props.created_at)}</CardText>
+              <CardText className="template-created">Date Created: {this.dateConverter(this.props.created_at)}</CardText>
               <CardText className="template-created">Created By: {this.props.user_id}</CardText>
        
             <FormGroup check>
@@ -189,7 +188,6 @@ componentDidMount() {
             </Label>
           </FormGroup>
           </div>
-          ): undefined}
       </div>
     )
   };

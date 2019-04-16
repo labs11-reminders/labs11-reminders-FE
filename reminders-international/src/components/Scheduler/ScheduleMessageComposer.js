@@ -29,22 +29,17 @@ class ScheduleMessageComposer extends Component {
         this.getReminders();
         console.log("ACTIVE ID - COMPOSER- will recieve", this.props.activeGroup)
       }
-
+// removed Container
       
       render() {
-        // console.log("RENDERING SCHEDULED MESSAGE LIST ", this.state.reminders)
-        // console.log("ACTIVE ID - COMPOSER - render", this.props.activeGroup)
         return (
-          <Container className="scheduleMessageComposer"> 
+          <div className="scheduleMessageComposer"> 
             <h3>ScheduledMessageComposer</h3>
             <ScheduledMessageList 
               activeGroup={this.props.activeGroup} 
-              {/* reminders={this.state.reminders} */}
               group_reminders={this.state.group_reminders}/>
-            {/* <div> */}
               <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Schedule Group Message" />  
-            {/* </div> */}
-          </Container>
+          </div>
         );
   };
 }

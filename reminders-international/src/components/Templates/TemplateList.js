@@ -24,7 +24,7 @@ export default class TemplateList extends Component {
     return (
       <div className="scheduled-list">
         TemplateList
-      <CardColumns className="template-list" sm="6">
+      <Col className="template-list" sm="12">
        {this.props.reminders.map(reminder => { 
             if (reminder.group_id === this.props.activeGroup && reminder.template) {
               /* console.log("RENDERING TEMPLATE CARD ", reminder) */
@@ -50,7 +50,7 @@ export default class TemplateList extends Component {
             </Card>
           )} 
       })}
-      </CardColumns>
+      </Col>
       
       </div>
     )

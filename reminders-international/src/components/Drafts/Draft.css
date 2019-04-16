@@ -1,42 +1,54 @@
 .scheduleMessageComposer {
-    border: 1px solid indigo;
-  }
-  
-  .scheduled-list {
-    border: 1px solid purple;
-  }
-  
-  .scheduled-list-card.card {
-    border: 1px solid red;
-  }
-  
-  .scheduled-list div.col-sm-12 div.card-body {
-    border: 1px solid orangered;
-  }
-  
-  .scheduled-card.card {
-    border: 1px solid orange;
-  }
-  
-  .scheduled-description {
-    border: 1px solid yellow;
-  }
-  
-  .card-title {
-    border: .1px solid yellowgreen;
-  }
-  
-  .card-subtitle {
-    border: .1px solid green;
-  }
-  
-  .schedule-functions {
-    border: 1px solid blue;
-  }
-  
-  .DayPickerInput {
-    border: 1px solid brown;
-  }
+  border: 1px solid indigo;
+}
+
+.scheduled-list {
+  border: 1px solid purple;
+}
+
+.scheduled-list-card.card {
+  border: 1px solid red;
+}
+
+.scheduled-list div.col-sm-12 div.card-body {
+  border: 1px solid orangered;
+}
+
+.scheduled-card.card {
+  border: 1px solid orange;
+}
+
+.scheduled-description {
+  border: 1px solid yellow;
+}
+
+.card-title {
+  border: .1px solid yellowgreen;
+}
+
+.card-subtitle {
+  border: .1px solid green;
+}
+
+.schedule-functions {
+  border: 1px solid blue;
+}
+
+.DayPickerInput {
+  border: 1px solid brown;
+}
+
+/* .scheduled-list div.card-columns div.card div.card-body{
+  border: 1px solid yellow;
+}
+
+div.scheduled-card {
+  border: 1px solid yellowgreen;
+}
+
+div.scheduled-card div.card{
+  border: 1px solid green;
+} */
 
 
 

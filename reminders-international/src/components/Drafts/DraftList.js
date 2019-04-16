@@ -4,6 +4,7 @@ import {
   Card,
   CardColumns,
   CardBody,
+  Col,
 } from 'reactstrap';
 
 export default class DraftList extends Component {
@@ -18,10 +19,10 @@ export default class DraftList extends Component {
     return (
       <div className="scheduled-list">
       Draft List
-      <CardColumns className="template-list" sm="6">
+      <Col className="template-list" sm="12">
        {this.props.reminders.map(reminder => { 
-            if (reminder.group_id === this.props.activeGroup) {
-               console.log("RENDERING DRAFT CARD ", reminder) 
+            if (reminder.group_id === this.props.activeGroup && reminder.draft) {
+               {/* console.log("RENDERING DRAFT CARD ", reminder)  */}
             return (
               <Card>
               <CardBody key={reminder.id}>
@@ -44,7 +45,7 @@ export default class DraftList extends Component {
             </Card>
           )} 
       })}
-        </CardColumns>
+        </Col>
         
       </div>
     )
