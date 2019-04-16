@@ -1,67 +1,52 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import DraftCard from './DraftCard';
-import MessageModalGroup from '../MessageModal/MessageModalGroup';
 import {
   Card,
   CardColumns,
   CardBody,
+  Col,
 } from 'reactstrap';
 
 export default class DraftList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reminders: []
+      reminders: [],
     };
   }
 
-  getAllReminders = () => {
-    axios.get(`${process.env.REACT_APP_BACKEND}/api/reminders`, this.state.reminders)
-      .then(res => {
-        this.setState({
-          reminders: res.data
-        });
-    })
-    .catch(err => {
-        console.log(err);
-    });
-  }
-
-
-
-  componentDidMount () {
-    this.getAllReminders();
-  }
-
-
   render() {
     return (
-      <div className="template-list">
-      <CardColumns sm="6">
-          {this.state.reminders.map((reminder, index) => {
-           if (reminder.group_id === this.props.activeGroup) {
-            {/* console.log("RENDERING DRAFT CARD ", reminder) */}
-          return (
+      <div className="scheduled-list">
+      Draft List
+      <Col className="template-list" sm="12">
+       {this.props.reminders.map(reminder => { 
+            if (reminder.group_id === this.props.activeGroup && reminder.draft) {
+               {/* console.log("RENDERING DRAFT CARD ", reminder)  */}
+            return (
               <Card>
-                <CardBody key={reminder.id}>
-              <DraftCard 
-                id={reminder.id}
-                name={reminder.name}
-                description={reminder.description}
-                created_at={reminder.created_at}
-                group_id={reminder.group_id}
-                user_id={reminder.user_id}
-                scheduled={reminder.scheduled}
-                draft={reminder.draft}
-                template={reminder.template}
-              />
-              </CardBody>
-              </Card>
-           )}
-          })}
-        </CardColumns>
-        <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Write Group Draft Message" />
+              <CardBody key={reminder.id}>
+              <DraftCard
+              key={reminder.id}
+              id={reminder.id}
+              title={reminder.name}
+              message={reminder.description}
+              to={reminder.phone_send}
+              date={reminder.scheduled_date}
+              approved={reminder.approved}
+              created_at={reminder.created_at}
+              group_id={reminder.group_id}
+              user_id={reminder.user_id}
+              scheduled={reminder.scheduled}
+              sent = {reminder.sent}
+              draft = {reminder.draft}
+            />
+            </CardBody>
+            </Card>
+          )} 
+      })}
+        </Col>
+        
       </div>
     )
   }

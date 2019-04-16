@@ -1,10 +1,39 @@
+.orgsContainer.container {
+  box-shadow: 0px 0px 7px rgb(110, 110, 110);
+  width: 100%;
+  padding: 0 0 0 0;
+}
 
-.orgsContainer {
+.orgsTopBar {
   background-color: #3a9cd8;
   background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654);
-  box-shadow: 0px 0px 7px rgb(110, 110, 110);
+  width: 100%;
+  margin: 0;
+  padding: 20px 0 20px 0;
+}
+
+.org-form {
+  width: 100%;
+  padding: 0 10px 0 10px;
 }
 
 .orgBtn   {
   margin: 10px;
+  border-radius: 0 !important;
+  box-shadow: 0px 0px 7px rgb(110, 110, 110);
+}
+
+#orgName, #addOrgName, #addDescriptionName {
+  border-radius: 0 !important;
+  border: 0;
+  outline: 1px solid #CCC !important;
+  background-color: white !important;
+  -webkit-border-radius: 0;
+  outline: 1px solid #ccc;
+  outline-offset: -1px;
+}
+
+
+h2, h3 {
+  color: white
 }

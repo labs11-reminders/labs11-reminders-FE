@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Container, FormGroup, Button, Input } from 'reactstrap';
+import { Container, Form, FormGroup, Button, Input, Label, Collapse } from 'reactstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import './Org.css';
 
 
 
@@ -11,6 +12,7 @@ class AddOrgForm extends Component {
     this.state = {
       orgs: [],
       message: '',
+      collapse: false,
     };
   }
 
@@ -40,6 +42,10 @@ class AddOrgForm extends Component {
     });
   }
 
+  toggle = () => {
+    this.setState(state => ({ collapse: !state.collapse }));
+  }
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState( { orgs: { ...this.state.orgs, [name]: value}})
@@ -48,26 +54,32 @@ class AddOrgForm extends Component {
   render() {
     console.log("Add Org render", this.state)
     return (
-      <Container className="Add-Org-Form" onSubmit={this.addOrg}>
+      <Form className="Add-Org-Form" onSubmit={this.addOrg}>
+      <Button className="addOrgToggle" color="link" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Can't find your organization?</Button>
+      <Collapse isOpen={this.state.collapse}>
         <FormGroup>
-          <p>Can't find your organization?</p> 
+          <Label for="addOrgName" hidden>Can't find your organization?</Label> 
           <Input
+            id="addOrgName"
             onChange={this.handleInputChange}
-            placeholder="name"
+            placeholder="New organizational name"
             value={this.state.orgs.name}
             name="name"
           />
           </FormGroup>
           <FormGroup>
+          <Label for="addOrgDescription" hidden>Description</Label> 
           <Input
+            className="addOrgDescription"
             onChange={this.handleInputChange}
-            placeholder="description"
+            placeholder="New organizational description"
             value={this.state.orgs.description}
             name="description"
           />
           <Button className='orgBtn' type='submit' onClick={this.addOrg}>Add it here</Button>
           </FormGroup>
-      </Container>
+          </Collapse>
+      </Form>
     );
   }
 }
