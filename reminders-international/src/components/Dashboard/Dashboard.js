@@ -141,7 +141,7 @@ class Dashboard extends Component {
           <>
             
             <div className="mainContainer">
-              {this.state.profile.nickname ? (
+              {this.state.profile.name ? (
                 <>
                   <section className="sidebar">
                     <Sidebar
