@@ -6,15 +6,33 @@
     min-height: 80vh
 }
 
+@media (max-width: 700px) {
+    .mainContainer {
+        flex-direction: column;
+    }
+}
+
 .sidebar {
     /* border: 1px solid red; */
     width: 20%;
     background-color:  #F2F3F5;
 }
 
+@media (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+    }
+}
+
 .content {
     /* border: 1px solid red; */
     width: 85%
+}
+
+@media (max-width: 700px) {
+    .content {
+        width: 100%;
+    }
 }
 
 /*************** Dashboard - sidebar content ************************/
@@ -33,15 +51,24 @@
 
 @media (max-width: 700px) {
     .cube {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 1%;
+        border-radius: 0%;
     }
 }
 
 h6 {
     padding-left: 10%;
     font-weight: 800;
+}
+
+@media (max-width: 700px) {
+    h6 {
+        padding-left: 1%;
+        font-weight: 800;
+    }
 }
 
 
@@ -55,6 +82,14 @@ h6 {
     flex-direction: row;  
     /* border: 0.02px solid blue; */
     justify-content: center;
+}
+
+@media (max-width: 700px) {
+    .profileSection {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+    }
 }
 
 #profilePicture {
@@ -79,17 +114,32 @@ h6 {
     /* border: 1px solid green; */
     
 }
+
+@media (max-width: 700px) {
+    .orgSection {
+        display: none;
+    }
+}
+
 .orgSection div {
     margin-left: 30%;
 }
 
 .groupsSection {
     line-height: 1.6;
-    /* border: 1px solid green; */
-    
+    /* border: 1px solid green; */  
 }
+
 .groupsSection div {
     margin-left: 30%;
+}
+
+@media (max-width: 700px) {
+    .groupsSection div {
+        display: flex;
+        
+        margin-left: 0%;
+    }
 }
 
 .convSection {
