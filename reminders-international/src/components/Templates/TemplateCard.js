@@ -32,7 +32,8 @@ class TemplateCard extends Component {
         approved: false, 
         date: '',
         scheduled: true,
-        template: false,
+        template: true,
+        draft:false,
         sent: false, 
         group_id: ''
       },
@@ -66,6 +67,7 @@ fetchReminder = id => {
         date: response.data.scheduled_date,
         scheduled: response.data.scheduled,
         template: response.data.template,
+        draft: response.data.draft,
         sent: response.data.sent,
         id:response.data.id
         }}));
@@ -157,7 +159,7 @@ componentDidMount() {
       <div className="template-card">
         {this.props.template ? (
           <div className="if-undefined-make-invisible-or-hidden">
-            <CardTitle>{this.props.name}</CardTitle>
+            <CardTitle>{this.props.title}</CardTitle>
             <NavLink id="createLink" onClick={this.toggle} >
               <i className="fas fa-pencil-alt" /> &nbsp; 
               <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Template"/>  
@@ -167,7 +169,7 @@ componentDidMount() {
            </NavLink>
            
             <div className="template-description">
-            <CardText>{this.props.description}</CardText>
+            <CardText>{this.props.message}</CardText>
             </div>
             <CardText className="template-created">Date Created: {this.props.created_at}</CardText>
             <CardText className="template-created">Created By: {this.props.user_id}</CardText>

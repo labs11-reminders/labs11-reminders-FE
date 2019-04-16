@@ -10,7 +10,7 @@ import {
 } from 'reactstrap';
 import NewGroupMessage from '../NewGroupMessage/NewGroupMessage';
 import TemplateComposer  from '../Templates/TemplateComposer';
-import DraftList  from '../Drafts/DraftList';
+import DraftComposer  from '../Drafts/DraftComposer';
 import ScheduleMessageComposer from '../Scheduler/ScheduleMessageComposer';
 import People from '../People/People';
 import classnames from 'classnames';
@@ -129,7 +129,7 @@ export default class TabsSection extends React.Component {
           <TabPane tabId="4">
             <Row>
               <Col sm="12">
-                <DraftList activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
+                <DraftComposer activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
               </Col>
             </Row>
           </TabPane>
