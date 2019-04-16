@@ -6,6 +6,8 @@ import {
   Card,
   CardColumns,
   CardBody,
+  Row,
+  Col,
   // Button,
   // CardTitle,
   // CardText,
@@ -42,31 +44,33 @@ export default class TemplateList extends Component {
   render() {
     console.log("Template list this.state", this.state)
     return (
-      <div>
-      <CardColumns className="template-list" sm="6">
-        {this.state.reminders.map((reminder, index) => {
-           if (reminder.group_id === this.props.activeGroup) {
-          return (
-          <Card>
-            <CardBody key={reminder.id}> 
-              <TemplateCard 
-                id={reminder.id}
-                name={reminder.name}
-                description={reminder.description}
-                created_at={reminder.created_at}
-                group_id={reminder.group_id}
-                user_id={reminder.user_id}
-                scheduled={reminder.scheduled}
-                draft={reminder.draft}
-                template={reminder.template}
-              />
-            </CardBody>
-          </Card>
-          )}
-      })}
-      </CardColumns>
-      <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Add Group Message Template" />
-      </div>
+      <Row className="template-list"  >
+
+        {/* <Col className="template-list"  > */}
+          <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Add Group Message Template" />
+            {this.state.reminders.map((reminder, index) => {
+              if (reminder.group_id === this.props.activeGroup && reminder.template) {
+              return (
+              <Card className="templateCard">
+                <CardBody lg="12" key={reminder.id}> 
+                  <TemplateCard 
+                    id={reminder.id}
+                    name={reminder.name}
+                    description={reminder.description}
+                    created_at={reminder.created_at}
+                    group_id={reminder.group_id}
+                    user_id={reminder.user_id}
+                    scheduled={reminder.scheduled}
+                    draft={reminder.draft}
+                    template={reminder.template}
+                  />
+                </CardBody>
+            </Card>
+            )}
+        })}
+        {/* </Col> */}
+
+      </Row>
     )
   }
 

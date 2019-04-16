@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 import {
   Modal,
   ModalHeader,
@@ -15,6 +16,9 @@ import {
   FormGroup,
   Label,
   Input,
+  Row,
+  Collapse
+
 } from 'reactstrap';
 
 // '/api/reminders/:id'
@@ -36,6 +40,7 @@ class TemplateCard extends Component {
       message: '',
       reminder: '',
       deleteVisible: false,
+      collapse: false,
     };
     this.toggle = this.toggle.bind(this);
     this.toggleNested = this.toggleNested.bind(this);
@@ -138,40 +143,44 @@ class TemplateCard extends Component {
     // console.log("this.props", this.props)
     return (
       <div className="template-card">
-        {this.props.template ? (
-          <div className="if-undefined-make-invisible-or-hidden">
-        
-            <CardTitle>{this.props.name}</CardTitle>
-            <NavLink id="createLink" onClick={this.toggle} >
-              <i className="fas fa-pencil-alt" /> &nbsp; 
-            </NavLink>
-            <NavLink id="createLink" onClick={()=>this.deleteReminder(this.props.id)}>
-              <i className="fas fa-trash-alt" /> &nbsp;
-            </NavLink>
-            <Modal
-              isOpen={this.state.modal}
-              toggle={this.toggle}
-              className={this.props.className}
-              size="lg"
-            >
-            <ModalHeader toggle={this.toggle}>
+        <Row lg="12">
+          <CardTitle className="templateTopBar">
+
+            <FormGroup className="templateTopBarRow" row>
+            {this.props.name}
+              <NavLink tag={Link} id="editTemplate" onClick={this.toggle} >
+                <i className="fas fa-pencil-alt" /> &nbsp; 
+              </NavLink>
+              <NavLink id="deleteTemplate" onClick={()=>this.deleteReminder(this.props.id)}>
+                <i className="fas fa-trash-alt" /> &nbsp;
+              </NavLink>
+
+            </FormGroup>
+          </CardTitle>
+        </Row>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          className={this.props.className}
+          size="lg"
+        >
+          <ModalHeader toggle={this.toggle}>
             <h5>Edit the Template</h5>
           </ModalHeader>
           <ModalBody className="modalBody">
             <Form className="createGroup" >
               <FormGroup row>
                 <Label for="templateName">Edit Title</Label>
-                  <Col sm={10}>
-                    <Input
-                      onChange={this.handleInputChange}
-                      placeholder={this.props.name}
-                      value={this.state.reminders.name}
-                      name="name"
-                      id="templateName"
-                    />
-                  </Col>
+                <Col sm={10}>
+                  <Input
+                    onChange={this.handleInputChange}
+                    placeholder={this.props.name}
+                    value={this.state.reminders.name}
+                    name="name"
+                    id="templateName"
+                  />
+                </Col>
               </FormGroup>
-
               <FormGroup row>
                 <Label for="templateDescription">Edit Message</Label>
                 <Col sm={10}>
@@ -202,10 +211,8 @@ class TemplateCard extends Component {
                   </Input>
                 </Col>
               </FormGroup>
-
             </Form>
           </ModalBody>
-
           <ModalFooter>
             <Button color="primary" onClick={()=>this.editReminder(this.props.id)} >
               Edit
@@ -227,20 +234,19 @@ class TemplateCard extends Component {
             </Button>
           </ModalFooter>
         </Modal>
-            <div className="template-description">
-              <CardSubtitle>Message</CardSubtitle>
-              <CardText>{this.props.description}</CardText>
-            </div>
+          <div className="template-description">
+            <CardSubtitle>Message</CardSubtitle>
+            <CardText>{this.props.description}</CardText>
+          </div>
 
-            <CardText className="template-created">Date Created: {this.dateConverter(this.props.created_at)}</CardText>
-            <CardText className="template-created">Created By: {this.props.user_id}</CardText>
-            <FormGroup check>
-          <Label check>
-            <Input type="checkbox" onClick={this.toggleSchedule} />{' '}
-            Add to scheduler
-          </Label>
-        </FormGroup>
-        </div>): undefined}
+          <CardText className="template-created">Date Created: {this.dateConverter(this.props.created_at)}</CardText>
+          <CardText className="template-created">Created By: {this.props.user_id}</CardText>
+          <FormGroup check>
+            <Label check>
+              <Input type="checkbox" onClick={this.toggleSchedule} />{' '}
+              Add to scheduler
+            </Label>
+          </FormGroup>
       </div>
     )
   };

@@ -3,7 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, I
 
 import axios from 'axios';
 
-class MessageModal extends React.Component {
+class MessageModalGroup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -280,4 +280,4 @@ class MessageModal extends React.Component {
   }
 }
 
-export default MessageModal;
+export default MessageModalGroup;

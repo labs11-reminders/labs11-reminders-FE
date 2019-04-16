@@ -16,6 +16,7 @@ import {
   FormGroup,
   Label,
   Input,
+  Row,
 
 } from 'reactstrap';
 import moment from "moment";
@@ -178,50 +179,49 @@ fetchReminder = id => {
   render(){
     
   return (
-    <div className="scheduled-card">
+    <Card className="scheduled-card">
            
-     {this.props.scheduled ? ( //conditional rendering based on if scheduled is true or false*/}
-        <div>
-          <Card>
-          <CardTitle>{this.props.title}</CardTitle>
+     {/* {this.props.scheduled ? (  */}
+       {/* //conditional rendering based on if scheduled is true or false */}
+        {/* <div> */}
+      {/* <Card> */}
+        <CardTitle>{this.props.title}</CardTitle>
 
-      <div className="scheduled-description">
-        <CardSubtitle>Message</CardSubtitle>
-        <CardText>{this.props.message}</CardText>
-        <NavLink id="createLink" onClick={this.toggle} >
-              <i className="fas fa-pencil-alt" /> &nbsp; 
-        </NavLink>
-        <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message"/>  
-    
-        <div className="schedule-functions">
-        <CardText>Currently scheduled for: {this.dateConverter(this.props.date)}</CardText>
-        <DayPickerInput
-        onDayChange={this.onDatePicker}
-        formatDate={formatDate}
-        parseDate={parseDate}
-        placeholder={`${formatDate(new Date())}`}
-    />
-        <FormGroup check>
-          <Label check>
-            <Input type="checkbox" onClick={this.toggleApprove} />{' '}
-            Approved
-          </Label>
-        </FormGroup>
-
-        <FormGroup check>
-          <Label check>
-            <Input type="checkbox" onClick={this.onDelete} />{' '}
-            Delete
-          </Label>
-        </FormGroup>
+        <div className="scheduled-description">
+          <CardSubtitle>Message</CardSubtitle>
+          <CardText>{this.props.message}</CardText>
         </div>
+          <NavLink id="createLink" onClick={this.toggle} >
+              <i className="fas fa-pencil-alt" /> &nbsp; 
+          </NavLink>
+          <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message"/>  
+    
+          <div className="schedule-functions">
+            <CardText>Currently scheduled for &nbsp;{this.dateConverter(this.props.date)}</CardText>
+            <DayPickerInput className="calendar"
+              onDayChange={this.onDatePicker}
+              formatDate={formatDate}
+              parseDate={parseDate}
+              placeholder={`${formatDate(new Date())}`}
+            />
+            <FormGroup check inline>
+              <Label for="scheduleApproval" check>
+                <Input type="checkbox" id="scheduleApproval" onClick={this.toggleApprove} />{' '} Approved
+              </Label>  
+            </FormGroup>
+
+            <FormGroup check inline>
+              <Label check>
+                <Input type="checkbox" onClick={this.onDelete} />{' '} Delete
+              </Label>
+            </FormGroup>
           </div>
 
-          </Card>
-        </div>
-      ): undefined }
-
-    </div>
+      
+        {/* </div> */}
+      {/* ): undefined } */}
+    {/* </div> */}
+    </Card>
   );
 };
 }

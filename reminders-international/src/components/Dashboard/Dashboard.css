@@ -156,6 +156,8 @@ h6 {
 .template-description {
     border: 1px solid grey;
     position: relative;
+    margin-top: 10px;
+    padding: 6px;
 }
 
 .card-title {

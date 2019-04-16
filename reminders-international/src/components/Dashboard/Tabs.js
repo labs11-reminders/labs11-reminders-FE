@@ -120,9 +120,9 @@ export default class TabsSection extends React.Component {
           </TabPane>
           <TabPane tabId="3">
           <Row>
-               <Col sm="12">
-                <TemplateList activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
-              </Col>
+            <Col sm="12">
+              <TemplateList activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
+            </Col>
            </Row>
           </TabPane>
           <TabPane tabId="4">
