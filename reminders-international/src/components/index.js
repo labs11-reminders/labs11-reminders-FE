@@ -9,7 +9,8 @@ import TemplateList from './Templates/TemplateList';
 import People from './People/People';
 import SignUp from './SignUp/SignUp';
 import Scheduler from './Scheduler/ScheduleMessageComposer';
-import DraftList from './Drafts/DraftList'
+import DraftList from './Drafts/DraftList';
+import LandingPage from './LandingPage/LandingPage';
 
 export {
   Users,
@@ -23,5 +24,6 @@ export {
   NewGroupMessage,
   SignUp,
   Scheduler,
-  DraftList
+  DraftList,
+  LandingPage,
 };
