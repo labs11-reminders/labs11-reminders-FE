@@ -68,18 +68,17 @@ class PeopleTable extends Component {
     render() {
         
         return (
-            <Table>
-            <thead>
+            <div>
+            <Table className="table-hover">
+            <thead class="col-md table-primary">
               <tr>
                 
-                <th>Name</th>
-                <th>Country</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th></th>
+                <th class="w-25">Name</th>
+                <th class="w-25">Phone</th>
+                <th >Remove from Group</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="col-md">
 
                 {this.state.users.map(user => 
                    <RowElement key={user.id} value={user.id} user={user} group_id={this.props.activeGroup} show_delete={true} /> 
@@ -87,7 +86,7 @@ class PeopleTable extends Component {
                 
             </tbody>
             </Table>
-            
+            </div>
         )
     }
 }

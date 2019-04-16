@@ -1,0 +1,125 @@
+.scheduleMessageComposer {
+    border: 1px solid indigo;
+  }
+  
+  .scheduled-list {
+    border: 1px solid purple;
+  }
+  
+  .scheduled-list-card.card {
+    border: 1px solid red;
+  }
+  
+  .scheduled-list div.col-sm-12 div.card-body {
+    border: 1px solid orangered;
+  }
+  
+  .scheduled-card.card {
+    border: 1px solid orange;
+  }
+  
+  .scheduled-description {
+    border: 1px solid yellow;
+  }
+  
+  .card-title {
+    border: .1px solid yellowgreen;
+  }
+  
+  .card-subtitle {
+    border: .1px solid green;
+  }
+  
+  .schedule-functions {
+    border: 1px solid blue;
+  }
+  
+  .DayPickerInput {
+    border: 1px solid brown;
+  }
+
+
+
+/* .tabPaneRow {
+} */
+
+/* .templateCard.card {
+    border: 1px solid #3a9cd8;
+    width: 100%;
+    margin: 100;
+    padding: 0;
+} */
+
+/* .templateCard.card div.card-body {
+    width: 100%;
+    margin: 100;
+    padding: 0;
+} */
+
+
+/* .templateCardBody.card-body {
+    border: 1px solid purple;
+    background-color: #3a9cd8; 
+    background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654);
+    margin: 0;
+    width: 100%;
+    padding: 20px 0 20px 0;
+    padding: 0;
+    color: white;
+    -align: center;
+} */
+
+/* .template-list {
+    border: 1px solid orange;
+    justify-content: center;
+} */
+
+/* .templateListRow.row {
+    margin: 0;
+    padding: 0;
+    border: 2px solid green;
+} */
+
+/* .templateTopBar {
+    background-color: #3a9cd8;
+    background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654);
+    width: 100%;
+    padding: 20px 0 20px 0;
+    padding: 0;
+    color: white;
+    text-align: center;
+    border: 1px solid darkred;
+} */
+
+/* .templateTopBarRow {
+    display: block;
+    width: 100%;
+    
+    margin: 0;
+    padding: 10px 0px 10px 30px;
+    text-align: center;
+    border: 2px solid red;
+} */
+
+/* .templateTopBarRow.row {
+    width: 100%;
+    margin: 0;
+    margin: 15px 30px 15px 30px;
+    padding: 0;
+    border: .02px solid red;
+}
+
+.fa-pencil-alt {
+    /* display: block; */
+    /* text-align: right; */
+    /* float: right; */
+    /* position: absolute; */
+    /* right: 60px;
+    color: white */
+/* } */
+/* .fa-trash-alt {
+    display: block;
+    position: absolute;
+    right: 10px;
+    color: white
+}  */

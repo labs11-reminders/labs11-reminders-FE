@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import SearchBar from './SearchBar.js';
 import PeopleTable from './PeopleTable.js';
+import './People.css';
 
 class People extends Component {
   constructor(props) {
@@ -46,10 +47,15 @@ class People extends Component {
         console.log("**********")
         return (
             <div>
+                <hr></hr>
+                <hr></hr>
                 <SearchBar  activeGroup={this.props.activeGroup}/>
+                <hr></hr>
+                <hr></hr>
+                <h4 className="peopleHeader">Users currently in your group</h4>
                 {this.state.group_id ? (
                 <PeopleTable activeGroup={this.state.group_id}/>
-                ) : ( <span>No people to display.</span>)}
+                ) : ( <p className="peopleParagraph">Please choose a group on the sidebar to display the members of the group.</p>)}
 
             </div>
            

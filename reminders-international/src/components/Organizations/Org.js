@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router';
 import AddOrgForm from './AddOrgForm';
-import { Container, Form, FormGroup, Input, Button } from 'reactstrap';
+import { Container, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import axios from 'axios';
 import './Org.css';
 
@@ -48,23 +48,22 @@ class Org extends Component {
   render() {
     console.log("Org render this.state", this.state)
     return (
-      <div>
       <Container className="orgsContainer">
-      <h2>Welcome!</h2>
-      <h3>What's the name of your organization?</h3>
-      <Form className = "org-form">
+          <h3 className="orgsTopBar">What's the name of your organization?</h3>
+      <Form className="org-form">
         <FormGroup>
+          <Label for="orgName"></Label>
           <Input 
-            type="select" 
+            type="select"
             name="name" 
-            id="id" 
+            id="orgName" 
             value={this.state.orgs.name}
             onChange={this.onHandleChange}            
             >
-            <option></option>
+            <option>Select your organization</option>
             {
               this.state.orgs.map(org =>
-              <option key={org.id} value={org.id}  > 
+              <option  key={org.id} value={org.id}  > 
                 {org.name}</option>
               )
             } 
@@ -72,7 +71,7 @@ class Org extends Component {
           <Button className='orgBtn' onClick={this.handleNext}>Next</Button>
         </FormGroup>
 
-      </Form>
+      
       {this.props.role < 3 ? (
         <div>
                     
@@ -83,8 +82,8 @@ class Org extends Component {
         </>
       )
       }
+      </Form>
       </Container>
-      </div>
     );
   }
 }
