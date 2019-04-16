@@ -13,6 +13,7 @@ import {
   SignUp,
   Scheduler,
   DraftList,
+  LandingPage,
 } from './components';
 
 //import axios from 'axios';
@@ -98,10 +99,7 @@ class App extends Component {
           render={props => <NewGroupMessage {...props} />}
         />
 
-        <Route 
-          exact path="/people" 
-          render={props => <People {...props} />}
-        />
+        <Route exact path="/people" render={props => <People {...props} />} />
 
         <Route exact path="/select-role" component={Roles} />
 
@@ -116,6 +114,9 @@ class App extends Component {
             <SignUp {...props} auth={this.auth} history={this.props.history} />
           )}
         />
+
+        {/* LANDING PAGE - FOR VIEWING PURPOSE ONLY */}
+        <Route exact path="/landing" component={LandingPage} />
 
         {/* <Route exact path="/shedule-list" component={TemplateList} /> */}
       </div>
