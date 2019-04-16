@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 import SchedMessageModal from '../Scheduler/SchedMessageModal'
 import {
   Modal,
@@ -16,6 +17,9 @@ import {
   FormGroup,
   Label,
   Input,
+  Row,
+  Collapse
+
 } from 'reactstrap';
 
 // '/api/reminders/:id'
@@ -149,6 +153,18 @@ componentDidMount() {
       })
   }
 
+  dateConverter = date => {
+    if (!date) {return `TBD`}
+    date = date.split(/\W+/);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+    let yr = date[0];
+    let month = months[date[1]/1 - 1];
+    let day = date[2];
+    let hr = date[3];
+    let min = date[4];
+    return `${month} ${day}, ${yr} ${hr}:${min}`
+  }
+
 
   
 
@@ -157,7 +173,6 @@ componentDidMount() {
     console.log("this.props PROFILE",this.userProfile)
     return (
       <div className="template-card">
-        {this.props.template ? (
           <div className="if-undefined-make-invisible-or-hidden">
             <CardTitle>{this.props.title}</CardTitle>
             <NavLink id="createLink" onClick={this.toggle} >
@@ -171,7 +186,7 @@ componentDidMount() {
             <div className="template-description">
             <CardText>{this.props.message}</CardText>
             </div>
-            <CardText className="template-created">Date Created: {this.props.created_at}</CardText>
+            <CardText className="template-created">Date Created: {this.dateConverter(this.props.created_at)}</CardText>
             <CardText className="template-created">Created By: {this.props.user_id}</CardText>
      
 
@@ -189,7 +204,6 @@ componentDidMount() {
           </Label>
         </FormGroup>
         </div>
-        ): undefined}
       </div>
     );
   };
@@ -248,17 +262,16 @@ export default TemplateCard;
             <Form className="createGroup" >
               <FormGroup row>
                 <Label for="templateName">Edit Title</Label>
-                  <Col sm={10}>
-                    <Input
-                      onChange={this.handleInputChange}
-                      placeholder={this.props.name}
-                      value={this.state.reminders.name}
-                      name="name"
-                      id="templateName"
-                    />
-                  </Col>
+                <Col sm={10}>
+                  <Input
+                    onChange={this.handleInputChange}
+                    placeholder={this.props.name}
+                    value={this.state.reminders.name}
+                    name="name"
+                    id="templateName"
+                  />
+                </Col>
               </FormGroup>
-
               <FormGroup row>
                 <Label for="templateDescription">Edit Message</Label>
                 <Col sm={10}>
@@ -289,10 +302,8 @@ export default TemplateCard;
                   </Input>
                 </Col>
               </FormGroup>
-
             </Form>
           </ModalBody>
-
           <ModalFooter>
             <Button color="primary" onClick={()=>this.editReminder(this.props.id)} >
               Edit

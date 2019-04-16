@@ -16,6 +16,7 @@ import {
   FormGroup,
   Label,
   Input,
+  Row,
 
 } from 'reactstrap';
 import moment from "moment";
@@ -82,6 +83,18 @@ fetchReminder = id => {
     console.log(this)
     const id = this.props.id
     this.fetchReminder(id);
+  }
+
+  dateConverter = date => {
+    if (!date) {return `TBD`}
+    date = date.split(/\W+/);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+    let yr = date[0];
+    let month = months[date[1]/1 - 1];
+    let day = date[2];
+    let hr = date[3];
+    let min = date[4];
+    return `${month} ${day}, ${yr} ${hr}:${min}`
   }
 
   getProfile = (cb) => {
@@ -179,49 +192,50 @@ fetchReminder = id => {
   render(){
     
   return (
-    <div className="template-card">      
-     {this.props.scheduled ? ( //conditional rendering based on if scheduled is true or false*/}
-        <div className="if-undefined-make-invisible-or-hidden">
-            <CardTitle>{this.props.title}</CardTitle>
-      <div className="scheduled-description">
-        <CardText>{this.props.message}</CardText>
-        <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message"/>  
-        <CardText className="template-created">Created By: {this.props.user_id}</CardText>
+    <Card className="scheduled-card">
+    {/* <div className="template-card"> */}
+     {/* {this.props.scheduled ? (  */}
+       {/* //conditional rendering based on if scheduled is true or false */}
+        {/* <div> */}
+      {/* <Card> */}
+        <CardTitle>{this.props.title}</CardTitle>
+
+        <div className="scheduled-description">
+          <CardSubtitle>Message</CardSubtitle>
+          <CardText>{this.props.message}</CardText>
+        </div>
+          {/* <NavLink id="createLink" onClick={this.toggle} >
+              <i className="fas fa-pencil-alt" /> &nbsp; 
+          </NavLink> */}
+          <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message"/>  
+          <CardText className="template-created">Created By: {this.props.user_id}</CardText>
           <div className="schedule-functions">
-        <CardText>Currently scheduled for {this.props.date}</CardText>
-        <DayPickerInput
-        onDayChange={this.onDatePicker}
-        formatDate={formatDate}
-        parseDate={parseDate}
-        placeholder={`${formatDate(new Date())}`}
-    />
-        <FormGroup check>
-          <Label check>
-            <Input type="checkbox" onClick={this.toggleApprove} />{' '}
-            Approved
-          </Label>
-        </FormGroup>
-
-        <FormGroup check>
-          <Label check>
-            <Input type="checkbox" onClick={this.onDelete} />{' '}
-            Delete
-          </Label>
-        </FormGroup>
-
-        <FormGroup check>
+            <CardText>Currently scheduled for &nbsp;{this.dateConverter(this.props.date)}</CardText>
+            <DayPickerInput className="calendar"
+              onDayChange={this.onDatePicker}
+              formatDate={formatDate}
+              parseDate={parseDate}
+              placeholder={`${formatDate(new Date())}`}/>
+            <FormGroup check inline>
+              <Label for="scheduleApproval" check>
+                <Input type="checkbox" id="scheduleApproval" onClick={this.toggleApprove} />{' '} Approved
+              </Label>  
+            </FormGroup>
+            <FormGroup check inline>
+              <Label check>
+                <Input type="checkbox" onClick={this.onDelete} />{' '} Delete
+              </Label>
+            </FormGroup>
+            <FormGroup check inline>
           <Label check>
             <Input type="checkbox" onClick={this.onTemplate} />{' '}
             Template
           </Label>
         </FormGroup>
-        </div>
           </div>
-
-        </div>
-      ): undefined }
-
-    </div>
+        {/* </div> */}{/* ): undefined } */}
+    {/* </div> */}
+    </Card>
   );
 };
 }
