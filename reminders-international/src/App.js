@@ -116,7 +116,7 @@ class App extends Component {
         />
 
         {/* LANDING PAGE - FOR VIEWING PURPOSE ONLY */}
-        <Route exact path="/landing" component={LandingPage} />
+        <Route exact path="/" component={LandingPage} />
 
         {/* <Route exact path="/shedule-list" component={TemplateList} /> */}
       </div>

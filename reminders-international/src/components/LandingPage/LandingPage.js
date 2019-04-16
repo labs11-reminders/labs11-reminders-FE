@@ -137,8 +137,18 @@ class LandingPage extends Component {
           </div>
         </section>
         <section className="footer">
-          <div className="footerSocial">social cards</div>
-          <p>&copy; Reminders Internaltional - All Rights Reserved</p>
+          <div className="footerSocial">
+            <a href="https://www.facebook.com" target="_blank">
+              <i class="fab fa-facebook-square fa-3x" />{' '}
+            </a>
+            <a href="https://www.linkedin.com" target="_blank">
+              <i href="#" class="fab fa-linkedin  fa-3x" />
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+              <i href="#" class="fab fa-twitter-square fa-3x" />
+            </a>
+          </div>
+          <p>&copy; Reminders International - All Rights Reserved</p>
         </section>
       </div>
     );

@@ -5,7 +5,8 @@
 
 .landingContainer h2 {
     border: 1px solid red;
-    padding: 2% 0 0 0
+    padding: 2% 0 0 0;
+    color: black;
 }
 
 .topSection {
@@ -41,31 +42,61 @@
     border: 1px solid red;
     display: flex;
     flex-direction: row;
-    padding: 0% 10%; 
-
-
+    justify-content: space-between;
+    padding: 1% 10%; 
+    background: rgba(0, 0, 0, 0.95);  
 }
 
 .focus {
+}
 
+.focus h3 {
+    color: white;
 }
 
 .focus img {
     width: 15vw;
     border-radius: 100%;
     box-shadow: 1px 1px 5px black;
+
+}
+
+.focus p {
+    padding: 0 5%;
+    color: white; 
 }
 
 .mission {
-    padding: 0% 10%;
+    padding: 0% 10% 2% 10%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
+@media (max-width: 768px) {
+    .aboutUs {
+        border: 1px solid red;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0% 0%; 
+        background: rgba(0, 0, 0, 0.95);  
+    }
+
+    .focus h3 {
+        font-size: 1.2rem;
+        color: white;
+    }
+    .focus p {
+        padding: 0 5%;
+        color: white;
+        overflow: hidden;
+    }
+
+}
+
 .ourMission {
     position: relative;
-    border: 1px solid red;
 }
 
 .ourMission img {
@@ -116,11 +147,45 @@
 
 .footer {
     border: 1px solid red;
+    background: rgba(0, 0, 0, 0.95);
+    color: white;
 
 }
 
 .footerSocial {
     height: 20vh;
     border: 1px solid blue;
+    background: rgb(29, 29, 29);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.footerSocial a {
+    margin: 0 1%;
+}
+
+.fa-facebook-square {
+    color: grey
+}
+
+.fa-linkedin {
+    color: grey
+}
+
+.fa-twitter-square {
+    color: grey
+}
+
+.fa-facebook-square:hover {
+    color: #0069da
+}
+
+.fa-linkedin:hover {
+    color: #004a99
+}
+
+.fa-twitter-square:hover {
+    color: #3194ff
 }
