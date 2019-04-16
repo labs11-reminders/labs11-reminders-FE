@@ -1,0 +1,27 @@
+.landingContainer {
+    border: 1px solid red;
+
+}
+
+.topSection {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+}
+
+.leftSection {
+
+}
+
+.rightSection {
+
+}
+
+.aboutUs {
+
+}
+
+.focus {
+
+}
+
