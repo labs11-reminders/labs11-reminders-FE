@@ -81,6 +81,19 @@ fetchReminder = id => {
     const id = this.props.id
     this.fetchReminder(id);
   }
+
+  dateConverter = date => {
+    if (!date) {return `TBD`}
+    date = date.split(/\W+/);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+    let yr = date[0];
+    let month = months[date[1]/1 - 1];
+    let day = date[2];
+    let hr = date[3];
+    let min = date[4];
+    return `${month} ${day}, ${yr} ${hr}:${min}`
+  }
+
   getProfile = (cb) => {
     this.auth0.client.userInfo(this.accessToken, (err, profile) => {
       if (profile) {
@@ -181,7 +194,7 @@ fetchReminder = id => {
         <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message"/>  
     
         <div className="schedule-functions">
-        <CardText>Currently scheduled for {this.props.date}</CardText>
+        <CardText>Currently scheduled for: {this.dateConverter(this.props.date)}</CardText>
         <DayPickerInput
         onDayChange={this.onDatePicker}
         formatDate={formatDate}

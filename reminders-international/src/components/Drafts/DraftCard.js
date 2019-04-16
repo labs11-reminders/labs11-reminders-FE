@@ -115,6 +115,18 @@ class DraftCard extends Component {
     this.setState({ reminders: { ...this.state.reminders, [name]: value } });
   };
 
+  dateConverter = date => {
+    if (!date) {return `TBD`}
+    date = date.split(/\W+/);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+    let yr = date[0];
+    let month = months[date[1]/1 - 1];
+    let day = date[2];
+    let hr = date[3];
+    let min = date[4];
+    return `${month} ${day}, ${yr} ${hr}:${min}`
+  }
+
   componentDidMount(){
     this.getReminders();
     this.getAllGroups();
@@ -218,7 +230,7 @@ class DraftCard extends Component {
               <CardText>{this.props.description}</CardText>
             </div>
 
-            <CardText className="draft-created">Date Created: {this.props.created_at}</CardText>
+            <CardText className="draft-created">Date Created: {this.dateConverter(this.props.created_at)}</CardText>
             <CardText className="draft-created">Created By: {this.props.user_id}</CardText>
             <FormGroup check>
           <Label check>
