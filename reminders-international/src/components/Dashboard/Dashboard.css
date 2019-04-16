@@ -103,17 +103,18 @@ h6 {
 
 .groupData {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     
 }
 .groupData #grpImage {
-    border: 1px  solid black;
+    border: 1px  solid #616568;
     border-radius: 100%;
-    width: 125px;
-    height: 125px;
+    width: 115px;
+    height: 115px;
     
-    background-color:  #F2F3F5;
+    background-color:  #ffffff;
     font-size: 1.5rem;
     font-weight: 600;
 }
@@ -122,6 +123,8 @@ h6 {
     display: flex;
     flex-direction: column;
     line-height: 1;
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 
 .tabSection {
