@@ -18,7 +18,7 @@ class ScheduleMessageComposer extends Component {
       axios.get(`${process.env.REACT_APP_BACKEND}/api/reminders/`, this.state.group_reminders)
           .then(res => { 
             this.setState({
-              reminders: res.data
+              group_reminders: res.data
             });})
           .catch(err => {
             console.log(err);
@@ -36,10 +36,11 @@ class ScheduleMessageComposer extends Component {
         // console.log("ACTIVE ID - COMPOSER - render", this.props.activeGroup)
         return (
           <Container className="scheduleMessageComposer"> 
-            {/* <h3>ScheduledMessageComposer</h3> */}
+            <h3>ScheduledMessageComposer</h3>
             <ScheduledMessageList 
               activeGroup={this.props.activeGroup} 
-              reminders={this.state.reminders}/>
+              {/* reminders={this.state.reminders} */}
+              group_reminders={this.state.group_reminders}/>
             {/* <div> */}
               <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Schedule Group Message" />  
             {/* </div> */}

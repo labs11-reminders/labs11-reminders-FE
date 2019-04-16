@@ -38,8 +38,8 @@ class RowElement extends Component {
         return (
             <tr>                        
                 <td>{this.props.user.name}</td>
-                <td>{this.props.user.country}</td>
-                <td>{this.props.user.email}</td>
+                {/* <td>{this.props.user.country}</td>
+                <td>{this.props.user.email}</td> */}
                 <td>{this.props.user.phone}</td>
                 <td>
                 {

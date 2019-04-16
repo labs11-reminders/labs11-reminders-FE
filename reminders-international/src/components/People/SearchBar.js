@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import SearchTable from './SearchTable';
+import './People.css';
 
 class SearchBar extends Component {
     constructor(props) {
@@ -65,17 +66,27 @@ class SearchBar extends Component {
     render() {
         return (
      
-        //can't be changed to a reactstrap styled component because it messes with the querying functionality  -Rachel
-        <form className="UserSearch"> 
+        //can't be changed to a reactstrap styled component currently because it messes with the querying functionality  -Rachel
+        <div>
+        <div className="form-group w-50">
+        <form className="searchBar">
           <input
-            placeholder="Search for user..."
+            placeholder="Search for a user to add them to your selected group above."
             ref={input => this.search = input}
             onChange={this.handleChanges}
+            className="form-control form-control-sm"
           />
           
+          
+        </form></div>
+        <>
+        {this.state.query < 2 ? (
+          null
+        ) : (
           <SearchTable users={this.state.users} group_id={this.props.activeGroup} />
-        </form>
-        
+        )}
+        </>
+        </div>
         );
     }
 }
