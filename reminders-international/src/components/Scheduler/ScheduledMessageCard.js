@@ -27,14 +27,16 @@ class ScheduledMessageCard extends Component{
     super(props);
     this.state = {
       message: {
-        id: null,
+        id: '',
         title: '', 
         to: '',
         body: '',
         approved: false, 
         date: '',
         scheduled: true,
-        group_id: null
+        template: false,
+        sent: false, 
+        group_id: ''
       },
     submitting: false,
     error: false
@@ -58,15 +60,15 @@ fetchReminder = id => {
   axios
     .get(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
     .then(response => {
-      // console.log(response.data)
-      this.setState(() => ({ message:{
+        this.setState(() => ({ message:{
         title: response.data.name,
         to: response.data.phone_send,
         body: response.data.description,
         approved: response.data.approved, 
         date: response.data.scheduled_date,
         scheduled: response.data.scheduled,
-
+        template: response.data.template,
+        sent: response.data.sent,
         id:response.data.id
         }}));
   
@@ -81,18 +83,18 @@ fetchReminder = id => {
     const id = this.props.id
     this.fetchReminder(id);
   }
+
   getProfile = (cb) => {
     this.auth0.client.userInfo(this.accessToken, (err, profile) => {
       if (profile) {
         this.userProfile = profile;
-        // TODO Remove once the user table is linked to Auth0
         this.userProfile.user_id = 1;
       }
       cb(err, profile);
     });
   }
 
-  handleChange = () => { // BLOCKER - Called in onDatePicker() and toggleApproved()
+  handleChange = () => { 
     const id = this.props.id
     const editObj ={approved:this.state.message.approved, scheduled_date: this.state.message.date};
     axios
@@ -103,6 +105,7 @@ fetchReminder = id => {
       })
       .catch(error => console.log(error))
     }
+
   toggleApprove(event) {
     const id = this.props.id
     const editObj ={approved:event.target.checked};
@@ -115,8 +118,19 @@ fetchReminder = id => {
       .catch(error => console.log(error))
     }
 
-  onDatePicker = (event) => {  //need to have card state re-render properly 
-    
+  onTemplate= (event) => { 
+    const id = this.props.id
+    const editObj ={template:event.target.checked};
+    axios
+      .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
+      .then(response => {
+        console.log("PUT RESPONSE:", response.data)
+        this.setState({ message: response.data})
+      })
+      .catch(error => console.log(error))
+    }
+
+  onDatePicker = (event) => {  
     const new_date = event
     const date_format = moment(new_date).format('YYYY-MM-DD HH:mm:ss')
     const id = this.props.id
@@ -145,7 +159,7 @@ fetchReminder = id => {
       .catch(error => console.log(error))
   }
 
-  onDelete = (event) => {  //need to work on card rendering 
+  onDelete = (event) => { 
     const id = this.props.id
     console.log("ID", id)
     if (event.target.checked) {
@@ -199,6 +213,13 @@ fetchReminder = id => {
           <Label check>
             <Input type="checkbox" onClick={this.onDelete} />{' '}
             Delete
+          </Label>
+        </FormGroup>
+
+        <FormGroup check>
+          <Label check>
+            <Input type="checkbox" onClick={this.onTemplate} />{' '}
+            Template
           </Label>
         </FormGroup>
         </div>
