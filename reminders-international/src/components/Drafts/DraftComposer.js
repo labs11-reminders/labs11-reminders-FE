@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
-import ScheduledMessageList from './ScheduledMessageList';
+import DraftList from './DraftList';
 import MessageModalGroup from '../MessageModal/MessageModalGroup';
 import axios from 'axios';
 
-class ScheduleMessageComposer extends Component {
+class DraftComposer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,7 +17,7 @@ class ScheduleMessageComposer extends Component {
       axios.get(`${process.env.REACT_APP_BACKEND}/api/reminders/`, this.state.group_reminders)
           .then(res => { 
             this.setState({
-              group_reminders: res.data
+              reminders: res.data
             });})
           .catch(err => {
             console.log(err);
@@ -26,24 +26,22 @@ class ScheduleMessageComposer extends Component {
    
       componentWillReceiveProps() {
         this.getReminders();
-        console.log("ACTIVE ID - COMPOSER- will recieve", this.props.activeGroup)
-      }
+    }
 
       
       render() {
         // console.log("RENDERING SCHEDULED MESSAGE LIST ", this.state.reminders)
-        // console.log("ACTIVE ID - COMPOSER - render", this.props.activeGroup)
+        //console.log("REMINDERS render", this.props.activeGroup, this.state.reminders)
         return (
           <div> 
-           <h3>ScheduledMessageComposer</h3>
-            <ScheduledMessageList activeGroup={this.props.activeGroup} group_reminders={this.state.group_reminders}/>
+           <h3>DraftComposer</h3>
+            <DraftList activeGroup={this.props.activeGroup} reminders={this.state.reminders}/>
             <div>
-            <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Schedule Group Message" />  
+            <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Write Group Draft Message" />
               </div>
           </div>
         );
   };
 }
-export default ScheduleMessageComposer;
-
+export default DraftComposer;
 
