@@ -166,6 +166,7 @@ class Sidebar extends Component {
           </div>
         </section>
         <section className="orgSection cube">
+        
           <h6>YOUR ORGANIZATION</h6>
 
           {/*<p> NEED ORG NAME FOR THIS USER </p> */}
@@ -178,10 +179,10 @@ class Sidebar extends Component {
         </section>
 
         <section className="groupsSection cube">
+        
           <h6>YOUR GROUP(s)</h6>
-          <NavLink id="createLink" onClick={this.toggle}>
-            <i className="fas fa-plus-circle" /> &nbsp; Create Group
-          </NavLink>
+          
+         
           {/*<p> NEED GROUP NAME FOR THIS USER </p> */}
 
           {/* TODO TEAM: Need another if for group id LINK */}
@@ -204,6 +205,10 @@ class Sidebar extends Component {
               );
             }
           })}
+          
+          <NavLink id="createLink" onClick={this.toggle}>
+            <i className="fas fa-plus-circle" /> &nbsp; Create Group
+          </NavLink>
         </section>
         {/* <section className="convSection cube">
           <h6>SCHEDULED MESSAGES</h6>
@@ -223,11 +228,12 @@ class Sidebar extends Component {
             );
           })}
         </section> */}
-
-        <Card>
-          <CardTitle>CONVERSATION</CardTitle>
-          <MessageModalInd buttonLabel="Message Individual" />
-        </Card>
+        <section className="convSection cube">
+        
+          <h6>CONVERSATION</h6>
+          {/* <MessageModalInd buttonLabel="Message Individual" /> */}
+        <SideTemplateCard className="convo"/>
+        </section>
 
 
         <Modal
