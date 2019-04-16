@@ -19,8 +19,8 @@ export default class ScheduledMessageList extends Component {
       return(
       <div className="scheduled-list">
       ScheduledMessageList
-      <CardColumns sm="6">
-          {this.props.reminders.map(group_reminder => { 
+      <CardColumns className="template-list" sm="6">
+          {this.props.group_reminders.map(group_reminder => { 
             if (group_reminder.group_id === this.props.activeGroup) {
               /* console.log("RENDERING SCHEDULED CARD ", group_reminder) */
             return (
@@ -39,7 +39,7 @@ export default class ScheduledMessageList extends Component {
                 user_id={group_reminder.user_id}
                 scheduled={group_reminder.scheduled}
                 sent = {group_reminder.sent}
-              >ScheduledMessageCard</ScheduledMessageCard>
+              />
               </CardBody>
               </Card>
             )}

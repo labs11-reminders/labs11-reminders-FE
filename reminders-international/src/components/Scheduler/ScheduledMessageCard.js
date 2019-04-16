@@ -179,22 +179,15 @@ fetchReminder = id => {
   render(){
     
   return (
-    <div className="scheduled-card">
-           
+    <div className="template-card">      
      {this.props.scheduled ? ( //conditional rendering based on if scheduled is true or false*/}
-        <div>
-          <Card>
-          <CardTitle>{this.props.title}</CardTitle>
-
+        <div className="if-undefined-make-invisible-or-hidden">
+            <CardTitle>{this.props.title}</CardTitle>
       <div className="scheduled-description">
-        <CardSubtitle>Message</CardSubtitle>
         <CardText>{this.props.message}</CardText>
-        <NavLink id="createLink" onClick={this.toggle} >
-              <i className="fas fa-pencil-alt" /> &nbsp; 
-        </NavLink>
         <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message"/>  
-    
-        <div className="schedule-functions">
+        <CardText className="template-created">Created By: {this.props.user_id}</CardText>
+          <div className="schedule-functions">
         <CardText>Currently scheduled for {this.props.date}</CardText>
         <DayPickerInput
         onDayChange={this.onDatePicker}
@@ -225,7 +218,6 @@ fetchReminder = id => {
         </div>
           </div>
 
-          </Card>
         </div>
       ): undefined }
 

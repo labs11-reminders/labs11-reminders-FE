@@ -9,7 +9,7 @@ import {
   Col,
 } from 'reactstrap';
 import NewGroupMessage from '../NewGroupMessage/NewGroupMessage';
-import TemplateList  from '../Templates/TemplateList';
+import TemplateComposer  from '../Templates/TemplateComposer';
 import DraftList  from '../Drafts/DraftList';
 import ScheduleMessageComposer from '../Scheduler/ScheduleMessageComposer';
 import People from '../People/People';
@@ -109,19 +109,20 @@ export default class TabsSection extends React.Component {
                 <NewGroupMessage activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
               </Col>
             </Row>
-          
           </TabPane>
+
           <TabPane tabId="2">
           <Row>
-               <Col sm="12">
-            <ScheduleMessageComposer activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
-            </Col>
+              <Col sm="12">
+              <ScheduleMessageComposer activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
+              </Col>
            </Row>
           </TabPane>
+
           <TabPane tabId="3">
           <Row>
                <Col sm="12">
-                <TemplateList activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
+                <TemplateComposer activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
               </Col>
            </Row>
           </TabPane>
