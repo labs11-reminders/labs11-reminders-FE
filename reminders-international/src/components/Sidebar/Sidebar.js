@@ -223,10 +223,12 @@ class Sidebar extends Component {
             );
           })}
         </section> */}
+
         <Card>
           <CardTitle>CONVERSATION</CardTitle>
           <MessageModalInd buttonLabel="Message Individual" />
         </Card>
+
 
         <Modal
           isOpen={this.state.modal}
