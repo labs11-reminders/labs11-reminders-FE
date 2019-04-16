@@ -205,7 +205,7 @@ class Sidebar extends Component {
             }
           })}
         </section>
-        <section className="convSection cube">
+        {/* <section className="convSection cube">
           <h6>SCHEDULED MESSAGES</h6>
           {this.state.reminders.map(reminder => {
             return (
@@ -222,11 +222,13 @@ class Sidebar extends Component {
               />
             );
           })}
-        </section>
+        </section> */}
+
         <Card>
           <CardTitle>CONVERSATION</CardTitle>
           <MessageModalInd buttonLabel="Message Individual" />
         </Card>
+
 
         <Modal
           isOpen={this.state.modal}
