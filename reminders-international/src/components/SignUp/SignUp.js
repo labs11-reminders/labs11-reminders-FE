@@ -63,7 +63,7 @@ class SignUp extends Component {
         console.log("SignUp.js render this.state", this.state)
         return (
             <div>
-                <p>You are on step {this.state.step} of account creation.</p>
+            {/*    <p>You are on step {this.state.step} of account creation.</p>*/}
                 
                 {
                     this.state.step === 1 && (
