@@ -1,50 +1,87 @@
 .landingContainer {
-    border: 1px solid red;
-
+    background-image: url('./backgroundfixed.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .landingContainer h2 {
-    border: 1px solid red;
     padding: 2% 0 0 0;
     color: black;
 }
 
+.sectionWrapper {
+    background-color: rgba(255, 255, 255, 0.89);
+}
+
 .topSection {
-    border: 1px solid red;
     display: flex;
     flex-direction: row;
     padding: 0% 10%;
 }
 
 .leftSection {
-    border: 1px solid red;
     margin: 2%
 }
 
+.leftSection Button {
+    display: flex;
+    justify-content: flex-start;
+}
+
 .leftSection p {
-    border: 1px solid red;
     font-size: 1.3em;
     margin-top: 7%;
     text-align: start
 }
 
 .rightSection {
-    border: 1px solid red;
     margin: 2%;
 }
 
 .rightSection img {
-    border: 1px solid red;
     width: 30vw
 }
 
+@media (max-width: 768px) {
+    .topSection {
+       display: flex;
+       flex-direction: column-reverse;
+       justify-content: center;
+       padding: 0;
+    }
+    .rightSection img {
+        width: 100%;
+    }
+    .leftSection {
+        margin: 0 auto;
+    }
+    .leftSection p {
+        font-size: 1.1em;
+        margin-top: 0%;
+        text-align: justify;
+        width: 80vw
+    }
+}
+
 .aboutUs {
-    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0% 10%; 
+    background: rgba(0, 0, 0, 0.95);  
+}
+
+.aboutUs h2 {
+    color: white;
+    padding: 2% 0%; 
+
+}
+
+.focusWrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 1% 10%; 
-    background: rgba(0, 0, 0, 0.95);  
 }
 
 .focus {
@@ -58,12 +95,15 @@
     width: 15vw;
     border-radius: 100%;
     box-shadow: 1px 1px 5px black;
-
 }
 
 .focus p {
     padding: 0 5%;
     color: white; 
+}
+
+.missionWrapper {
+    background: white;
 }
 
 .mission {
@@ -75,22 +115,49 @@
 
 @media (max-width: 768px) {
     .aboutUs {
-        border: 1px solid red;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
         padding: 0% 0%; 
         background: rgba(0, 0, 0, 0.95);  
     }
 
+    .focusWrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .focus {
+        margin: 0 auto;
+    }
+
+    .aboutUs h2 {
+        color: white;
+        padding: 2% 0%;
+    }
+
+    .focus img {
+        width: 35vw;
+        border-radius: 100%;
+        box-shadow: 1px 1px 5px black;
+    }
+
     .focus h3 {
         font-size: 1.2rem;
         color: white;
+        margin-top: 2%;
     }
+
     .focus p {
         padding: 0 5%;
         color: white;
+        height: 50px;
         overflow: hidden;
+        width: 80vw;
+
+    }
+    .quoteSlider {
+        display: none;
     }
 
 }
@@ -133,6 +200,38 @@
     text-align: center;
 }
 
+@media (max-width: 768px) {
+    .mission {
+        padding: 0% 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .ourMission img {
+        width: 35vw;
+    }
+    .ourMission {
+        position: unset;
+        border-bottom: 1px solid grey;
+        padding: 5% 0;
+    }
+    .text {
+        color: black;
+        font-size: 1.7rem;
+        font-weight: 600;
+        opacity: 1;
+        padding-bottom: 5%;
+        position: unset;
+        -webkit-transform: translate(0%, 0%);
+        -ms-transform: translate(0%, 0%);
+        transform: translate(0%, 0%);
+        text-align: center;
+    }
+    .overlay {
+        display: none;
+    }
+}
+
 .ourMission:hover .overlay {
     opacity: 0.7;
 }
@@ -146,15 +245,13 @@
 }
 
 .footer {
-    border: 1px solid red;
     background: rgba(0, 0, 0, 0.95);
     color: white;
-
 }
+
 
 .footerSocial {
     height: 20vh;
-    border: 1px solid blue;
     background: rgb(29, 29, 29);
     color: white;
     display: flex;
