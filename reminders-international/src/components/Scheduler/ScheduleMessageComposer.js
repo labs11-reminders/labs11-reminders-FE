@@ -34,7 +34,7 @@ class ScheduleMessageComposer extends Component {
       render() {
         return (
           <div className="scheduleMessageComposer"> 
-            <h3>ScheduledMessageComposer</h3>
+            {/* <h3>ScheduledMessageComposer</h3> */}
             <ScheduledMessageList 
               activeGroup={this.props.activeGroup} 
               group_reminders={this.state.group_reminders}/>
