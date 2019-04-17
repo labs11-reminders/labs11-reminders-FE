@@ -17,14 +17,17 @@
     width: 15%;
     position: fixed;
     left: 0;
-    bottom: 15%;
+    top: 6.15%;
     z-index: 9;
     /* background-color:  #F2F3F5; */
 }
 
+
+
 @media (max-width: 700px) {
     .sidebar {
         width: 100%;
+        position: relative;
     }
 }
 
@@ -38,6 +41,7 @@
 @media (max-width: 700px) {
     .content {
         width: 100%;
+        margin-left: 0%;
     }
 }
 
@@ -161,7 +165,7 @@ h6 {
 }
 
 .side-template-card-active {
-    color: #0069da;
+    color: #139CD8;
     /* background-color: #0069da; */
     padding: 1%;
     text-align: left; 
@@ -210,6 +214,10 @@ h6 {
         margin-left: 0%;
         align-content: center;
     }
+}
+
+#createLink {
+    color: #139CD8;
 }
 
 /*************** Dashboard - main content ************************/
