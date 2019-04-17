@@ -250,7 +250,25 @@ h6 {
 
 #tabNav {
     padding: 0 10px;
-    cursor: pointer
+    cursor: pointer;
+}
+
+a.active.nav-link {
+    background-color: #3a9cd8;
+    background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654);
+    color: white !important; 
+    /* border: 1px solid #3a9cd8 !important; */
+}
+
+ul.nav.nav-tabs {
+    border-bottom: 1px solid #3a9cd8;
+}
+
+div.tab-content {
+    background-color: #F8F8F8;
+    border-left: 1px solid #3a9cd8;
+    border-right: 1px solid #3a9cd8;
+    border-bottom: 1px solid #3a9cd8;
 }
 
 .card {
@@ -268,7 +286,7 @@ h6 {
 }
 
 .template-list {
-    background-color: gainsboro;
+    /* background-color: gainsboro; */
 }
 
 .template-description {
@@ -285,16 +303,12 @@ h6 {
 
 .card-subtitle {
     font-size: 1rem;
-    z-index: 10px;
-    position: absolute;
-    top: -11px;
-    left: 20px;
-    background-color: white;
 }
 
 
 .card-text {
-    position: relative;
+    font-size: 1rem;
+    /* position: relative; */
 }
 
 #createLink {
