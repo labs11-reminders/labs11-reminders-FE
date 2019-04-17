@@ -13,7 +13,9 @@ import {
   FormGroup,
   Col,
   Card,
-  CardTitle
+  CardTitle,
+  CardBody,
+  Collapse,
 } from 'reactstrap';
 
 import axios from 'axios';
@@ -28,6 +30,7 @@ class Sidebar extends Component {
     this.state = {
       modal: false,
       nestedModal: false,
+      collapse: false,
       orgs: [],
       newGroup: { name: '', org_id: null },
       reminders: [],
@@ -38,6 +41,7 @@ class Sidebar extends Component {
     this.toggle = this.toggle.bind(this);
     this.toggleNested = this.toggleNested.bind(this);
     this.toggleMessage = this.toggleMessage.bind(this);
+    this.toggleMobileGroups = this.toggleMobileGroups.bind(this);
   }
 
   getProfile = cb => {
@@ -70,6 +74,11 @@ class Sidebar extends Component {
       messageModal: !prevState.messageModal,
     }));
   }
+
+  toggleMobileGroups() {
+    this.setState(state => ({ collapse: !state.collapse }));
+  }
+
 
   getAllOrgs = () => {
     axios
@@ -256,23 +265,62 @@ class Sidebar extends Component {
 
 
         {/* ******* This is styling for the mobile group selection portion ******* */}
-          <div class="accordion" id="accordionGroups">
-            <div class="card">
-              <div class="card-header" id="headingOne">
-                <h2 class="mb-0">
-                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    YOUR GROUPS
-                  </button>
-                </h2>
-              </div>
+        <div className="mobileGroups">
+        <Button color="primary" onClick={this.toggleMobileGroups} style={{ marginBottom: '1rem' }}>Your Groups</Button>
+        <Collapse isOpen={this.state.collapse}>
+          <Card>
+            <CardBody>
+            
+            {this.props.groups.map(group => {
+            console.log('PROPS PASSED DOWN FROM DASH', this.props);
+            console.log("Group.org_id", group, "Profile", this.props.profile)
+            if (group.org_id === this.props.profile.org_id) {
+              if (this.props.activeGroup == null) { 
+              this.props.setActiveGroup(group.id);
+              }
+              if (this.props.activeGroup == group.id) {
+                // active group
+                  return (
+                    <Link
+                      to="#"
+                      onClick={() => {
+                        console.log('setActiveGroup Clicked', group.id);
+                        this.props.setActiveGroup(group.id);
+                        this.props.setActiveGroupName(group.name);
+                      }}
+                    >
+                      {' '}
+                      <ClickableCard key={group.id} name={group.name} className="side-template-card-active" />{' '}
+                    </Link>
+                  );
+                } else {
+                // inactive group
+                  return (
+                    <Link
+                      to="#"
+                      onClick={() => {
+                        console.log('setActiveGroup Clicked', group.id);
+                        this.props.setActiveGroup(group.id);
+                        this.props.setActiveGroupName(group.name);
+                      }}
+                    >
+                      {' '}
+                      <ClickableCard key={group.id} name={group.name} className="side-template-card" />{' '}
+                    </Link>
+                  );
 
-              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                </div>
-            </div>
-          </div>
-          </div>
+              }
+            }
+            })}
+
+          <NavLink id="createLink" onClick={this.toggle}>
+            <i className="fas fa-plus-circle" /> &nbsp; Create A New Group
+          </NavLink>
+
+            </CardBody>
+          </Card>
+        </Collapse>
+        </div>
 
 
         <section className="convSection cube">

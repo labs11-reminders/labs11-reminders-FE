@@ -168,14 +168,14 @@ h6 {
     color: darkgray;
 }
 
-.accordion {
+.mobileGroups {
     display:none;
 }
 
 @media (max-width: 700px) {
-    .accordion{
+    .mobileGroups{
         display: flex;
-        margin: 0%;
+        margin: 2%;
     }
 }
 
