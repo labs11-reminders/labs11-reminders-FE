@@ -1,9 +1,11 @@
 import React from 'react';
+import MessageModalInd from '../MessageModal/MessageModalInd';
 
 const SideTemplateCard = (props) => {
   return (
     <div className="side-template-card">
-      {props.scheduled ? (<p>{props.name}</p>): undefined}
+      {/* {props.scheduled ? (<p>{props.name}</p>): undefined} */}
+      <MessageModalInd className="convo" buttonLabel="Message An Individual" />
     </div>
   );
 };

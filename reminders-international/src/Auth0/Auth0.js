@@ -44,8 +44,8 @@ class Auth0 extends Component {
     //console.log(this.props.auth);
     return (
       <div>
-        <Navbar color="light">
-          <NavbarBrand href="/">Reminders International</NavbarBrand>
+        <Navbar color="dark">
+          <NavbarBrand color="light" href="/" >Reminders International</NavbarBrand>
 
           {/* <Button
               color="primary"
@@ -54,7 +54,7 @@ class Auth0 extends Component {
           </Button> */}
           {!localStorage.getItem('isLoggedIn') ? (
             <Button color="primary" onClick={this.login.bind(this)}>
-              Log In
+              Sign Up or Log In
             </Button>
           ) : (
             <Button color="primary" onClick={this.logout.bind(this)}>

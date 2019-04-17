@@ -113,9 +113,9 @@
   margin-bottom: 10px;
 }
 
-.DayPickerInput {
+/* .DayPickerInput { */
   /* border: 1px solid brown; */
-}
+/* } */
 
 .DayPicker {
   font-size: .8rem;
@@ -175,8 +175,8 @@ div.scheduled-list-card.card div.createdFacts div.col-sm-auto.offset-sm-0  div.c
   border: none;
 }
 
-.DayPicker-NavBar {
-}
+/* .DayPicker-NavBar {
+} */
 
 .DayPicker-NavButton {
   position: absolute;
