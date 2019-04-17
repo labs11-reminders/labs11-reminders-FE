@@ -264,7 +264,7 @@ class Sidebar extends Component {
 
 
 
-        {/* ******* This is styling for the mobile group selection portion ******* */}
+        {/* ******* This is styling for the mobile group section ******* */}
         <div className="mobileGroups">
         <Button color="primary" onClick={this.toggleMobileGroups} style={{ marginBottom: '1rem' }}>Your Groups</Button>
         <Collapse isOpen={this.state.collapse}>
@@ -313,14 +313,15 @@ class Sidebar extends Component {
             }
             })}
 
-          <NavLink id="createLink" onClick={this.toggle}>
-            <i className="fas fa-plus-circle" /> &nbsp; Create A New Group
-          </NavLink>
+            <NavLink id="createLink" onClick={this.toggle}>
+              <i className="fas fa-plus-circle" /> &nbsp; Create A New Group
+            </NavLink>
 
             </CardBody>
           </Card>
         </Collapse>
         </div>
+        {/* ****************** End of mobile group section ********** */}
 
 
         <section className="convSection cube">
