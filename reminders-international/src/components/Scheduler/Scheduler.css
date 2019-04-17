@@ -21,17 +21,19 @@
 }
 
 .scheduled-list-card {
-  margin: 15px 0 15px 0;
+  margin: 15px 5px 15px 5px;
   padding: 0 !important;
-  border: 1px solid red;
+  /* margin: 0 !important; */
+  /* padding: 0 !important; */
+  box-shadow: 0px 0px 4px rgb(134, 134, 134);
 }
 
-.scheduled-list-card-body {
+/* .scheduled-list-card-body {
   margin: 0 !important;
   padding: 0 !important;
   box-shadow: 0px 0px 4px rgb(134, 134, 134);
-  /* border: 3px solid red; */
-}
+  border: 3px solid red; 
+} */
 
 .scheduled-title {
   position: relative;
