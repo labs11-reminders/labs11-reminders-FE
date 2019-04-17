@@ -173,11 +173,24 @@ h6 {
     text-align: left; 
 }
 
+@media (max-width: 700px) {
+    .side-template-card-active {
+        text-align: center;
+    }
+}
+
+
 .side-template-card {
     /* padding-left: .5em; */
     /* padding-right: 1em; */
     text-align: left;
     color: darkgray;
+}
+
+@media (max-width: 700px) {
+    .side-template-card {
+        text-align: center;
+    }
 }
 
 .mobileGroups {
@@ -187,8 +200,9 @@ h6 {
 @media (max-width: 700px) {
     .mobileGroups{
         display: flex;
+        flex-direction: column;
         margin: 2%;
-        
+        justify-content: center;
     }
 }
 
