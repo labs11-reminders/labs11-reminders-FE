@@ -8,6 +8,8 @@ class SchedMessageModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      nestedModal: false,
+      modal: false,
         message: {
             id: null,
             title: '', 
@@ -23,7 +25,7 @@ class SchedMessageModal extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.toggleTab = this.toggleTab.bind(this);
     this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
-    }
+       }
 
   // TOGGLE TO OPEN MODEL
     toggle() {
@@ -44,7 +46,7 @@ class SchedMessageModal extends React.Component {
       }
     }
 
-    fetchReminder = id => {
+   fetchReminder = id => {
         axios
           .get(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
           .then(response => {
@@ -63,9 +65,10 @@ class SchedMessageModal extends React.Component {
           .catch(err => {
             console.log(err)
           });
-      }
+      } 
 
     createSavedReminder = () => { //connected to save button
+      
     const { title, body, scheduled, draft, template, group_id, user_id,id } = this.state.message
     const messageObj = {
       name: title,
@@ -85,7 +88,7 @@ class SchedMessageModal extends React.Component {
           message: 'You added a Message!',
           reminders: { ...messageObj }
           });
-          this.fetchReminder(id);
+        this.toggle()
       }
     })
   .catch(err => {

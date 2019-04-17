@@ -5,7 +5,7 @@ import MomentLocaleUtils, {
 } from 'react-day-picker/moment'
 import 'moment/locale/it';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
+//import 'react-day-picker/lib/style.css';
 import axios from 'axios';
 import {
   NavLink,
@@ -21,6 +21,7 @@ import {
 } from 'reactstrap';
 import moment from "moment";
 import SchedMessageModal from './SchedMessageModal'
+import './SchedulerB.css';
 
 // Line 2:  'MomentLocaleUtils' is defined but never used  no-unused-vars
 class ScheduledMessageCard extends Component{
@@ -192,38 +193,35 @@ fetchReminder = id => {
   render(){
     
   return (
-    <Card className="scheduled-card">
-    {/* <div className="template-card"> */}
-     {/* {this.props.scheduled ? (  */}
-       {/* //conditional rendering based on if scheduled is true or false */}
-        {/* <div> */}
-      {/* <Card> */}
-        <CardTitle>{this.props.title}</CardTitle>
+          <div class="card">
+       
+          <section class="message" >
+          <div class = "messagetitle">{this.props.title}</div>
+          <div class = "messagebody">{this.props.message}</div>
+          <div class = "messagedetails">
+          <div> Created By: {this.props.user_id}</div>
+          <div> Currently scheduled for &nbsp;{this.dateConverter(this.props.date)} </div>
+          </div>
 
-        <div className="scheduled-description">
-          <CardSubtitle>Message</CardSubtitle>
-          <CardText>{this.props.message}</CardText>
-        </div>
-          {/* <NavLink id="createLink" onClick={this.toggle} >
-              <i className="fas fa-pencil-alt" /> &nbsp; 
-          </NavLink> */}
-          <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message"/>  
-          <CardText className="template-created">Created By: {this.props.user_id}</CardText>
-          <div className="schedule-functions">
-            <CardText>Currently scheduled for &nbsp;{this.dateConverter(this.props.date)}</CardText>
+          </section>
+          
+          <section class = "messageoptions">
             <DayPickerInput className="calendar"
               onDayChange={this.onDatePicker}
               formatDate={formatDate}
               parseDate={parseDate}
               placeholder={`${formatDate(new Date())}`}/>
+          <div> 
             <FormGroup check inline>
               <Label for="scheduleApproval" check>
-                <Input type="checkbox" id="scheduleApproval" onClick={this.toggleApprove} />{' '} Approved
+                <Input type="checkbox" id="scheduleApproval" onClick={this.toggleApprove} />{' '} 
+                Approved
               </Label>  
             </FormGroup>
             <FormGroup check inline>
               <Label check>
-                <Input type="checkbox" onClick={this.onDelete} />{' '} Delete
+                <Input type="checkbox" onClick={this.onDelete} />{' '}
+                 Delete
               </Label>
             </FormGroup>
             <FormGroup check inline>
@@ -232,13 +230,18 @@ fetchReminder = id => {
             Template
           </Label>
         </FormGroup>
+        </div>
+        <div>
+          <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
+            toggle={this.toggle} onClosed={this.fetchReminder(this.props.id)}> </SchedMessageModal> 
           </div>
-        {/* </div> */}{/* ): undefined } */}
-    {/* </div> */}
-    </Card>
+    </section>
+  
+    </div>
   );
 };
-}
+};
+
 export default ScheduledMessageCard;
 
 
