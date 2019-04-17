@@ -209,6 +209,13 @@ ul.nav.nav-tabs {
     border-bottom: 1px solid #3a9cd8;
 }
 
+div.tab-content {
+    background-color: #F8F8F8;
+    border-left: 1px solid #3a9cd8;
+    border-right: 1px solid #3a9cd8;
+    border-bottom: 1px solid #3a9cd8;
+}
+
 .card {
     border: 1px solid #3A9CD8;
     padding: 8px;

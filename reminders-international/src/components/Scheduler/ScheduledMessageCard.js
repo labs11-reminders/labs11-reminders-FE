@@ -231,7 +231,7 @@ fetchReminder = id => {
       <div>
         <Row className="createdFacts">
           <Col  sm={{ size: 'auto', offset: 0 }} className="scheduledDate" col>Currently scheduled for: {this.dateConverter(this.props.date)}</Col>
-          <Col  sm={{ size: 'auto', offset: 0 }} className="template-created" col>Created By: {this.props.user_id}</Col>
+          {/* <Col  sm={{ size: 'auto', offset: 0 }} className="template-created" col>Created By: {this.props.user_id}</Col> */}
           <Col sm={{ size: 'auto', offset: 0 }}>
             <Button color="link" onClick={this.toggleScheduler} 
             className="schedulerToggle">Edit Calendar</Button>
