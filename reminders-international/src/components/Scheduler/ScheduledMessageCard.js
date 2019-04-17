@@ -2,7 +2,8 @@ import React,  { Component } from 'react';
 import MomentLocaleUtils, {
   formatDate,
   parseDate,
-} from 'react-day-picker/moment'
+} from 'react-day-picker/moment';
+import {Link} from 'react-router-dom';
 import 'moment/locale/it';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
@@ -17,10 +18,15 @@ import {
   Label,
   Input,
   Row,
+  Nav,
+  Col,
+  Collapse,
+  Button,
+  CardBody,
 
 } from 'reactstrap';
 import moment from "moment";
-import SchedMessageModal from './SchedMessageModal'
+import SchedMessageModal from './SchedMessageModal';
 
 // Line 2:  'MomentLocaleUtils' is defined but never used  no-unused-vars
 class ScheduledMessageCard extends Component{
@@ -40,16 +46,24 @@ class ScheduledMessageCard extends Component{
         group_id: ''
       },
     submitting: false,
-    error: false
+    error: false,
+    modal: false,
+    collapseScheduler: false,
   };
   this.toggleApprove = this.toggleApprove.bind(this);
   this.toggle = this.toggle.bind(this);
+  this.toggleScheduler = this.toggleScheduler.bind(this);
   this.toggleNested = this.toggleNested.bind(this);
 }
 toggle() {
   this.setState(prevState => ({
     modal: !prevState.modal,
   }));
+}
+
+toggleScheduler() {
+  this.setState(state => ({ collapseScheduler: !state.collapseScheduler }));
+ 
 }
 
 toggleNested() {
@@ -172,6 +186,18 @@ fetchReminder = id => {
       .catch(error => console.log(error))
   }
 
+  deleteReminder = id => {
+    axios
+      .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
+      .then(response => {
+          console.log("DELETE RESPONSE:", response.data)
+          this.setState({ reminders: response.data, reminder: "" })
+      })
+      .catch(err => {
+          console.log(err);
+      })
+  }
+
   onDelete = (event) => { 
     const id = this.props.id
     console.log("ID", id)
@@ -192,26 +218,29 @@ fetchReminder = id => {
   render(){
     
   return (
-    <Card className="scheduled-card">
-    {/* <div className="template-card"> */}
-     {/* {this.props.scheduled ? (  */}
-       {/* //conditional rendering based on if scheduled is true or false */}
-        {/* <div> */}
-      {/* <Card> */}
-        <CardTitle>{this.props.title}</CardTitle>
+    <div className="scheduled-card">
+      <div className="scheduled-title">
+        <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message"/>
+        <CardTitle className="scheduled-card-title">{this.props.title}</CardTitle>
+      </div>
+      <div className="scheduled-description">
+        <CardSubtitle className="message-word">Message</CardSubtitle>
+        <CardText className="message-description">{this.props.message}</CardText>
 
-        <div className="scheduled-description">
-          <CardSubtitle>Message</CardSubtitle>
-          <CardText>{this.props.message}</CardText>
-        </div>
-          {/* <NavLink id="createLink" onClick={this.toggle} >
-              <i className="fas fa-pencil-alt" /> &nbsp; 
-          </NavLink> */}
-          <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message"/>  
-          <CardText className="template-created">Created By: {this.props.user_id}</CardText>
-          <div className="schedule-functions">
-            <CardText>Currently scheduled for &nbsp;{this.dateConverter(this.props.date)}</CardText>
-            <DayPickerInput className="calendar"
+      </div>
+      <div>
+        <Row className="createdFacts">
+          <Col  sm={{ size: 'auto', offset: 0 }} className="scheduledDate" col>Currently scheduled for: {this.dateConverter(this.props.date)}</Col>
+          <Col  sm={{ size: 'auto', offset: 0 }} className="template-created" col>Created By: {this.props.user_id}</Col>
+          <Col sm={{ size: 'auto', offset: 0 }}>
+            <Button color="link" onClick={this.toggleScheduler} 
+            className="schedulerToggle">Edit Calendar</Button>
+            <Collapse isOpen={this.state.collapseScheduler}>
+              <Card>
+                <CardBody>
+                <div className="schedule-functions">
+            <DayPickerInput 
+              className="calendar"
               onDayChange={this.onDatePicker}
               formatDate={formatDate}
               parseDate={parseDate}
@@ -227,18 +256,51 @@ fetchReminder = id => {
               </Label>
             </FormGroup>
             <FormGroup check inline>
-          <Label check>
-            <Input type="checkbox" onClick={this.onTemplate} />{' '}
+              <Label check>
+              <Input type="checkbox" onClick={this.onTemplate} />{' '}
             Template
-          </Label>
-        </FormGroup>
-          </div>
-        {/* </div> */}{/* ): undefined } */}
-    {/* </div> */}
-    </Card>
+              </Label>
+            </FormGroup>
+        </div>
+                </CardBody>
+              </Card>
+            </Collapse>
+          </Col>
+        </Row>
+      </div>
+
+        <div>
+
+          {/* <div className="schedule-functions">
+            <DayPickerInput className="calendar"
+              onDayChange={this.onDatePicker}
+              formatDate={formatDate}
+              parseDate={parseDate}
+              placeholder={`${formatDate(new Date())}`}/>
+
+            <FormGroup check inline>
+              <Label for="scheduleApproval" check>
+                <Input type="checkbox" id="scheduleApproval" onClick={this.toggleApprove} />{' '} Approved
+              </Label>  
+            </FormGroup>
+            <FormGroup check inline>
+              <Label check>
+                <Input type="checkbox" onClick={this.onDelete} />{' '} Delete
+              </Label>
+            </FormGroup>
+            <FormGroup check inline>
+              <Label check>
+              <Input type="checkbox" onClick={this.onTemplate} />{' '}
+            Template
+              </Label>
+            </FormGroup>
+        </div> */}
+      </div>
+    </div>
   );
 };
 }
 export default ScheduledMessageCard;
 
 
+// style={{ marginBottom: '1rem' }} 

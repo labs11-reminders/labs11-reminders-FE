@@ -66,35 +66,36 @@ class SchedMessageModal extends React.Component {
       }
 
     createSavedReminder = () => { //connected to save button
-    const { title, body, scheduled, draft, template, group_id, user_id,id } = this.state.message
-    const messageObj = {
-      name: title,
-      description: body,
-      scheduled: scheduled,
-      draft: draft,
-      template: template,
-      group_id: group_id,
-      user_id: user_id,
-      }
-  
-  axios.put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`,  messageObj)
-    .then(res => {
-      console.log('PUT RESPONSE', res);
-      if(res.status === 200 || res.status === 201) {
-        this.setState({
-          message: 'You added a Message!',
-          reminders: { ...messageObj }
-          });
-          this.fetchReminder(id);
-      }
-    })
-  .catch(err => {
-      console.log(err);
-      this.setState({
-        message: 'You failed to add a group.',
-        reminder: { ...messageObj }
-        });
-  });
+      const { title, body, scheduled, draft, template, group_id, user_id,id } = this.state.message
+      const messageObj = {
+        name: title,
+        description: body,
+        scheduled: scheduled,
+        draft: draft,
+        template: template,
+        group_id: group_id,
+        user_id: user_id,
+        }
+    
+      axios.put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`,  messageObj)
+        .then(res => {
+          console.log('PUT RESPONSE', res);
+          if(res.status === 200 || res.status === 201) {
+            this.setState({
+              message: 'You added a Message!',
+              reminders: { ...messageObj }
+              });
+              this.fetchReminder(id);
+          }
+        })
+      .catch(err => {
+          console.log(err);
+          this.setState({
+            message: 'You failed to add a group.',
+            reminder: { ...messageObj }
+            });
+      });
+  this.toggle();
     }
 
     onHandleChange = (event) => {
@@ -116,10 +117,10 @@ class SchedMessageModal extends React.Component {
     
 
   render() {
-    
     return (
+
       <div>
-        <Button color="primary" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+        <Button color="link" className="editPencil" onClick={this.toggle}><i className="fas fa-pencil-alt" /></Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Edit Message</ModalHeader>
           <ModalBody>
@@ -148,7 +149,7 @@ class SchedMessageModal extends React.Component {
           <ModalFooter>
             <Row>
             <FormGroup>
-              <Button color="primary" onClick = {this.createSavedReminder}>Save</Button>
+              <Button color="primary" onClick={this.createSavedReminder}>Save</Button>
               </FormGroup>
               <FormGroup>
             </FormGroup>

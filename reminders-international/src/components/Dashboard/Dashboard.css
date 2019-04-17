@@ -150,7 +150,7 @@ h6 {
 }
 
 .template-list {
-    background-color: gainsboro;
+    /* background-color: gainsboro; */
 }
 
 .template-description {
@@ -167,16 +167,12 @@ h6 {
 
 .card-subtitle {
     font-size: 1rem;
-    z-index: 10px;
-    position: absolute;
-    top: -11px;
-    left: 20px;
-    background-color: white;
 }
 
 
 .card-text {
-    position: relative;
+    font-size: 1rem;
+    /* position: relative; */
 }
 
 #createLink {
