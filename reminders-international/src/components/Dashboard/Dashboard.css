@@ -205,6 +205,10 @@ a.active.nav-link {
     /* border: 1px solid #3a9cd8 !important; */
 }
 
+ul.nav.nav-tabs {
+    border-bottom: 1px solid #3a9cd8;
+}
+
 .card {
     border: 1px solid #3A9CD8;
     padding: 8px;

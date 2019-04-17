@@ -1,5 +1,7 @@
 .scheduleMessageComposer {
-  border: 1px solid #3a9cd8;
+  border-right: 1px solid #3a9cd8;
+  border-left: 1px solid #3a9cd8;
+  border-bottom: 1px solid #3a9cd8;
   margin: 0;
   padding: 0;
 
