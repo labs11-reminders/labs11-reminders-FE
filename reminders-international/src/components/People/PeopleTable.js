@@ -80,7 +80,7 @@ class PeopleTable extends Component {
             </thead>
             <tbody class="col-md">
 
-                {this.state.users.map(user => 
+                {this.props.activeGroupUsers.map(user => 
                    <RowElement key={user.id} value={user.id} user={user} group_id={this.props.activeGroup} show_delete={true} /> 
                 )}
                 

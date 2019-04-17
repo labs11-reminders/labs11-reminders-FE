@@ -54,7 +54,7 @@ class People extends Component {
                 <hr></hr>
                 <h4 className="peopleHeader">Users currently in your group</h4>
                 {this.state.group_id ? (
-                <PeopleTable activeGroup={this.state.group_id}/>
+                <PeopleTable activeGroup={this.state.group_id} activeGroupUsers={this.props.activeGroupUsers}/>
                 ) : ( <p className="peopleParagraph">Please choose a group on the sidebar to display the members of the group.</p>)}
 
             </div>
