@@ -3,7 +3,7 @@ import { Container, Button } from 'reactstrap';
 import ScheduledMessageList from './ScheduledMessageList';
 import MessageModalGroup from '../MessageModal/MessageModalGroup';
 import axios from 'axios';
-import './Scheduler.css';
+import './SchedulerB.css';
 
 class ScheduleMessageComposer extends Component {
     constructor(props) {
@@ -33,12 +33,12 @@ class ScheduleMessageComposer extends Component {
       
       render() {
         return (
-          <div className="scheduleMessageComposer"> 
-            {/* <h3>ScheduledMessageComposer</h3> */}
+          <div className="composer"> 
+          <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Schedule Group Message" />  
             <ScheduledMessageList 
               activeGroup={this.props.activeGroup} 
               group_reminders={this.state.group_reminders}/>
-              <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Schedule Group Message" />  
+              
           </div>
         );
   };

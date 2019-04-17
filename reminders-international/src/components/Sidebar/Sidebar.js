@@ -172,7 +172,7 @@ class Sidebar extends Component {
           <div id="profileName">
             {/* This needs to remain {this.props.profile.nickname} in order to render correctly. -Rachel */}
             <span>Hello, {this.props.profile.nickname} </span>
-          </div>
+            </div>
         </section>
         <section className="orgSection cube">
         
