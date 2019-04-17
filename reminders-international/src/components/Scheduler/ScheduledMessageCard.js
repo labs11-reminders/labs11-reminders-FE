@@ -47,7 +47,7 @@ class ScheduledMessageCard extends Component{
       },
     submitting: false,
     error: false,
-    modal: false,
+    modal: true,
     collapseScheduler: false,
   };
   this.toggleApprove = this.toggleApprove.bind(this);
@@ -218,7 +218,8 @@ fetchReminder = id => {
   render(){
     
   return (
-    <div className="scheduled-card">
+    <div className="scheduled-card" onClick={this.toggleScheduler} 
+            >
       <div className="scheduled-title">
         <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message"/>
         <CardTitle className="scheduled-card-title">{this.props.title}</CardTitle>
@@ -232,10 +233,10 @@ fetchReminder = id => {
         <Row className="createdFacts">
           <Col  sm={{ size: 'auto', offset: 0 }} className="scheduledDate" col>Currently scheduled for: {this.dateConverter(this.props.date)}</Col>
           {/* <Col  sm={{ size: 'auto', offset: 0 }} className="template-created" col>Created By: {this.props.user_id}</Col> */}
-          <Col sm={{ size: 'auto', offset: 0 }}>
-            <Button color="link" onClick={this.toggleScheduler} 
-            className="schedulerToggle">Edit Calendar</Button>
-            <Collapse isOpen={this.state.collapseScheduler}>
+          {/* <Col sm={{ size: 'auto', offset: 0 }}> */}
+            {/* <Button color="link" onClick={this.toggleScheduler} 
+            className="schedulerToggle">Edit Calendar</Button> */}
+            {/* <Collapse isOpen={this.state.collapseScheduler}>
               <Card>
                 <CardBody>
                 <div className="schedule-functions">
@@ -264,8 +265,8 @@ fetchReminder = id => {
         </div>
                 </CardBody>
               </Card>
-            </Collapse>
-          </Col>
+            </Collapse> */}
+          {/* </Col> */}
         </Row>
       </div>
 
