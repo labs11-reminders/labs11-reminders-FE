@@ -2,7 +2,8 @@ import React,  { Component } from 'react';
 import MomentLocaleUtils, {
   formatDate,
   parseDate,
-} from 'react-day-picker/moment'
+} from 'react-day-picker/moment';
+import {Link} from 'react-router-dom';
 import 'moment/locale/it';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 //import 'react-day-picker/lib/style.css';
@@ -17,6 +18,11 @@ import {
   Label,
   Input,
   Row,
+  Nav,
+  Col,
+  Collapse,
+  Button,
+  CardBody,
 
 } from 'reactstrap';
 import moment from "moment";
@@ -41,16 +47,24 @@ class ScheduledMessageCard extends Component{
         group_id: ''
       },
     submitting: false,
-    error: false
+    error: false,
+    modal: true,
+    collapseScheduler: false,
   };
   this.toggleApprove = this.toggleApprove.bind(this);
   this.toggle = this.toggle.bind(this);
+  this.toggleScheduler = this.toggleScheduler.bind(this);
   this.toggleNested = this.toggleNested.bind(this);
 }
 toggle() {
   this.setState(prevState => ({
     modal: !prevState.modal,
   }));
+}
+
+toggleScheduler() {
+  this.setState(state => ({ collapseScheduler: !state.collapseScheduler }));
+ 
 }
 
 toggleNested() {
@@ -173,6 +187,18 @@ fetchReminder = id => {
       .catch(error => console.log(error))
   }
 
+  deleteReminder = id => {
+    axios
+      .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
+      .then(response => {
+          console.log("DELETE RESPONSE:", response.data)
+          this.setState({ reminders: response.data, reminder: "" })
+      })
+      .catch(err => {
+          console.log(err);
+      })
+  }
+
   onDelete = (event) => { 
     const id = this.props.id
     console.log("ID", id)
@@ -225,8 +251,8 @@ fetchReminder = id => {
               </Label>
             </FormGroup>
             <FormGroup check inline>
-          <Label check>
-            <Input type="checkbox" onClick={this.onTemplate} />{' '}
+              <Label check>
+              <Input type="checkbox" onClick={this.onTemplate} />{' '}
             Template
           </Label>
         </FormGroup>
@@ -243,5 +269,3 @@ fetchReminder = id => {
 };
 
 export default ScheduledMessageCard;
-
-

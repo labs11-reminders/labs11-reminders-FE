@@ -116,7 +116,11 @@ class App extends Component {
         />
 
         {/* LANDING PAGE - FOR VIEWING PURPOSE ONLY */}
-        <Route exact path="/" component={LandingPage} />
+        <Route
+          exact
+          path="/"
+          render={props => <LandingPage auth={this.auth} {...props} />}
+        />
 
         {/* <Route exact path="/shedule-list" component={TemplateList} /> */}
       </div>
