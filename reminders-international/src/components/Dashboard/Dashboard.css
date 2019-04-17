@@ -73,7 +73,7 @@ h6 {
 
 
 #createLink {
-    color: #51a7fd; 
+    color: #3a9cd8; 
     padding-left: 10%;
 }
 
@@ -169,7 +169,7 @@ h6 {
     
 }
 .groupData #grpImage {
-    border: 1px  solid #616568;
+    border: 1px  solid #389CD868;
     border-radius: 100%;
     width: 115px;
     height: 115px;
@@ -206,14 +206,14 @@ a.active.nav-link {
 }
 
 ul.nav.nav-tabs {
-    border-bottom: 1px solid #3a9cd8;
+    border-bottom: 1px solid #389CD868;
 }
 
 div.tab-content {
-    background-color: #F8F8F8;
-    border-left: 1px solid #3a9cd8;
-    border-right: 1px solid #3a9cd8;
-    border-bottom: 1px solid #3a9cd8;
+    background-color:  white;
+    border-left: 1px solid #389CD868;
+    border-right: 1px solid #389CD868;
+    border-bottom: 1px solid #389CD868;
 }
 
 .card {
@@ -268,7 +268,7 @@ div.tab-content {
 
 #topSettings {
     margin: 0px 15px 0px 15px;
-    color: #007bff;
+    color: #3a9cd8;
     padding: 5px 0 0 0;
 }
 
@@ -282,7 +282,7 @@ div.tab-content {
 }
 
 #drpItem:hover {
-    background-color: #007bff;
+    background-color: #3a9cd8;
     color: white;
 }
 
