@@ -21,8 +21,7 @@ export default class ScheduledMessageList extends Component {
     render() {
       return(
         <div className="list">
-        ScheduledMessageList
-          <div>
+           <div>
             {this.props.group_reminders.map(group_reminder => { //change to scheduled reminders when whe have them 
               if (group_reminder.group_id === this.props.activeGroup && group_reminder.scheduled) {
                 {/* console.log("RENDERING SCHEDULED div", group_reminder) */}

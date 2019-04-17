@@ -34,11 +34,11 @@ class ScheduleMessageComposer extends Component {
       render() {
         return (
           <div className="composer"> 
-            <h3>ScheduledMessageComposer</h3>
+          <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Schedule Group Message" />  
             <ScheduledMessageList 
               activeGroup={this.props.activeGroup} 
               group_reminders={this.state.group_reminders}/>
-              <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Schedule Group Message" />  
+              
           </div>
         );
   };
