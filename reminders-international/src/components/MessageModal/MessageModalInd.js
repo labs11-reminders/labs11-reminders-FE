@@ -114,7 +114,7 @@ class MessageModalInd extends React.Component {
     console.log(this.props)
     return (
       <div>
-        <Button color="primary" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+        <Button color="primary" className="convoButton" onClick={this.toggle}>{this.props.buttonLabel}</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Create a Message</ModalHeader>
           <ModalBody>
