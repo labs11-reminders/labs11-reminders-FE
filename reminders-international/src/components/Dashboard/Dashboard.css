@@ -163,19 +163,16 @@ h6 {
     }
 }
 
-.side-template-card-active {
-    background-color: #343A40;
-    padding: 2% 4%;
+.side-template-card-active p{
+    color: #8dd654;
     text-align: left; 
-    margin: 1%;
-    width: 100%;
 }
 
-.side-template-card a {
+.side-template-card p {
     /* padding-left: .5em; */
     /* padding-right: 1em; */
     text-align: left;
-    
+    color:#343A40;
 }
 
 .mobileGroups {
