@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { Form, FormGroup, Label, Button } from 'reactstrap';
+import { Container, Form, FormGroup, Label, Button } from 'reactstrap';
 
 class UserDetailsForm extends Component {
     constructor(props) {
@@ -72,41 +72,46 @@ class UserDetailsForm extends Component {
 
     render() {
         return (
-            <Form>
-                <FormGroup>
-                    <Label for="userFullName">Name</Label>
-                        <input 
-                            placeholder="First & Last"
-                            id="userFullName"
-                            ref={input => this.full_name = input} 
-                            onChange={this.onHandleChanges}/>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="userEmail">Email</Label>
-                        <input 
-                            placeholder="handle@address.com"
-                            id="userEmail" 
-                            ref={input => this.email = input} 
-                            onChange={this.onHandleChanges}/>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="userCountry">Country</Label>
-                        <input 
-                            placeholder="Country of Residence"
-                            id="userCountry"
-                            ref={input => this.country = input} 
-                            onChange={this.onHandleChanges}/>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="userPhone">Phone Number (include country & area codes)</Label>
-                        <input 
-                            placeholder="442071838750"
-                            id="userPhone"
-                            ref={input => this.phone = input} 
-                            onChange={this.onHandleChanges} />
-                </FormGroup>
-                <Button color="primary" onClick={this.handleSubmit}>Save and Continue</Button>{' '}
-           </Form> 
+            <Container className="rolesContainer" >
+      
+                <h3 className="rolesTopBar">Please provide your contact information</h3>
+                    <Form className="userWrapper">
+                        <FormGroup>
+                            <Label for="userFullName">Name</Label>
+                                <input 
+                                    placeholder="First & Last"
+                                    id="userFullName"
+                                    ref={input => this.full_name = input} 
+                                    onChange={this.onHandleChanges}/>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="userEmail">Email</Label>
+                                <input 
+                                    type="email"
+                                    placeholder="handle@address.com"
+                                    id="userEmail" 
+                                    ref={input => this.email = input} 
+                                    onChange={this.onHandleChanges}/>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="userCountry">Country</Label>
+                                <input 
+                                    placeholder="Country of Residence"
+                                    id="userCountry"
+                                    ref={input => this.country = input} 
+                                    onChange={this.onHandleChanges}/>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="userPhone">Phone Number (include country & area codes)</Label>
+                                <input 
+                                    placeholder="442071838750"
+                                    id="userPhone"
+                                    ref={input => this.phone = input} 
+                                    onChange={this.onHandleChanges} />
+                        </FormGroup>
+                        <Button className="userBtn" onClick={this.handleSubmit}>Save and Continue</Button>{' '}
+                </Form> 
+                </Container>
         )
     }
 }

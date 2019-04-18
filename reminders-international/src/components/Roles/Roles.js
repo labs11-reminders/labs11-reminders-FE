@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import './Roles.css';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import { Container, Card, Button, Col, Row, Label } from 'reactstrap';
-
-import student from '../../../reminders-international/assets/student.svg';
+// import logo from './logo.svg';
+import student from './student.svg';
+import teacher from './teacher.svg';
+import countryManager from './leader.svg';
+import boardMember from './donation.svg';
+// reminders-international/src/components/Roles/Roles.js
 
 class Roles extends Component {
   state = {
@@ -26,10 +30,10 @@ class Roles extends Component {
     console.log(this.state.activeRole);
     return (
       <Container className="rolesContainer" >
-      <img src={student} alt="Logo" />;
+      
         <h3 className="rolesTopBar">What's your role at Reminders International? </h3>
         <Row className="rolesWrapper" >
-          <Col sm={12} md={6} lg={3}>
+          <Col className="roleCol" xs={12} sm={6} md={6} lg={3}>
             <Card className="roleCard">
               <Button
                 id={this.state.activeRole === '1' ? 'activeBtn' : 'roleBtn'}
@@ -37,14 +41,14 @@ class Roles extends Component {
                   this.toggle('1');
                 }}
               >
-                Teacher
-                <Label for="groupName">Teacher</Label>
+              <img className="SVG" src={teacher} alt="Teacher" />
+                <Label for="Teacher">Teacher</Label>
               </Button>
               
             </Card>
           </Col>
 
-          <Col sm={12} md={6} lg={3}>
+          <Col className="roleCol" xs={12} sm={6} md={6} lg={3}>
             <Card className="roleCard">
               <Button
                 id={this.state.activeRole === '2' ? 'activeBtn' : 'roleBtn'}
@@ -52,13 +56,14 @@ class Roles extends Component {
                   this.toggle('2');
                 }}
               >
-                Student
+              <img className="SVG" src={student} alt="Student" />
+              <Label for="Student">Student</Label>
               </Button>
          
             </Card>
           </Col>
 
-          <Col sm={12} md={6} lg={3}>
+          <Col className="roleCol" xs={12} sm={6} md={6} lg={3}>
             <Card className="roleCard">
               <Button
                 id={this.state.activeRole === '3' ? 'activeBtn' : 'roleBtn'}
@@ -66,11 +71,12 @@ class Roles extends Component {
                   this.toggle('3');
                 }}
               >
-                Country Manager
+              <img className="SVG" src={countryManager} alt="Country Manager" />
+                <Label for="countryManager">Country Manager</Label>
               </Button>
             </Card>
           </Col>
-          <Col sm={12} md={6} lg={3}>
+          <Col className="roleCol" xs={12} sm={6} md={6} lg={3}>
             <Card className="roleCard">
               <Button
                 id={this.state.activeRole === '4' ? 'activeBtn' : 'roleBtn'}
@@ -78,12 +84,13 @@ class Roles extends Component {
                   this.toggle('4');
                 }}
               >
-                Board Member
+                <img className="SVG" src={boardMember} alt="Board Member" />
+                <Label for="boardMember">Board Member</Label>
               </Button>
             </Card>
           </Col>
         </Row>
-        <Button id="size" onClick={this.handleNext}>Next</Button>
+        <Button className="roleBtn" id="size" onClick={this.handleNext}>Next</Button>
       </Container>
     );
   }

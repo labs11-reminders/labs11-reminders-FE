@@ -24,3 +24,38 @@ span.dot-active {
   display: inline-block;
   color: orange;
 }
+
+input {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin: 0;
+  border-radius: 0 !important;
+  border: 0;
+  outline: 1px solid #CCC !important;
+  background-color: white !important;
+  -webkit-border-radius: 0;
+  outline: 1px solid #ccc;
+  outline-offset: -1px;
+}
+
+.userWrapper {
+  padding: 10px;
+}
+
+.userBtn   {
+  margin: 10px;
+  border-radius: 0 !important;
+  box-shadow: 0px 0px 7px rgb(110, 110, 110);
+}
