@@ -120,11 +120,11 @@ class Roles extends Component {
         </Button>
 
         <Modal
-          id="alertModalContainer"
+          id="alertModalWrapper"
           isOpen={this.state.alertModal}
           toggle={this.toggleAlert}
         >
-          <ModalBody id="alertModal">
+          <ModalBody id="roleAlertModal">
             You must select a role to proceed!
           </ModalBody>
           <ModalFooter id="alertBtn">
