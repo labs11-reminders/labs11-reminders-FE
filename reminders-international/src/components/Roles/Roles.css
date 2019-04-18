@@ -165,7 +165,15 @@
     outline-offset: -1px;
   }
   
-  
   h2, h3 {
     color: white
   }
+
+  #alertBtn {
+    display: flex; 
+    justify-content: center;
+  }
+
+#alertBtn Button {
+    width: 10vw;
+}
