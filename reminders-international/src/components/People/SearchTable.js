@@ -27,16 +27,16 @@ class SearchTable extends Component {
             {
                 this.emptyTable() && (
             <Table className="table-hover">                
-            <thead class="col-md table-success">
+            <thead className="col-md table-success">
               <tr>
                 
-                <th class="w-25">Name</th>
-                <th class="w-25">Phone</th>
+                <th className="w-25">Name</th>
+                <th className="w-25">Phone</th>
                 <th>Add to Group</th>
               </tr>
             </thead>
         
-            <tbody class="col-md">
+            <tbody className="col-md">
                 
                 {this.props.users.map(user => 
                     <RowElement key={user.id} value={user.id} user={user} group_id={this.props.group_id} show_add={true} />

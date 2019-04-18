@@ -256,7 +256,7 @@ class MainContent extends Component {
               toggle={this.toggleDropdown}
             >
               <DropdownToggle tag="a" caret>
-                <i class="fas fa-cog fa-2x" />
+                <i className="fas fa-cog fa-2x" />
               </DropdownToggle>
               <DropdownMenu id="drpMenu">
                 <DropdownItem onClick={this.toggleEditUser} id="drpItem">

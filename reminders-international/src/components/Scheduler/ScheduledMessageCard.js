@@ -239,7 +239,7 @@ fetchReminder = id => {
           <div className = "messagebody">{this.props.message}</div>
           </section>
           
-          <section class = "messageoptions">
+          <section className = "messageoptions">
           <div> Currently scheduled date:<br/> &nbsp;{this.dateConverter(this.props.date)}</div>
        
           <Button color="link" onClick={this.toggleCal} > -- Change Date -- </Button>
