@@ -161,13 +161,6 @@ class MessageModalGroup extends React.Component {
       });
     }
 
-    onGroupSelect = (event) => { //when group is selected from drop down group id is assigned
-      this.setState({
-        message: { ...this.state.message, group_id:event.target.id, }
-      });
-      this.fetchGroupUsers(event.target.id);
-    }
-
 
     onSubmit = (event) => {
     event.preventDefault();
@@ -232,36 +225,22 @@ class MessageModalGroup extends React.Component {
                 value={this.state.message.body}
                 name="body"
               />
-              {/*<SMSFormGroup groups={this.props.groups}/>*/}
-            </FormGroup>
+           </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Row>
-            {/* <Button color="primary" onClick={this.onSubmit}>Save Group Message</Button>{' '} */}
-            </Row>
-            <Row>
-        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.onGroupToggle}>
-        <DropdownToggle caret>
-          Select Group
-        </DropdownToggle>
-        <DropdownMenu>
-          {this.state.groups.map(group => { 
-          return ( <DropdownItem id = {group.id} onClick = {this.onGroupSelect}>{group.name}</DropdownItem>)})}
-        </DropdownMenu>
-      </Dropdown>
-            <FormGroup check inline>
-              <Label for="checkboxSchedule" check> Schedule &nbsp;{' '}
-                <Input type="checkbox" id="checkboxSchedule" onClick={this.toggleSchedule} />{' '}
+              <FormGroup>
+              <Label> Schedule &nbsp;{' '}
+                <Input type="checkbox"  onClick={this.toggleSchedule} />{' '}
               </Label>
               </FormGroup>
-            <FormGroup check inline>
-            <Label for="checkboxTemplate" check> Template &nbsp;{' '}
-              <Input type="checkbox" id="checkboxTemplate" onClick={this.toggleTemplate} />{' '}
+            <FormGroup>
+            <Label> Template &nbsp;{' '}
+              <Input type="checkbox"  onClick={this.toggleTemplate} />{' '}
               </Label>
               </FormGroup>
-              <FormGroup check inline>
-            <Label for="checkboxDraft" check> Draft   &nbsp;{' '}
-              <Input type="checkbox" id="checkboxDraft"onClick={this.toggleDraft}  />{' '}
+              <FormGroup>
+            <Label> Draft   &nbsp;{' '}
+              <Input type="checkbox" onClick={this.toggleDraft}  />{' '}
               </Label>
               </FormGroup>
               <FormGroup>
@@ -271,8 +250,6 @@ class MessageModalGroup extends React.Component {
               <Button  onClick = {this.onSubmit} >Send Now
               </Button>
               </FormGroup>
-
-            </Row>
           </ModalFooter>
         </Modal>
       </div>
