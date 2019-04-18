@@ -82,6 +82,12 @@ fetchReminder = id => {
   axios
     .get(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
     .then(response => {
+      let approved_text;
+      if (response.data.approved == true) {
+        approved_text = "scheduled to be sent " 
+      } else if (this.state.message.approved == false) {
+        approved_text = "*needs approval* to be sent " 
+      }
         this.setState(() => ({ message:{
         title: response.data.name,
         to: response.data.phone_send,
@@ -91,7 +97,8 @@ fetchReminder = id => {
         scheduled: response.data.scheduled,
         template: response.data.template,
         sent: response.data.sent,
-        id:response.data.id
+        id:response.data.id,
+        approved_text: approved_text,
         }}));
   
     }) 
@@ -115,7 +122,7 @@ fetchReminder = id => {
     let day = date[2];
     let hr = date[3];
     let min = date[4];
-    return `${month} ${day}, ${yr} ${hr}:${min}`
+    return `${month} ${day}, ${yr} `
   }
 
   getProfile = (cb) => {
@@ -224,6 +231,7 @@ fetchReminder = id => {
 
   render(){
     
+    
   return (
           <div className="card">
        
@@ -236,13 +244,14 @@ fetchReminder = id => {
           </div>
           
           </div>
-          <div className = "messagebody">{this.props.message}</div>
+          <div className = "messagebody"><strong> Message to be sent: </strong>&nbsp;{this.props.message}</div>
+          <div className = "messagebody">  <strong> Currently {this.state.message.approved_text} on:</strong>  &nbsp;{this.dateConverter(this.props.date)}</div>
           </section>
           
           <section className = "messageoptions">
-          <div> Currently scheduled date:<br/> &nbsp;{this.dateConverter(this.props.date)}</div>
+          
        
-          <Button color="link" onClick={this.toggleCal} > -- Change Date -- </Button>
+  <Button color="link" onClick={this.toggleCal} > <strong>Click here </strong> to update send date </Button>  
             <Collapse isOpen={this.state.collapse}>
             <DayPickerInput classNameName="calendar"
               onDayChange={this.onDatePicker}
@@ -254,19 +263,19 @@ fetchReminder = id => {
           <div>
             <div className = "messagecheckboxes">
               <FormGroup>
-              <Label>
+              <Label inline check>
                 <Input type="checkbox" onClick={this.toggleApprove} />{' '} 
-                Schedule
+                Approve
               </Label>  
             </FormGroup>
             <FormGroup>
-              <Label>
+              <Label inline check>
                 <Input type="checkbox" onClick={this.onDelete} />{' '}
                  Delete
               </Label>
             </FormGroup>
             <FormGroup>
-              <Label>
+              <Label inline check>
               <Input type="checkbox" onClick={this.onTemplate} />{' '}
             Add to templates
           </Label>
