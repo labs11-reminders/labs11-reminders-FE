@@ -214,7 +214,7 @@ class MainContent extends Component {
       <div className="mainContentWrapper">
         <section className="profileInfo">
           <div className="groupData">
-            <img id="grpImage" src="https://i.imgur.com/HanMQyt.png" title="group"></img> &nbsp;
+            <img id="grpImage" src="https://i.imgur.com/nS78PKA.png" title="group"></img> &nbsp;
             <div className="grpName">
               <span>
                 <strong>
