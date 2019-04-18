@@ -1,0 +1,26 @@
+.signup-stepper {
+  padding-top: 20px;
+}
+
+span.dot {
+  height: 25px;
+  width: 25px;
+  margin: 0 2px;
+  background-color:#3a9cd8;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  color: green;
+  /* opacity: 0.75; */
+}
+
+span.dot-active {
+  height: 25px;
+  width: 25px;
+  margin: 0 2px;
+  background-color: #8dd654;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  color: orange;
+}

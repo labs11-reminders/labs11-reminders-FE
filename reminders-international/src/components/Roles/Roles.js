@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import './Roles.css';
-import styled from 'styled-components'
-import { Card, Button, Col } from 'reactstrap';
+import styled from 'styled-components';
+import { Container, Card, Button, Col, Row, Label } from 'reactstrap';
+
+import student from '../../../reminders-international/assets/student.svg';
 
 class Roles extends Component {
   state = {
     activeRole: null,
   };
 
-  toggle(role) {
+  toggle = role => {
     if (this.state.activeRole !== role) {
       this.setState({
         activeRole: role,
@@ -23,11 +25,12 @@ class Roles extends Component {
   render() {
     console.log(this.state.activeRole);
     return (
-      <div className="rolesContainer">
-        <h2>Step 1: What's your role at Reminders International? </h2>
-        <main className="rolesWrapper">
-          <Col sm="6">
-            <Card body className="roleCard">
+      <Container className="rolesContainer" >
+      <img src={student} alt="Logo" />;
+        <h3 className="rolesTopBar">What's your role at Reminders International? </h3>
+        <Row className="rolesWrapper" >
+          <Col sm={12} md={6} lg={3}>
+            <Card className="roleCard">
               <Button
                 id={this.state.activeRole === '1' ? 'activeBtn' : 'roleBtn'}
                 onClick={() => {
@@ -35,12 +38,14 @@ class Roles extends Component {
                 }}
               >
                 Teacher
+                <Label for="groupName">Teacher</Label>
               </Button>
+              
             </Card>
           </Col>
 
-          <Col sm="6">
-            <Card body className="roleCard">
+          <Col sm={12} md={6} lg={3}>
+            <Card className="roleCard">
               <Button
                 id={this.state.activeRole === '2' ? 'activeBtn' : 'roleBtn'}
                 onClick={() => {
@@ -53,8 +58,8 @@ class Roles extends Component {
             </Card>
           </Col>
 
-          <Col sm="6">
-            <Card body className="roleCard">
+          <Col sm={12} md={6} lg={3}>
+            <Card className="roleCard">
               <Button
                 id={this.state.activeRole === '3' ? 'activeBtn' : 'roleBtn'}
                 onClick={() => {
@@ -65,8 +70,8 @@ class Roles extends Component {
               </Button>
             </Card>
           </Col>
-          <Col sm="6">
-            <Card body className="roleCard">
+          <Col sm={12} md={6} lg={3}>
+            <Card className="roleCard">
               <Button
                 id={this.state.activeRole === '4' ? 'activeBtn' : 'roleBtn'}
                 onClick={() => {
@@ -77,9 +82,9 @@ class Roles extends Component {
               </Button>
             </Card>
           </Col>
-        </main>
+        </Row>
         <Button id="size" onClick={this.handleNext}>Next</Button>
-      </div>
+      </Container>
     );
   }
 }
