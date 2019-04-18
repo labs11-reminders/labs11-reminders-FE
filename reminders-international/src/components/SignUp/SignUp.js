@@ -3,6 +3,7 @@ import Roles from "../Roles/Roles.js"
 import Org from "../Organizations/Org.js";
 import Group from "../Groups/Group.js";
 import UserDetailsForm from "./UserDetailsForm.js";
+import './SignUp.css';
 
 class SignUp extends Component {
     constructor(props) {
@@ -61,13 +62,26 @@ class SignUp extends Component {
 
     render() {
         console.log("SignUp.js render this.state", this.state)
+        
         return (
             <div>
-            {/*    <p>You are on step {this.state.step} of account creation.</p>*/}
+            {/* <p>You are on step {this.state.step} of account creation.</p> */}
+
+            <section className="signup-stepper">
+                <p>
+                <span className={this.state.step === 1 ? "dot-active": "dot"}></span>
+                <span className={this.state.step === 2 ? "dot-active": "dot"}></span>
+                <span className={this.state.step === 3 ? "dot-active": "dot"}></span>
+                <span className={this.state.step === 4 ? "dot-active": "dot"}></span>
+                </p>
+            </section>
+
+
                 
                 {
                     this.state.step === 1 && (
                         <div>
+                        <span className={this.state.step === 1 ? "dot.active": "dot"}></span>
                         <Roles handleRole={this.handleRole} />
                         </div>
                     )
@@ -75,6 +89,7 @@ class SignUp extends Component {
                 {
                     this.state.step === 2 && (
                         <div>
+                        <span className={this.state.step === 2 ? "dot.active": "dot"}></span>
                         <Org handleOrg={this.handleOrg} role={this.state.role_id}/>                        
                         </div>
                     )

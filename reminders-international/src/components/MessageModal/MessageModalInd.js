@@ -116,7 +116,7 @@ class MessageModalInd extends React.Component {
       <div>
         <Button color="primary" className="convoButton" onClick={this.toggle}>{this.props.buttonLabel}</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Create a Message</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Create Message</ModalHeader>
           <ModalBody>
             <FormGroup>
               <SMSFormInd orgs={this.props.orgs}/>
