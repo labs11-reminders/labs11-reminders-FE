@@ -110,7 +110,7 @@ fetchReminder = id => {
   componentDidMount() {
     console.log(this)
     const id = this.props.id
-    this.fetchReminder(id);
+    // this.fetchReminder(id);
   }
 
   dateConverter = date => {
@@ -239,8 +239,14 @@ fetchReminder = id => {
           <div className = "messagedetails">
           <div className = "messagetitle">{this.props.title}</div> 
           <div>
+
+            {/* I commented this out and then below removed the onClosed --which stopped the loop since the modal
+            will usually be closed I think this is what was triggering the loop. I removed it on drafts and templates too. */}
+          {/* <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
+            toggle={this.toggle} onClosed={this.fetchReminder(this.props.id)}> </SchedMessageModal> */}
+
           <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
-            toggle={this.toggle} onClosed={this.fetchReminder(this.props.id)}> </SchedMessageModal> 
+            toggle={this.toggle}> </SchedMessageModal> 
           </div>
           </div>
 

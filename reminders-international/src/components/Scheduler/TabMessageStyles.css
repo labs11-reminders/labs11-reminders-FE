@@ -21,7 +21,6 @@
     border-color: #d6dde28f;
     border-start-end-radius: 5%;
     margin-top: 1%;
-    
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -29,6 +28,46 @@
     justify-content: flex-start;
 }
 
+section .first_tab_message {
+  height: 30vw;
+}
+
+.first_tab_messagedetails {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  padding:1%;
+}
+.first_tab_messagedetails Label {
+  display: flex;
+  justify-content:flex-start;
+
+}
+.list .first_tab_card {
+  background-color: #d6dde28f;
+  border-color: #d6dde28f;
+  border-start-end-radius: 5%;
+  margin-top: 1%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  justify-content: flex-start;
+}
+.first_tab_card section {
+  background-color:white;
+  border-radius: 5px;
+  margin-top: 1%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  width: 100%;
+  height: 25vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 .card section {
     background-color:white;
     border-radius: 5px;
@@ -47,7 +86,7 @@ section .message
   border-start-end-radius: 5%;
   margin: 1%;
   width: 100%;
-  height: 15vw;
+  height: 17vw;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -57,10 +96,20 @@ section .messageoptions {
     margin: 1%;
     width: 25%;
     padding-bottom: 1%;
-    height: 15vw;
+    height: 17vw;
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+section .first_tab_messageoptions {
+  border-start-end-radius: 5%;
+  margin: 1%;
+  width: 25%;
+  padding-bottom: 1%;
+  height: 25vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 .card .messagedetails {
     border-start-end-radius: 5%;
@@ -73,14 +122,14 @@ section .messageoptions {
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-}
+  }
 .card .messagecheckboxes{
   border-start-end-radius: 5%;
   margin: 1%;
   padding-top: 1%;
   padding-bottom: 1%;
   padding-right: 2%;
-  width: 125%;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -97,8 +146,19 @@ section .messageoptions {
   font-size: 1rem;
 }
 
-
-
+#first_tab{
+  border-start-end-radius: 5%;
+  margin: 1%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-right: 2%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height:25vw;
+}
 .card .messagetitle {
     padding-left: 1%;
     width: 100%;

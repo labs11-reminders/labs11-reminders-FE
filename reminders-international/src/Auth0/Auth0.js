@@ -43,8 +43,8 @@ class Auth0 extends Component {
     //console.log("debugging...");
     //console.log(this.props.auth);
     return (
-      <div>
-        <Navbar color="dark">
+      <div className="Nav">
+        <Navbar className="siteNavBar" color="dark">
           <NavbarBrand color="light" href="/" >Reminders International</NavbarBrand>
 
           {/* <Button
