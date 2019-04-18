@@ -242,8 +242,6 @@ fetchReminder = id => {
           <section class = "messageoptions">
           <div> Currently scheduled date:<br/> &nbsp;{this.dateConverter(this.props.date)}</div>
        
-          
-         
           <Button color="link" onClick={this.toggleCal} > -- Change Date -- </Button>
             <Collapse isOpen={this.state.collapse}>
             <DayPickerInput className="calendar"
@@ -275,10 +273,6 @@ fetchReminder = id => {
         </FormGroup>
         </div>
         </div>
-
-         
-        
-       
     </section>
   
     </div>
