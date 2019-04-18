@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import DraftCard from './DraftCard';
+import '../Scheduler/TabMessageStyles.css';
+import '../global.css';
 import {
   Card,
   CardColumns,

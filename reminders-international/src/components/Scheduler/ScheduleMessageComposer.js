@@ -3,7 +3,8 @@ import { Container, Button } from 'reactstrap';
 import ScheduledMessageList from './ScheduledMessageList';
 import MessageModalGroup from '../MessageModal/MessageModalGroup';
 import axios from 'axios';
-import './SchedulerB.css';
+import './TabMessageStyles.css';
+import '../global.css';
 
 class ScheduleMessageComposer extends Component {
     constructor(props) {

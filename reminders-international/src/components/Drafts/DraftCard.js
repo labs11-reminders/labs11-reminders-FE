@@ -12,7 +12,7 @@ import {
   Input,
 
 } from 'reactstrap';
-import '../Scheduler/SchedulerB.css';
+import '../Scheduler/TabMessageStyles.css';
 import '../global.css';
 
 class DraftCard extends Component {

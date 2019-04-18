@@ -3,9 +3,8 @@ import { Button } from 'reactstrap';
 import TemplateList from './TemplateList';
 import MessageModalGroup from '../MessageModal/MessageModalGroup';
 import axios from 'axios';
-import '../Scheduler/SchedulerB.css';
+import '../Scheduler/TabMessageStyles.css';
 import '../global.css';
-
 class TemplateComposer extends Component {
     constructor(props) {
         super(props);

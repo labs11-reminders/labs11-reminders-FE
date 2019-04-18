@@ -3,7 +3,7 @@ import { Button } from 'reactstrap';
 import DraftList from './DraftList';
 import MessageModalGroup from '../MessageModal/MessageModalGroup';
 import axios from 'axios';
-import '../Scheduler/SchedulerB.css';
+import '../Scheduler/TabMessageStyles.css';
 import '../global.css';
 
 class DraftComposer extends Component {

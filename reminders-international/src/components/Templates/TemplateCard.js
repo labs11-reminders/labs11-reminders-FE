@@ -21,7 +21,7 @@ import {
   Collapse
 
 } from 'reactstrap';
-import '../Scheduler/SchedulerB.css';
+import '../Scheduler/TabMessageStyles.css';
 import '../global.css';
 
 // '/api/reminders/:id'

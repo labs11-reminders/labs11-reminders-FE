@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ScheduledMessageCard from './ScheduledMessageCard';
-import './SchedulerB.css';
+import './TabMessageStyles.css';
+import '../global.css';
 import {
   Card,
   CardColumns,

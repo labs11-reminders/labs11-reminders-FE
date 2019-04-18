@@ -27,7 +27,7 @@ import {
 } from 'reactstrap';
 import moment from "moment";
 import SchedMessageModal from './SchedMessageModal'
-import './SchedulerB.css';
+import './TabMessageStyles.css';
 import '../global.css';
 
 // Line 2:  'MomentLocaleUtils' is defined but never used  no-unused-vars

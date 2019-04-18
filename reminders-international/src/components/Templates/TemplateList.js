@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TemplateCard from './TemplateCard';
-import '../Scheduler/SchedulerB.css';
+import '../Scheduler/TabMessageStyles.css';
 import '../global.css';
 import {
   Card,
