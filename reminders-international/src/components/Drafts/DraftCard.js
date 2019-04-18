@@ -12,6 +12,8 @@ import {
   Input,
 
 } from 'reactstrap';
+import '../Scheduler/SchedulerB.css';
+import '../global.css';
 
 class DraftCard extends Component {
   constructor(props) {
@@ -157,38 +159,41 @@ componentDidMount() {
   render() {
     // console.log("DraftCard this.state", this.state)
     return (
-      <div className="template-card">
-            <div className="if-undefined-make-invisible-or-hidden">
-              <CardTitle>{this.props.title}</CardTitle>
-              <NavLink id="createLink" onClick={this.toggle} >
-                <i className="fas fa-pencil-alt" /> &nbsp; 
-                <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Template"/>  
-              </NavLink>
-              <NavLink id="createLink" onClick={()=>this.deleteReminder(this.props.id)}>
-                <i className="fas fa-trash-alt" /> &nbsp;
-             </NavLink>
-            
-              <div className="template-description">
-              <CardText>{this.props.message}</CardText>
-              </div>
-              <CardText className="template-created">Date Created: {this.dateConverter(this.props.created_at)}</CardText>
-              <CardText className="template-created">Created By: {this.props.user_id}</CardText>
+      <div className="card">
+      <section className="message" >
+      <div className = "messagedetails">
+      <div className = "messagetitle">{this.props.title}</div> 
+      <div>
+      <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
+        toggle={this.toggle} onClosed={this.fetchReminder(this.props.id)}> </SchedMessageModal> 
+      </div>
+      </div>
        
-            <FormGroup check>
-            <Label check>
+      <div className = "messagebody"><strong> Message body: </strong>&nbsp;{this.props.message}</div>
+      </section> 
+      <section className = "messageoptions">
+           <div>
+            <div className = "messagecheckboxes">
+          <p>Other draft options:</p>
+          <FormGroup>
+            <Label  inline check>
+              <Input type="checkbox" onClick={this.toggleSchedule} />{' '}
+              Add to scheduler
+            </Label>
+          </FormGroup>
+            <FormGroup>
+            <Label inline check>
               <Input type="checkbox" onClick={this.onDelete} />{' '}
               Delete
             </Label>
           </FormGroup>
   
-          <FormGroup check>
-            <Label check>
-              <Input type="checkbox" onClick={this.toggleSchedule} />{' '}
-              Add to scheduler
-            </Label>
-          </FormGroup>
+        
           </div>
       </div>
+      </section>
+  
+  </div>
     )
   };
 };

@@ -3,6 +3,8 @@ import { Button } from 'reactstrap';
 import TemplateList from './TemplateList';
 import MessageModalGroup from '../MessageModal/MessageModalGroup';
 import axios from 'axios';
+import '../Scheduler/SchedulerB.css';
+import '../global.css';
 
 class TemplateComposer extends Component {
     constructor(props) {
@@ -34,12 +36,12 @@ class TemplateComposer extends Component {
         // console.log("RENDERING SCHEDULED MESSAGE LIST ", this.state.reminders)
         //console.log("REMINDERS render", this.props.activeGroup, this.state.reminders)
         return (
-          <div> 
-           <h3>TemplateComposer</h3>
-            <TemplateList activeGroup={this.props.activeGroup} reminders={this.state.reminders}/>
-            <div>
-            <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Add Group Message Template" />
+          <div className="composer"> 
+           <div>
+            <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Create New Template" />
               </div>
+            <TemplateList activeGroup={this.props.activeGroup} reminders={this.state.reminders}/>
+           
           </div>
         );
   };

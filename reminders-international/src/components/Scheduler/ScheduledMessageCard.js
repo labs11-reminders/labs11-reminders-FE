@@ -242,8 +242,8 @@ fetchReminder = id => {
           <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
             toggle={this.toggle} onClosed={this.fetchReminder(this.props.id)}> </SchedMessageModal> 
           </div>
-          
           </div>
+
           <div className = "messagebody"><strong> Message to be sent: </strong>&nbsp;{this.props.message}</div>
           <div className = "messagebody">  <strong> Currently {this.state.message.approved_text} on:</strong>  &nbsp;{this.dateConverter(this.props.date)}</div>
           </section>
@@ -270,16 +270,17 @@ fetchReminder = id => {
             </FormGroup>
             <FormGroup>
               <Label inline check>
-                <Input type="checkbox" onClick={this.onDelete} />{' '}
-                 Delete
-              </Label>
-            </FormGroup>
-            <FormGroup>
-              <Label inline check>
               <Input type="checkbox" onClick={this.onTemplate} />{' '}
             Add to templates
           </Label>
         </FormGroup>
+            <FormGroup>
+              <Label inline check>
+                <Input type="checkbox" onClick={this.onDelete} />{' '}
+                 Delete
+              </Label>
+            </FormGroup>
+          
         </div>
         </div>
     </section>
