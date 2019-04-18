@@ -6,7 +6,7 @@ import MomentLocaleUtils, {
 import {Link} from 'react-router-dom';
 import 'moment/locale/it';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
+//import 'react-day-picker/lib/style.css';
 import axios from 'axios';
 import {
   NavLink,
@@ -26,13 +26,15 @@ import {
 
 } from 'reactstrap';
 import moment from "moment";
-import SchedMessageModal from './SchedMessageModal';
+import SchedMessageModal from './SchedMessageModal'
+import './SchedulerB.css';
 
 // Line 2:  'MomentLocaleUtils' is defined but never used  no-unused-vars
 class ScheduledMessageCard extends Component{
   constructor(props) {
     super(props);
     this.state = {
+      collapse: false,
       message: {
         id: '',
         title: '', 
@@ -52,6 +54,7 @@ class ScheduledMessageCard extends Component{
   };
   this.toggleApprove = this.toggleApprove.bind(this);
   this.toggle = this.toggle.bind(this);
+  this.toggleCal = this.toggleCal.bind(this);
   this.toggleScheduler = this.toggleScheduler.bind(this);
   this.toggleNested = this.toggleNested.bind(this);
 }
@@ -59,6 +62,9 @@ toggle() {
   this.setState(prevState => ({
     modal: !prevState.modal,
   }));
+}
+toggleCal() {
+  this.setState(state => ({ collapse: !state.collapse }));
 }
 
 toggleScheduler() {
@@ -218,90 +224,68 @@ fetchReminder = id => {
   render(){
     
   return (
-    <div className="scheduled-card" onClick={this.toggleScheduler} 
-            >
-      <div className="scheduled-title">
-        <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message"/>
-        <CardTitle className="scheduled-card-title">{this.props.title}</CardTitle>
-      </div>
-      <div className="scheduled-description">
-        <CardSubtitle className="message-word">Message</CardSubtitle>
-        <CardText className="message-description">{this.props.message}</CardText>
-
-      </div>
-      <div>
-        <Row className="createdFacts">
-          <Col  sm={{ size: 'auto', offset: 0 }} className="scheduledDate" col>Currently scheduled for: {this.dateConverter(this.props.date)}</Col>
-          {/* <Col  sm={{ size: 'auto', offset: 0 }} className="template-created" col>Created By: {this.props.user_id}</Col> */}
-          {/* <Col sm={{ size: 'auto', offset: 0 }}> */}
-            {/* <Button color="link" onClick={this.toggleScheduler} 
-            className="schedulerToggle">Edit Calendar</Button> */}
-            {/* <Collapse isOpen={this.state.collapseScheduler}>
-              <Card>
-                <CardBody>
-                <div className="schedule-functions">
-            <DayPickerInput 
-              className="calendar"
-              onDayChange={this.onDatePicker}
-              formatDate={formatDate}
-              parseDate={parseDate}
-              placeholder={`${formatDate(new Date())}`}/>
-            <FormGroup check inline>
-              <Label for="scheduleApproval" check>
-                <Input type="checkbox" id="scheduleApproval" onClick={this.toggleApprove} />{' '} Approved
-              </Label>  
-            </FormGroup>
-            <FormGroup check inline>
-              <Label check>
-                <Input type="checkbox" onClick={this.onDelete} />{' '} Delete
-              </Label>
-            </FormGroup>
-            <FormGroup check inline>
-              <Label check>
-              <Input type="checkbox" onClick={this.onTemplate} />{' '}
-            Template
-              </Label>
-            </FormGroup>
-        </div>
-                </CardBody>
-              </Card>
-            </Collapse> */}
-          {/* </Col> */}
-        </Row>
-      </div>
-
-        <div>
-
-          {/* <div className="schedule-functions">
+          <div class="card">
+       
+          <section class="message" >
+          <div class = "messagedetails">
+          <div class = "messagetitle">{this.props.title}</div> 
+          <div>
+          <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
+            toggle={this.toggle} onClosed={this.fetchReminder(this.props.id)}> </SchedMessageModal> 
+          </div>
+          
+          </div>
+          <div class = "messagebody">{this.props.message}</div>
+          </section>
+          
+          <section class = "messageoptions">
+          
+         
+          <div> Currently scheduled date:<br/> &nbsp;{this.dateConverter(this.props.date)}</div>
+       
+          
+         
+          <Button color="link" onClick={this.toggleCal} > -- Change Date -- </Button>
+            <Collapse isOpen={this.state.collapse}>
             <DayPickerInput className="calendar"
               onDayChange={this.onDatePicker}
+              onDayMouseEnter={this.onDatePicker}
               formatDate={formatDate}
               parseDate={parseDate}
               placeholder={`${formatDate(new Date())}`}/>
-
+          </Collapse>
+          <div>
+            <div class = "messagecheckboxes">
+         
             <FormGroup check inline>
               <Label for="scheduleApproval" check>
-                <Input type="checkbox" id="scheduleApproval" onClick={this.toggleApprove} />{' '} Approved
+                <Input type="checkbox" id="scheduleApproval" onClick={this.toggleApprove} />{' '} 
+                Schedule
               </Label>  
             </FormGroup>
             <FormGroup check inline>
               <Label check>
-                <Input type="checkbox" onClick={this.onDelete} />{' '} Delete
+                <Input type="checkbox" onClick={this.onDelete} />{' '}
+                 Delete
               </Label>
             </FormGroup>
             <FormGroup check inline>
               <Label check>
               <Input type="checkbox" onClick={this.onTemplate} />{' '}
-            Template
-              </Label>
-            </FormGroup>
-        </div> */}
-      </div>
+            Add to templates
+          </Label>
+        </FormGroup>
+        </div>
+        </div>
+
+         
+        
+       
+    </section>
+  
     </div>
   );
 };
-}
+};
+
 export default ScheduledMessageCard;
-
-
-// style={{ marginBottom: '1rem' }} 

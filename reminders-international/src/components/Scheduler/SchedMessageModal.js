@@ -7,11 +7,14 @@ import MomentLocaleUtils, {
   } from 'react-day-picker/moment';
   import DayPickerInput from 'react-day-picker/DayPickerInput';
 import axios from 'axios';
+import moment from "moment";
 
 class SchedMessageModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      nestedModal: false,
+      modal: false,
         message: {
             id: null,
             title: '', 
@@ -28,8 +31,7 @@ class SchedMessageModal extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.toggleTab = this.toggleTab.bind(this);
     this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
-    this.toggleScheduler = this.toggleScheduler.bind(this);
-    }
+       }
 
 
 //     collapseScheduler: false,
@@ -68,7 +70,7 @@ toggleScheduler() {
       }
     }
 
-    fetchReminder = id => {
+   fetchReminder = id => {
         axios
           .get(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
           .then(response => {
@@ -87,40 +89,55 @@ toggleScheduler() {
           .catch(err => {
             console.log(err)
           });
-      }
+      } 
 
     createSavedReminder = () => { //connected to save button
-      const { title, body, scheduled, draft, template, group_id, user_id,id } = this.state.message
-      const messageObj = {
-        name: title,
-        description: body,
-        scheduled: scheduled,
-        draft: draft,
-        template: template,
-        group_id: group_id,
-        user_id: user_id,
-        }
-    
-      axios.put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`,  messageObj)
-        .then(res => {
-          console.log('PUT RESPONSE', res);
-          if(res.status === 200 || res.status === 201) {
-            this.setState({
-              message: 'You added a Message!',
-              reminders: { ...messageObj }
-              });
-              this.fetchReminder(id);
-          }
-        })
-      .catch(err => {
-          console.log(err);
-          this.setState({
-            message: 'You failed to add a group.',
-            reminder: { ...messageObj }
-            });
-      });
-  this.toggle();
+      
+    const { title, body, scheduled, draft, date, template, group_id, user_id,id } = this.state.message
+    const messageObj = {
+      name: title,
+      description: body,
+      scheduled: scheduled,
+      draft: draft,
+      template: template,
+      group_id: group_id,
+      scheduled_date: date,
+      }
+  
+  axios.put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`,  messageObj)
+    .then(res => {
+      console.log('PUT RESPONSE', res);
+      if(res.status === 200 || res.status === 201) {
+        this.setState({
+          message: 'You added a Message!',
+          reminders: { ...messageObj }
+          });
+        this.toggle()
+      }
+    })
+  .catch(err => {
+      console.log(err);
+      this.setState({
+        message: 'You failed to add a group.',
+        reminder: { ...messageObj }
+        });
+  });
     }
+    onDatePicker = (event) => {  
+      const new_date = event
+      const date_format = moment(new_date).format('YYYY-MM-DD HH:mm:ss')
+      const id = this.props.id
+      const editObj ={scheduled_date:date_format};
+  
+      axios
+        .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
+        .then(response => {
+          console.log("PUT RESPONSE:", response.data)
+          this.setState({ message: response.data})
+          this.fetchReminder(id);
+        })
+        .catch(error => console.log(error))
+      }
 
     onHandleChange = (event) => {
     const { name, value } = event.target;
