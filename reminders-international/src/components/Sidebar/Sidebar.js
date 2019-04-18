@@ -143,7 +143,7 @@ class Sidebar extends Component {
   componentDidMount() {
     // console.log('Sidebar mounted.');
     this.getAllOrgs();
-    this.getAllReminders();
+    // this.getAllReminders();
     this.setOrg();
     //this.getUsersByGroup();
   }

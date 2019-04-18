@@ -224,21 +224,21 @@ fetchReminder = id => {
   render(){
     
   return (
-          <div class="card">
+          <div className="card">
        
-          <section class="message" >
-          <div class = "messagedetails">
-          <div class = "messagetitle">{this.props.title}</div> 
+          <section className="message" >
+          <div className = "messagedetails">
+          <div className = "messagetitle">{this.props.title}</div> 
           <div>
           <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
             toggle={this.toggle} onClosed={this.fetchReminder(this.props.id)}> </SchedMessageModal> 
           </div>
           
           </div>
-          <div class = "messagebody">{this.props.message}</div>
+          <div className = "messagebody">{this.props.message}</div>
           </section>
           
-          <section class = "messageoptions">
+          <section className = "messageoptions">
           
          
           <div> Currently scheduled date:<br/> &nbsp;{this.dateConverter(this.props.date)}</div>
@@ -255,7 +255,7 @@ fetchReminder = id => {
               placeholder={`${formatDate(new Date())}`}/>
           </Collapse>
           <div>
-            <div class = "messagecheckboxes">
+            <div className = "messagecheckboxes">
          
             <FormGroup check inline>
               <Label for="scheduleApproval" check>
