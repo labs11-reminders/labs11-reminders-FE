@@ -51,9 +51,6 @@ class Dashboard extends Component {
       });
   };
 
-
-  
-
   getRemindersByGroup = () => {
     axios
       .post(`${process.env.REACT_APP_BACKEND}/api/groups/reminders/${this.state.activeGroup}`)

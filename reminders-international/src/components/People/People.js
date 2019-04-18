@@ -49,12 +49,13 @@ class People extends Component {
             <div>
                 <hr></hr>
                 <hr></hr>
+                <h5 className="peopleSearchHeader">Search for a user to add them to your selected group above.</h5>
                 <SearchBar  activeGroup={this.props.activeGroup}/>
                 <hr></hr>
                 <hr></hr>
                 <h4 className="peopleHeader">Users currently in your group</h4>
                 {this.state.group_id ? (
-                <PeopleTable activeGroup={this.state.group_id}/>
+                <PeopleTable activeGroup={this.state.group_id} activeGroupUsers={this.props.activeGroupUsers}/>
                 ) : ( <p className="peopleParagraph">Please choose a group on the sidebar to display the members of the group.</p>)}
 
             </div>

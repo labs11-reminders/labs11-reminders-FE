@@ -20,19 +20,18 @@ class Roles extends Component {
         activeRole: role,
       });
     }
-  }
+  };
 
   handleNext = e => {
     this.props.handleRole(this.state.activeRole);
-  }
+  };
 
   render() {
     console.log(this.state.activeRole);
     return (
-      <Container className="rolesContainer" >
-      
-        <h3 className="rolesTopBar">What's your role at Reminders International? </h3>
-        <Row className="rolesWrapper" >
+      <Container className="rolesContainer">
+        <h3 className="rolesTopBar">Select your Role</h3>
+        <Row className="rolesWrapper">
           <Col className="roleCol" xs={12} sm={6} md={6} lg={3}>
             <Card className="roleCard">
               <Button
@@ -41,10 +40,9 @@ class Roles extends Component {
                   this.toggle('1');
                 }}
               >
-              <img className="SVG" src={teacher} alt="Teacher" />
+                <img className="SVG" src={teacher} alt="Teacher" />
                 <Label for="Teacher">Teacher</Label>
               </Button>
-              
             </Card>
           </Col>
 
@@ -56,10 +54,9 @@ class Roles extends Component {
                   this.toggle('2');
                 }}
               >
-              <img className="SVG" src={student} alt="Student" />
-              <Label for="Student">Student</Label>
+                <img className="SVG" src={student} alt="Student" />
+                <Label for="Student">Student</Label>
               </Button>
-         
             </Card>
           </Col>
 
@@ -71,7 +68,11 @@ class Roles extends Component {
                   this.toggle('3');
                 }}
               >
-              <img className="SVG" src={countryManager} alt="Country Manager" />
+                <img
+                  className="SVG"
+                  src={countryManager}
+                  alt="Country Manager"
+                />
                 <Label for="countryManager">Country Manager</Label>
               </Button>
             </Card>
@@ -90,7 +91,9 @@ class Roles extends Component {
             </Card>
           </Col>
         </Row>
-        <Button className="roleBtn" id="size" onClick={this.handleNext}>Next</Button>
+        <Button className="roleBtn" id="size" onClick={this.handleNext}>
+          Next
+        </Button>
       </Container>
     );
   }
@@ -98,7 +101,8 @@ class Roles extends Component {
 
 export default Roles;
 
-{/*class Roles extends Component {
+{
+  /*class Roles extends Component {
   state = {
     activeRole: null,
   };
@@ -180,4 +184,5 @@ export default Roles;
   }
 }
 
-export default Roles;*/}
+export default Roles;*/
+}
