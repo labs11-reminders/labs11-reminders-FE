@@ -152,6 +152,36 @@ class LandingPage extends Component {
           </section>
         </div>
 
+        <section className="ourTeamWrapper">
+          <span className="ourTeam">
+            <div className="team">
+              <img src="./images/katie.png" alt="Katie Fitzpatrick" />
+              <h5>Katie Fitzpatrick</h5>
+              <h6>Web Developer</h6>
+            </div>
+            <div className="team">
+              <img src="./images/elisha.jpg" alt="Elisha Atulomah" />
+              <h5>Elisha Atulomah</h5>
+              <h6>Web Developer</h6>
+            </div>
+            <div className="team">
+              <img src="./images/kat.jpg" alt="Kat Johnson-Fries" />
+              <h5>Kat Johnson-Fries</h5>
+              <h6>Web Developer</h6>
+            </div>
+            <div className="team">
+              <img src="./images/rachel.jpg" alt="Rachel Kolk" />
+              <h5>Rachel Kolk</h5>
+              <h6>Web Developer</h6>
+            </div>
+            <div className="team">
+              <img src="./images/james.png" alt="James McRae" />
+              <h5>James McRae</h5>
+              <h6>Project Manager</h6>
+            </div>
+          </span>
+        </section>
+
         <section className="footer">
           <div className="footerSocial">
             <a href="https://www.facebook.com" target="_blank">

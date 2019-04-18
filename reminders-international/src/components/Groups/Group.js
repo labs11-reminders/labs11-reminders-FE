@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AddGroupForm from './AddGroupForm.js';
 import { Container, Form, FormGroup, Input, Button, Label } from 'reactstrap';
 import axios from 'axios';
-
+import './Group.css';
 
 class Group extends Component {
   constructor(props) {
@@ -48,33 +48,19 @@ class Group extends Component {
   render() {
     console.log("Group render this.state", this.state)
     return (
-       <Container className="Groups">
-        {this.props.role === 2 ? (
-          <div></div>
-        ) : (
-          <div>
-            
-            <h2>Create a group</h2>
-            <p>Once you create a group, you can invite members, send announcements, and start conversations</p>
-            <Form className = "groups-form">
-              <FormGroup>
-              <AddGroupForm org_id={this.props.org_id} handleGroup={this.props.handleGroup}/>
-              </FormGroup>
-            </Form>
-          </div>
-        )
-        }
-        
-        <FormGroup>
-        <h3>Looking for a group? </h3>
-        <Label for="groupName" >Join a group</Label>
-          <Input 
-            type="select" 
-            name="name" 
-            id="groupName" 
-            value={this.state.groups.name}
-            onChange={this.onHandleChange}            
+       <Container className="groupsContainer">
+        <h3 className="groupsTopBar">Looking to join a group? </h3>
+        <Form className="groups-form">
+          <FormGroup>
+            <Label for="groupName"></Label>
+            <Input 
+              type="select" 
+              name="name" 
+              id="groupName" 
+              value={this.state.groups.name}
+              onChange={this.onHandleChange}
             >
+            <option>Select your group</option>
               {
                 this.state.groups.map(group =>
                 <option key={group.id} value={group.id}  > 
@@ -82,8 +68,24 @@ class Group extends Component {
                 )
               } 
           </Input>
-          <Button onClick={this.handleNext}>Next</Button>
-        </FormGroup>      
+          <Button className="groupBtn" onClick={this.handleNext}>Next</Button>
+        </FormGroup>  
+        {/* <FormGroup> */}
+        {this.props.role === 2 ? (
+          <div></div>
+        ) : (
+          <div>
+          <AddGroupForm org_id={this.props.org_id} handleGroup={this.props.handleGroup}/>
+          </div>
+            
+
+            
+
+            
+        )
+        }
+        
+        </Form>
       </Container>
      
     );
@@ -91,3 +93,8 @@ class Group extends Component {
 }
 
 export default Group;
+
+              {/* <FormGroup>
+              <AddGroupForm org_id={this.props.org_id} handleGroup={this.props.handleGroup}/>
+              </FormGroup> */}
+              {/* </FormGroup> */}

@@ -1,4 +1,4 @@
-
+/* 
    @media (max-width: 500px) {
     .rolesContainer {
         display: flex;
@@ -45,7 +45,6 @@
    }
 
 .rolesContainer {
-    
     margin: auto 0;
     display: flex;
     align-items: center;
@@ -88,14 +87,86 @@
     width: 100%;
     font-size: 0.9rem;
     height: 20%;
-    background-color: #007bff;
+    background-color: #3A9CD8;
 }
 
 #size {
     width: 10%;
-    background-color: #007bff;
+    background-color: #3A9CD8;
 }
 
 #size:hover {
     background-color: #0068d8;
+} */
+
+.rolesTopBar {
+    background-color: #3a9cd8;
+    background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654);
+    color: white !important; 
+    width: 100%;
+    margin: 0;
+    padding: 20px 0 20px 0;
 }
+
+.rolesContainer {
+    box-shadow: 0px 0px 7px rgb(110, 110, 110);
+    width: 100%;
+    padding: 0 !important;
+  }
+  
+  .groupsTopBar {
+    background-color: #3a9cd8;
+    background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654);
+    width: 100%;
+    margin: 0;
+    padding: 20px 0 20px 0;
+  }
+
+  .roleCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3%;
+    box-shadow: 0px 0px 7px rgb(110, 110, 110);
+    width: 200px;
+    height: 200px;
+}
+
+.roleCol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
+}
+
+.SVG {
+    width: 100px;
+    height: 100px;
+    padding: 0 10px 0 10px;
+}
+  
+  .groups-form {
+    width: 100%;
+    padding: 0 10px 0 10px;
+  }
+  
+  .roleBtn   {
+    margin: 10px;
+    border-radius: 0 !important;
+    box-shadow: 0px 0px 7px rgb(110, 110, 110);
+  }
+  
+  #groupName, #addGroupName {
+    border-radius: 0 !important;
+    border: 0;
+    outline: 1px solid #CCC !important;
+    background-color: white !important;
+    -webkit-border-radius: 0;
+    outline: 1px solid #ccc;
+    outline-offset: -1px;
+  }
+  
+  
+  h2, h3 {
+    color: white
+  }

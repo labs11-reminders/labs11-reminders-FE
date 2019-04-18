@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Form, FormGroup, Button, Input, Label, Collapse } from 'reactstrap';
+import { Container, FormGroup, Button, Input, Label, Collapse } from 'reactstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import './Org.css';
@@ -55,10 +55,10 @@ class AddOrgForm extends Component {
     console.log("Add Org render", this.state)
     return (
       <FormGroup className="Add-Org-Form" onSubmit={this.addOrg}>
-      <Button className="addOrgToggle" color="link" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Can't find your organization?</Button>
+      <Button className="addOrgToggle" color="link" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Create new organization</Button>
       <Collapse isOpen={this.state.collapse}>
         <FormGroup>
-          <Label for="addOrgName" hidden>Can't find your organization?</Label> 
+          <Label for="addOrgName" hidden>Create new organization</Label> 
           <Input
             id="addOrgName"
             onChange={this.handleInputChange}

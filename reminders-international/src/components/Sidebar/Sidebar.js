@@ -238,7 +238,7 @@ class Sidebar extends Component {
           })}
           
           <NavLink id="createLink" onClick={this.toggle}>
-            <i className="fas fa-plus-circle" /> &nbsp; Create A New Group
+            <i className="fas fa-plus-circle" /> &nbsp; Create New Group
           </NavLink>
         </section>
 
@@ -337,7 +337,7 @@ class Sidebar extends Component {
           className="groupModal"
           size="lg"
         >
-          <ModalHeader toggle={this.toggle}>Create a Group</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Create Group</ModalHeader>
           <ModalBody className="modalBody">
             <Form className="createGroup" onSubmit={this.addGroup}>
               <div className="modalProfile">
