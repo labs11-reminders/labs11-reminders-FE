@@ -1,13 +1,20 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, 
-  FormGroup, Label, Input, Row } from 'reactstrap';
-
+  FormGroup, Label, Input, Row, Col, Collapse, Card, CardBody } from 'reactstrap';
+import MomentLocaleUtils, {
+    formatDate,
+    parseDate,
+  } from 'react-day-picker/moment';
+  import DayPickerInput from 'react-day-picker/DayPickerInput';
 import axios from 'axios';
+import moment from "moment";
 
 class SchedMessageModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      nestedModal: false,
+      modal: false,
         message: {
             id: null,
             title: '', 
@@ -18,12 +25,31 @@ class SchedMessageModal extends React.Component {
             scheduled: true,
             group_id: null, 
         },
+        collapseScheduler: true,
     };
 
     this.toggle = this.toggle.bind(this);
     this.toggleTab = this.toggleTab.bind(this);
     this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
-    }
+       }
+
+
+//     collapseScheduler: false,
+//   };
+//   this.toggleApprove = this.toggleApprove.bind(this);
+//   this.toggle = this.toggle.bind(this);
+//   this.toggleScheduler = this.toggleScheduler.bind(this);
+//   this.toggleNested = this.toggleNested.bind(this);
+// }
+// toggle() {
+//   this.setState(prevState => ({
+//     modal: !prevState.modal,
+//   }));
+// }
+
+toggleScheduler() {
+  this.setState(state => ({ collapseScheduler: !state.collapseScheduler }));
+}
 
   // TOGGLE TO OPEN MODEL
     toggle() {
@@ -44,7 +70,7 @@ class SchedMessageModal extends React.Component {
       }
     }
 
-    fetchReminder = id => {
+   fetchReminder = id => {
         axios
           .get(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
           .then(response => {
@@ -63,10 +89,11 @@ class SchedMessageModal extends React.Component {
           .catch(err => {
             console.log(err)
           });
-      }
+      } 
 
     createSavedReminder = () => { //connected to save button
-    const { title, body, scheduled, draft, template, group_id, user_id,id } = this.state.message
+      
+    const { title, body, scheduled, draft, date, template, group_id, user_id,id } = this.state.message
     const messageObj = {
       name: title,
       description: body,
@@ -74,7 +101,7 @@ class SchedMessageModal extends React.Component {
       draft: draft,
       template: template,
       group_id: group_id,
-      user_id: user_id,
+      scheduled_date: date,
       }
   
   axios.put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`,  messageObj)
@@ -85,7 +112,7 @@ class SchedMessageModal extends React.Component {
           message: 'You added a Message!',
           reminders: { ...messageObj }
           });
-          this.fetchReminder(id);
+        this.toggle()
       }
     })
   .catch(err => {
@@ -96,6 +123,21 @@ class SchedMessageModal extends React.Component {
         });
   });
     }
+    onDatePicker = (event) => {  
+      const new_date = event
+      const date_format = moment(new_date).format('YYYY-MM-DD HH:mm:ss')
+      const id = this.props.id
+      const editObj ={scheduled_date:date_format};
+  
+      axios
+        .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
+        .then(response => {
+          console.log("PUT RESPONSE:", response.data)
+          this.setState({ message: response.data})
+          this.fetchReminder(id);
+        })
+        .catch(error => console.log(error))
+      }
 
     onHandleChange = (event) => {
     const { name, value } = event.target;
@@ -116,10 +158,10 @@ class SchedMessageModal extends React.Component {
     
 
   render() {
-    
     return (
+
       <div>
-        <Button color="primary" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+        <Button color="link" className="editPencil" onClick={this.toggle}><i className="fas fa-pencil-alt" /></Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Edit Message</ModalHeader>
           <ModalBody>
@@ -135,7 +177,7 @@ class SchedMessageModal extends React.Component {
               {/*<SMSFormGroup groups={this.props.groups}/>*/}
             </FormGroup>
             <FormGroup>
-               <Label for="messageText">Write Message Here</Label>
+               <Label for="messageText">Write Message Here!!</Label>
                <Input type="textarea"
                 id="messageText"
                 onChange={this.onHandleChange}
@@ -144,11 +186,47 @@ class SchedMessageModal extends React.Component {
                 name="body"
               />
             </FormGroup>
+            <FormGroup>
+            <Col sm={{ size: 'auto', offset: 0 }}>
+            {/* <Button color="link" onClick={this.toggleScheduler} 
+            className="schedulerToggle">Edit Calendar</Button> */}
+            <Collapse isOpen={this.state.collapseScheduler}>
+              <Card>
+                <CardBody>
+                <div className="schedule-functions">
+            <DayPickerInput 
+              className="calendar"
+              onDayChange={this.onDatePicker}
+              formatDate={formatDate}
+              parseDate={parseDate}
+              placeholder={`${formatDate(new Date())}`}/>
+            <FormGroup check inline>
+              <Label for="scheduleApproval" check>
+                <Input type="checkbox" id="scheduleApproval" onClick={this.toggleApprove} />{' '} Approved
+              </Label>  
+            </FormGroup>
+            <FormGroup check inline>
+              <Label check>
+                <Input type="checkbox" onClick={this.onDelete} />{' '} Delete
+              </Label>
+            </FormGroup>
+            <FormGroup check inline>
+              <Label check>
+              <Input type="checkbox" onClick={this.onTemplate} />{' '}
+            Template
+              </Label>
+            </FormGroup>
+        </div>
+                </CardBody>
+              </Card>
+            </Collapse>
+          </Col>
+          </FormGroup>
           </ModalBody>
           <ModalFooter>
             <Row>
             <FormGroup>
-              <Button color="primary" onClick = {this.createSavedReminder}>Save</Button>
+              <Button color="primary" onClick={this.createSavedReminder}>Save</Button>
               </FormGroup>
               <FormGroup>
             </FormGroup>

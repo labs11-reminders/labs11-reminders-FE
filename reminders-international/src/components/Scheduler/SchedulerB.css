@@ -1,142 +1,135 @@
-.scheduleMessageComposer {
-  /* border-right: 1px solid #3a9cd8;
-  border-left: 1px solid #3a9cd8;
-  border-bottom: 1px solid #3a9cd8; */
+
+button.btn.btn-primary {
+  background: #389CD8;
+  border-color:#389CD8;
+
+}
+button.btn.btn-link {
+  color:#389CD8;
   margin: 0;
-  padding: 0;
-
 }
-
-.scheduled-list {
-  /* border: 1px solid purple; */
-  margin: 0;
-  padding: 0;
+a.navbar-brand {
+  color:#389CD8;
 }
-
-.template-list {
-  /* border: 1px solid darkcyan; */
-  background-color: #F8F8F8;
-  margin: 0;
-  padding: 0;
-}
-
-.scheduled-list-card {
-  margin: 15px 0 15px 0;
-  padding: 0 !important;
-  border: 1px solid red;
-}
-
-.scheduled-list-card-body {
-  margin: 0 !important;
-  padding: 0 !important;
-  box-shadow: 0px 0px 4px rgb(134, 134, 134);
-  /* border: 3px solid red; */
-}
-
-.scheduled-title {
-  position: relative;
-  margin: 0;
-  padding: 0 50px 0 0;
-  /* border: 5px solid cornflowerblue; */
-  /* background-color: #3a9cd8;
-  background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654); */
-  background-color: white;
-  border-bottom-color: #3a9cd8;
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-  /* background-color: white; */
-}
-
-.scheduled-card-title {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.editPencil {
-  position: absolute;
-  z-index: 2;
-  top: 0px;
-  right: 2px;
-  color: #3a9cd8 !important;
+p {
+  color:#389CD8;
 }
 
 
-.scheduled-description {
-  position: relative;
-  margin: 20px 0 0 0;
-  padding: 0;
-  /* border: 2px solid yellow; */
-  /* background-color: white; */
+.composer{
+    padding-top: 1%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.card-title {
-  display: block;
-  /* background-color: #3a9cd8;
-  background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654); */
+.list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding:1%;
+
+}
+
+.list .card {
+    background-color: #d6dde28f;
+    border-color: #d6dde28f;
+    border-start-end-radius: 5%;
+    margin-top: 1%;
+    
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    justify-content: flex-start;
+}
+
+.card section {
+    background-color:white;
+    border-radius: 5px;
+    margin-top: 1%;
+   
+    padding-top: 1%;
+    padding-bottom: 1%;
+    width: 100%;
+    height: 15vw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+.card section .message
+{
+  border-start-end-radius: 5%;
+  margin: 1%;
+
   width: 100%;
-  margin: 0 0 200px 0;
-  padding: 10px 15px 10px 10px;
-  color: #303030;
-  color: #3a9cd8;
-  text-align: center;
-  font-size: 1.2rem;
-  /* border: 1px solid yellowgreen; */
+  height: 15vw;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.card .messageoptions {
+    border-start-end-radius: 5%;
+    margin: 1%;
+    width: 35%;
+    padding-bottom: 1%;
+    height: 15vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.card .messagedetails {
+    border-start-end-radius: 5%;
+    margin: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 2%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+.card .messagecheckboxes{
+  border-start-end-radius: 5%;
+  margin: 1%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-right: 2%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+
+
+}
+.card .messagetitle {
+    padding-left: 1%;
+    width: 100%;
+    display: flex;
+    /* background-color: #3a9cd8;
+    background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654); */
+    color: #303030;
+    color: #3a9bd8;
+    font-size: 1.2rem;
+    /* border: 1px solid yellowgreen; */
+   
+}
+.card .messagebody {
+    border-start-end-radius: 5%;
+    padding-left: 1%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
 }
 
-.message-word {
-  position: absolute;
-  margin: 20px 0 0 0;
-  z-index: 2;
-  top: -8px;
-  left: 20px;
-  background-color: white;
-  /* border: .1px solid green; */
-}
 
-.message-description {
-  z-index: 1;
-  /* position: relative; */
-  padding: 10px;
-  margin: 1px 10px 0 10px;
-  /* background-color: #F4F4F4; */
-  border: .1px solid #3a9cd8;
-}
-
-.createdFacts {
-  justify-content: center;
-}
-
-.schedule-functions {
-  /* border: 1px solid blue; */
-  margin-bottom: 10px;
-}
-
-.DayPickerInput {
-  /* border: 1px solid brown; */
-}
-
-.DayPicker {
-  font-size: .8rem;
-}
-
-.scheduledDate {
-  font-weight: 600;
-}
-
-.schedulerToggle {
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 0;
-  color: #3a9cd8 !important;
-}
-
-div.scheduleMessageComposer button.btn.btn-primary {
-  background-color: #3a9cd8;
-  border: 1px solid #3a9cd8;
-  margin-bottom: 10px;
-  /* border: 1px solid red; */
-}
-
+/******************** FROM DAYPICKER - haven't tried using yet  ****************/
 .DayPicker {
   /* display: inline-block; */
   font-size: .8rem;

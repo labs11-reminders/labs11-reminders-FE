@@ -14,6 +14,7 @@ class Dashboard extends Component {
       users: [],
       activeGroupUsers: [],
       activeGroupReminders: [],
+      org_id: null,
     };
     this.setActiveGroup = this.setActiveGroup.bind(this);
     this.setActiveGroupName = this.setActiveGroupName.bind(this);
@@ -50,6 +51,9 @@ class Dashboard extends Component {
       });
   };
 
+
+  
+
   getRemindersByGroup = () => {
     axios
       .post(`${process.env.REACT_APP_BACKEND}/api/groups/reminders/${this.state.activeGroup}`)
@@ -76,7 +80,6 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    //this.getUsers();
     this.getGroups();
   }
 
@@ -150,6 +153,7 @@ class Dashboard extends Component {
                       getGroups={this.getGroups}
                       groups={this.state.groups}
                       profile={this.state.profile}
+                      activeGroup={this.state.activeGroup}
                     />
                   </section>
                   <section className="content">

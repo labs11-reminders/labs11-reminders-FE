@@ -54,7 +54,7 @@ class AddOrgForm extends Component {
   render() {
     console.log("Add Org render", this.state)
     return (
-      <Form className="Add-Org-Form" onSubmit={this.addOrg}>
+      <FormGroup className="Add-Org-Form" onSubmit={this.addOrg}>
       <Button className="addOrgToggle" color="link" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Can't find your organization?</Button>
       <Collapse isOpen={this.state.collapse}>
         <FormGroup>
@@ -79,7 +79,7 @@ class AddOrgForm extends Component {
           <Button className='orgBtn' type='submit' onClick={this.addOrg}>Add it here</Button>
           </FormGroup>
           </Collapse>
-      </Form>
+      </FormGroup>
     );
   }
 }

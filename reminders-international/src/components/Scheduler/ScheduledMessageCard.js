@@ -2,10 +2,11 @@ import React,  { Component } from 'react';
 import MomentLocaleUtils, {
   formatDate,
   parseDate,
-} from 'react-day-picker/moment'
+} from 'react-day-picker/moment';
+import {Link} from 'react-router-dom';
 import 'moment/locale/it';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
+//import 'react-day-picker/lib/style.css';
 import axios from 'axios';
 import {
   NavLink,
@@ -17,16 +18,23 @@ import {
   Label,
   Input,
   Row,
+  Nav,
+  Col,
+  Collapse,
+  Button,
+  CardBody,
 
 } from 'reactstrap';
 import moment from "moment";
 import SchedMessageModal from './SchedMessageModal'
+import './SchedulerB.css';
 
 // Line 2:  'MomentLocaleUtils' is defined but never used  no-unused-vars
 class ScheduledMessageCard extends Component{
   constructor(props) {
     super(props);
     this.state = {
+      collapse: false,
       message: {
         id: '',
         title: '', 
@@ -40,16 +48,28 @@ class ScheduledMessageCard extends Component{
         group_id: ''
       },
     submitting: false,
-    error: false
+    error: false,
+    modal: true,
+    collapseScheduler: false,
   };
   this.toggleApprove = this.toggleApprove.bind(this);
   this.toggle = this.toggle.bind(this);
+  this.toggleCal = this.toggleCal.bind(this);
+  this.toggleScheduler = this.toggleScheduler.bind(this);
   this.toggleNested = this.toggleNested.bind(this);
 }
 toggle() {
   this.setState(prevState => ({
     modal: !prevState.modal,
   }));
+}
+toggleCal() {
+  this.setState(state => ({ collapse: !state.collapse }));
+}
+
+toggleScheduler() {
+  this.setState(state => ({ collapseScheduler: !state.collapseScheduler }));
+ 
 }
 
 toggleNested() {
@@ -172,6 +192,18 @@ fetchReminder = id => {
       .catch(error => console.log(error))
   }
 
+  deleteReminder = id => {
+    axios
+      .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
+      .then(response => {
+          console.log("DELETE RESPONSE:", response.data)
+          this.setState({ reminders: response.data, reminder: "" })
+      })
+      .catch(err => {
+          console.log(err);
+      })
+  }
+
   onDelete = (event) => { 
     const id = this.props.id
     console.log("ID", id)
@@ -192,53 +224,68 @@ fetchReminder = id => {
   render(){
     
   return (
-    <Card className="scheduled-card">
-    {/* <div className="template-card"> */}
-     {/* {this.props.scheduled ? (  */}
-       {/* //conditional rendering based on if scheduled is true or false */}
-        {/* <div> */}
-      {/* <Card> */}
-        <CardTitle>{this.props.title}</CardTitle>
-
-        <div className="scheduled-description">
-          <CardSubtitle>Message</CardSubtitle>
-          <CardText>{this.props.message}</CardText>
-        </div>
-          {/* <NavLink id="createLink" onClick={this.toggle} >
-              <i className="fas fa-pencil-alt" /> &nbsp; 
-          </NavLink> */}
-          <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message"/>  
-          <CardText className="template-created">Created By: {this.props.user_id}</CardText>
-          <div className="schedule-functions">
-            <CardText>Currently scheduled for &nbsp;{this.dateConverter(this.props.date)}</CardText>
+          <div class="card">
+       
+          <section class="message" >
+          <div class = "messagedetails">
+          <div class = "messagetitle">{this.props.title}</div> 
+          <div>
+          <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
+            toggle={this.toggle} onClosed={this.fetchReminder(this.props.id)}> </SchedMessageModal> 
+          </div>
+          
+          </div>
+          <div class = "messagebody">{this.props.message}</div>
+          </section>
+          
+          <section class = "messageoptions">
+          
+         
+          <div> Currently scheduled date:<br/> &nbsp;{this.dateConverter(this.props.date)}</div>
+       
+          
+         
+          <Button color="link" onClick={this.toggleCal} > -- Change Date -- </Button>
+            <Collapse isOpen={this.state.collapse}>
             <DayPickerInput className="calendar"
               onDayChange={this.onDatePicker}
+              onDayMouseEnter={this.onDatePicker}
               formatDate={formatDate}
               parseDate={parseDate}
               placeholder={`${formatDate(new Date())}`}/>
+          </Collapse>
+          <div>
+            <div class = "messagecheckboxes">
+         
             <FormGroup check inline>
               <Label for="scheduleApproval" check>
-                <Input type="checkbox" id="scheduleApproval" onClick={this.toggleApprove} />{' '} Approved
+                <Input type="checkbox" id="scheduleApproval" onClick={this.toggleApprove} />{' '} 
+                Schedule
               </Label>  
             </FormGroup>
             <FormGroup check inline>
               <Label check>
-                <Input type="checkbox" onClick={this.onDelete} />{' '} Delete
+                <Input type="checkbox" onClick={this.onDelete} />{' '}
+                 Delete
               </Label>
             </FormGroup>
             <FormGroup check inline>
-          <Label check>
-            <Input type="checkbox" onClick={this.onTemplate} />{' '}
-            Template
+              <Label check>
+              <Input type="checkbox" onClick={this.onTemplate} />{' '}
+            Add to templates
           </Label>
         </FormGroup>
-          </div>
-        {/* </div> */}{/* ): undefined } */}
-    {/* </div> */}
-    </Card>
+        </div>
+        </div>
+
+         
+        
+       
+    </section>
+  
+    </div>
   );
 };
-}
+};
+
 export default ScheduledMessageCard;
-
-
