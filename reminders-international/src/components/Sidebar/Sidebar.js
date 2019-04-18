@@ -166,6 +166,7 @@ class Sidebar extends Component {
             </div>
         </section>
         <section className="orgSection cube">
+        
           <h6>YOUR ORGANIZATION</h6>
 
           {/*<p> NEED ORG NAME FOR THIS USER </p> */}
@@ -178,10 +179,10 @@ class Sidebar extends Component {
         </section>
 
         <section className="groupsSection cube">
+        
           <h6>YOUR GROUP(s)</h6>
-          <NavLink id="createLink" onClick={this.toggle}>
-            <i className="fas fa-plus-circle" /> &nbsp; Create Group
-          </NavLink>
+          
+         
           {/*<p> NEED GROUP NAME FOR THIS USER </p> */}
 
           {/* TODO TEAM: Need another if for group id LINK */}
@@ -189,22 +190,50 @@ class Sidebar extends Component {
             console.log('PROPS PASSED DOWN FROM DASH', this.props);
             console.log("Group.org_id", group, "Profile", this.props.profile)
             if (group.org_id === this.props.profile.org_id) {
-              return (
-                <Link
-                  to="#"
-                  onClick={() => {
-                    console.log('setActiveGroup Clicked', group.id);
-                    this.props.setActiveGroup(group.id);
-                    this.props.setActiveGroupName(group.name);
-                  }}
-                >
-                  {' '}
-                  <ClickableCard key={group.id} name={group.name} />{' '}
-                </Link>
-              );
+              if (this.props.activeGroup == null) { 
+              this.props.setActiveGroup(group.id);
+              }
+              if (this.props.activeGroup == group.id) {
+                // active group
+                  return (
+                    <Link
+                      to="#"
+                      onClick={() => {
+                        console.log('setActiveGroup Clicked', group.id);
+                        this.props.setActiveGroup(group.id);
+                        this.props.setActiveGroupName(group.name);
+                      }}
+                    >
+                      {' '}
+                      <ClickableCard key={group.id} name={group.name} className="side-template-card-active" />{' '}
+                    </Link>
+                  );
+                } else {
+                // inactive group
+                  return (
+                    <Link
+                      to="#"
+                      onClick={() => {
+                        console.log('setActiveGroup Clicked', group.id);
+                        this.props.setActiveGroup(group.id);
+                        this.props.setActiveGroupName(group.name);
+                      }}
+                    >
+                      {' '}
+                      <ClickableCard key={group.id} name={group.name} className="side-template-card" />{' '}
+                    </Link>
+                  );
+
+              }
             }
           })}
+          
+          <NavLink id="createLink" onClick={this.toggle}>
+            <i className="fas fa-plus-circle" /> &nbsp; Create A New Group
+          </NavLink>
         </section>
+
+
         {/* <section className="convSection cube">
           <h6>SCHEDULED MESSAGES</h6>
           {this.state.reminders.map(reminder => {
@@ -224,11 +253,34 @@ class Sidebar extends Component {
           })}
         </section> */}
 
-        <Card>
-          <CardTitle>CONVERSATION</CardTitle>
-          <MessageModalInd buttonLabel="Message Individual" />
-        </Card>
 
+
+        {/* ******* This is styling for the mobile group selection portion ******* */}
+          <div class="accordion" id="accordionGroups">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    YOUR GROUPS
+                  </button>
+                </h2>
+              </div>
+
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+          </div>
+          </div>
+
+
+        <section className="convSection cube">
+       
+          <h6>CONVERSATION</h6>
+          {/* <MessageModalInd buttonLabel="Message Individual" /> */}
+        <SideTemplateCard className="convo"/>
+        </section>
 
         <Modal
           isOpen={this.state.modal}

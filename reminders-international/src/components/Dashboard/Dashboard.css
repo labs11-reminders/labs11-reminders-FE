@@ -14,8 +14,8 @@
 
 .sidebar {
     /* border: 1px solid red; */
-    width: 20%;
-    background-color:  #F2F3F5;
+    width: 15%;
+    /* background-color:  #F2F3F5; */
 }
 
 @media (max-width: 700px) {
@@ -45,8 +45,9 @@
    justify-content: center;
    align-content: space-between;
    border: 1px solid lightgrey;
-   border-radius: 2%;
+   border-radius: 3%;
    padding: 5%;
+   background-color:  #ECECEC;
 }
 
 @media (max-width: 700px) {
@@ -60,7 +61,8 @@
 }
 
 h6 {
-    padding-left: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
     font-weight: 800;
 }
 
@@ -73,13 +75,16 @@ h6 {
 
 
 #createLink {
-    color: #3a9cd8; 
-    padding-left: 10%;
+
+    color: #3a9cd8;
+    padding-top: 2%;
+    padding-left: 0%;
+
 }
 
 .profileSection {
     display: flex;
-    flex-direction: row;  
+    flex-direction: column;  
     /* border: 0.02px solid blue; */
     justify-content: center;
 }
@@ -106,7 +111,9 @@ h6 {
 
 #profileName {
     /* border: 1px solid green; */
-    margin: 0 5px;
+    /* margin: 0 5px; */
+    margin-left: 0%;
+    margin-bottom: 2%;
 }
 
 .orgSection {
@@ -122,7 +129,7 @@ h6 {
 }
 
 .orgSection div {
-    margin-left: 30%;
+    margin-left: 0%;
 }
 
 .groupsSection {
@@ -130,15 +137,48 @@ h6 {
     /* border: 1px solid green; */  
 }
 
+
+@media (max-width: 700px) {
+    .groupsSection {
+        display:none;
+    }
+}
+
 .groupsSection div {
-    margin-left: 30%;
+    margin-left: 0%;
 }
 
 @media (max-width: 700px) {
     .groupsSection div {
-        display: flex;
+        display: none;
         
         margin-left: 0%;
+    }
+}
+
+.side-template-card-active {
+    color: #0069da;
+    /* background-color: #0069da; */
+    padding: 1%;
+    text-align: left; 
+    border-radius: 2%;
+}
+
+.side-template-card {
+    /* padding-left: .5em; */
+    /* padding-right: 1em; */
+    text-align: left;
+    color: darkgray;
+}
+
+.accordion {
+    display:none;
+}
+
+@media (max-width: 700px) {
+    .accordion{
+        display: block;
+        margin: 0%;
     }
 }
 
@@ -148,7 +188,24 @@ h6 {
     
 }
 .convSection div {
-    margin-left: 30%;
+    margin-left: 0%;
+}
+
+@media (max-width: 700px) {
+    .convSection {
+        display: none;
+        /* display: flex; -could be changed to flex, but do we maybe want it at the bottom on mobile view? */
+        flex-direction: column;
+        align-content: center;
+        padding: 0%;
+        padding-bottom: 2%;
+    }
+
+    .convSection div {
+        padding: 0%;
+        margin-left: 0%;
+        align-content: center;
+    }
 }
 
 /*************** Dashboard - main content ************************/
