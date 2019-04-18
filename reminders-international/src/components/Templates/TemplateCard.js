@@ -181,7 +181,7 @@ componentDidMount() {
           <div className = "messagetitle">{this.props.title}</div> 
           <div>
           <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
-            toggle={this.toggle} onClosed={this.fetchReminder(this.props.id)}> </SchedMessageModal> 
+            toggle={this.toggle} > </SchedMessageModal> 
           </div>
           </div>
            

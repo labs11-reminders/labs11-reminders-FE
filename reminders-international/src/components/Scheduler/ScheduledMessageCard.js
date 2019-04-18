@@ -241,7 +241,7 @@ fetchReminder = id => {
           <div>
 
             {/* I commented this out and then below removed the onClosed --which stopped the loop since the modal
-            will usually be closed I think this is what was triggering the loop. */}
+            will usually be closed I think this is what was triggering the loop. I removed it on drafts and templates too. */}
           {/* <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
             toggle={this.toggle} onClosed={this.fetchReminder(this.props.id)}> </SchedMessageModal> */}
 
