@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import TemplateCard from './TemplateCard';
+import '../Scheduler/TabMessageStyles.css';
+import '../global.css';
 import {
   Card,
   CardColumns,
@@ -22,15 +24,15 @@ export default class TemplateList extends Component {
   render() {
     //console.log("Template list this.state", this.state)
     return (
-      <div className="scheduled-list">
-        TemplateList
-      <Col className="template-list" sm="12">
+      
+      <div className="list">
+      <div>
        {this.props.reminders.map(reminder => { 
             if (reminder.group_id === this.props.activeGroup && reminder.template) {
               /* console.log("RENDERING TEMPLATE CARD ", reminder) */
             return (
-              <Card>
-              <CardBody key={reminder.id}>
+              <div>
+              <div key={reminder.id}>
               <TemplateCard 
               key={reminder.id}
               id={reminder.id}
@@ -46,15 +48,18 @@ export default class TemplateList extends Component {
               sent = {reminder.sent}
               template = {reminder.template}
             />
-            </CardBody>
-            </Card>
-          )} 
+            </div>
+            </div>
+          )
+        } 
       })}
-      </Col>
-      
+     
+     </div>
       </div>
-    )
+     
+      )
+    }
   }
-
-}
+   
+  
 
