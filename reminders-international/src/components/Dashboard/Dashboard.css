@@ -1,3 +1,4 @@
+
 .mainContainer {
     /* border: 1px solid red; */
     max-width: 100vw;
@@ -368,6 +369,406 @@ div.tab-content {
 
 #drpItem:hover {
     background-color: #007bff;
+    color: white;
+}
+
+/******************** Modal Section ****************/
+.groupModal {
+    box-shadow: 0px 0px 8px rgb(44, 44, 44);
+    width: 100vw;
+    position: absolute;
+    top: 10%;
+    text-align: center
+}
+
+.modalBody {
+    margin: 0 8%;
+}
+
+.modalBody img {
+    border: 1px solid #616568;
+    width: 125px;
+    height: 125px;
+    margin: 0 auto;
+    border-radius: 100%;
+    box-shadow: 0px 0px 8px rgb(117, 117, 117);
+
+}
+
+.modalProfile {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 3%;
+}
+
+.createGroup {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 5%;
+}
+
+#alertModalWrap {
+   margin-top: 20%;
+}
+
+#alertModal {
+    color: red;
+    text-align: center;
+    font-weight: bold
+}
+
+#alertModalFooter {
+    display: flex; 
+    justify-content: center;
+}
+
+#alertModalFooter Button {
+    width: 20vw;
+=======
+.mainContainer {
+    /* border: 1px solid red; */
+    max-width: 100vw;
+    display: flex;
+    flex-direction: row;
+    min-height: 80vh
+}
+
+@media (max-width: 700px) {
+    .mainContainer {
+        flex-direction: column;
+    }
+}
+
+.sidebar {
+    /* border: 1px solid red; */
+    width: 15%;
+    /* background-color:  #F2F3F5; */
+}
+
+@media (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+    }
+}
+
+.content {
+    /* border: 1px solid red; */
+    width: 85%
+}
+
+@media (max-width: 700px) {
+    .content {
+        width: 100%;
+    }
+}
+
+/*************** Dashboard - sidebar content ************************/
+
+.cube {
+   min-height: 100px;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   justify-content: center;
+   align-content: space-between;
+   border: 1px solid lightgrey;
+   border-radius: 3%;
+   padding: 5%;
+   background-color:  #ECECEC;
+}
+
+@media (max-width: 700px) {
+    .cube {
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 1%;
+        border-radius: 0%;
+    }
+}
+
+h6 {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-weight: 800;
+}
+
+@media (max-width: 700px) {
+    h6 {
+        padding-left: 1%;
+        font-weight: 800;
+    }
+}
+
+
+#createLink {
+
+    color: #3a9cd8;
+    padding-top: 2%;
+    padding-left: 0%;
+
+}
+
+.profileSection {
+    display: flex;
+    flex-direction: column;  
+    /* border: 0.02px solid blue; */
+    justify-content: center;
+}
+
+@media (max-width: 700px) {
+    .profileSection {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+#profilePicture {
+    border: 1px solid black;
+    border-radius: 50%;
+    margin: 5px;
+    background-color: white;
+    box-shadow: 0px 0px 8px rgb(134, 134, 134);
+    font-size: 1rem;
+    font-weight: 600;
+    width: 60px;
+    height: 60px;
+}
+
+#profileName {
+    /* border: 1px solid green; */
+    /* margin: 0 5px; */
+    margin-left: 0%;
+    margin-bottom: 2%;
+}
+
+.orgSection {
+    line-height: 1.6;
+    /* border: 1px solid green; */
+    
+}
+
+@media (max-width: 700px) {
+    .orgSection {
+        display: none;
+    }
+}
+
+.orgSection div {
+    margin-left: 0%;
+}
+
+.groupsSection {
+    line-height: 1.6;
+    /* border: 1px solid green; */  
+}
+
+
+@media (max-width: 700px) {
+    .groupsSection {
+        display:none;
+    }
+}
+
+.groupsSection div {
+    margin-left: 0%;
+}
+
+@media (max-width: 700px) {
+    .groupsSection div {
+        display: none;
+        
+        margin-left: 0%;
+    }
+}
+
+.side-template-card-active {
+    color: #0069da;
+    /* background-color: #0069da; */
+    padding: 1%;
+    text-align: left; 
+    border-radius: 2%;
+}
+
+.side-template-card {
+    /* padding-left: .5em; */
+    /* padding-right: 1em; */
+    text-align: left;
+    color: darkgray;
+}
+
+.accordion {
+    display:none;
+}
+
+@media (max-width: 700px) {
+    .accordion{
+        display: block;
+        margin: 0%;
+    }
+}
+
+.convSection {
+    line-height: 1.6;
+    /* border: 1px solid green; */
+    
+}
+.convSection div {
+    margin-left: 0%;
+}
+
+@media (max-width: 700px) {
+    .convSection {
+        display: none;
+        /* display: flex; -could be changed to flex, but do we maybe want it at the bottom on mobile view? */
+        flex-direction: column;
+        align-content: center;
+        padding: 0%;
+        padding-bottom: 2%;
+    }
+
+    .convSection div {
+        padding: 0%;
+        margin-left: 0%;
+        align-content: center;
+    }
+}
+
+/*************** Dashboard - main content ************************/
+.profileInfo {
+    min-height: 150px;
+    /* border: 1px solid green; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1% 2%;
+}
+
+.groupData {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+.groupData #grpImage {
+    border: 1px  solid #389CD868;
+    border-radius: 100%;
+    width: 115px;
+    height: 115px;
+    
+    background-color:  #ffffff;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.grpName {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.tabSection {
+    min-height: 70vh;
+    /* border: 1px solid blue; */
+    margin: 2%;
+}
+
+#tabNav {
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+a.active.nav-link {
+    background-color: #3a9cd8;
+    background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654);
+    color: white !important; 
+    /* border: 1px solid #3a9cd8 !important; */
+}
+
+ul.nav.nav-tabs {
+    border-bottom: 1px solid #389CD868;
+}
+
+div.tab-content {
+    background-color:  white;
+    border-left: 1px solid #389CD868;
+    border-right: 1px solid #389CD868;
+    border-bottom: 1px solid #389CD868;
+}
+
+.card {
+    border: 1px solid #3A9CD8;
+    padding: 8px;
+}
+
+.card-body {
+    background-color: white;
+    padding: 8px;
+}
+
+.card-columns {
+    padding: 4px;
+}
+
+.template-list {
+    /* background-color: gainsboro; */
+}
+
+.template-description {
+    border: 1px solid grey;
+    position: relative;
+    margin-top: 10px;
+    padding: 6px;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.card-subtitle {
+    font-size: 1rem;
+}
+
+
+.card-text {
+    font-size: 1rem;
+    /* position: relative; */
+}
+
+#createLink {
+    cursor: pointer
+}
+
+.topBtn {
+    display: flex;
+    height: 6vh;
+
+}
+
+#topSettings {
+    margin: 0px 15px 0px 15px;
+    color: #3a9cd8;
+    padding: 5px 0 0 0;
+}
+
+#topSettings:hover {
+    color: #0069da;
+}
+
+#drpMenu {
+    margin: 1vw 0 0 -8.5vw;
+    box-shadow: 0px 0px 5px rgb(128, 128, 128);
+}
+
+#drpItem:hover {
+    background-color: #3a9cd8;
     color: white;
 }
 

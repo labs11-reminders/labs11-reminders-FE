@@ -239,11 +239,13 @@ fetchReminder = id => {
           </section>
           
           <section class = "messageoptions">
-          <div class = "messagedetails">
           
-          </div>
-          <div>
-          <Button color="link" onClick={this.toggleCal} style={{ marginBottom: '1rem' }}>Change Date</Button>
+         
+          <div> Currently scheduled date:<br/> &nbsp;{this.dateConverter(this.props.date)}</div>
+       
+          
+         
+          <Button color="link" onClick={this.toggleCal} > -- Change Date -- </Button>
             <Collapse isOpen={this.state.collapse}>
             <DayPickerInput className="calendar"
               onDayChange={this.onDatePicker}
@@ -252,9 +254,9 @@ fetchReminder = id => {
               parseDate={parseDate}
               placeholder={`${formatDate(new Date())}`}/>
           </Collapse>
-          <div> Currently scheduled for &nbsp;{this.dateConverter(this.props.date)} </div>
-          <div class = "messagedetails">
-          <div> 
+          <div>
+            <div class = "messagecheckboxes">
+         
             <FormGroup check inline>
               <Label for="scheduleApproval" check>
                 <Input type="checkbox" id="scheduleApproval" onClick={this.toggleApprove} />{' '} 
@@ -276,7 +278,7 @@ fetchReminder = id => {
         </div>
         </div>
 
-          </div>
+         
         
        
     </section>

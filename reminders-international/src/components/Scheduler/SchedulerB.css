@@ -1,5 +1,23 @@
 
+button.btn.btn-primary {
+  background: #389CD8;
+  border-color:#389CD8;
+
+}
+button.btn.btn-link {
+  color:#389CD8;
+  margin: 0;
+}
+a.navbar-brand {
+  color:#389CD8;
+}
+p {
+  color:#389CD8;
+}
+
+
 .composer{
+    padding-top: 1%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -16,9 +34,11 @@
 }
 
 .list .card {
-    background-color:rgba(181, 184, 187, 0.534);
+    background-color: #d6dde28f;
+    border-color: #d6dde28f;
+    border-start-end-radius: 5%;
     margin-top: 1%;
-    margin-bottom: 1%;
+    
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -28,7 +48,11 @@
 
 .card section {
     background-color:white;
-    margin: 3%;
+    border-radius: 5px;
+    margin-top: 1%;
+   
+    padding-top: 1%;
+    padding-bottom: 1%;
     width: 100%;
     height: 15vw;
     display: flex;
@@ -36,9 +60,11 @@
     justify-content: flex-start;
     flex-direction: column;
 }
-section .message
+.card section .message
 {
-  margin: 3%;
+  border-start-end-radius: 5%;
+  margin: 1%;
+
   width: 100%;
   height: 15vw;
   display: flex;
@@ -46,19 +72,40 @@ section .message
   flex-direction: column;
 }
 .card .messageoptions {
-    margin: 3%;
-    width: 30%;
+    border-start-end-radius: 5%;
+    margin: 1%;
+    width: 35%;
+    padding-bottom: 1%;
     height: 15vw;
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 .card .messagedetails {
-    margin: 3%;
+    border-start-end-radius: 5%;
+    margin: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 2%;
     width: 100%;
     display: flex;
-  justify-content: space-between;
+    justify-content: space-between;
     flex-direction: row;
+    align-items: center;
+}
+.card .messagecheckboxes{
+  border-start-end-radius: 5%;
+  margin: 1%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-right: 2%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+
+
 }
 .card .messagetitle {
     padding-left: 1%;
@@ -67,12 +114,13 @@ section .message
     /* background-color: #3a9cd8;
     background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654); */
     color: #303030;
-    color: #3a9cd8;
+    color: #3a9bd8;
     font-size: 1.2rem;
     /* border: 1px solid yellowgreen; */
    
 }
 .card .messagebody {
+    border-start-end-radius: 5%;
     padding-left: 1%;
     width: 100%;
     display: flex;

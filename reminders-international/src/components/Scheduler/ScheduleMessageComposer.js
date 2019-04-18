@@ -30,11 +30,18 @@ class ScheduleMessageComposer extends Component {
         console.log("ACTIVE ID - COMPOSER- will recieve", this.props.activeGroup)
       }
 // removed Container
+
       
       render() {
+        const btnPrimary = {
+          color: '#fff',
+          backgroundColor: '#3a9bd8',
+          borderColor: '#3a9bd8'
+      };
+                
         return (
           <div className="composer"> 
-          <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Schedule Group Message" />  
+            <MessageModalGroup id="button" groups = {this.props.groups} state ={this.props.state} type="button" buttonLabel="Schedule Message" /> 
             <ScheduledMessageList 
               activeGroup={this.props.activeGroup} 
               group_reminders={this.state.group_reminders}/>
