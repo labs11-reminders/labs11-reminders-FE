@@ -201,16 +201,16 @@ toggleScheduler() {
               parseDate={parseDate}
               placeholder={`${formatDate(new Date())}`}/>
             <FormGroup check inline>
-              <Label for="scheduleApproval" check>
-                <Input type="checkbox" id="scheduleApproval" onClick={this.toggleApprove} />{' '} Approved
+              <Label>
+                <Input type="checkbox" onClick={this.toggleApprove} />{' '} Approved
               </Label>  
             </FormGroup>
-            <FormGroup check inline>
+            <FormGroup>
               <Label check>
                 <Input type="checkbox" onClick={this.onDelete} />{' '} Delete
               </Label>
             </FormGroup>
-            <FormGroup check inline>
+            <FormGroup>
               <Label check>
               <Input type="checkbox" onClick={this.onTemplate} />{' '}
             Template

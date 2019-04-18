@@ -1,0 +1,18 @@
+/*------ REACT STRAP STYLE OVERRIDES ------------*/
+
+button.btn.btn-primary {
+    background: #389CD8;
+    border-color:#389CD8;
+  
+  }
+  button.btn.btn-link {
+    color:#389CD8;
+    margin: 0;
+  }
+  a.navbar-brand {
+    color:#389CD8;
+  }
+  p {
+    color:#389CD8;
+  }
+ 

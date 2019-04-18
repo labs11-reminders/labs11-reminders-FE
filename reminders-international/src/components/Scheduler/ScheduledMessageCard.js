@@ -28,6 +28,7 @@ import {
 import moment from "moment";
 import SchedMessageModal from './SchedMessageModal'
 import './SchedulerB.css';
+import '../global.css';
 
 // Line 2:  'MomentLocaleUtils' is defined but never used  no-unused-vars
 class ScheduledMessageCard extends Component{
@@ -239,8 +240,6 @@ fetchReminder = id => {
           </section>
           
           <section class = "messageoptions">
-          
-         
           <div> Currently scheduled date:<br/> &nbsp;{this.dateConverter(this.props.date)}</div>
        
           
@@ -256,21 +255,20 @@ fetchReminder = id => {
           </Collapse>
           <div>
             <div class = "messagecheckboxes">
-         
-            <FormGroup check inline>
-              <Label for="scheduleApproval" check>
-                <Input type="checkbox" id="scheduleApproval" onClick={this.toggleApprove} />{' '} 
+              <FormGroup>
+              <Label>
+                <Input type="checkbox" onClick={this.toggleApprove} />{' '} 
                 Schedule
               </Label>  
             </FormGroup>
-            <FormGroup check inline>
-              <Label check>
+            <FormGroup>
+              <Label>
                 <Input type="checkbox" onClick={this.onDelete} />{' '}
                  Delete
               </Label>
             </FormGroup>
-            <FormGroup check inline>
-              <Label check>
+            <FormGroup>
+              <Label>
               <Input type="checkbox" onClick={this.onTemplate} />{' '}
             Add to templates
           </Label>

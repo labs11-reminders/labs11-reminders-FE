@@ -79,6 +79,7 @@ class UserDetailsForm extends Component {
                         <FormGroup>
                             <Label for="userFullName">Name</Label>
                                 <input 
+                                    class = "detailInput"
                                     placeholder="First & Last"
                                     id="userFullName"
                                     ref={input => this.full_name = input} 
@@ -87,6 +88,7 @@ class UserDetailsForm extends Component {
                         <FormGroup>
                             <Label for="userEmail">Email</Label>
                                 <input 
+                                    class = "detailInput"
                                     type="email"
                                     placeholder="handle@address.com"
                                     id="userEmail" 
@@ -96,6 +98,7 @@ class UserDetailsForm extends Component {
                         <FormGroup>
                             <Label for="userCountry">Country</Label>
                                 <input 
+                                    class = "detailInput"
                                     placeholder="Country of Residence"
                                     id="userCountry"
                                     ref={input => this.country = input} 
@@ -104,6 +107,7 @@ class UserDetailsForm extends Component {
                         <FormGroup>
                             <Label for="userPhone">Phone Number (include country & area codes)</Label>
                                 <input 
+                                    class = "detailInput"
                                     placeholder="442071838750"
                                     id="userPhone"
                                     ref={input => this.phone = input} 
