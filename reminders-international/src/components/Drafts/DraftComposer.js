@@ -3,6 +3,8 @@ import { Button } from 'reactstrap';
 import DraftList from './DraftList';
 import MessageModalGroup from '../MessageModal/MessageModalGroup';
 import axios from 'axios';
+import '../Scheduler/TabMessageStyles.css';
+import '../global.css';
 
 class DraftComposer extends Component {
     constructor(props) {
@@ -33,14 +35,11 @@ class DraftComposer extends Component {
         // console.log("RENDERING SCHEDULED MESSAGE LIST ", this.state.reminders)
         //console.log("REMINDERS render", this.props.activeGroup, this.state.reminders)
         return (
-          <div> 
-           <h3>DraftComposer</h3>
+          <div className="composer"> 
+           <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Create Draft Message" />
             <DraftList activeGroup={this.props.activeGroup} reminders={this.state.reminders}/>
-            <div>
-            <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Write Group Draft Message" />
-              </div>
-          </div>
-        );
+            </div>
+  );
   };
 }
 export default DraftComposer;
