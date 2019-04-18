@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import DraftCard from './DraftCard';
+import '../Scheduler/TabMessageStyles.css';
+import '../global.css';
 import {
   Card,
   CardColumns,
@@ -17,15 +19,14 @@ export default class DraftList extends Component {
 
   render() {
     return (
-      <div className="scheduled-list">
-      Draft List
-      <Col className="template-list" sm="12">
+      <div className="list">
+      <div>
        {this.props.reminders.map(reminder => { 
             if (reminder.group_id === this.props.activeGroup && reminder.draft) {
                {/* console.log("RENDERING DRAFT CARD ", reminder)  */}
             return (
-              <Card>
-              <CardBody key={reminder.id}>
+              <div>
+              <div key={reminder.id}>
               <DraftCard
               key={reminder.id}
               id={reminder.id}
@@ -41,11 +42,11 @@ export default class DraftList extends Component {
               sent = {reminder.sent}
               draft = {reminder.draft}
             />
-            </CardBody>
-            </Card>
+          </div>
+            </div>
           )} 
       })}
-        </Col>
+        </div>
         
       </div>
     )

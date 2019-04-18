@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ScheduledMessageCard from './ScheduledMessageCard';
-import './SchedulerB.css';
+import './TabMessageStyles.css';
+import '../global.css';
 import {
   Card,
   CardColumns,
@@ -24,7 +25,6 @@ export default class ScheduledMessageList extends Component {
            <div>
             {this.props.group_reminders.map(group_reminder => { //change to scheduled reminders when whe have them 
               if (group_reminder.group_id === this.props.activeGroup && group_reminder.scheduled) {
-                {/* console.log("RENDERING SCHEDULED div", group_reminder) */}
                 return (
                   <div>
                     <div key={group_reminder.id}>
@@ -41,7 +41,7 @@ export default class ScheduledMessageList extends Component {
                       user_id={group_reminder.user_id}
                       scheduled={group_reminder.scheduled}
                       sent = {group_reminder.sent}
-                      >ScheduledMessageCard</ScheduledMessageCard>
+                      />
                     </div>
                   </div>
                 )

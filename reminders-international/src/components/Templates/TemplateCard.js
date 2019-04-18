@@ -21,6 +21,8 @@ import {
   Collapse
 
 } from 'reactstrap';
+import '../Scheduler/TabMessageStyles.css';
+import '../global.css';
 
 // '/api/reminders/:id'
 
@@ -172,156 +174,46 @@ componentDidMount() {
     // console.log("TemplateCard this.state", this.state)
     console.log("this.props PROFILE",this.userProfile)
     return (
-      <div className="template-card">
-          <div className="if-undefined-make-invisible-or-hidden">
-            <CardTitle>{this.props.title}</CardTitle>
-            <NavLink id="createLink" onClick={this.toggle} >
-              <i className="fas fa-pencil-alt" /> &nbsp; 
-              <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Template"/>  
-            </NavLink>
-            <NavLink id="createLink" onClick={()=>this.deleteReminder(this.props.id)}>
-              <i className="fas fa-trash-alt" /> &nbsp;
-           </NavLink>
+      <div className="card">
+       
+          <section className="message" >
+          <div className = "messagedetails">
+          <div className = "messagetitle">{this.props.title}</div> 
+          <div>
+          <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
+            toggle={this.toggle} onClosed={this.fetchReminder(this.props.id)}> </SchedMessageModal> 
+          </div>
+          </div>
            
-            <div className="template-description">
-            <CardText>{this.props.message}</CardText>
-            </div>
-            <CardText className="template-created">Date Created: {this.dateConverter(this.props.created_at)}</CardText>
-            <CardText className="template-created">Created By: {this.props.user_id}</CardText>
-     
-
-            <FormGroup check>
-          <Label check>
+          <div className = "messagebody"><strong> Message body: </strong>&nbsp;{this.props.message}</div>
+          </section>
+       
+           <section className = "messageoptions">
+           <div>
+            <div className = "messagecheckboxes">
+          <p>Other template options:</p>
+            <FormGroup>
+          <Label inline check>
+            <Input type="checkbox" onClick={this.toggleSchedule} />{' '}
+            Add to scheduler
+          </Label>
+        </FormGroup>
+           <FormGroup >
+          <Label inline check>
             <Input type="checkbox" onClick={this.onDelete} />{' '}
             Delete
           </Label>
         </FormGroup>
 
-        <FormGroup check>
-          <Label check>
-            <Input type="checkbox" onClick={this.toggleSchedule} />{' '}
-            Add to scheduler
-          </Label>
-        </FormGroup>
-        </div>
+        
       </div>
+     </div>
+     </section>
+  
+  </div>
     );
   };
-}
+};
 
 export default TemplateCard;
 
- {/* // TODO TEAM: Get Reminders
-  getReminders = () => {
-  axios.get(`${process.env.REACT_APP_BACKEND}/api/reminders`)
-      .then(res => {
-        //const reminders = res.data;
-        //this.setState({ reminders });
-        console.log(res.data);
-      })
-  }
-   getAllGroups = () => {
-    axios
-      .get(
-        `${process.env.REACT_APP_BACKEND}/api/groups`,
-        this.state.groups,
-      )
-      .then(res => {
-        this.setState({
-          groups: res.data,
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  editReminder = id => {
-    console.log("editReminder ID", id)
-    const editObj ={ name: this.state.reminders.name, description: this.state.reminders.description };
-    axios
-      .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
-      .then(response => {
-        console.log("PUT RESPONSE:", response.data)
-        this.setState({ reminders: response.data})
-      })
-      .catch(error => console.log(error))
-  }
-
-  
-  <Modal
-              isOpen={this.state.modal}
-              toggle={this.toggle}
-              className={this.props.className}
-              size="lg"
-            >
-            <ModalHeader toggle={this.toggle}>
-            <h5>Edit the Template</h5>
-          </ModalHeader>
-          <ModalBody className="modalBody">
-            <Form className="createGroup" >
-              <FormGroup row>
-                <Label for="templateName">Edit Title</Label>
-                <Col sm={10}>
-                  <Input
-                    onChange={this.handleInputChange}
-                    placeholder={this.props.name}
-                    value={this.state.reminders.name}
-                    name="name"
-                    id="templateName"
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Label for="templateDescription">Edit Message</Label>
-                <Col sm={10}>
-                  <Input 
-                    onChange={this.handleInputChange}
-                    placeholder={this.props.description}
-                    value={this.state.reminders.description}
-                    name="description" 
-                    id="templateDescription" />
-                </Col>
-              </FormGroup>
-
-              <FormGroup row>
-                <Label for="templateGroup">Group</Label>
-                <Col sm={10}>
-                  <Input
-                    type="select"
-                    placeholder="Select Group"
-                    onChange={this.handleInputChange}
-                    value={this.state.groups.name}
-                    name="group"
-                    id="templateGroup"
-                  >
-                    <option> --&nbsp; Select Group</option>
-                    {this.state.groups.map(group => (
-                      <option key={group.id}>{group.name}</option>
-                    ))}{' '}
-                  </Input>
-                </Col>
-              </FormGroup>
-            </Form>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={()=>this.editReminder(this.props.id)} >
-              Edit
-            </Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>
-              Cancel
-            </Button>
-          </ModalFooter>
-        </Modal>
-        <Modal
-          id="alertModalWrap"
-          isOpen={this.state.nestedModal}
-          toggle={this.toggleNested}
-        >
-          <ModalBody id="alertModal">An input is Required!</ModalBody>
-          <ModalFooter id="alertModalFooter">
-            <Button color="danger" onClick={this.toggleNested}>
-              Ok
-            </Button>
-          </ModalFooter>
-                    </Modal>*/}
