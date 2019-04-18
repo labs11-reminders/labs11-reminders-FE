@@ -71,7 +71,7 @@ class SearchBar extends Component {
         <div className="form-group w-50">
         <form className="searchBar">
           <input
-            placeholder="Search for a user to add them to your selected group above."
+            placeholder="Search for a user by name."
             ref={input => this.search = input}
             onChange={this.handleChanges}
             className="form-control form-control-sm"
