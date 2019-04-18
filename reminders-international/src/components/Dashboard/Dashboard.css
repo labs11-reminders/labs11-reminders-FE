@@ -164,14 +164,13 @@ h6 {
 }
 
 .side-template-card-active {
-    color: #0069da;
-    /* background-color: #0069da; */
-    padding: 1%;
+    background-color: #343A40;
+    padding: 2%;
     text-align: left; 
     
 }
 
-.side-template-card {
+.side-template-card a {
     /* padding-left: .5em; */
     /* padding-right: 1em; */
     text-align: left;
@@ -303,7 +302,7 @@ div.tab-content {
 }
 
 .template-list {
-    /* background-color: gainsboro; */
+    background-color: gainsboro;
 }
 
 .template-description {
