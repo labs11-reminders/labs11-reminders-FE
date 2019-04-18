@@ -210,7 +210,7 @@ class MessageModalGroup extends React.Component {
       <div>
         <Button color="primary" onClick={this.toggle}>{this.props.buttonLabel}</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Create a Message</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Create Message</ModalHeader>
           <ModalBody>
           <FormGroup>
               <Label for="messageText">Write Title Here</Label>

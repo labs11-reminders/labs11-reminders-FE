@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Container, FormGroup, Button, Input, Label } from 'reactstrap';
+import { Container, FormGroup, Button, Input, Label, Collapse } from 'reactstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import './Group.css';
 
 
 
@@ -11,6 +12,7 @@ class AddGroupForm extends Component {
     this.state = {
       groups: [],
       message: '',
+      collapse: false,
     };
   }
 
@@ -43,6 +45,10 @@ class AddGroupForm extends Component {
     });
   }
 
+  toggle = () => {
+    this.setState(state => ({ collapse: !state.collapse }));
+  }
+
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState( { groups: { ...this.state.groups, [name]: value}})
@@ -51,18 +57,23 @@ class AddGroupForm extends Component {
   render() {
     console.log("Add Group render", this.state)
     return (
-      <Container className="Add-Group-From" onSubmit={this.addGroup}>
+        <FormGroup className="Add-Group-Form" onSubmit={this.addGroup}>
+        <Button className="addGroupToggle" color="link" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Create new group</Button>
+        <Collapse isOpen={this.state.collapse}>
+        <p>Once you create a new group, you can invite members, send announcements, and start conversations.</p>
         <FormGroup>
-          <Label>Group name</Label> 
+          <Label for="addGroupName" hidden>Create new group</Label> 
           <Input
+            id="addGroupName"
             onChange={this.handleInputChange}
-            placeholder="example: Marketing 101"
+            placeholder="New group name"
             value={this.state.groups.name}
             name="name"
           />
-          <Button type='submit' onClick={this.addGroup}>Create</Button>
+          <Button className='groupBtn' type='submit' onClick={this.addGroup}>Add it here</Button>
+          </FormGroup>
+          </Collapse>
         </FormGroup>
-      </Container>
     );
   }
 }

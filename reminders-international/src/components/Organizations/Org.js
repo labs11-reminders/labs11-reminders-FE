@@ -21,7 +21,6 @@ class Org extends Component {
 
   getAllOrgs = () => {
     axios.get(`${process.env.REACT_APP_BACKEND}/api/orgs`, this.state.orgs)
-    // axios.get("https://localhost:3333/api/orgs", this.state.orgs)
       .then(res => {
         this.setState({
         orgs: res.data
@@ -58,8 +57,8 @@ class Org extends Component {
             name="name" 
             id="orgName" 
             value={this.state.orgs.name}
-            onChange={this.onHandleChange}            
-            >
+            onChange={this.onHandleChange}
+          >
             <option>Select your organization</option>
             {
               this.state.orgs.map(org =>
