@@ -70,7 +70,7 @@ class AddOrgForm extends Component {
           <FormGroup>
           <Label for="addOrgDescription" hidden>Description</Label> 
           <Input
-            className="addOrgDescription"
+            id="addOrgDescription"
             onChange={this.handleInputChange}
             placeholder="New organizational description"
             value={this.state.orgs.description}

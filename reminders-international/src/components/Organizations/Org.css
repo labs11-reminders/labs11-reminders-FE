@@ -13,8 +13,13 @@
 }
 
 .org-form {
-  width: 60%;
+  width: 100%;
   padding: 0 10px 0 10px;
+  
+}
+
+.orgInput {
+  width: 100%;
   margin: 0 auto;
 }
 

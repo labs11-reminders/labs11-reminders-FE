@@ -50,7 +50,7 @@ class Org extends Component {
       <Container className="orgsContainer">
           <h3 className="orgsTopBar">What's the name of your organization?</h3>
       <Form className="org-form">
-        <FormGroup>
+        <FormGroup className="orgInput">
           <Label for="orgName"></Label>
           <Input 
             type="select"
