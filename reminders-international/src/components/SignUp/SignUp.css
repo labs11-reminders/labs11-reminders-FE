@@ -1,3 +1,7 @@
+.signupContainer {
+  margin-top: 55px;
+}
+
 .signup-stepper {
   padding-top: 20px;
 }
@@ -27,7 +31,7 @@ span.dot-active {
 
 .detailInput {
   display: block;
-  width: 100%;
+  width: 60%;
   height: calc(1.5em + 0.75rem + 2px);
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
@@ -40,7 +44,7 @@ span.dot-active {
   border-radius: 0.25rem;
   -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  margin: 0;
+  margin: 0 auto;
   border-radius: 0 !important;
   border: 0;
   outline: 1px solid #CCC !important;

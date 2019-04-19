@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import AddGroupForm from './AddGroupForm.js';
-import { Container, Form, FormGroup, Input, Button, Label } from 'reactstrap';
+import {
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  Button,
+  Label,
+  Modal,
+  ModalBody,
+  ModalFooter,
+} from 'reactstrap';
 import axios from 'axios';
 import './Group.css';
 
@@ -14,7 +24,9 @@ class Group extends Component {
       role_id: null,
       org_id: null,
       group_id: null,
+      alertModal: false,
     };
+    this.toggleAlert = this.toggleAlert.bind(this);
   }
 
   getAllGroups = () => {
@@ -32,8 +44,16 @@ class Group extends Component {
       });
   };
 
+  toggleAlert() {
+    this.setState({
+      alertModal: !this.state.alertModal,
+    });
+  }
+
   handleNext = e => {
-    this.props.handleGroup(this.state.group_id);
+    this.state.group_id === null || this.state.group_id === 'Select your group'
+      ? this.toggleAlert()
+      : this.props.handleGroup(this.state.group_id);
   };
 
   onHandleChange = event => {
@@ -83,6 +103,21 @@ class Group extends Component {
             </div>
           )}
         </Form>
+
+        <Modal
+          id="alertModalWrapper"
+          isOpen={this.state.alertModal}
+          toggle={this.toggleAlert}
+        >
+          <ModalBody id="roleAlertModal">
+            You must select a Group to proceed!
+          </ModalBody>
+          <ModalFooter id="alertBtn">
+            <Button color="secondary" onClick={this.toggleAlert}>
+              OK!
+            </Button>
+          </ModalFooter>
+        </Modal>
       </Container>
     );
   }
