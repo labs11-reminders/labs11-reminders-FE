@@ -55,7 +55,7 @@
    border: 1px solid lightgrey;
    border-radius: 3%;
    padding: 5% 13%;
-   background-color:  #ECECEC;
+   background-color:  #e8ecef;
 }
 
 @media (max-width: 700px) {
@@ -226,7 +226,7 @@ h6 {
     margin-bottom: 0%;
     border-radius: 0%;
     border-top: none;
-    height: 100%;
+    padding-bottom: 125%;
 }
 
 /*************** Dashboard - main content ************************/
