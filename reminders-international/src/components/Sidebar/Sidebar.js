@@ -324,6 +324,9 @@ class Sidebar extends Component {
         {/* ****************** End of mobile group section ********** */}
 
         
+
+
+
         
         {/* ******************** Conversation section beginning *******************       */}
         {/* <section className="convSection cube"> */}
@@ -333,6 +336,12 @@ class Sidebar extends Component {
             {/* <SideTemplateCard className="convo"/> */}
             {/* </section> */}
         {/* **************** Conversation section end ********** */}
+
+
+          <section className="spacerSection cube"> 
+               
+                
+           </section>
 
 
             <Modal
