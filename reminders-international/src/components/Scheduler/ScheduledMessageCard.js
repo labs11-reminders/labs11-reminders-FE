@@ -257,7 +257,7 @@ fetchReminder = id => {
           <section className = "messageoptions">
           
        
-  <Button color="link" onClick={this.toggleCal} > <strong>Click here </strong> to update send date </Button>  
+  <Button color="link" onClick={this.toggleCal} > Edit Calendar</Button>  
             <Collapse isOpen={this.state.collapse}>
             <DayPickerInput classNameName="calendar"
               onDayChange={this.onDatePicker}
