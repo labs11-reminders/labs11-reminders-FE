@@ -7,6 +7,7 @@ import '../global.css';
 // import './basic.css';
 import './message.css'
 
+
 class NewGroupMessage extends React.Component {
     constructor(props) {
       super(props);
