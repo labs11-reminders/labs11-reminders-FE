@@ -338,7 +338,10 @@ class Sidebar extends Component {
         {/* **************** Conversation section end ********** */}
 
 
-          
+          <section className="spacerSection cube"> 
+               
+                
+           </section>
 
 
             <Modal
@@ -412,11 +415,6 @@ class Sidebar extends Component {
             </Button>
           </ModalFooter>
         </Modal>
-
-        <section className="spacerSection cube"> 
-               
-                
-           </section>
       </div>
     );
   }

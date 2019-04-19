@@ -10,7 +10,6 @@ class MessageModal extends React.Component {
     this.state = {
       user: {},
       modal: false,
-      success:'',
       message: {
         to: '',
         body: '',
@@ -133,7 +132,6 @@ class MessageModal extends React.Component {
             </Row>
           </ModalFooter>
         </Modal>
-        
       </div>
     );
   }

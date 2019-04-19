@@ -10,10 +10,7 @@ import {
   FormGroup,
   Label,
   Input,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  Button
+
 } from 'reactstrap';
 import '../Scheduler/TabMessageStyles.css';
 import '../global.css';
@@ -38,14 +35,12 @@ class DraftCard extends Component {
         group_id: ''
       },
     submitting: false,
-    error: false,
-    warningModal: false,
+    error: false
   };
   
   this.toggle = this.toggle.bind(this);
   this.toggleNested = this.toggleNested.bind(this);
   this.toggleSchedule = this.toggleSchedule.bind(this);
-  this.toggleDeleteWarning = this.toggleDeleteWarning.bind(this);
 }
 toggle() {
   this.setState(prevState => ({
@@ -109,13 +104,6 @@ componentDidMount() {
       .catch(error => console.log(error))
     }
 
-    toggleDeleteWarning() {
-      console.log('DELETE!!!');
-      this.setState(prevState => ({
-        warningModal: !prevState.warningModal,
-      }));
-    }
-  
   
   onDelete = (event) => { 
     const id = this.props.id
@@ -153,16 +141,12 @@ componentDidMount() {
       .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
       .then(response => {
           console.log("DELETE RESPONSE:", response.data)
-          this.setState({ reminders: response.data, reminder: "" });
-          this.setState(prevState => ({
-            warningModal: !prevState.warningModal,
-          }));
+          this.setState({ reminders: response.data, reminder: "" })
       })
       .catch(err => {
           console.log(err);
       })
   }
-
 
   dateConverter = date => {
     if (!date) {return `TBD`}
@@ -223,41 +207,13 @@ componentDidMount() {
           </FormGroup>
             <FormGroup>
             <Label inline check>
-              <Input type="checkbox" onClick={this.toggleDeleteWarning} />{' '}
+              <Input type="checkbox" onClick={this.onDelete} />{' '}
               Delete
             </Label>
           </FormGroup>
           <p>{this.state.success_delete}</p>
         <p>{this.state.success}</p>
   
-
-        {/** Nested Modal for Delete Warning popup **/}
-        <Modal
-            id="alertModalWrap"
-            isOpen={this.state.warningModal}
-            toggle={this.toggleDeleteWarning}
-          >
-            <ModalBody id="alertModal">
-              Are you sure you want to delete this message? It will remove it from all of its instances!
-              ? This is NOT Reversible!
-            </ModalBody>
-            <ModalFooter id="alertModalFooter">
-              {this.state.deleting === 1 ? (
-                <Button color="danger" onClick={this.onDelete}>
-                  Yes!
-                </Button>
-              ) : (
-                <Button color="danger" onClick={this.toggleDeleteWarning}>
-                  Yes!
-                </Button>
-              )}
-              <Button color="primary" onClick={this.toggleDeleteWarning}>
-                No!
-              </Button>
-            </ModalFooter>
-          </Modal>
-       
-       
         
           </div>
       

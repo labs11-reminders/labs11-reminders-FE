@@ -192,13 +192,6 @@ h6 {
         flex-direction: column;
         margin-top: 15%;
         justify-content: center;
-        margin-right: 1%;
-    }
-}
-
-@media (max-width: 700px) {
-    .groupModal {
-        margin-right: 1%;
     }
 }
 
