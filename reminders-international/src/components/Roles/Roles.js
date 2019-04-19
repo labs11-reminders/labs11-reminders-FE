@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import './Roles.css';
 // import styled from 'styled-components';
-import { Container, Card, Button, Col, Row, Label } from 'reactstrap';
+import {
+  Container,
+  Card,
+  Button,
+  Col,
+  Row,
+  Label,
+  Modal,
+  ModalBody,
+  ModalFooter,
+} from 'reactstrap';
 // import logo from './logo.svg';
 import student from './student.svg';
 import teacher from './teacher.svg';
@@ -10,9 +20,14 @@ import boardMember from './donation.svg';
 // reminders-international/src/components/Roles/Roles.js
 
 class Roles extends Component {
-  state = {
-    activeRole: null,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeRole: null,
+      alertModal: false,
+    };
+    this.toggleAlert = this.toggleAlert.bind(this);
+  }
 
   toggle = role => {
     if (this.state.activeRole !== role) {
@@ -22,8 +37,16 @@ class Roles extends Component {
     }
   };
 
+  toggleAlert() {
+    this.setState({
+      alertModal: !this.state.alertModal,
+    });
+  }
+
   handleNext = e => {
-    this.props.handleRole(this.state.activeRole);
+    this.state.activeRole === null
+      ? this.toggleAlert()
+      : this.props.handleRole(this.state.activeRole);
   };
 
   render() {
@@ -94,6 +117,21 @@ class Roles extends Component {
         <Button className="roleBtn" id="size" onClick={this.handleNext}>
           Next
         </Button>
+
+        <Modal
+          id="alertModalWrapper"
+          isOpen={this.state.alertModal}
+          toggle={this.toggleAlert}
+        >
+          <ModalBody id="roleAlertModal">
+            You must select a role to proceed!
+          </ModalBody>
+          <ModalFooter id="alertBtn">
+            <Button color="secondary" onClick={this.toggleAlert}>
+              OK!
+            </Button>
+          </ModalFooter>
+        </Modal>
       </Container>
     );
   }

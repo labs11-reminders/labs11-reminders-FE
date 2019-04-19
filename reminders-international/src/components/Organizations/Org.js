@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router';
 import AddOrgForm from './AddOrgForm';
-import { Container, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import {
+  Container,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Button,
+  Modal,
+  ModalBody,
+  ModalFooter,
+} from 'reactstrap';
 import axios from 'axios';
 import './Org.css';
 
@@ -15,73 +25,95 @@ class Org extends Component {
       role_id: null,
       org_id: null,
       group_id: null,
-      
+      alertModal: false,
     };
+    this.toggleAlert = this.toggleAlert.bind(this);
   }
 
   getAllOrgs = () => {
-    axios.get(`${process.env.REACT_APP_BACKEND}/api/orgs`, this.state.orgs)
+    axios
+      .get(`${process.env.REACT_APP_BACKEND}/api/orgs`, this.state.orgs)
       .then(res => {
         this.setState({
-        orgs: res.data
+          orgs: res.data,
         });
-    })
-    .catch(err => {
+      })
+      .catch(err => {
         console.log(err);
+      });
+  };
+
+  toggleAlert() {
+    this.setState({
+      alertModal: !this.state.alertModal,
     });
-   }
+  }
 
   handleNext = e => {
-    this.props.handleOrg(this.state.org_id);
-  }
+    this.state.org_id === null ||
+    this.state.org_id === 'Select your organization'
+      ? this.toggleAlert()
+      : this.props.handleOrg(this.state.org_id);
+  };
 
-  onHandleChange = (event) => {
-    console.log("event", event.target)
-    this.setState({ org_id : event.target.value });
-  }
+  onHandleChange = event => {
+    this.setState({ org_id: event.target.value });
+  };
 
-  componentDidMount () {
-    this.getAllOrgs()
+  componentDidMount() {
+    this.getAllOrgs();
   }
 
   render() {
-    console.log("Org render this.state", this.state)
+    console.log('Org render this.state', this.state);
     return (
       <Container className="orgsContainer">
-          <h3 className="orgsTopBar">What's the name of your organization?</h3>
-      <Form className="org-form">
-        <FormGroup>
-          <Label for="orgName"></Label>
-          <Input 
-            type="select"
-            name="name" 
-            id="orgName" 
-            value={this.state.orgs.name}
-            onChange={this.onHandleChange}
-          >
-            <option>Select your organization</option>
-            {
-              this.state.orgs.map(org =>
-              <option  key={org.id} value={org.id}  > 
-                {org.name}</option>
-              )
-            } 
-          </Input>
-          <Button className='orgBtn' onClick={this.handleNext}>Next</Button>
-        </FormGroup>
+        <h3 className="orgsTopBar">What's the name of your organization?</h3>
+        <Form className="org-form">
+          <FormGroup>
+            <Label for="orgName" />
+            <Input
+              type="select"
+              name="name"
+              id="orgName"
+              value={this.state.orgs.name}
+              onChange={this.onHandleChange}
+            >
+              <option>Select your organization</option>
+              {this.state.orgs.map(org => (
+                <option key={org.id} value={org.id}>
+                  {org.name}
+                </option>
+              ))}
+            </Input>
+            <Button className="orgBtn" onClick={this.handleNext}>
+              Next
+            </Button>
+          </FormGroup>
 
-      
-      {this.props.role < 3 ? (
-        <div>
-                    
-        </div> 
-      ) : (
-        <>
-          <AddOrgForm />
-        </>
-      )
-      }
-      </Form>
+          {this.props.role < 3 ? (
+            <div />
+          ) : (
+            <>
+              <AddOrgForm />
+            </>
+          )}
+        </Form>
+
+        <Modal
+          id="alertModalWrapper"
+          isOpen={this.state.alertModal}
+          toggle={this.toggleAlert}
+        >
+          <ModalBody id="roleAlertModal">
+            You must select an Organization to proceed!
+          </ModalBody>
+          <ModalFooter id="alertBtn">
+            <Button color="secondary" onClick={this.toggleAlert}>
+              OK!
+            </Button>
+          </ModalFooter>
+        </Modal>
       </Container>
     );
   }
