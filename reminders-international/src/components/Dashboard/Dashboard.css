@@ -16,8 +16,9 @@
     width: 17%;
     position:fixed;
     left: 0;
-    top: 6.15%;
+    top: 0%;
     z-index: 9;
+
     /* background-color:  #F2F3F5; */
 }
 
@@ -54,7 +55,7 @@
    border: 1px solid lightgrey;
    border-radius: 3%;
    padding: 5% 13%;
-   background-color:  #ECECEC;
+   background-color:  #e8ecef;
 }
 
 @media (max-width: 700px) {
@@ -93,7 +94,8 @@ h6 {
     flex-direction: column;  
     /* border: 0.02px solid blue; */
     justify-content: center;
-    padding-top: 10%;
+    padding-top: 25%;
+    margin-top: 10%;
 }
 
 @media (max-width: 700px) {
@@ -142,7 +144,10 @@ h6 {
 
 .groupsSection {
     line-height: 1.6;
-    /* border: 1px solid green; */  
+    /* border: 1px solid green;  */
+    border-radius: 0%;
+    border-bottom: none;
+    
 }
 
 
@@ -154,6 +159,8 @@ h6 {
 
 .groupsSection div {
     margin-left: 0%;
+    height: 50%;
+    
 }
 
 @media (max-width: 700px) {
@@ -163,19 +170,16 @@ h6 {
     }
 }
 
-.side-template-card-active {
-    background-color: #343A40;
-    padding: 2% 4%;
+.side-template-card-active p{
+    color: #389cd8;
     text-align: left; 
-    margin: 1%;
-    width: 100%;
 }
 
-.side-template-card a {
+.side-template-card p {
     /* padding-left: .5em; */
     /* padding-right: 1em; */
     text-align: left;
-    
+    color:darkgray;
 }
 
 .mobileGroups {
@@ -216,6 +220,13 @@ h6 {
         margin-left: 0%;
         align-content: center;
     }
+}
+
+.spacerSection {
+    margin-bottom: 0%;
+    border-radius: 0%;
+    border-top: none;
+    padding-bottom: 125%;
 }
 
 /*************** Dashboard - main content ************************/

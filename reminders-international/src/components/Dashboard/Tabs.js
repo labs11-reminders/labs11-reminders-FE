@@ -41,7 +41,9 @@ export default class TabsSection extends React.Component {
   render() {
   
     return (
+     
       <div>
+         
         <Nav tabs>
           <NavItem>
             <NavLink
@@ -114,6 +116,9 @@ export default class TabsSection extends React.Component {
           <TabPane tabId="2">
           <Row>
               <Col sm="12">
+              <div> 
+              To create a new scheduled message, template, or a draft use the Messages tab 
+              </div>
               <ScheduleMessageComposer activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
               </Col>
            </Row>
@@ -122,6 +127,9 @@ export default class TabsSection extends React.Component {
           <TabPane tabId="3">
           <Row>
                <Col sm="12">
+               <div> 
+              To create a new scheduled message, template, or a draft use the Messages tab 
+              </div>
                 <TemplateComposer activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
               </Col>
            </Row>
@@ -129,6 +137,9 @@ export default class TabsSection extends React.Component {
           <TabPane tabId="4">
             <Row>
               <Col sm="12">
+              <div> 
+              To create a new scheduled message, template, or a draft use the Messages tab 
+              </div>
                 <DraftComposer activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
               </Col>
             </Row>

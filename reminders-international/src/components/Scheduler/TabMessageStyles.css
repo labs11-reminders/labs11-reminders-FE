@@ -8,6 +8,7 @@
     flex-direction: column;
 }
 
+
 .list {
     width: 100%;
     display: flex;
@@ -16,21 +17,58 @@
 
 }
 
-.list .card {
+
+.list  {
     background-color: #d6dde28f;
     border-color: #d6dde28f;
     border-start-end-radius: 5%;
     margin-top: 1%;
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding: 15px;
     justify-content: flex-start;
 }
 
+@media (max-width: 700px) {
+  .list  {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    
+  }
+}
+
+.schedule-card {
+  flex-direction: row !important;
+  display: flex;
+}
+
+@media (max-width: 700px){
+  .schedule-card {
+    flex-direction: column !important;
+    display: flex;
+  }
+
+  .card-controls {
+    width: 100%;
+  }
+}
+
+
+
+.editbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
 section .first_tab_message {
   height: 30vw;
 }
+
 
 .first_tab_messagedetails {
   display: flex;
@@ -39,11 +77,14 @@ section .first_tab_message {
   width: 100%;
   padding:1%;
 }
+
+
 .first_tab_messagedetails Label {
   display: flex;
   justify-content:flex-start;
 
 }
+
 .list .first_tab_card {
   background-color: #d6dde28f;
   border-color: #d6dde28f;
@@ -55,6 +96,8 @@ section .first_tab_message {
   padding: 15px;
   justify-content: flex-start;
 }
+
+
 .first_tab_card section {
   background-color:white;
   border-radius: 5px;
@@ -68,6 +111,17 @@ section .first_tab_message {
   justify-content: center;
   flex-direction: column;
 }
+
+/* this is for the messages tab */
+@media (max-width: 700px) {
+  .first_tab_card section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    
+  }
+}
+
 .card section {
     background-color:white;
     border-radius: 5px;
@@ -75,38 +129,53 @@ section .first_tab_message {
     padding-top: 1%;
     padding-bottom: 1%;
     width: 100%;
-    height: 15vw;
+    height: 20vw;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
 }
+
+/* this is for scheduler and drafts tabs */
+@media (max-width: 700px) {
+  .card section {
+    
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 section .message
 {
   border-start-end-radius: 5%;
   margin: 1%;
   width: 100%;
-  height: 17vw;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
 }
+
 section .messageoptions {
     border-start-end-radius: 5%;
     margin: 1%;
-    width: 25%;
+    width: 30%;
     padding-bottom: 1%;
-    height: 17vw;
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
+
+@media (max-width: 700px) {
+  section .messageoptions {
+    width: 100%;
+  }
+}
+
 section .first_tab_messageoptions {
   border-start-end-radius: 5%;
   margin: 1%;
   width: 25%;
   padding-bottom: 1%;
-  height: 25vw;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -125,9 +194,6 @@ section .first_tab_messageoptions {
   }
 .card .messagecheckboxes{
   border-start-end-radius: 5%;
-  margin: 1%;
-  padding-top: 1%;
-  padding-bottom: 1%;
   padding-right: 2%;
   width: 100%;
   display: flex;
@@ -143,7 +209,7 @@ section .first_tab_messageoptions {
   background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654); */
   color: #303030;
   color: #3a9bd8;
-  font-size: 1rem;
+  font-size: .95rem;
 }
 
 #first_tab{
@@ -178,6 +244,13 @@ section .first_tab_messageoptions {
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
+}
+
+@media (max-width: 700px) {
+  .card .messagebody {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 

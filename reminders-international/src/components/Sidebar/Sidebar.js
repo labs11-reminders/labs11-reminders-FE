@@ -323,20 +323,34 @@ class Sidebar extends Component {
         </div>
         {/* ****************** End of mobile group section ********** */}
 
+        
 
-        <section className="convSection cube">
-       
-          <h6>CONVERSATION</h6>
+
+
+        
+        {/* ******************** Conversation section beginning *******************       */}
+        {/* <section className="convSection cube"> */}
+               
+          {/* <h6>CONVERSATION</h6>
           {/* <MessageModalInd buttonLabel="Message Individual" /> */}
-        <SideTemplateCard className="convo"/>
-        </section>
+            {/* <SideTemplateCard className="convo"/> */}
+            {/* </section> */}
+        {/* **************** Conversation section end ********** */}
 
-        <Modal
-          isOpen={this.state.modal}
-          toggle={this.toggle}
-          className="groupModal"
-          size="lg"
-        >
+
+          <section className="spacerSection cube"> 
+               
+                
+           </section>
+
+
+            <Modal
+              isOpen={this.state.modal}
+              toggle={this.toggle}
+              className="groupModal"
+              size="lg"
+            > 
+        
           <ModalHeader toggle={this.toggle}>Create Group</ModalHeader>
           <ModalBody className="modalBody">
             <Form className="createGroup" onSubmit={this.addGroup}>

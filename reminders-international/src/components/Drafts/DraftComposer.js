@@ -34,9 +34,10 @@ class DraftComposer extends Component {
       render() {
         // console.log("RENDERING SCHEDULED MESSAGE LIST ", this.state.reminders)
         //console.log("REMINDERS render", this.props.activeGroup, this.state.reminders)
+        //<MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Create Draft Message" />
         return (
           <div className="composer"> 
-           <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Create Draft Message" />
+           
             <DraftList activeGroup={this.props.activeGroup} reminders={this.state.reminders}/>
             </div>
   );

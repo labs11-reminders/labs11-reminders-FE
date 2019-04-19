@@ -47,7 +47,7 @@ class People extends Component {
         console.log("**********")
         return (
             <div>
-                <hr></hr>
+                
                 <hr></hr>
                 <h5 className="peopleSearchHeader">Search for a user to add them to your selected group above.</h5>
                 <SearchBar  activeGroup={this.props.activeGroup}/>

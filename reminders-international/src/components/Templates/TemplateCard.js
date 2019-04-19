@@ -30,6 +30,8 @@ class TemplateCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      success:'',
+      success_delete:'',
       message: {
         id: '',
         title: '', 
@@ -49,6 +51,7 @@ class TemplateCard extends Component {
   
   this.toggle = this.toggle.bind(this);
   this.toggleNested = this.toggleNested.bind(this);
+  this.toggleSchedule = this.toggleSchedule.bind(this);
 }
 toggle() {
   this.setState(prevState => ({
@@ -121,6 +124,7 @@ componentDidMount() {
       .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
       .then(response => {
           console.log("DELETE RESPONSE:", response.data)
+          this.setState({success_delete: 'Success! The message will go "poof!" as soon as you leave this tab',})
           
       })
       .catch(err => {
@@ -149,6 +153,7 @@ componentDidMount() {
       .then(response => {
           console.log("DELETE RESPONSE:", response.data)
           this.setState({ reminders: response.data, reminder: "" })
+          this.setState({success: 'Success!',})
       })
       .catch(err => {
           console.log(err);
@@ -166,6 +171,28 @@ componentDidMount() {
     let min = date[4];
     return `${month} ${day}, ${yr} ${hr}:${min}`
   }
+  
+
+  toggleSchedule(event) { //connected to schedule checkbox
+    console.log("Click",this.state.message.scheduled)
+    const id = this.props.id
+    const editObj ={scheduled: event.target.checked,};
+    axios
+      .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
+      .then(response => {
+        console.log("PUT RESPONSE:", response.data)
+        this.setState({ message: response.data})
+        this.setState({success: 'Success!',})
+        this.fetchReminder(id);
+      })
+      .catch(err => {
+        console.log(err);
+    })
+
+  }
+
+   
+    
 
 
   
@@ -174,23 +201,24 @@ componentDidMount() {
     // console.log("TemplateCard this.state", this.state)
     console.log("this.props PROFILE",this.userProfile)
     return (
-      <div className="card">
+      <div className="schedule-card card bg-light mb-3">
        
-          <section className="message" >
-          <div className = "messagedetails">
+          <div className="message w-65" >
+          <div className = "card-header messagedetails">
           <div className = "messagetitle">{this.props.title}</div> 
-          <div>
+          
           <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
             toggle={this.toggle} > </SchedMessageModal> 
+          
           </div>
-          </div>
-           
+          <div className="card-body">
           <div className = "messagebody"><strong> Message body: </strong>&nbsp;{this.props.message}</div>
-          </section>
+          </div>
+          </div> 
        
-           <section className = "messageoptions">
-           <div>
-            <div className = "messagecheckboxes">
+           <div className = "card messageoptions">
+        
+            <div className = "card-controls messagecheckboxes">
           <p>Other template options:</p>
             <FormGroup>
           <Label inline check>
@@ -204,11 +232,13 @@ componentDidMount() {
             Delete
           </Label>
         </FormGroup>
+        <p>{this.state.success_delete}</p>
+        <p>{this.state.success}</p>
 
         
       </div>
+     
      </div>
-     </section>
   
   </div>
     );
