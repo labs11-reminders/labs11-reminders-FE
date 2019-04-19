@@ -33,12 +33,11 @@ class TemplateComposer extends Component {
       
       render() {
         // console.log("RENDERING SCHEDULED MESSAGE LIST ", this.state.reminders)
+        // <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Create New Template" />
         //console.log("REMINDERS render", this.props.activeGroup, this.state.reminders)
         return (
           <div className="composer"> 
-           <div>
-            <MessageModalGroup groups = {this.props.groups} state ={this.props.state} buttonLabel="Create New Template" />
-              </div>
+           
             <TemplateList activeGroup={this.props.activeGroup} reminders={this.state.reminders}/>
            
           </div>

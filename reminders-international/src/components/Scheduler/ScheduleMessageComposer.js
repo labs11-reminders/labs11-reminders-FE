@@ -39,10 +39,10 @@ class ScheduleMessageComposer extends Component {
           backgroundColor: '#3a9bd8',
           borderColor: '#3a9bd8'
       };
-                
+                //  <MessageModalGroup id="button" groups = {this.props.groups} state ={this.props.state} type="button" buttonLabel="Schedule a New Message" /> 
         return (
           <div className="composer"> 
-            <MessageModalGroup id="button" groups = {this.props.groups} state ={this.props.state} type="button" buttonLabel="Schedule a New Message" /> 
+          
             <ScheduledMessageList 
               activeGroup={this.props.activeGroup} 
               group_reminders={this.state.group_reminders}/>

@@ -36,6 +36,7 @@ class ScheduledMessageCard extends Component{
     super(props);
     this.state = {
       collapse: false,
+      success:'',
       message: {
         id: '',
         title: '', 
@@ -46,7 +47,8 @@ class ScheduledMessageCard extends Component{
         scheduled: true,
         template: false,
         sent: false, 
-        group_id: ''
+        group_id: '',
+        approved_text:'',
       },
     submitting: false,
     error: false,
@@ -58,6 +60,7 @@ class ScheduledMessageCard extends Component{
   this.toggleCal = this.toggleCal.bind(this);
   this.toggleScheduler = this.toggleScheduler.bind(this);
   this.toggleNested = this.toggleNested.bind(this);
+  this.toggleSuccess = this.toggleSuccess.bind(this);
 }
 toggle() {
   this.setState(prevState => ({
@@ -67,6 +70,11 @@ toggle() {
 toggleCal() {
   this.setState(state => ({ collapse: !state.collapse }));
 }
+toggleSuccess() {
+  this.setState(state => ({
+    success: '',
+  }));
+  }
 
 toggleScheduler() {
   this.setState(state => ({ collapseScheduler: !state.collapseScheduler }));
@@ -84,9 +92,9 @@ fetchReminder = id => {
     .then(response => {
       let approved_text;
       if (response.data.approved == true) {
-        approved_text = "scheduled to be sent " 
+        approved_text = "Scheduled to be sent " 
       } else if (this.state.message.approved == false) {
-        approved_text = "*needs approval* to be sent " 
+        approved_text = "Needs approval to be sent " 
       }
         this.setState(() => ({ message:{
         title: response.data.name,
@@ -110,7 +118,8 @@ fetchReminder = id => {
   componentDidMount() {
     console.log(this)
     const id = this.props.id
-    // this.fetchReminder(id);
+    this.fetchReminder(id);
+  
   }
 
   dateConverter = date => {
@@ -154,21 +163,28 @@ fetchReminder = id => {
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
         console.log("PUT RESPONSE:", response.data)
-        this.setState({ message: response.data})
+        this.setState({success: 'Success!', message: response.data})
       })
       .catch(error => console.log(error))
+      if (this.state.success){
+        this.toggleSuccess()
+      }
     }
 
   onTemplate= (event) => { 
+  
     const id = this.props.id
     const editObj ={template:event.target.checked};
     axios
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
         console.log("PUT RESPONSE:", response.data)
-        this.setState({ message: response.data})
+        this.setState({success: 'Success!', message: response.data})
       })
       .catch(error => console.log(error))
+      if (this.state.success){
+        this.toggleSuccess()
+      }
     }
 
   onDatePicker = (event) => {  
@@ -181,7 +197,7 @@ fetchReminder = id => {
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
         console.log("PUT RESPONSE:", response.data)
-        this.setState({ message: response.data})
+        this.setState({success: 'Success!', message: response.data})
         this.fetchReminder(id);
       })
       .catch(error => console.log(error))
@@ -194,7 +210,7 @@ fetchReminder = id => {
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
         console.log("PUT RESPONSE:", response.data)
-        this.setState({ message: response.data})
+        this.setState({ success: 'Success!', message: response.data})
         this.fetchReminder(id);
       })
       .catch(error => console.log(error))
@@ -220,6 +236,7 @@ fetchReminder = id => {
       .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
       .then(response => {
           console.log("DELETE RESPONSE:", response.data)
+          this.setState({success_delete: 'Success! The message will go "poof!" as soon as you leave this tab',})
           
       })
       .catch(err => {
@@ -251,13 +268,13 @@ fetchReminder = id => {
           </div>
 
           <div className = "messagebody"><strong> Message to be sent: </strong>&nbsp;{this.props.message}</div>
-          <div className = "messagebody">  <strong> Currently {this.state.message.approved_text} on:</strong>  &nbsp;{this.dateConverter(this.props.date)}</div>
+          <div className = "messagebody">  <strong> {this.state.message.approved_text} on:</strong>  &nbsp;{this.dateConverter(this.props.date)}</div>
           </section>
           
           <section className = "messageoptions">
           
        
-  <Button color="link" onClick={this.toggleCal} > <strong>Click here </strong> to update send date </Button>  
+  <Button color="link" onClick={this.toggleCal} > <strong>Click here </strong> to update schedule </Button>  
             <Collapse isOpen={this.state.collapse}>
             <DayPickerInput classNameName="calendar"
               onDayChange={this.onDatePicker}
@@ -286,6 +303,9 @@ fetchReminder = id => {
                  Delete
               </Label>
             </FormGroup>
+            <p>{this.state.success_delete}</p>
+            <p>{this.state.success}</p>
+
           
         </div>
         </div>
