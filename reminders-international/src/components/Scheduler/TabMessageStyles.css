@@ -8,13 +8,6 @@
     flex-direction: column;
 }
 
-@media (max-width: 700) {
-  .composer {
-    display: flex;
-    flex-direction: row;
-    border: 1px solid red;
-  }
-}
 
 .list {
     width: 100%;
@@ -24,13 +17,6 @@
 
 }
 
-@media (max-width: 700) {
-  .list {
-    display: flex;
-    flex-direction: row;
-    border: 1px solid red;
-  }
-}
 
 .list  {
     background-color: #d6dde28f;
@@ -49,7 +35,7 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    border: 1px solid red;
+    
   }
 }
 
@@ -92,25 +78,11 @@ section .first_tab_message {
   padding:1%;
 }
 
-@media (max-width: 700) {
-  .first_tab_messagedetails {
-    display: none;
-    flex-direction: row;
-    border: 1px solid red;
-  }
-}
+
 .first_tab_messagedetails Label {
   display: flex;
   justify-content:flex-start;
 
-}
-
-@media (max-width: 700) {
-  .first_tab_messagedetails Label {
-    display: none;
-    flex-direction: row;
-    border: 1px solid red;
-  }
 }
 
 .list .first_tab_card {
@@ -125,11 +97,6 @@ section .first_tab_message {
   justify-content: flex-start;
 }
 
-@media (max-width: 700) {
-  .list .first_tab_card {
-    border: 1px solid red;
-  }
-}
 
 .first_tab_card section {
   background-color:white;
@@ -151,7 +118,7 @@ section .first_tab_message {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    border: 1px solid red;
+    
   }
 }
 
@@ -172,7 +139,7 @@ section .first_tab_message {
 /* this is for scheduler and drafts tabs */
 @media (max-width: 700px) {
   .card section {
-    border: 1px solid peru;
+    
     display: flex;
     flex-direction: column;
   }

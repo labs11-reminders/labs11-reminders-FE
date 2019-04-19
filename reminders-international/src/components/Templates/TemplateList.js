@@ -26,13 +26,13 @@ export default class TemplateList extends Component {
     return (
       
       <div className="list">
-      <div>
+     
        {this.props.reminders.map(reminder => { 
             if (reminder.group_id === this.props.activeGroup && reminder.template) {
               /* console.log("RENDERING TEMPLATE CARD ", reminder) */
             return (
-              <div>
-              <div key={reminder.id}>
+              
+              
               <TemplateCard 
               key={reminder.id}
               id={reminder.id}
@@ -48,15 +48,13 @@ export default class TemplateList extends Component {
               sent = {reminder.sent}
               template = {reminder.template}
             />
-            </div>
-            </div>
+           
           )
         } 
       })}
      
      </div>
-      </div>
-     
+           
       )
     }
   }
