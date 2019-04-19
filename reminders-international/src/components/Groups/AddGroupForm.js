@@ -70,7 +70,7 @@ class AddGroupForm extends Component {
             value={this.state.groups.name}
             name="name"
           />
-          <Button className='groupBtn' type='submit' onClick={this.addGroup}>Add it here</Button>
+          <Button className='groupBtnExp' type='submit' onClick={this.addGroup}>Add New Group</Button>
           </FormGroup>
           </Collapse>
         </FormGroup>
