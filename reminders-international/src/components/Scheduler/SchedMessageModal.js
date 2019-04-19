@@ -8,29 +8,35 @@ import MomentLocaleUtils, {
   import DayPickerInput from 'react-day-picker/DayPickerInput';
 import axios from 'axios';
 import moment from "moment";
+import './TabMessageStyles.css';
+import '../global.css';
 
 class SchedMessageModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      success:'',
+      success_delete:'',
       nestedModal: false,
       modal: false,
         message: {
-            id: null,
+            id: '',
             title: '', 
             to: '',
             body: '',
             approved: false, 
             date: '',
             scheduled: true,
-            group_id: null, 
+            group_id: '', 
+            draft: false,
+            template: false,
         },
         collapseScheduler: true,
     };
 
     this.toggle = this.toggle.bind(this);
     this.toggleTab = this.toggleTab.bind(this);
-    this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
+    this.toggleSuccess = this.toggleSuccess.bind(this);
        }
 
 
@@ -50,7 +56,11 @@ class SchedMessageModal extends React.Component {
 toggleScheduler() {
   this.setState(state => ({ collapseScheduler: !state.collapseScheduler }));
 }
-
+toggleSuccess() {
+  this.setState(state => ({
+    success: '',
+  }));
+  }
   // TOGGLE TO OPEN MODEL
     toggle() {
         this.fetchReminder(this.props.id)
@@ -100,8 +110,7 @@ toggleScheduler() {
       scheduled: scheduled,
       draft: draft,
       template: template,
-      group_id: group_id,
-      scheduled_date: date,
+      group_id: this.props.activeGroup,
       }
   
   axios.put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`,  messageObj)
@@ -109,7 +118,7 @@ toggleScheduler() {
       console.log('PUT RESPONSE', res);
       if(res.status === 200 || res.status === 201) {
         this.setState({
-          message: 'You added a Message!',
+          success: 'Success!',
           reminders: { ...messageObj }
           });
         this.toggle()
@@ -133,7 +142,7 @@ toggleScheduler() {
         .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
         .then(response => {
           console.log("PUT RESPONSE:", response.data)
-          this.setState({ message: response.data})
+          this.setState({  success: 'Success!', message: response.data})
           this.fetchReminder(id);
         })
         .catch(error => console.log(error))
@@ -146,16 +155,54 @@ toggleScheduler() {
     });
     }
 
-    onCheckboxBtnClick(selected) {
-    const index = this.state.cSelected.indexOf(selected);
-    if (index < 0) {
-      this.state.cSelected.push(selected);
-    } else {
-      this.state.cSelected.splice(index, 1);
-    }
-    this.setState({ cSelected: [...this.state.cSelected] });
-    }
+    toggleApprove(event) {
+      const id = this.props.id
+      const editObj ={approved:event.target.checked};
+      axios
+        .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
+        .then(response => {
+          console.log("PUT RESPONSE:", response.data)
+          this.setState({success: 'Success!', message: response.data})
+        })
+        .catch(error => console.log(error))
+        if (this.state.success){
+          this.toggleSuccess()
+        }
+      }
+  
+    onTemplate= (event) => { 
     
+      const id = this.props.id
+      const editObj ={template:event.target.checked};
+      axios
+        .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
+        .then(response => {
+          console.log("PUT RESPONSE:", response.data)
+          this.setState({success: 'Success!', message: response.data})
+        })
+        .catch(error => console.log(error))
+        if (this.state.success){
+          this.toggleSuccess()
+        }
+      }
+      onDelete = (event) => { 
+        const id = this.props.id
+        console.log("ID", id)
+        if (event.target.checked) {
+          axios
+          .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
+          .then(response => {
+              console.log("DELETE RESPONSE:", response.data)
+              this.setState({success_delete: 'Success! The message will go "poof!" as soon as you leave this tab',})
+              
+          })
+          .catch(err => {
+              console.log(err);
+          })
+        }
+        }
+
+ 
 
   render() {
     return (
@@ -186,47 +233,16 @@ toggleScheduler() {
                 name="body"
               />
             </FormGroup>
-            <FormGroup>
-            <Col sm={{ size: 'auto', offset: 0 }}>
-            {/* <Button color="link" onClick={this.toggleScheduler} 
-            className="schedulerToggle">Edit Calendar</Button> */}
-            <Collapse isOpen={this.state.collapseScheduler}>
-              <Card>
-                <CardBody>
-                <div className="schedule-functions">
-            <DayPickerInput 
-              className="calendar"
-              onDayChange={this.onDatePicker}
-              formatDate={formatDate}
-              parseDate={parseDate}
-              placeholder={`${formatDate(new Date())}`}/>
-            <FormGroup check inline>
-              <Label>
-                <Input type="checkbox" onClick={this.toggleApprove} />{' '} Approved
-              </Label>  
-            </FormGroup>
-            <FormGroup>
-              <Label check>
-                <Input type="checkbox" onClick={this.onDelete} />{' '} Delete
-              </Label>
-            </FormGroup>
-            <FormGroup>
-              <Label check>
-              <Input type="checkbox" onClick={this.onTemplate} />{' '}
-            Template
-              </Label>
-            </FormGroup>
-        </div>
-                </CardBody>
-              </Card>
-            </Collapse>
-          </Col>
-          </FormGroup>
+           
           </ModalBody>
           <ModalFooter>
             <Row>
             <FormGroup>
-              <Button color="primary" onClick={this.createSavedReminder}>Save</Button>
+              <div className = "editbutton">
+              <Button color="primary" onClick={this.createSavedReminder}>Save Edits</Button>
+              
+              <p>{this.state.success}</p>
+              </div>
               </FormGroup>
               <FormGroup>
             </FormGroup>
