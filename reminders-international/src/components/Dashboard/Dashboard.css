@@ -145,6 +145,8 @@ h6 {
 .groupsSection {
     line-height: 1.6;
     /* border: 1px solid green;  */
+    border-radius: 0%;
+    border-bottom: none;
     
 }
 
@@ -220,8 +222,11 @@ h6 {
     }
 }
 
-.spacerSection div {
-    margin-bottom: 100%;
+.spacerSection {
+    margin-bottom: 0%;
+    border-radius: 0%;
+    border-top: none;
+    height: 100%;
 }
 
 /*************** Dashboard - main content ************************/
