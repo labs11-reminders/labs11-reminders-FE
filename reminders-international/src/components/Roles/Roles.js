@@ -9,7 +9,6 @@ import {
   Row,
   Label,
   Modal,
-  ModalHeader,
   ModalBody,
   ModalFooter,
 } from 'reactstrap';
