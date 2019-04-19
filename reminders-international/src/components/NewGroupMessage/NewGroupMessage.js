@@ -33,11 +33,11 @@ class NewGroupMessage extends React.Component {
   
       this.toggle = this.toggle.bind(this);
       this.toggleTab = this.toggleTab.bind(this);
-      this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
+ 
       this.toggleSchedule = this.toggleSchedule.bind(this);
       this.toggleDraft = this.toggleDraft.bind(this);
       this.toggleTemplate = this.toggleTemplate.bind(this);
-      this.onGroupToggle = this.onGroupToggle.bind(this);
+
     }
   
     // TOGGLE TO OPEN MODEL
@@ -58,48 +58,54 @@ class NewGroupMessage extends React.Component {
           })
         }
       }
+
+ 
   
       toggleSchedule(event) { //connected to schedule checkbox
         this.setState({
-          message: { ...this.state.message, scheduled: event.target.checked }
+          message: {...this.state.message,  scheduled: event.target.checked }
         });
-    
+       
       }
       toggleDraft(event) { //connected to draft checkbox
         this.setState({
-          message: { ...this.state.message, draft: event.target.checked }
+          message: {...this.state.message, draft: event.target.checked }
       });
+      
   
       }
       toggleTemplate(event) { //connected to template checkbox
         this.setState({
-        message: { ...this.state.message, template: event.target.checked }
+        message: {...this.state.message, template: event.target.checked }
        });
    
       }
   
       createSavedReminder = () => { //connected to save button
-      const { title, body, scheduled, draft, template, group_id, user_id } = this.state.message
+   
+      const { title, body, scheduled, draft, template,} = this.state.message
       const messageObj = {
         name: title,
         description: body,
         scheduled: scheduled,
         draft: draft,
         template: template,
-        group_id: group_id,
-        user_id: user_id,
-        }
+        group_id: this.props.activeGroup,
+        user_id: this.props.state.profile.user_id,
+         }
+        console.log('POST RESPONSE', messageObj);
     
     axios.post(`${process.env.REACT_APP_BACKEND}/api/reminders`,  messageObj)
       .then(res => {
-        console.log('POST RESPONSE', res);
+        console.log('POST RESPONSE', res.data);
         if(res.status === 200 || res.status === 201) {
           this.setState({
             success: 'Success!',
             reminders: { ...messageObj }
             });
         }
-      })
+     })
+
     .catch(err => {
         console.log(err);
         this.setState({
@@ -110,50 +116,19 @@ class NewGroupMessage extends React.Component {
     
       }
   
-      onHandleChange = (event) => {
-      const { name, value } = event.target;
-      this.setState({
-        message: { ...this.state.message, [name]:value }
-      });
-      }
-  
-  
-      onCheckboxBtnClick(selected) {
-      const index = this.state.cSelected.indexOf(selected);
-      if (index < 0) {
-        this.state.cSelected.push(selected);
-      } else {
-        this.state.cSelected.splice(index, 1);
-      }
-      this.setState({ cSelected: [...this.state.cSelected] });
-      }
-      
-      getUserInfo = () => {
-        this.auth0.client.userInfo(this.accessToken, (err, profile) => {
-          if (profile) {
-            axios.post(`${process.env.REACT_APP_BACKEND}/api/users/auth`, {auth0_sub: profile.sub})
-              .then(res => {
-                return axios.get(`${process.env.REACT_APP_BACKEND}/api/users/data/${this.user.id}`, this.user.auth0_sub)
-              })
-              .then(res => {
-                this.setState({
-                  user: res.data
-                });
-              })
-              .catch(err => {
-                console.log(err);
-              })     
-          }
-        });   
-      }
-      
-      onGroupToggle() { //select group button
-        this.setState(prevState => ({
-          dropdownOpen: !prevState.dropdownOpen
-          }));
-      }
-  
-      fetchGroupUsers = id => {
+    onHandleChangeTitle = (event) => {
+    this.setState({
+     message: {...this.state.message, title: event.target.value }
+    });
+    }
+    onHandleChangeBody = (event) => {
+    this.setState({
+        message: {...this.state.message, body: event.target.value }
+    });
+    }
+
+    
+    fetchGroupUsers = id => {
         console.log("FETCHING USERS")
         axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/${id}/users`, this.state.toggleDraft)
           .then(res => { 
@@ -167,9 +142,9 @@ class NewGroupMessage extends React.Component {
         });
       }
   
-  
       onSubmit = (event) => {
       event.preventDefault();
+      this.fetchGroupUsers(this.props.activeGroup) // HOW THE MESSAGE SENDS TO THE CURRENT GROUP
       this.setState({ submitting: true });
       fetch(`${process.env.REACT_APP_BACKEND}/api/messages`, {
         method: 'POST',
@@ -185,7 +160,7 @@ class NewGroupMessage extends React.Component {
               error: false,
               submitting: false,
               message: {
-                to: '13472633943',
+                to: '',
                 body: ''
               }
             });
@@ -214,9 +189,8 @@ class NewGroupMessage extends React.Component {
             
             <FormGroup>
                 <Label for="messageText">Write Title Here</Label>
-                <Input type="textfield"
-                id="messageTitle"
-                onChange={this.onHandleChange}
+                <Input type="text"
+                onChange={this.onHandleChangeTitle}
                 placeholder="example: No class for the holiday"
                 value={this.state.message.title}
                 name="title"
@@ -227,15 +201,14 @@ class NewGroupMessage extends React.Component {
               <FormGroup>
                  <Label for="messageText">Write Message Here</Label>
                  <Input type="textarea"
-                  id="messageText"
-                  onChange={this.onHandleChange}
+                  onChange={this.onHandleChangeBody}
                   placeholder="example: We won't be having class for the holidays. Study notes from this week"
                   value={this.state.message.body}
                   name="body"
                 />
              </FormGroup>
-             
-             </div>
+
+              </div>
              <FormGroup>
                 <Button  onClick = {this.onSubmit} >Send Now
                 </Button>
@@ -249,19 +222,19 @@ class NewGroupMessage extends React.Component {
             <p> other options below:</p>
                 <FormGroup>
                 <Label inline check> 
-                  <Input type="checkbox"  onClick={this.toggleSchedule} />{' '}
+                  <Input type="checkbox"  onClick={this.toggleSchedule} name="scheduled" />{' '}
                   Schedule 
                 </Label>
                 </FormGroup>
               <FormGroup>
               <Label inline check> 
-                <Input type="checkbox"  onClick={this.toggleTemplate} />{' '}
+                <Input type="checkbox"  onClick={this.toggleTemplate} name="template" />{' '}
                 Template 
                 </Label>
                 </FormGroup>
                 <FormGroup>
               <Label inline check>  
-                <Input type="checkbox" onClick={this.toggleDraft}  />{' '}
+                <Input type="checkbox" onClick={this.toggleDraft}  name="draft" />{' '}
                 Draft 
                 </Label>
                 </FormGroup>

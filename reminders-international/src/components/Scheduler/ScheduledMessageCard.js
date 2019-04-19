@@ -36,6 +36,7 @@ class ScheduledMessageCard extends Component{
     super(props);
     this.state = {
       collapse: false,
+      
       message: {
         id: '',
         title: '', 
@@ -46,7 +47,8 @@ class ScheduledMessageCard extends Component{
         scheduled: true,
         template: false,
         sent: false, 
-        group_id: ''
+        group_id: '',
+        approved_text:'',
       },
     submitting: false,
     error: false,
@@ -84,9 +86,9 @@ fetchReminder = id => {
     .then(response => {
       let approved_text;
       if (response.data.approved == true) {
-        approved_text = "scheduled to be sent " 
+        approved_text = "Scheduled to be sent " 
       } else if (this.state.message.approved == false) {
-        approved_text = "*needs approval* to be sent " 
+        approved_text = "Needs approval to be sent " 
       }
         this.setState(() => ({ message:{
         title: response.data.name,
@@ -110,7 +112,8 @@ fetchReminder = id => {
   componentDidMount() {
     console.log(this)
     const id = this.props.id
-    // this.fetchReminder(id);
+    this.fetchReminder(id);
+  
   }
 
   dateConverter = date => {
@@ -251,7 +254,7 @@ fetchReminder = id => {
           </div>
 
           <div className = "messagebody"><strong> Message to be sent: </strong>&nbsp;{this.props.message}</div>
-          <div className = "messagebody">  <strong> Currently {this.state.message.approved_text} on:</strong>  &nbsp;{this.dateConverter(this.props.date)}</div>
+          <div className = "messagebody">  <strong> {this.state.message.approved_text} on:</strong>  &nbsp;{this.dateConverter(this.props.date)}</div>
           </section>
           
           <section className = "messageoptions">
