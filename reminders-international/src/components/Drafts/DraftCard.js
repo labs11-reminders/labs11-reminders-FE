@@ -181,21 +181,23 @@ componentDidMount() {
   render() {
     // console.log("DraftCard this.state", this.state)
     return (
-      <div className="card">
-      <section className="message" >
-      <div className = "messagedetails">
+      <div className="schedule-card card bg-light mb-3">
+      <div className="message w-65" >
+      <div className = "card-header messagedetails">
       <div className = "messagetitle">{this.props.title}</div> 
-      <div>
+     
       <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
         toggle={this.toggle}> </SchedMessageModal> 
       </div>
+     
+      <div className="card-body">
+        <div className = "messagebody"><strong> Message body: </strong>&nbsp;{this.props.message}</div>
       </div>
-       
-      <div className = "messagebody"><strong> Message body: </strong>&nbsp;{this.props.message}</div>
-      </section> 
-      <section className = "messageoptions">
-           <div>
-            <div className = "messagecheckboxes">
+      </div> 
+
+      <div className = "card messageoptions">
+           
+            <div className = "card-controls messagecheckboxes">
           <p>Other draft options:</p>
           <FormGroup>
             <Label  inline check>
@@ -214,8 +216,8 @@ componentDidMount() {
   
         
           </div>
+      
       </div>
-      </section>
   
   </div>
     )

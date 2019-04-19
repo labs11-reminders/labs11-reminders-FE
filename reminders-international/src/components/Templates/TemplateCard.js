@@ -201,23 +201,24 @@ componentDidMount() {
     // console.log("TemplateCard this.state", this.state)
     console.log("this.props PROFILE",this.userProfile)
     return (
-      <div className="card">
+      <div className="schedule-card card bg-light mb-3">
        
-          <section className="message" >
-          <div className = "messagedetails">
+          <div className="message w-65" >
+          <div className = "card-header messagedetails">
           <div className = "messagetitle">{this.props.title}</div> 
-          <div>
+          
           <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
             toggle={this.toggle} > </SchedMessageModal> 
+          
           </div>
-          </div>
-           
+          <div className="card-body">
           <div className = "messagebody"><strong> Message body: </strong>&nbsp;{this.props.message}</div>
-          </section>
+          </div>
+          </div> 
        
-           <section className = "messageoptions">
-           <div>
-            <div className = "messagecheckboxes">
+           <div className = "card messageoptions">
+        
+            <div className = "card-controls messagecheckboxes">
           <p>Other template options:</p>
             <FormGroup>
           <Label inline check>
@@ -236,8 +237,8 @@ componentDidMount() {
 
         
       </div>
+     
      </div>
-     </section>
   
   </div>
     );

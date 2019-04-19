@@ -250,66 +250,60 @@ fetchReminder = id => {
     
     
   return (
-          <div className="card">
+          <div className="schedule-card card bg-light mb-3">
        
-          <section className="message" >
-          <div className = "messagedetails">
+          <div className="message w-65" >
+          <div className = "card-header messagedetails">
           <div className = "messagetitle">{this.props.title}</div> 
-          <div>
-
-            {/* I commented this out and then below removed the onClosed --which stopped the loop since the modal
-            will usually be closed I think this is what was triggering the loop. I removed it on drafts and templates too. */}
-          {/* <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
-            toggle={this.toggle} onClosed={this.fetchReminder(this.props.id)}> </SchedMessageModal> */}
 
           <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
             toggle={this.toggle}> </SchedMessageModal> 
+    
+          </div>
+          <div className = "card-body">
+            <div className = "messagebody"><strong> Message to be sent: </strong>&nbsp;{this.props.message}</div>
+            <div className = "messagebody">  <strong> {this.state.message.approved_text} on:</strong>  &nbsp;{this.dateConverter(this.props.date)}</div>
           </div>
           </div>
-
-          <div className = "messagebody"><strong> Message to be sent: </strong>&nbsp;{this.props.message}</div>
-          <div className = "messagebody">  <strong> {this.state.message.approved_text} on:</strong>  &nbsp;{this.dateConverter(this.props.date)}</div>
-          </section>
           
-          <section className = "messageoptions">
-          
-       
-  <Button color="link" onClick={this.toggleCal} > <strong>Click here </strong> to update schedule </Button>  
-            <Collapse isOpen={this.state.collapse}>
-            <DayPickerInput classNameName="calendar"
-              onDayChange={this.onDatePicker}
-              onDayMouseEnter={this.onDatePicker}
-              formatDate={formatDate}
-              parseDate={parseDate}
-              placeholder={`${formatDate(new Date())}`}/>
-          </Collapse>
-          <div>
-            <div className = "messagecheckboxes">
-              <FormGroup>
-              <Label inline check>
-                <Input type="checkbox" onClick={this.toggleApprove} />{' '} 
-                Approve
-              </Label>  
-            </FormGroup>
-            <FormGroup>
-              <Label inline check>
-              <Input type="checkbox" onClick={this.onTemplate} />{' '}
-            Add to templates
-          </Label>
-        </FormGroup>
-            <FormGroup>
-              <Label inline check>
-                <Input type="checkbox" onClick={this.onDelete} />{' '}
-                 Delete
-              </Label>
-            </FormGroup>
-            <p>{this.state.success_delete}</p>
-            <p>{this.state.success}</p>
+          <div className = "card messageoptions">
+        
+          <div className = "card-controls">
+                      <Button color="primary" onClick={this.toggleCal} > <strong>Update Schedule</strong></Button>  
+                        <Collapse isOpen={this.state.collapse}>
+                        <DayPickerInput classNameName="calendar"
+                          onDayChange={this.onDatePicker}
+                          onDayMouseEnter={this.onDatePicker}
+                          formatDate={formatDate}
+                          parseDate={parseDate}
+                          placeholder={`${formatDate(new Date())}`}/>
+                      </Collapse>
+                      <div className = "messagecheckboxes">
+                          <FormGroup>
+                          <Label inline check>
+                            <Input type="checkbox" onClick={this.toggleApprove} />{' '} 
+                            Approve
+                          </Label>  
+                        </FormGroup>
+                        <FormGroup>
+                          <Label inline check>
+                          <Input type="checkbox" onClick={this.onTemplate} />{' '}
+                        Add to templates
+                      </Label>
+                    </FormGroup>
+                        <FormGroup>
+                          <Label inline check>
+                            <Input type="checkbox" onClick={this.onDelete} />{' '}
+                            Delete
+                          </Label>
+                        </FormGroup>
+                        <p>{this.state.success_delete}</p>
+                        <p>{this.state.success}</p>
 
           
-        </div>
-        </div>
-    </section>
+                    </div>
+                </div>
+    </div>
   
     </div>
   );
