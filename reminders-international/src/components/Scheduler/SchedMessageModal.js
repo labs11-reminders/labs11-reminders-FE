@@ -35,8 +35,7 @@ class SchedMessageModal extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.toggleTab = this.toggleTab.bind(this);
     this.toggleSuccess = this.toggleSuccess.bind(this);
-    this.toggleDraft = this.toggleDraft.bind(this);
-    this.toggleTemplate = this.toggleTemplate.bind(this);
+    this.toggleApprove = this.toggleApprove.bind(this);
        }
 
 
@@ -56,7 +55,11 @@ class SchedMessageModal extends React.Component {
 toggleScheduler() {
   this.setState(state => ({ collapseScheduler: !state.collapseScheduler }));
 }
-
+toggleSuccess() {
+  this.setState(state => ({
+    success: '',
+  }));
+  }
   // TOGGLE TO OPEN MODEL
     toggle() {
         this.fetchReminder(this.props.id)
