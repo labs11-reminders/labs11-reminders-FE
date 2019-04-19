@@ -1,17 +1,15 @@
+
 import React, { Component } from 'react';
 // import MessageModal from '../MessageModal/MessageModal';
-
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input, Row, Dropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap';
-
 import axios from 'axios';
 import '../Scheduler/TabMessageStyles.css';
 import '../global.css';
-
 class NewGroupMessage extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        success:'',
+        success:"",
         user: {},
         modal: false,
         message: {
@@ -30,14 +28,14 @@ class NewGroupMessage extends React.Component {
           cSelected: [],
           dropdownOpen:false 
       };
-  
+
       this.toggle = this.toggle.bind(this);
       this.toggleTab = this.toggleTab.bind(this);
+
       this.toggleSuccess = this.toggleSuccess.bind(this);
       this.toggleSchedule = this.toggleSchedule.bind(this);
       this.toggleDraft = this.toggleDraft.bind(this);
       this.toggleTemplate = this.toggleTemplate.bind(this);
-
     }
   
     // TOGGLE TO OPEN MODEL
@@ -45,17 +43,17 @@ class NewGroupMessage extends React.Component {
       this.setState(prevState => ({
         modal: !prevState.modal,
         groups:this.props.groups,
-       
+
       }));
       }
 
       toggleSuccess() {
         this.setState(prevState => ({
-          success: !prevState.success
+          success: !prevState.success,
         }));
         }
-  
-  
+
+
       // TRYING TOGGLE FOR TYPE OF BUTTON PRESSED
       toggleTab(tab){
         if (this.state.activeTab !== tab) {
@@ -65,32 +63,40 @@ class NewGroupMessage extends React.Component {
         }
       }
 
- 
-  
+
       toggleSchedule(event) { //connected to schedule checkbox
         console.log("Click",this.state.message.scheduled)
+
         this.setState({
           message: {...this.state.message,  scheduled: event.target.checked }
         });
-   
-         }
-         
+        if (this.state.message.scheduled=true){
+            this.toggleSuccess()
+        }
+
+
+      }
       toggleDraft(event) { //connected to draft checkbox
         this.setState({
           message: {...this.state.message, draft: event.target.checked }
       });
-    
-  
+
+      if (this.state.message.draft=true){
+        this.toggleSuccess()
+        }
+
       }
       toggleTemplate(event) { //connected to template checkbox
         this.setState({
         message: {...this.state.message, template: event.target.checked }
        });
-     
-     
+       if (this.state.message.template=true){
+        this.toggleSuccess()
+        }
        }
-  
-      createSavedReminder = () => { //connected to save butto
+
+      createSavedReminder = () => { //connected to save button
+
       const { title, body, scheduled, draft, template,} = this.state.message
       const messageObj = {
         name: title,
@@ -109,24 +115,10 @@ class NewGroupMessage extends React.Component {
         if(res.status === 200 || res.status === 201) {
           this.setState({
             success: 'Success!',
-           // reminders: { ...messageObj }
+            reminders: { ...messageObj }
             });
-          this.setState({
-            message: {
-              users: [],
-              title:'',
-              body: '',
-              scheduled: false,
-              draft: false,
-              template: false,
-              group_id: '',
-              user_id: '',
-              }
-            
-            });
-          }
-          
-     })
+        }
+          })
 
     .catch(err => {
         console.log(err);
@@ -134,11 +126,11 @@ class NewGroupMessage extends React.Component {
           message: 'You failed to add a group.',
           reminder: { ...messageObj }
           });
-         
     });
-   
+
+
       }
-  
+
     onHandleChangeTitle = (event) => {
     this.setState({
      message: {...this.state.message, title: event.target.value }
@@ -149,7 +141,6 @@ class NewGroupMessage extends React.Component {
         message: {...this.state.message, body: event.target.value }
     });
     }
-
     
     fetchGroupUsers = id => {
         console.log("FETCHING USERS")
@@ -223,14 +214,13 @@ class NewGroupMessage extends React.Component {
             
               <FormGroup>
                  <Label for="messageText">Write Message Here</Label>
-                 <Input type="text"
+                 <Input type="textarea"
                   onChange={this.onHandleChangeBody}
                   placeholder="example: We won't be having class for the holidays. Study notes from this week"
                   value={this.state.message.body}
                   name="body"
                 />
              </FormGroup>
-
               </div>
              <FormGroup>
                 <Button  onClick = {this.onSubmit} >Send Now
@@ -278,6 +268,4 @@ class NewGroupMessage extends React.Component {
 };
 };
   
-
-
 export default NewGroupMessage;
