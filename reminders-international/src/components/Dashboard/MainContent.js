@@ -36,11 +36,19 @@ class MainContent extends Component {
       editGroupModal: false,
       editOrgModal: false,
       warningModal: false,
+      alertModal: false,
       groupName: '',
       orgName: '',
       description: '',
       deleting: 0,
     };
+    this.toggleAlert = this.toggleAlert.bind(this);
+  }
+
+  toggleAlert() {
+    this.setState({
+      alertModal: !this.state.alertModal,
+    });
   }
 
   toggleDropdown() {
@@ -50,7 +58,6 @@ class MainContent extends Component {
   }
 
   toggleEditUser() {
-    console.log('Edit User Clicked');
     this.setState(prevState => ({
       editUserModal: !prevState.editUserModal,
     }));
@@ -115,7 +122,7 @@ class MainContent extends Component {
       });
   };
 
-  // TODO TEAM: Delete Group 
+  // TODO TEAM: Delete Group
   deleteGroup = () => {
     console.log(
       '************ GROUP DELETE***************',
@@ -151,31 +158,34 @@ class MainContent extends Component {
   editUser = () => {
     console.log(
       '************ USER UPDATE***************',
-      this.props.profile.name,
+      this.state,
+      this.state.name,
     );
 
-    axios
-      .put(
-        `${process.env.REACT_APP_BACKEND}/api/users/${
-          this.props.profile.user_id
-        }`,
-        { name: this.state.name, 
-          email: this.state.email,
-          phone: this.state.phone
-        },
-      )
-      .then(res => {
-        console.log('Updated user', res);
-        if (res.status === 200 || res.status === 201) {
-          
-          this.setState(prevState => ({
-            editUserModal: !prevState.editUserModal,
-          }));
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    !this.state.name && !this.state.email && !this.state.phone
+      ? this.toggleAlert()
+      : axios
+          .put(
+            `${process.env.REACT_APP_BACKEND}/api/users/${
+              this.props.profile.user_id
+            }`,
+            {
+              name: this.state.name,
+              email: this.state.email,
+              phone: this.state.phone,
+            },
+          )
+          .then(res => {
+            console.log('Updated user', res);
+            if (res.status === 200 || res.status === 201) {
+              this.setState(prevState => ({
+                editUserModal: !prevState.editUserModal,
+              }));
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
   };
 
   editOrg = () => {
@@ -214,7 +224,12 @@ class MainContent extends Component {
       <div className="mainContentWrapper">
         <section className="profileInfo">
           <div className="groupData">
-            <img id="grpImage" src="https://i.imgur.com/nS78PKA.png" title="group"></img> &nbsp;
+            <img
+              id="grpImage"
+              src="https://i.imgur.com/nS78PKA.png"
+              title="group"
+            />{' '}
+            &nbsp;
             <div className="grpName">
               <span>
                 <strong>
@@ -235,19 +250,15 @@ class MainContent extends Component {
                 </strong>
               </span>{' '}
               &nbsp;
-
               {/* I'm commenting the below code out--do we need/like it? */}
               {/* <span>@groupname</span> */}
-
             </div>
           </div>
           <div className="topBtn">
-
             {/* ******Add Contact Button****** Do we really need it? Is it going to change into some other useful component? */}
             {/* <Button outline color="primary">
               <AddContactModal activeGroup={this.props.activeGroup} buttonLabel="Add Contact" />
             </Button> */}
-
             &nbsp;
             {/********************************************************** SETTINGS DROPDOWN ********************************************/}
             <Dropdown
@@ -265,22 +276,17 @@ class MainContent extends Component {
 
                 {/* Conditionally renders the edit this group ability for teachers through board members */}
                 {this.props.profile.role_id !== 2 ? (
-                <DropdownItem onClick={this.toggleEditGroup} id="drpItem">
-                  Edit This Group
-                </DropdownItem>
-                ) : (
-                  null
-                )}
+                  <DropdownItem onClick={this.toggleEditGroup} id="drpItem">
+                    Edit This Group
+                  </DropdownItem>
+                ) : null}
 
                 {/* Conditionally renders the edit organization to only show to country managers and board members */}
                 {this.props.profile.role_id > 2 ? (
-                <DropdownItem onClick={this.toggleEditOrg} id="drpItem">
-                  Edit Your Organization
-                </DropdownItem>
-                ) : (
-                  null
-                )}
-
+                  <DropdownItem onClick={this.toggleEditOrg} id="drpItem">
+                    Edit Your Organization
+                  </DropdownItem>
+                ) : null}
               </DropdownMenu>
             </Dropdown>
           </div>
@@ -313,6 +319,7 @@ class MainContent extends Component {
                   <Label for="email">Email</Label>
                   <Col sm={10}>
                     <Input
+                      onChange={this.handleInputChange}
                       placeholder="Email"
                       type="email"
                       value={this.state.email}
@@ -326,6 +333,7 @@ class MainContent extends Component {
                   <Label for="country">Phone</Label>
                   <Col sm={10}>
                     <Input
+                      onChange={this.handleInputChange}
                       placeholder="Phone"
                       type="number"
                       value={this.state.phone}
@@ -427,6 +435,20 @@ class MainContent extends Component {
               <Button color="primary" onClick={this.editOrg}>
                 Update
               </Button>{' '}
+            </ModalFooter>
+          </Modal>
+
+          {/*** Empty Update Alert Modal ***/}
+          <Modal
+            id="alertModalWrapper"
+            isOpen={this.state.alertModal}
+            toggle={this.toggleAlert}
+          >
+            <ModalBody id="roleAlertModal">Nothing was Edited!</ModalBody>
+            <ModalFooter id="alertBtn">
+              <Button color="secondary" onClick={this.toggleAlert}>
+                OK!
+              </Button>
             </ModalFooter>
           </Modal>
 
