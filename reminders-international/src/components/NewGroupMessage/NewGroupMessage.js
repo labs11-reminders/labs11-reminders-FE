@@ -33,7 +33,7 @@ class NewGroupMessage extends React.Component {
   
       this.toggle = this.toggle.bind(this);
       this.toggleTab = this.toggleTab.bind(this);
- 
+      this.toggleSuccess = this.toggleSuccess.bind(this);
       this.toggleSchedule = this.toggleSchedule.bind(this);
       this.toggleDraft = this.toggleDraft.bind(this);
       this.toggleTemplate = this.toggleTemplate.bind(this);
@@ -48,6 +48,12 @@ class NewGroupMessage extends React.Component {
        
       }));
       }
+
+      toggleSuccess() {
+        this.setState(prevState => ({
+          success: !prevState.success,
+        }));
+        }
   
   
       // TRYING TOGGLE FOR TYPE OF BUTTON PRESSED
@@ -62,24 +68,34 @@ class NewGroupMessage extends React.Component {
  
   
       toggleSchedule(event) { //connected to schedule checkbox
+        console.log("Click",this.state.message.scheduled)
+      
         this.setState({
           message: {...this.state.message,  scheduled: event.target.checked }
         });
+        if (this.state.message.scheduled=true){
+            this.toggleSuccess()
+        }
+      
        
       }
       toggleDraft(event) { //connected to draft checkbox
         this.setState({
           message: {...this.state.message, draft: event.target.checked }
       });
-      
+      if (this.state.message.draft=true){
+        this.toggleSuccess()
+        }
   
       }
       toggleTemplate(event) { //connected to template checkbox
         this.setState({
         message: {...this.state.message, template: event.target.checked }
        });
-   
-      }
+       if (this.state.message.template=true){
+        this.toggleSuccess()
+        }
+       }
   
       createSavedReminder = () => { //connected to save button
    
@@ -103,7 +119,8 @@ class NewGroupMessage extends React.Component {
             success: 'Success!',
             reminders: { ...messageObj }
             });
-        }
+          }
+          
      })
 
     .catch(err => {
@@ -114,6 +131,7 @@ class NewGroupMessage extends React.Component {
           });
     });
     
+   
       }
   
     onHandleChangeTitle = (event) => {
