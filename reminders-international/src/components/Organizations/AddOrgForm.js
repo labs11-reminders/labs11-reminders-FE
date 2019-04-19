@@ -76,7 +76,7 @@ class AddOrgForm extends Component {
             value={this.state.orgs.description}
             name="description"
           />
-          <Button className='orgBtn' type='submit' onClick={this.addOrg}>Add it here</Button>
+          <Button className='orgBtnExp' type='submit' onClick={this.addOrg}>Add New Organization</Button>
           </FormGroup>
           </Collapse>
       </FormGroup>

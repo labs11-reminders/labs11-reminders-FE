@@ -13,14 +13,19 @@
 }
 
 .org-form {
-  width: 60%;
+  width: 100%;
   padding: 0 10px 0 10px;
   margin: 0 auto;
 }
 
 .orgBtn   {
   margin: 10px;
-  width: 15%;
+  border-radius: 0 !important;
+  box-shadow: 0px 0px 7px rgb(110, 110, 110);
+}
+
+.orgBtnExp   {
+  margin: 10px;
   border-radius: 0 !important;
   box-shadow: 0px 0px 7px rgb(110, 110, 110);
 }
