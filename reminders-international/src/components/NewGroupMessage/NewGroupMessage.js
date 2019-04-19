@@ -76,9 +76,8 @@ class NewGroupMessage extends React.Component {
         if (this.state.message.scheduled=true){
             this.toggleSuccess()
         }
-      
-       
-      }
+         }
+         
       toggleDraft(event) { //connected to draft checkbox
         this.setState({
           message: {...this.state.message, draft: event.target.checked }

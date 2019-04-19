@@ -60,6 +60,7 @@ class ScheduledMessageCard extends Component{
   this.toggleCal = this.toggleCal.bind(this);
   this.toggleScheduler = this.toggleScheduler.bind(this);
   this.toggleNested = this.toggleNested.bind(this);
+  this.toggleSuccess = this.toggleSuccess.bind(this);
 }
 toggle() {
   this.setState(prevState => ({
@@ -69,6 +70,11 @@ toggle() {
 toggleCal() {
   this.setState(state => ({ collapse: !state.collapse }));
 }
+toggleSuccess() {
+  this.setState(state => ({
+    success: '',
+  }));
+  }
 
 toggleScheduler() {
   this.setState(state => ({ collapseScheduler: !state.collapseScheduler }));
@@ -157,21 +163,28 @@ fetchReminder = id => {
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
         console.log("PUT RESPONSE:", response.data)
-        this.setState({ message: response.data})
+        this.setState({success: 'Success!', message: response.data})
       })
       .catch(error => console.log(error))
+      if (this.state.success){
+        this.toggleSuccess()
+      }
     }
 
   onTemplate= (event) => { 
+  
     const id = this.props.id
     const editObj ={template:event.target.checked};
     axios
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
         console.log("PUT RESPONSE:", response.data)
-        this.setState({ message: response.data})
+        this.setState({success: 'Success!', message: response.data})
       })
       .catch(error => console.log(error))
+      if (this.state.success){
+        this.toggleSuccess()
+      }
     }
 
   onDatePicker = (event) => {  
@@ -184,7 +197,7 @@ fetchReminder = id => {
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
         console.log("PUT RESPONSE:", response.data)
-        this.setState({ message: response.data})
+        this.setState({success: 'Success!', message: response.data})
         this.fetchReminder(id);
       })
       .catch(error => console.log(error))
@@ -197,7 +210,7 @@ fetchReminder = id => {
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
         console.log("PUT RESPONSE:", response.data)
-        this.setState({ message: response.data})
+        this.setState({ success: 'Success!', message: response.data})
         this.fetchReminder(id);
       })
       .catch(error => console.log(error))
@@ -223,6 +236,7 @@ fetchReminder = id => {
       .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
       .then(response => {
           console.log("DELETE RESPONSE:", response.data)
+          this.setState({success_delete: 'Success! The message will go "poof!" as soon as you leave this tab',})
           
       })
       .catch(err => {
@@ -260,7 +274,7 @@ fetchReminder = id => {
           <section className = "messageoptions">
           
        
-  <Button color="link" onClick={this.toggleCal} > <strong>Click here </strong> to update send date </Button>  
+  <Button color="link" onClick={this.toggleCal} > <strong>Click here </strong> to update schedule </Button>  
             <Collapse isOpen={this.state.collapse}>
             <DayPickerInput classNameName="calendar"
               onDayChange={this.onDatePicker}
@@ -289,6 +303,9 @@ fetchReminder = id => {
                  Delete
               </Label>
             </FormGroup>
+            <p>{this.state.success_delete}</p>
+            <p>{this.state.success}</p>
+
           
         </div>
         </div>
