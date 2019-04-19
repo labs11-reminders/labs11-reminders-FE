@@ -8,12 +8,14 @@ import MomentLocaleUtils, {
   import DayPickerInput from 'react-day-picker/DayPickerInput';
 import axios from 'axios';
 import moment from "moment";
+import './TabMessageStyles.css';
+import '../global.css';
 
 class SchedMessageModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      success:"",
+      success:'',
       success_delete:'',
       nestedModal: false,
       modal: false,
@@ -35,7 +37,6 @@ class SchedMessageModal extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.toggleTab = this.toggleTab.bind(this);
     this.toggleSuccess = this.toggleSuccess.bind(this);
-    this.toggleApprove = this.toggleApprove.bind(this);
        }
 
 
@@ -232,47 +233,16 @@ toggleSuccess() {
                 name="body"
               />
             </FormGroup>
-            <FormGroup>
-            <Col sm={{ size: 'auto', offset: 0 }}>
-            {/* <Button color="link" onClick={this.toggleScheduler} 
-            className="schedulerToggle">Edit Calendar</Button> */}
-            <Collapse isOpen={this.state.collapseScheduler}>
-              <Card>
-                <CardBody>
-                <div className="schedule-functions">
-            <DayPickerInput 
-              className="calendar"
-              onDayChange={this.onDatePicker}
-              formatDate={formatDate}
-              parseDate={parseDate}
-              placeholder={`${formatDate(new Date())}`}/>
-            <FormGroup check inline>
-              <Label>
-                <Input type="checkbox" onClick={this.toggleApprove} />{' '} Approved
-              </Label>  
-            </FormGroup>
-            <FormGroup>
-              <Label check>
-                <Input type="checkbox" onClick={this.onDelete} />{' '} Delete
-              </Label>
-            </FormGroup>
-            <FormGroup>
-              <Label check>
-              <Input type="checkbox" onClick={this.onTemplate} />{' '}
-            Template
-              </Label>
-            </FormGroup>
-        </div>
-                </CardBody>
-              </Card>
-            </Collapse>
-          </Col>
-          </FormGroup>
+           
           </ModalBody>
           <ModalFooter>
             <Row>
             <FormGroup>
-              <Button color="primary" onClick={this.createSavedReminder}>Save</Button>
+              <div className = "editbutton">
+              <Button color="primary" onClick={this.createSavedReminder}>Save Edits</Button>
+              
+              <p>{this.state.success}</p>
+              </div>
               </FormGroup>
               <FormGroup>
             </FormGroup>

@@ -11,7 +11,7 @@ class NewGroupMessage extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        success:"",
+        success:'',
         user: {},
         modal: false,
         message: {
@@ -51,7 +51,7 @@ class NewGroupMessage extends React.Component {
 
       toggleSuccess() {
         this.setState(prevState => ({
-          success: !prevState.success,
+          success: !prevState.success
         }));
         }
   
@@ -69,35 +69,28 @@ class NewGroupMessage extends React.Component {
   
       toggleSchedule(event) { //connected to schedule checkbox
         console.log("Click",this.state.message.scheduled)
-      
         this.setState({
           message: {...this.state.message,  scheduled: event.target.checked }
         });
-        if (this.state.message.scheduled=true){
-            this.toggleSuccess()
-        }
+   
          }
          
       toggleDraft(event) { //connected to draft checkbox
         this.setState({
           message: {...this.state.message, draft: event.target.checked }
       });
-      if (this.state.message.draft=true){
-        this.toggleSuccess()
-        }
+    
   
       }
       toggleTemplate(event) { //connected to template checkbox
         this.setState({
         message: {...this.state.message, template: event.target.checked }
        });
-       if (this.state.message.template=true){
-        this.toggleSuccess()
-        }
+     
+     
        }
   
-      createSavedReminder = () => { //connected to save button
-   
+      createSavedReminder = () => { //connected to save butto
       const { title, body, scheduled, draft, template,} = this.state.message
       const messageObj = {
         name: title,
@@ -116,7 +109,20 @@ class NewGroupMessage extends React.Component {
         if(res.status === 200 || res.status === 201) {
           this.setState({
             success: 'Success!',
-            reminders: { ...messageObj }
+           // reminders: { ...messageObj }
+            });
+          this.setState({
+            message: {
+              users: [],
+              title:'',
+              body: '',
+              scheduled: false,
+              draft: false,
+              template: false,
+              group_id: '',
+              user_id: '',
+              }
+            
             });
           }
           
@@ -128,8 +134,8 @@ class NewGroupMessage extends React.Component {
           message: 'You failed to add a group.',
           reminder: { ...messageObj }
           });
+         
     });
-    
    
       }
   
@@ -217,7 +223,7 @@ class NewGroupMessage extends React.Component {
             
               <FormGroup>
                  <Label for="messageText">Write Message Here</Label>
-                 <Input type="textarea"
+                 <Input type="text"
                   onChange={this.onHandleChangeBody}
                   placeholder="example: We won't be having class for the holidays. Study notes from this week"
                   value={this.state.message.body}

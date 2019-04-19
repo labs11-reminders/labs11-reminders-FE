@@ -28,6 +28,14 @@
     justify-content: flex-start;
 }
 
+.editbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
 section .first_tab_message {
   height: 30vw;
 }
