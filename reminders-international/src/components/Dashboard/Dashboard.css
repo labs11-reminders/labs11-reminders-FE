@@ -370,6 +370,13 @@ div.tab-content {
     box-shadow: 0px 0px 5px rgb(128, 128, 128);
 }
 
+@media (max-width: 650px) {
+    #drpMenu {
+        margin: 1vw 0 0 -29vw;
+    }
+}
+
+
 #drpItem:hover {
     background-color: #3a9cd8;
     color: white;
