@@ -44,7 +44,7 @@ class UserDetailsForm extends Component {
         console.log('adding user to group');
         console.log('adding user to group', this.state);
         console.log('adding user to group', this.props);
-          this.props.history.replace('/dashboard');
+        this.props.history.push('/postsignup');
       })
       .catch(err => {
         console.log(err);

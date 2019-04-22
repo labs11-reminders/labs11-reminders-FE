@@ -26,7 +26,7 @@ class ScheduledMessageCard extends Component{
     super(props);
     this.state = {
       collapse: false,
-      success:'',
+      success: '',
       message: {
         id: '',
         title: '', 

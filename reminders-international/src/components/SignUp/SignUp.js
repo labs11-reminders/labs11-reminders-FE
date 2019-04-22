@@ -113,6 +113,7 @@ class SignUp extends Component {
               group_id={this.state.group_id}
               history={this.props.history}
               profile={this.state.profile}
+              auth={this.props.auth}
             />
           </div>
         )}
