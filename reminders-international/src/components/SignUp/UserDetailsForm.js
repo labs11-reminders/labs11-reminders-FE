@@ -30,7 +30,7 @@ class UserDetailsForm extends Component {
       })
       .then(res => {
         console.log('adding user to group');
-        this.props.history.replace('/dashboard');
+        this.props.history.push('/postsignup');
       })
       .catch(err => {
         console.log(err);

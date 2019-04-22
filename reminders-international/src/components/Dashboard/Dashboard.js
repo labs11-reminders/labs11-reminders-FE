@@ -77,6 +77,14 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
     this.getGroups();
   }
 
@@ -132,12 +140,15 @@ class Dashboard extends Component {
         {/* This checks to see if the auth0 profile is undefined 
         (which occurs when user token is expired) and then instead of an error message 
         the h5 is displayed and local storage is cleared so the nav changes to 'logout'. */}
+        
+
         {this.state.profile === undefined ? (
           <div>
             {this.props.auth.logout()}
             <h5>Error displaying Page. Please Login!</h5>
           </div>
         ) : (
+
           <>
             
             <div className="mainContainer">
