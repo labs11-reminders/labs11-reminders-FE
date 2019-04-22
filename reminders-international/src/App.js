@@ -14,6 +14,7 @@ import {
   Scheduler,
   DraftList,
   LandingPage,
+  PostSignup,
 } from './components';
 
 //import axios from 'axios';
@@ -99,6 +100,8 @@ class App extends Component {
           render={props => <NewGroupMessage {...props} />}
         />
 
+        
+        <Route exact path="/postsignup" render={props => <PostSignup {...props} />} />
         <Route exact path="/people" render={props => <People {...props} />} />
 
         <Route exact path="/select-role" component={Roles} />

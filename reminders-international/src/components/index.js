@@ -11,6 +11,7 @@ import SignUp from './SignUp/SignUp';
 import Scheduler from './Scheduler/ScheduleMessageComposer';
 import DraftList from './Drafts/DraftList';
 import LandingPage from './LandingPage/LandingPage';
+import PostSignup from './PostSignup/PostSignup';
 
 export {
   Users,
@@ -26,4 +27,5 @@ export {
   Scheduler,
   DraftList,
   LandingPage,
+  PostSignup,
 };
