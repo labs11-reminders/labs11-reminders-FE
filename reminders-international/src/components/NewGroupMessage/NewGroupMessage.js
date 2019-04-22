@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import MessageModal from '../MessageModal/MessageModal';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input, Row, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, Form, Col } from 'reactstrap';
+import { Button, FormGroup, Label, Input, Form, Col } from 'reactstrap';
 import axios from 'axios';
 import '../Scheduler/TabMessageStyles.css';
 import '../global.css';
@@ -8,7 +8,7 @@ import '../global.css';
 import './message.css'
 
 
-class NewGroupMessage extends React.Component {
+class NewGroupMessage extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -72,7 +72,7 @@ class NewGroupMessage extends React.Component {
         this.setState({
           message: {...this.state.message,  scheduled: event.target.checked }
         });
-        if (this.state.message.scheduled=true){
+        if (this.state.message.scheduled){
             this.toggleSuccess()
         }
 
@@ -83,7 +83,7 @@ class NewGroupMessage extends React.Component {
           message: {...this.state.message, draft: event.target.checked }
       });
 
-      if (this.state.message.draft=true){
+      if (this.state.message.draft){
         this.toggleSuccess()
         }
 
@@ -92,7 +92,7 @@ class NewGroupMessage extends React.Component {
         this.setState({
         message: {...this.state.message, template: event.target.checked }
        });
-       if (this.state.message.template=true){
+       if (this.state.message.template){
         this.toggleSuccess()
         }
        }
@@ -455,12 +455,12 @@ export default NewGroupMessage;
   
 //     render() {
       
-//       return (
-//         <div className="composer">  
-//         <div className="list">
-//         <div className="first_tab_card">
-//         <section className="first_tab_message" >
-//         <div className = "first_tab_messagedetails">
+    // return (
+    //   <div className="composer">  
+    //   <div className="list">
+    //   <div className="first_tab_card">
+    //   <section className="first_tab_message" >
+    //   <div className = "first_tab_messagedetails">
             
 //             <FormGroup>
 //                 <Label for="messageText">Write Title Here</Label>

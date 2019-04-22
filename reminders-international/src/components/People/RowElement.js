@@ -34,13 +34,21 @@ class RowElement extends Component {
         })
     }
 
+
+
+    componentsDidMount(){
+        this.getRoleById();
+    }
+
     render() {
+        
         return (
             <tr>                        
                 <td>{this.props.user.name}</td>
                 {/* <td>{this.props.user.country}</td>
                 <td>{this.props.user.email}</td> */}
                 <td>{this.props.user.phone}</td>
+                {/* <td>{this.props.user.role_id}</td> */}
                 <td>
                 {
                     this.props.show_add && ( 

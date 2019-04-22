@@ -16,13 +16,25 @@ class UserDetailsForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {},
+      user: {
+        name: null,
+        email: null,
+        country: null,
+        phone: null,
+        org_id: null,
+        role_id: null,
+        password: null,
+        auth0_sub: null,
+        // group_id: null, cannot add since it is not in the BE table
+      },
+      user_id: null,
       alertModal: false,
     };
-    this.toggleAlert = this.toggleAlert.bind(this);
   }
 
   addUserToGroup = () => {
+    console.log("ADD USER TO GROUP", this.state)
+    console.log("ADD USER TO GROUP", this.props)
     axios
       .post(`${process.env.REACT_APP_BACKEND}/api/groups/add/user`, {
         user_id: this.state.user_id,
@@ -30,7 +42,9 @@ class UserDetailsForm extends Component {
       })
       .then(res => {
         console.log('adding user to group');
-        this.props.history.replace('/dashboard');
+        console.log('adding user to group', this.state);
+        console.log('adding user to group', this.props);
+          this.props.history.replace('/dashboard');
       })
       .catch(err => {
         console.log(err);
@@ -38,10 +52,11 @@ class UserDetailsForm extends Component {
   };
 
   createNewUser = () => {
+    console.log("THIS.STATE.USER", this.state.user)
     axios
       .post(`${process.env.REACT_APP_BACKEND}/api/users`, this.state.user)
       .then(res => {
-        console.log('UserDetailForm res', res);
+        console.log('UserDetailForm res', res.data[0]);
         this.setState(
           {
             user_id: res.data[0],
@@ -73,13 +88,16 @@ class UserDetailsForm extends Component {
     });
   };
 
-  toggleAlert() {
+  toggleAlert = () => {
     this.setState({
       alertModal: !this.state.alertModal,
     });
   }
 
   handleSubmit = e => {
+    console.log("ON HANDLE SUBMIT", this.state)
+    console.log("ON HANDLE SUBMIT", this.props)
+    console.log("ON HANDLE SUBMIT", this.full_name.value, this.email.value, this.country.value, this.phone.value)
     !this.state.user.name ||
     !this.state.user.email ||
     !this.state.user.country ||
@@ -88,12 +106,13 @@ class UserDetailsForm extends Component {
       : this.setState(
           {
             user: {
+              // id: this.props.user_id,
               name: this.full_name.value,
               email: this.email.value,
               country: this.country.value,
               phone: this.phone.value,
               org_id: this.props.org_id,
-              // group_id: this.props.group_id,
+              // group_id: this.props.group_id, // not in BE table
               role_id: this.props.role_id,
               password: 'NotAPassword',
               auth0_sub: this.props.profile.sub,
@@ -106,7 +125,6 @@ class UserDetailsForm extends Component {
   };
 
   render() {
-    console.log('UserDetails render this.state', this.state);
     return (
       <Container className="rolesContainer">
         <h3 className="rolesTopBar">Please provide your contact information</h3>

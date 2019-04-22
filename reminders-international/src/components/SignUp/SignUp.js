@@ -34,6 +34,8 @@ class SignUp extends Component {
   };
 
   nextStep = () => {
+    console.log('SignUp.js NEXT STEP', this.state);
+    
     this.setState({
       step: this.state.step + 1,
     });
@@ -62,6 +64,7 @@ class SignUp extends Component {
     console.log('SignUp.js render this.state', this.state);
 
     return (
+      
       <div className="signupContainer">
         {/* <p>You are on step {this.state.step} of account creation.</p> */}
 
@@ -76,14 +79,20 @@ class SignUp extends Component {
 
         {this.state.step === 1 && (
           <div>
-            <span className={this.state.step === 1 ? 'dot.active' : 'dot'} />
-            <Roles handleRole={this.handleRole} />
+            <Roles 
+              handleRole={this.handleRole} 
+              profile={this.state.profile}
+            />
+            
           </div>
         )}
         {this.state.step === 2 && (
           <div>
-            <span className={this.state.step === 2 ? 'dot.active' : 'dot'} />
-            <Org handleOrg={this.handleOrg} role={this.state.role_id} />
+            <Org 
+              handleOrg={this.handleOrg} 
+              role={this.state.role_id} 
+              profile={this.state.profile}
+            />
           </div>
         )}
         {this.state.step === 3 && (
@@ -92,6 +101,7 @@ class SignUp extends Component {
               handleGroup={this.handleGroup}
               role={this.state.role_id}
               org_id={this.state.org_id}
+              profile={this.state.profile}
             />
           </div>
         )}

@@ -218,20 +218,19 @@ class MainContent extends Component {
             <div className="grpName">
               <span>
                 <strong>
-                  {!this.props.activeGroup === null ? (
-                    <p>Group Name</p>
-                  ) : (
-                    this.props.groups.map(group => {
-                      console.log(
-                        '************************************',
-                        group,
-                        this.props.activeGroup,
-                      );
-                      if (this.props.activeGroup === group.id) {
-                        return group.name;
-                      }
-                    })
-                  )}
+                  {!this.props.activeGroup ? 
+                    (
+                      <p>Group Name</p>
+                    ) : 
+                    (
+                      this.props.groups.map(group => {
+                        console.log('Group.id', group.id, this.props.activeGroup,
+                        );
+                        if (this.props.activeGroup === group.id) {
+                          return group.name;
+                        }
+                      })
+                    )}
                 </strong>
               </span>{' '}
               &nbsp;
@@ -256,7 +255,7 @@ class MainContent extends Component {
               toggle={this.toggleDropdown}
             >
               <DropdownToggle tag="a" caret>
-                <i class="fas fa-cog fa-2x" />
+                <i className="fas fa-cog fa-2x" />
               </DropdownToggle>
               <DropdownMenu id="drpMenu">
                 <DropdownItem onClick={this.toggleEditUser} id="drpItem">

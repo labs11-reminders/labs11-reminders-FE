@@ -24,6 +24,12 @@
   box-shadow: 0px 0px 7px rgb(110, 110, 110);
 }
 
+.orgInputCol {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+}
+
 .orgBtnExp   {
   margin: 10px;
   border-radius: 0 !important;
@@ -43,10 +49,4 @@
 
 h2, h3 {
   color: white
-}
-
-@media (max-width: 700px) {
-  .orgBtn {
-    width: 30%;
-  }
 }

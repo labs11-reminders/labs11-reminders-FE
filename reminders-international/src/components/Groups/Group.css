@@ -15,19 +15,21 @@
 .groups-form {
   width: 100%;
   padding: 0 10px 0 10px;
-  
-}
-
-.groupInput {
-  width: 60%;
   margin: 0 auto;
 }
+
+.groupInputCol {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  }
 
 .groupBtn   {
   margin: 10px;
   border-radius: 0 !important;
   box-shadow: 0px 0px 7px rgb(110, 110, 110);
 }
+
 
 .groupBtnExp   {
   margin: 10px;

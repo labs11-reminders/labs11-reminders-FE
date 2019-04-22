@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input, Row, Dropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap';
 
 import axios from 'axios';
 
-class MessageModalGroup extends React.Component {
+class MessageModalGroup extends Component {
   constructor(props) {
     super(props);
     this.state = {

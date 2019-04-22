@@ -35,7 +35,8 @@ export default class Auth {
     this.renewSession = this.renewSession.bind(this);
     this.getProfile = this.getProfile.bind(this);
     this.getExpiryDate = this.getExpiryDate.bind(this);
-    this.scheduleRenewal();
+    // this.scheduleRenewal();
+    this.scheduleRenewal = this.scheduleRenewal.bind(this);
   }
 
   // checks the users database to see if the user has logged in to the site before
@@ -161,6 +162,7 @@ export default class Auth {
             this.userProfile.user_id = res.data.id;
             this.userProfile.nickname = res.data.name;
             console.log('User profile load complete.');
+            console.log('User profile:', this.userProfile);
           })
           .catch(err => {
             console.log('User profile failed to load.');

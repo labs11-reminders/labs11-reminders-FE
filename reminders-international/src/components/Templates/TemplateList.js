@@ -2,16 +2,6 @@ import React, { Component } from 'react';
 import TemplateCard from './TemplateCard';
 import '../Scheduler/TabMessageStyles.css';
 import '../global.css';
-import {
-  Card,
-  CardColumns,
-  CardBody,
-  Row,
-  Col,
-  // Button,
-  // CardTitle,
-  // CardText,
-} from 'reactstrap';
 
 export default class TemplateList extends Component {
   constructor(props) {

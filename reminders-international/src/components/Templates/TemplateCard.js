@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import SchedMessageModal from '../Scheduler/SchedMessageModal'
 import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  NavLink,
-  Button,
-  CardTitle,
-  CardSubtitle,
-  CardText,
-  Col,
-  Form,
+  // Modal,
+  // ModalHeader,
+  // ModalBody,
+  // ModalFooter,
+  // NavLink,
+  // Button,
+  // CardTitle,
+  // CardSubtitle,
+  // CardText,
+  // Col,
+  // Form,
   FormGroup,
   Label,
   Input,
-  Row,
-  Collapse
+  // Row,
+  // Collapse
 
 } from 'reactstrap';
 import '../Scheduler/TabMessageStyles.css';
@@ -165,7 +165,7 @@ componentDidMount() {
     date = date.split(/\W+/);
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
     let yr = date[0];
-    let month = months[date[1]/1 - 1];
+    let month = months[parseInt(date[1]) - 1];
     let day = date[2];
     let hr = date[3];
     let min = date[4];

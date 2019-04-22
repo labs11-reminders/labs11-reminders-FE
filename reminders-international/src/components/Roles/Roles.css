@@ -94,7 +94,7 @@
 .rolesTopBar {
     background-color: #3a9cd8;
     background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654);
-    color: white !important; 
+    color: white;
     width: 100%;
     margin: 0;
     padding: 20px 0 20px 0;
@@ -110,19 +110,8 @@
 #activeBtn {
     background-color: #3A9CD8;
 }
-#size {
-    width: 10%;
-}
-  
-.groupsTopBar {
-    background-color: #3a9cd8;
-    background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654);
-    width: 100%;
-    margin: 0;
-    padding: 20px 0 20px 0;
-}
 
-  .roleCard {
+.roleCard {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -130,14 +119,12 @@
     box-shadow: 0px 0px 7px rgb(110, 110, 110);
     width: 200px;
     height: 200px;
-    
 }
 
 .roleCol {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 !important;
 }
 
 .SVG {
@@ -146,25 +133,14 @@
     padding: 0 10px 0 10px;
 }
   
-.groups-form {
+.roles-form {
     width: 100%;
     padding: 0 10px 0 10px;
 }
 
 .roleBtn   {
     margin: 10px;
-    border-radius: 0 !important;
-    box-shadow: 0px 0px 7px rgb(110, 110, 110);
-}
-
-#groupName, #addGroupName {
-    border-radius: 0 !important;
-    border: 0;
-    outline: 1px solid #CCC !important;
-    background-color: white !important;
-    -webkit-border-radius: 0;
-    outline: 1px solid #ccc;
-    outline-offset: -1px;
+    box-shadow: 0px 0px 3px rgb(110, 110, 110);
 }
 
 h2, h3 {
