@@ -77,14 +77,6 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    const { userProfile, getProfile } = this.props.auth;
-    if (!userProfile) {
-      getProfile((err, profile) => {
-        this.setState({ profile });
-      });
-    } else {
-      this.setState({ profile: userProfile });
-    }
     this.getGroups();
   }
 
