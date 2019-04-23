@@ -18,6 +18,7 @@ import {
 } from 'reactstrap';
 import AddContactModal from '../AddContacts/AddContactModal';
 import axios from 'axios';
+import grpImage from './network.png';
 
 class MainContent extends Component {
   constructor(props) {
@@ -224,29 +225,29 @@ class MainContent extends Component {
       <div className="mainContentWrapper">
         <section className="profileInfo">
           <div className="groupData">
-            <img
+            {/* <img
               id="grpImage"
               src="https://i.imgur.com/nS78PKA.png"
               title="group"
-            />{' '}
+            />{' '} */}
+            <img className="grpImage" src={grpImage} alt="group icon" />
             &nbsp;
             <div className="grpName">
               <span>
                 <strong>
-                  {!this.props.activeGroup === null ? (
-                    <p>Group Name</p>
-                  ) : (
-                    this.props.groups.map(group => {
-                      console.log(
-                        '************************************',
-                        group,
-                        this.props.activeGroup,
-                      );
-                      if (this.props.activeGroup === group.id) {
-                        return group.name;
-                      }
-                    })
-                  )}
+                  {!this.props.activeGroup ? 
+                    (
+                      <p>Group Name</p>
+                    ) : 
+                    (
+                      this.props.groups.map(group => {
+                        console.log('Group.id', group.id, this.props.activeGroup,
+                        );
+                        if (this.props.activeGroup === group.id) {
+                          return group.name;
+                        }
+                      })
+                    )}
                 </strong>
               </span>{' '}
               &nbsp;
@@ -267,7 +268,7 @@ class MainContent extends Component {
               toggle={this.toggleDropdown}
             >
               <DropdownToggle tag="a" caret>
-                <i class="fas fa-cog fa-2x" />
+                <i className="fas fa-cog fa-2x" />
               </DropdownToggle>
               <DropdownMenu id="drpMenu">
                 <DropdownItem onClick={this.toggleEditUser} id="drpItem">

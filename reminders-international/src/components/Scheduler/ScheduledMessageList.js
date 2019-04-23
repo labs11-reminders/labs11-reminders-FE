@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import ScheduledMessageCard from './ScheduledMessageCard';
 import './TabMessageStyles.css';
 import '../global.css';
-import {
-  Card,
-  CardColumns,
-  CardBody,
-  Row,
-  Col,
-} from 'reactstrap';
 
 export default class ScheduledMessageList extends Component {
   constructor(props) {

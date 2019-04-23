@@ -1,8 +1,7 @@
 import React from 'react';
-import {
-} from 'reactstrap';
 
 const SideTemplateCard = (props) => {
+  console.log("SideTemplateCard", props)
   return (
     <div className="side-template-card">
       {props.name}

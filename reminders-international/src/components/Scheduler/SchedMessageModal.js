@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, 
-  FormGroup, Label, Input, Row, Col, Collapse, Card, CardBody } from 'reactstrap';
+  FormGroup, Label, Input, Row,  } from 'reactstrap';
 import MomentLocaleUtils, {
     formatDate,
     parseDate,
@@ -11,7 +11,7 @@ import moment from "moment";
 import './TabMessageStyles.css';
 import '../global.css';
 
-class SchedMessageModal extends React.Component {
+class SchedMessageModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,27 +40,16 @@ class SchedMessageModal extends React.Component {
        }
 
 
-//     collapseScheduler: false,
-//   };
-//   this.toggleApprove = this.toggleApprove.bind(this);
-//   this.toggle = this.toggle.bind(this);
-//   this.toggleScheduler = this.toggleScheduler.bind(this);
-//   this.toggleNested = this.toggleNested.bind(this);
-// }
-// toggle() {
-//   this.setState(prevState => ({
-//     modal: !prevState.modal,
-//   }));
-// }
 
-toggleScheduler() {
-  this.setState(state => ({ collapseScheduler: !state.collapseScheduler }));
-}
-toggleSuccess() {
-  this.setState(state => ({
-    success: '',
-  }));
+  toggleScheduler() {
+    this.setState(state => ({ collapseScheduler: !state.collapseScheduler }));
   }
+
+  toggleSuccess() {
+    this.setState(state => ({
+      success: '',
+    }));
+    }
   // TOGGLE TO OPEN MODEL
     toggle() {
         this.fetchReminder(this.props.id)
@@ -103,7 +92,7 @@ toggleSuccess() {
 
     createSavedReminder = () => { //connected to save button
       
-    const { title, body, scheduled, draft, date, template, group_id, user_id,id } = this.state.message
+    const { title, body, scheduled, draft, template, id } = this.state.message
     const messageObj = {
       name: title,
       description: body,
@@ -208,7 +197,7 @@ toggleSuccess() {
     return (
 
       <div>
-        <Button color="link" className="editPencil" onClick={this.toggle}><i className="fas fa-pencil-alt" /></Button>
+        <Button color="link" id="editPencil" onClick={this.toggle}><span className="fas fa-pencil-alt"></span></Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Edit Message</ModalHeader>
           <ModalBody>

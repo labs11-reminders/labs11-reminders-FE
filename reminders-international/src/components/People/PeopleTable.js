@@ -52,6 +52,7 @@ class PeopleTable extends Component {
           this.setState({
               users: res.data
           });
+          console.log(this.state.users)
       })
       .catch(err => {
           console.log(err);
@@ -70,15 +71,16 @@ class PeopleTable extends Component {
         return (
             <div>
             <Table className="table-hover">
-            <thead class="col-md table-primary">
-              <tr>
+            <thead className="col-md table-primary">
+              <tr className="grey">
                 
-                <th class="w-25">Name</th>
-                <th class="w-25">Phone</th>
+                <th className="w-25">Name</th>
+                <th className="w-25">Phone</th>
+                {/* <th className="w-25">Role</th> */}
                 <th >Remove from Group</th>
               </tr>
             </thead>
-            <tbody class="col-md">
+            <tbody className="col-md">
 
                 {this.props.activeGroupUsers.map(user => 
                    <RowElement key={user.id} value={user.id} user={user} group_id={this.props.activeGroup} show_delete={true} /> 

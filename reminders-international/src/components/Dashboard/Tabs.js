@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   TabContent,
   TabPane,
@@ -16,7 +16,7 @@ import People from '../People/People';
 import classnames from 'classnames';
 
 
-export default class TabsSection extends React.Component {
+export default class TabsSection extends Component {
 
   constructor(props) {
     super(props);
@@ -31,6 +31,7 @@ export default class TabsSection extends React.Component {
   }
 
   toggle(tab) {
+    console.log("TOGGLE TAB", this.state.activeTab, tab)
     if (this.state.activeTab !== tab) {
       this.setState({
         activeTab: tab,
@@ -39,7 +40,8 @@ export default class TabsSection extends React.Component {
   }
  
   render() {
-  
+    console.log("TABS.JS", this.state)
+    console.log("TABS.JS", this.props)
     return (
      
       <div>

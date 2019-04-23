@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, FormGroup } from 'reactstrap';
 import SMSFormInd from '../SMSForm/SMSFormInd';
 
 import axios from 'axios';
 
-class MessageModalInd extends React.Component {
+class MessageModalInd extends Component {
   constructor(props) {
     super(props);
     this.state = {

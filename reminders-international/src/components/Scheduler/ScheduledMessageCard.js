@@ -3,26 +3,16 @@ import MomentLocaleUtils, {
   formatDate,
   parseDate,
 } from 'react-day-picker/moment';
-import {Link} from 'react-router-dom';
 import 'moment/locale/it';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 //import 'react-day-picker/lib/style.css';
 import axios from 'axios';
 import {
-  NavLink,
-  Card,
-  CardTitle,
-  CardSubtitle,
-  CardText,
   FormGroup,
   Label,
   Input,
-  Row,
-  Nav,
-  Col,
   Collapse,
   Button,
-  CardBody,
 
 } from 'reactstrap';
 import moment from "moment";
@@ -91,9 +81,9 @@ fetchReminder = id => {
     .get(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
     .then(response => {
       let approved_text;
-      if (response.data.approved == true) {
+      if (response.data.approved) {
         approved_text = "Scheduled to be sent " 
-      } else if (this.state.message.approved == false) {
+      } else if (!this.state.message.approved) {
         approved_text = "Needs approval to be sent " 
       }
         this.setState(() => ({ message:{
@@ -125,13 +115,13 @@ fetchReminder = id => {
   dateConverter = date => {
     if (!date) {return `TBD`}
     date = date.split(/\W+/);
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
     let yr = date[0];
-    let month = months[date[1]/1 - 1];
+    let month = months[parseInt(date[1]) - 1];
     let day = date[2];
     let hr = date[3];
     let min = date[4];
-    return `${month} ${day}, ${yr} `
+    return `${month} ${day}, ${yr} ${hr}:${min}`
   }
 
   getProfile = (cb) => {
@@ -269,7 +259,7 @@ fetchReminder = id => {
           <div className = "card messageoptions">
         
           <div className = "card-controls">
-                      <Button color="primary" onClick={this.toggleCal} > <strong>Update Schedule</strong></Button>  
+                      <Button color="link" onClick={this.toggleCal} > <strong>Edit Calendar</strong></Button>  
                         <Collapse isOpen={this.state.collapse}>
                         <DayPickerInput classNameName="calendar"
                           onDayChange={this.onDatePicker}
@@ -281,24 +271,25 @@ fetchReminder = id => {
                       <div className = "messagecheckboxes">
                           <FormGroup>
                           <Label inline check>
-                            <Input type="checkbox" onClick={this.toggleApprove} />{' '} 
+                            <Input type="checkbox" onClick={this.toggleApprove} /> 
                             Approve
                           </Label>  
                         </FormGroup>
                         <FormGroup>
                           <Label inline check>
-                          <Input type="checkbox" onClick={this.onTemplate} />{' '}
+                          <Input type="checkbox" onClick={this.onTemplate} />
                         Add to templates
                       </Label>
                     </FormGroup>
                         <FormGroup>
                           <Label inline check>
-                            <Input type="checkbox" onClick={this.onDelete} />{' '}
+                            <Input type="checkbox" onClick={this.onDelete} />
                             Delete
                           </Label>
                         </FormGroup>
-                        <p>{this.state.success_delete}</p>
-                        <p>{this.state.success}</p>
+                        <span><p>{this.state.success_delete}</p>
+                        <p>{this.state.success}</p></span>
+                        
 
           
                     </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Button, NavbarBrand } from 'reactstrap';
 
-//import './App.css';
+import '../App.css';
 
 class Auth0 extends Component {
   try = route => {
@@ -24,6 +24,13 @@ class Auth0 extends Component {
     this.try('/signup');
   };
 
+  logoutBtn = () => {
+    if (this.props.userProfile) {
+      return this.props.auth.userProfile.picture
+    }
+    return `Log Out`;
+  }
+
   componentDidMount() {
     const { handleAuthentication } = this.props.auth;
 
@@ -37,6 +44,7 @@ class Auth0 extends Component {
   }
 
   render() {
+    // const logoutBtn = this.props.auth.userProfile.picture || `Log Out`;
     // const { isAuthenticated } = this.props.auth;
     console.log('THIS');
     console.log(this.props.auth);
@@ -44,7 +52,7 @@ class Auth0 extends Component {
     //console.log(this.props.auth);
     return (
       <div className="Nav">
-        <Navbar className="siteNavBar" color="dark">
+        <Navbar className="siteNavBar" color="white">
           <NavbarBrand color="light" href="/" >Reminders International</NavbarBrand>
 
           {/* <Button

@@ -20,3 +20,8 @@
 .peopleParagraph {
     text-align: left;
 }
+
+.grey {    
+    background-color: #3c4141;
+    color: white;
+}

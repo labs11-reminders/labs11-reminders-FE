@@ -11,7 +11,7 @@ class People extends Component {
       super(props);
       this.state = {
         users: [],
-        
+        group_id: null,
       };
   }
 
@@ -44,7 +44,8 @@ class People extends Component {
 
 
     render() {
-        console.log("**********")
+        console.log("Render People this.state", this.state)
+        console.log("Render People this.props", this.props)
         return (
             <div>
                 
@@ -54,9 +55,14 @@ class People extends Component {
                 <hr></hr>
                 <hr></hr>
                 <h4 className="peopleHeader">Users currently in your group</h4>
-                {this.state.group_id ? (
-                <PeopleTable activeGroup={this.state.group_id} activeGroupUsers={this.props.activeGroupUsers}/>
-                ) : ( <p className="peopleParagraph">Please choose a group on the sidebar to display the members of the group.</p>)}
+                {this.state.group_id ? 
+                  (
+                  <PeopleTable 
+                  activeGroup={this.state.group_id} 
+                  activeGroupUsers={this.props.activeGroupUsers}
+                  />
+                  ) : 
+                  ( <p className="peopleParagraph">Please choose a group on the sidebar to display the members of the group.</p>)}
 
             </div>
            
