@@ -259,7 +259,7 @@ fetchReminder = id => {
           <div className = "card messageoptions">
         
           <div className = "card-controls">
-                      <Button color="primary" onClick={this.toggleCal} > <strong>Update Schedule</strong></Button>  
+                      <Button color="link" onClick={this.toggleCal} > <strong>Edit Calendar</strong></Button>  
                         <Collapse isOpen={this.state.collapse}>
                         <DayPickerInput classNameName="calendar"
                           onDayChange={this.onDatePicker}
@@ -271,24 +271,25 @@ fetchReminder = id => {
                       <div className = "messagecheckboxes">
                           <FormGroup>
                           <Label inline check>
-                            <Input type="checkbox" onClick={this.toggleApprove} />{' '} 
+                            <Input type="checkbox" onClick={this.toggleApprove} /> 
                             Approve
                           </Label>  
                         </FormGroup>
                         <FormGroup>
                           <Label inline check>
-                          <Input type="checkbox" onClick={this.onTemplate} />{' '}
+                          <Input type="checkbox" onClick={this.onTemplate} />
                         Add to templates
                       </Label>
                     </FormGroup>
                         <FormGroup>
                           <Label inline check>
-                            <Input type="checkbox" onClick={this.onDelete} />{' '}
+                            <Input type="checkbox" onClick={this.onDelete} />
                             Delete
                           </Label>
                         </FormGroup>
-                        <p>{this.state.success_delete}</p>
-                        <p>{this.state.success}</p>
+                        <span><p>{this.state.success_delete}</p>
+                        <p>{this.state.success}</p></span>
+                        
 
           
                     </div>

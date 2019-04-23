@@ -20,8 +20,28 @@
 
 .orgBtn   {
   margin: 10px;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
   border-radius: 0 !important;
   box-shadow: 0px 0px 7px rgb(110, 110, 110);
+}
+
+.orgBtn:hover, .orgBtn:focus, .orgBtn:active {
+  background-color: #3a9cd8 !important;
+  background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654) !important;
+}
+
+.orgBtnExp {
+  margin: 10px;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: 0px 0px 7px rgb(110, 110, 110);
+}
+
+.orgBtnExp:focus, .orgBtnExp:focus, .orgBtnExp:active {
+  background-color: #3a9cd8 !important;
+  background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654) !important;
 }
 
 .orgInputCol {
@@ -30,18 +50,15 @@
   width: 100%;
 }
 
-.orgBtnExp   {
-  margin: 10px;
-  border-radius: 0 !important;
-  box-shadow: 0px 0px 7px rgb(110, 110, 110);
-}
+
 
 #orgName, #addOrgName, #addDescriptionName {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
   border-radius: 0 !important;
   border: 0;
   outline: 1px solid #CCC !important;
   background-color: white !important;
-  -webkit-border-radius: 0;
   outline: 1px solid #ccc;
   outline-offset: -1px;
 }

@@ -198,6 +198,7 @@ class NewGroupMessage extends Component {
     render() {
       
       return (
+        <section className="floating-card">
           <Form className="form-top">
             <FormGroup className="minor-padding" row>
                 <Label for="messageTitle" xs={12} md={2}>Title</Label>
@@ -205,7 +206,7 @@ class NewGroupMessage extends Component {
                 <Input type="textfield"
                 id="messageTitle"
                 onChange={this.onHandleChangeTitle}
-                placeholder="example: No class for the holiday"
+                placeholder="Example: No class for the holiday"
                 value={this.state.message.title}
                 name="title"
                 />
@@ -219,7 +220,7 @@ class NewGroupMessage extends Component {
                  <Input type="textarea"
                   id="messageText"
                   onChange={this.onHandleChangeBody}
-                  placeholder="example: We won't be having class for the holidays. Study notes from this week"
+                  placeholder="Example: We won't be having class for the holidays. Study notes from this week"
                   value={this.state.message.body}
                   name="body"
                 />
@@ -229,8 +230,8 @@ class NewGroupMessage extends Component {
              <FormGroup className="divider">
                 <Button  onClick = {this.onSubmit} >Send Now
                 </Button>
-                </FormGroup>
-            
+            </FormGroup>
+            <FormGroup className="floating-card-bottom">
                 <FormGroup check inline>
                 <Label check> 
                   <Input type="checkbox"  onClick={this.toggleSchedule}/>
@@ -253,8 +254,9 @@ class NewGroupMessage extends Component {
                 <Button color="primary" onClick = {this.createSavedReminder}>Save Selection</Button>
                 <p>{this.state.success}</p>
                
-                
+                </FormGroup>
                 </Form>
+                </section>
   );
 };
 };

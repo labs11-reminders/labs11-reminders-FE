@@ -54,12 +54,14 @@
   padding: 0 !important;
 }
 
-.editPencil {
+#editPencil {
   position: absolute;
   z-index: 2;
   top: 0px;
-  right: 2px;
+  right: 50px;
   color: #3a9cd8 !important;
+  padding: 0 !important;
+  border: none;
 }
 
 
@@ -133,7 +135,7 @@
 }
 
 div.scheduleMessageComposer button.btn.btn-primary {
-  background-color: #3a9cd8;
+  background-color: white;
   border: 1px solid #3a9cd8;
   margin-bottom: 10px;
   /* border: 1px solid red; */
@@ -257,6 +259,8 @@ div.scheduled-list-card.card div.createdFacts div.col-sm-auto.offset-sm-0  div.c
 .DayPicker-Day {
   display: table-cell;
   padding: 0.4em;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
   border-radius: 50%;
   vertical-align: middle;
   text-align: center;

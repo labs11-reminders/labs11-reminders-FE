@@ -23,6 +23,7 @@ import SideTemplateCard from './SideTemplateCard';
 // import SideMessageInd from './SideMessageInd';
 import MessageModalInd from '../MessageModal/MessageModalInd';
 import ClickableCard from './ClickableCard';
+import '../Dashboard/Dashboard.css'
 
 class Sidebar extends Component {
   constructor(props) {
@@ -176,7 +177,7 @@ class Sidebar extends Component {
         </section>
         <section className="orgSection cube">
         
-          <h6>YOUR ORGANIZATION</h6>
+          <h6>ORGANIZATION</h6>
 
           {/*<p> NEED ORG NAME FOR THIS USER </p> */}
 
@@ -189,7 +190,7 @@ class Sidebar extends Component {
 
         <section className="groupsSection cube">
         
-          <h6>YOUR GROUP(s)</h6>
+          <h6>GROUP(S)</h6>
           
          
           {/*<p> NEED GROUP NAME FOR THIS USER </p> */}
@@ -237,8 +238,9 @@ class Sidebar extends Component {
             }
           })}
           
-          <NavLink id="createLink" onClick={this.toggle}>
-            <i className="fas fa-plus-circle" /> &nbsp; Create New Group
+          <NavLink className="create-group"  onClick={this.toggle}>
+            <span className="fas fa-plus-circle" id="create-group-circle"></span> 
+            <span id="create-group-sidebar"> Create New Group</span>
           </NavLink>
         </section>
 
@@ -313,8 +315,8 @@ class Sidebar extends Component {
             }
             })}
 
-            <NavLink id="createLink" onClick={this.toggle}>
-              <i className="fas fa-plus-circle" /> &nbsp; Create A New Group
+            <NavLink id="createNewGroupModal" onClick={this.toggle}>
+              <i className="fas fa-plus-circle" /> Create A New Group
             </NavLink>
 
             </CardBody>

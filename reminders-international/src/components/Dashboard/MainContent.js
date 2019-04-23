@@ -18,6 +18,7 @@ import {
 } from 'reactstrap';
 import AddContactModal from '../AddContacts/AddContactModal';
 import axios from 'axios';
+import grpImage from './network.png';
 
 class MainContent extends Component {
   constructor(props) {
@@ -224,11 +225,12 @@ class MainContent extends Component {
       <div className="mainContentWrapper">
         <section className="profileInfo">
           <div className="groupData">
-            <img
+            {/* <img
               id="grpImage"
               src="https://i.imgur.com/nS78PKA.png"
               title="group"
-            />{' '}
+            />{' '} */}
+            <img className="grpImage" src={grpImage} alt="group icon" />
             &nbsp;
             <div className="grpName">
               <span>

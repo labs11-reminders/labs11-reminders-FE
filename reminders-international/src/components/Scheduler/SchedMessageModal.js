@@ -197,7 +197,7 @@ class SchedMessageModal extends Component {
     return (
 
       <div>
-        <Button color="link" className="editPencil" onClick={this.toggle}><i className="fas fa-pencil-alt" /></Button>
+        <Button color="link" id="editPencil" onClick={this.toggle}><span className="fas fa-pencil-alt"></span></Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Edit Message</ModalHeader>
           <ModalBody>

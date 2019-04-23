@@ -111,7 +111,7 @@ class Roles extends Component {
             </Card>
           </Col>
         </Row>
-        <Button className="roleBtn" color="primary" id="size" onClick={this.handleNext}>
+        <Button className="roleBtn" id="size" onClick={this.handleNext}>
           Next
         </Button>
 

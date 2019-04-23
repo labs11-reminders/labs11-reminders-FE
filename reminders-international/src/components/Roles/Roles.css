@@ -140,8 +140,16 @@
 
 .roleBtn   {
     margin: 10px;
-    box-shadow: 0px 0px 3px rgb(110, 110, 110);
-}
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: 0px 0px 7px rgb(110, 110, 110);
+  }
+  
+  .roleBtn:hover, .roleBtn:focus, .roleBtn:active {
+    background-color: #3a9cd8 !important;
+    background-image: linear-gradient(to bottom right, #3a9cd8, #8dd654) !important;
+  }
 
 h2, h3 {
     color: white

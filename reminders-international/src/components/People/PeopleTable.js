@@ -72,7 +72,7 @@ class PeopleTable extends Component {
             <div>
             <Table className="table-hover">
             <thead className="col-md table-primary">
-              <tr>
+              <tr className="grey">
                 
                 <th className="w-25">Name</th>
                 <th className="w-25">Phone</th>

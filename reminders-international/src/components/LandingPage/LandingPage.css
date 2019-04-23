@@ -262,6 +262,8 @@
 
 .ourTeam img {
     width: 10vw;
+    /* -webkit-border-radius: 50%;
+    -moz-border-radius: 50%; */
     border-radius: 50%;
     box-shadow: 1px 1px 5px black;
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
