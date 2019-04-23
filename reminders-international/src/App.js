@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   Users,
   Reminders,
@@ -25,6 +27,8 @@ import Auth0 from './Auth0/Auth0';
 import Home from './Home';
 
 import './App.css';
+
+toast.configure()
 
 class App extends Component {
   auth = new Auth();

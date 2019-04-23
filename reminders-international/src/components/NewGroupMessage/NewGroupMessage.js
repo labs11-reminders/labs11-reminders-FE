@@ -5,7 +5,8 @@ import axios from 'axios';
 import '../Scheduler/TabMessageStyles.css';
 import '../global.css';
 // import './basic.css';
-import './message.css'
+import './message.css';
+import { toast } from 'react-toastify';
 
 
 class NewGroupMessage extends React.Component {
@@ -97,22 +98,23 @@ class NewGroupMessage extends React.Component {
         }
        }
 
-      createSavedReminder = () => { //connected to save button
+      
+  createSavedReminder = () => { //connected to save button
 
-      const { title, body, scheduled, draft, template,} = this.state.message
-      const messageObj = {
-        name: title,
-        description: body,
-        scheduled: scheduled,
-        draft: draft,
-        template: template,
-        group_id: this.props.activeGroup,
-        user_id: this.props.state.profile.user_id,
-         }
-        console.log('POST RESPONSE', messageObj);
-    
+    const { title, body, scheduled, draft, template,} = this.state.message
+    const messageObj = {
+      name: title,
+      description: body,
+      scheduled: scheduled,
+      draft: draft,
+      template: template,
+      group_id: this.props.activeGroup,
+      user_id: this.props.state.profile.user_id,
+        }
+      console.log('POST RESPONSE', messageObj);
+
     axios.post(`${process.env.REACT_APP_BACKEND}/api/reminders`,  messageObj)
-      .then(res => {
+      .then(res => {        
         console.log('POST RESPONSE', res.data);
         if(res.status === 200 || res.status === 201) {
           this.setState({
@@ -120,7 +122,28 @@ class NewGroupMessage extends React.Component {
             reminders: { ...messageObj }
             });
         }
-          })
+        toast.info('Message saved.', {
+          position: "top-center",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        this.setState({
+          message: {
+            users: [],
+            title:'',
+            body: '',
+            scheduled: false,
+            draft: false,
+            template: false,
+            group_id: '',
+            user_id: '',
+            },
+          }        
+          );
+      })
 
     .catch(err => {
         console.log(err);
@@ -251,7 +274,7 @@ class NewGroupMessage extends React.Component {
                 </FormGroup>
                 
                 <Button color="primary" onClick = {this.createSavedReminder}>Save Selection</Button>
-                <p>{this.state.success}</p>
+                {/* <p>{this.state.success}</p> */}
                
                 
                 </Form>

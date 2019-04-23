@@ -1,32 +1,19 @@
 import React,  { Component } from 'react';
+import { toast } from 'react-toastify';
 import MomentLocaleUtils, {
   formatDate,
   parseDate,
 } from 'react-day-picker/moment';
-import {Link} from 'react-router-dom';
 import 'moment/locale/it';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 //import 'react-day-picker/lib/style.css';
 import axios from 'axios';
 import {
-  NavLink,
-  Card,
-  CardTitle,
-  CardSubtitle,
-  CardText,
   FormGroup,
   Label,
   Input,
-  Row,
-  Nav,
-  Col,
   Collapse,
   Button,
-  CardBody,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
 
 } from 'reactstrap';
 import moment from "moment";
@@ -54,12 +41,10 @@ class ScheduledMessageCard extends Component{
         group_id: '',
         approved_text:'',
       },
-      submitting: false,
-      error: false,
-      modal: true,
-      collapseScheduler: false,
-      warningModal: false,
-      deleting: 0,
+    submitting: false,
+    error: false,
+    modal: true,
+    collapseScheduler: false,
   };
   this.toggleApprove = this.toggleApprove.bind(this);
   this.toggle = this.toggle.bind(this);
@@ -67,9 +52,7 @@ class ScheduledMessageCard extends Component{
   this.toggleScheduler = this.toggleScheduler.bind(this);
   this.toggleNested = this.toggleNested.bind(this);
   this.toggleSuccess = this.toggleSuccess.bind(this);
-  this.toggleDeleteWarning = this.toggleDeleteWarning.bind(this);
 }
-
 toggle() {
   this.setState(prevState => ({
     modal: !prevState.modal,
@@ -94,22 +77,14 @@ toggleNested() {
     nestedModal: !this.state.nestedModal,
   });
 }
-
-toggleDeleteWarning() {
-  console.log('DELETE!!!');
-  this.setState(prevState => ({
-    warningModal: !prevState.warningModal,
-  }));
-}
-
 fetchReminder = id => {
   axios
     .get(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
     .then(response => {
       let approved_text;
-      if (response.data.approved == true) {
+      if (response.data.approved) {
         approved_text = "Scheduled to be sent " 
-      } else if (this.state.message.approved == false) {
+      } else if (!this.state.message.approved) {
         approved_text = "Needs approval to be sent " 
       }
         this.setState(() => ({ message:{
@@ -141,13 +116,13 @@ fetchReminder = id => {
   dateConverter = date => {
     if (!date) {return `TBD`}
     date = date.split(/\W+/);
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
     let yr = date[0];
-    let month = months[date[1]/1 - 1];
+    let month = months[parseInt(date[1]) - 1];
     let day = date[2];
     let hr = date[3];
     let min = date[4];
-    return `${month} ${day}, ${yr} `
+    return `${month} ${day}, ${yr} ${hr}:${min}`
   }
 
   getProfile = (cb) => {
@@ -179,14 +154,21 @@ fetchReminder = id => {
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
         console.log("PUT RESPONSE:", response.data)
-        this.setState({success: 'Success!', message: response.data})
+        this.setState({success: 'Success!', message: response.data});
+        toast.info('Message approved.', {
+          position: "top-center",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          });
       })
       .catch(error => console.log(error))
       if (this.state.success){
         this.toggleSuccess()
       }
     }
-
 
   onTemplate= (event) => { 
   
@@ -196,7 +178,15 @@ fetchReminder = id => {
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
         console.log("PUT RESPONSE:", response.data)
-        this.setState({success: 'Success!', message: response.data})
+        this.setState({success: 'Success!', message: response.data});
+        toast.info('Successfully saved to templates.', {
+          position: "top-center",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          });
       })
       .catch(error => console.log(error))
       if (this.state.success){
@@ -238,38 +228,43 @@ fetchReminder = id => {
       .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
       .then(response => {
           console.log("DELETE RESPONSE:", response.data)
-          this.setState({ reminders: response.data, reminder: "" })
+          this.setState({ reminders: response.data, reminder: "" });
       })
       .catch(err => {
           console.log(err);
       })
   }
 
-  onDelete() { 
-    // const id = this.props.id
-    console.log("ID", this.props.active_id)
-    
+  onDelete = (event) => { 
+    const id = this.props.id
+    console.log("ID", id)
+    if (event.target.checked) {
       axios
-      .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${this.props.active_id}`)
+      .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
       .then(response => {
           console.log("DELETE RESPONSE:", response.data)
           this.setState({success_delete: 'Success! The message will go "poof!" as soon as you leave this tab',})
-          this.setState(prevState => ({
-            warningModal: !prevState.warningModal,
-          }));
+          toast.info('Successfully deleted.', {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            });
+          
       })
       .catch(err => {
           console.log(err);
       })
     }
-    
+    }
       
 
   render(){
     
     
   return (
-    <div>
           <div className="schedule-card card bg-light mb-3">
        
           <div className="message w-65" >
@@ -289,7 +284,7 @@ fetchReminder = id => {
           <div className = "card messageoptions">
         
           <div className = "card-controls">
-                      <Button color="primary" onClick={this.toggleCal} > <strong>Update Schedule</strong></Button>  
+                      <Button color="link" onClick={this.toggleCal} > <strong>Edit Calendar</strong></Button>  
                         <Collapse isOpen={this.state.collapse}>
                         <DayPickerInput classNameName="calendar"
                           onDayChange={this.onDatePicker}
@@ -301,57 +296,32 @@ fetchReminder = id => {
                       <div className = "messagecheckboxes">
                           <FormGroup>
                           <Label inline check>
-                            <Input type="checkbox" onClick={this.toggleApprove} />{' '} 
+                            <Input type="checkbox" onClick={this.toggleApprove} /> 
                             Approve
                           </Label>  
                         </FormGroup>
                         <FormGroup>
                           <Label inline check>
-                          <Input type="checkbox" onClick={this.onTemplate} />{' '}
+                          <Input type="checkbox" onClick={this.onTemplate} />
                         Add to templates
                       </Label>
                     </FormGroup>
                         <FormGroup>
                           <Label inline check>
-                            <Input type="checkbox" onClick={this.toggleDeleteWarning} />{' '}
+                            <Input type="checkbox" onClick={this.onDelete} />
                             Delete
                           </Label>
                         </FormGroup>
-                        <p>{this.state.success_delete}</p>
-                        <p>{this.state.success}</p>
+                        <span><p>{this.state.success_delete}</p>
+                        {/* <p>{this.state.success}</p> */}
+                        </span>
+                        
 
           
                     </div>
                 </div>
     </div>
   
-    </div>
-        <div>
-                  {/** Nested Modal for Delete Warning popup **/}
-            <Modal
-            id="alertModalWrap"
-            active_id={this.props.id}
-            isOpen={this.state.warningModal}
-            toggle={this.toggleDeleteWarning}
-            >
-            <ModalBody id="alertModal">
-              Are you sure you want to delete {this.props.state}
-              ? This is NOT Reversible!
-            </ModalBody>
-            <ModalFooter id="alertModalFooter">
-              
-              <Button color="danger" onClick={this.onDelete}>
-                Yes!
-              </Button>
-              
-              <Button color="primary" onClick={this.toggleDeleteWarning}>
-                No!
-              </Button>
-
-            </ModalFooter>
-          </Modal>
-        </div>
-
     </div>
   );
 };
