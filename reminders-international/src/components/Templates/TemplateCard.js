@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import { toast } from 'react-toastify';
 import SchedMessageModal from '../Scheduler/SchedMessageModal'
 import {
   // Modal,
@@ -125,7 +126,14 @@ componentDidMount() {
       .then(response => {
           console.log("DELETE RESPONSE:", response.data)
           this.setState({success_delete: 'Success! The message will go "poof!" as soon as you leave this tab',})
-          
+          toast.info('Successfully deleted.', {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            });
       })
       .catch(err => {
           console.log(err);
@@ -184,6 +192,14 @@ componentDidMount() {
         this.setState({ message: response.data})
         this.setState({success: 'Success!',})
         this.fetchReminder(id);
+        toast.info('Successfully added to scheduler.', {
+          position: "top-center",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          });
       })
       .catch(err => {
         console.log(err);
@@ -233,7 +249,7 @@ componentDidMount() {
           </Label>
         </FormGroup>
         <p>{this.state.success_delete}</p>
-        <p>{this.state.success}</p>
+        {/* <p>{this.state.success}</p> */}
 
         
       </div>

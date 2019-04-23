@@ -1,4 +1,5 @@
 import React,  { Component } from 'react';
+import { toast } from 'react-toastify';
 import MomentLocaleUtils, {
   formatDate,
   parseDate,
@@ -153,7 +154,15 @@ fetchReminder = id => {
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
         console.log("PUT RESPONSE:", response.data)
-        this.setState({success: 'Success!', message: response.data})
+        this.setState({success: 'Success!', message: response.data});
+        toast.info('Message approved.', {
+          position: "top-center",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          });
       })
       .catch(error => console.log(error))
       if (this.state.success){
@@ -169,7 +178,15 @@ fetchReminder = id => {
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
         console.log("PUT RESPONSE:", response.data)
-        this.setState({success: 'Success!', message: response.data})
+        this.setState({success: 'Success!', message: response.data});
+        toast.info('Successfully saved to templates.', {
+          position: "top-center",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          });
       })
       .catch(error => console.log(error))
       if (this.state.success){
@@ -211,7 +228,7 @@ fetchReminder = id => {
       .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
       .then(response => {
           console.log("DELETE RESPONSE:", response.data)
-          this.setState({ reminders: response.data, reminder: "" })
+          this.setState({ reminders: response.data, reminder: "" });
       })
       .catch(err => {
           console.log(err);
@@ -227,6 +244,14 @@ fetchReminder = id => {
       .then(response => {
           console.log("DELETE RESPONSE:", response.data)
           this.setState({success_delete: 'Success! The message will go "poof!" as soon as you leave this tab',})
+          toast.info('Successfully deleted.', {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            });
           
       })
       .catch(err => {
@@ -288,7 +313,8 @@ fetchReminder = id => {
                           </Label>
                         </FormGroup>
                         <span><p>{this.state.success_delete}</p>
-                        <p>{this.state.success}</p></span>
+                        {/* <p>{this.state.success}</p> */}
+                        </span>
                         
 
           

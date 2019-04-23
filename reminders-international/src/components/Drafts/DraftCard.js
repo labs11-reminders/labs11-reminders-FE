@@ -9,6 +9,7 @@ import {
 } from 'reactstrap';
 import '../Scheduler/TabMessageStyles.css';
 import '../global.css';
+import { toast } from 'react-toastify';
 
 class DraftCard extends Component {
   constructor(props) {
@@ -109,7 +110,14 @@ componentDidMount() {
       .then(response => {
           console.log("DELETE RESPONSE:", response.data)
           this.setState({success_delete: 'Success! The message will go "poof!" as soon as you leave this tab',})
-          
+          toast.info('Successfully deleted.', {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            });
       })
       .catch(err => {
           console.log(err);
@@ -166,6 +174,14 @@ componentDidMount() {
         this.setState({ message: response.data})
         this.setState({success: 'Success!',})
         this.fetchReminder(id);
+        toast.info('Successfully added to scheduler.', {
+          position: "top-center",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          });
       })
       .catch(err => {
         console.log(err);
@@ -207,7 +223,7 @@ componentDidMount() {
             </Label>
           </FormGroup>
           <p>{this.state.success_delete}</p>
-        <p>{this.state.success}</p>
+        {/* <p>{this.state.success}</p> */}
   
         
           </div>
