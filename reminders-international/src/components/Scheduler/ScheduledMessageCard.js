@@ -23,6 +23,10 @@ import {
   Collapse,
   Button,
   CardBody,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 
 } from 'reactstrap';
 import moment from "moment";
@@ -50,10 +54,12 @@ class ScheduledMessageCard extends Component{
         group_id: '',
         approved_text:'',
       },
-    submitting: false,
-    error: false,
-    modal: true,
-    collapseScheduler: false,
+      submitting: false,
+      error: false,
+      modal: true,
+      collapseScheduler: false,
+      warningModal: false,
+      deleting: 0,
   };
   this.toggleApprove = this.toggleApprove.bind(this);
   this.toggle = this.toggle.bind(this);
@@ -61,7 +67,9 @@ class ScheduledMessageCard extends Component{
   this.toggleScheduler = this.toggleScheduler.bind(this);
   this.toggleNested = this.toggleNested.bind(this);
   this.toggleSuccess = this.toggleSuccess.bind(this);
+  this.toggleDeleteWarning = this.toggleDeleteWarning.bind(this);
 }
+
 toggle() {
   this.setState(prevState => ({
     modal: !prevState.modal,
@@ -86,6 +94,14 @@ toggleNested() {
     nestedModal: !this.state.nestedModal,
   });
 }
+
+toggleDeleteWarning() {
+  console.log('DELETE!!!');
+  this.setState(prevState => ({
+    warningModal: !prevState.warningModal,
+  }));
+}
+
 fetchReminder = id => {
   axios
     .get(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
@@ -171,6 +187,7 @@ fetchReminder = id => {
       }
     }
 
+
   onTemplate= (event) => { 
   
     const id = this.props.id
@@ -228,28 +245,31 @@ fetchReminder = id => {
       })
   }
 
-  onDelete = (event) => { 
-    const id = this.props.id
-    console.log("ID", id)
-    if (event.target.checked) {
+  onDelete() { 
+    // const id = this.props.id
+    console.log("ID", this.props.active_id)
+    
       axios
-      .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
+      .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${this.props.active_id}`)
       .then(response => {
           console.log("DELETE RESPONSE:", response.data)
           this.setState({success_delete: 'Success! The message will go "poof!" as soon as you leave this tab',})
-          
+          this.setState(prevState => ({
+            warningModal: !prevState.warningModal,
+          }));
       })
       .catch(err => {
           console.log(err);
       })
     }
-    }
+    
       
 
   render(){
     
     
   return (
+    <div>
           <div className="schedule-card card bg-light mb-3">
        
           <div className="message w-65" >
@@ -293,7 +313,7 @@ fetchReminder = id => {
                     </FormGroup>
                         <FormGroup>
                           <Label inline check>
-                            <Input type="checkbox" onClick={this.onDelete} />{' '}
+                            <Input type="checkbox" onClick={this.toggleDeleteWarning} />{' '}
                             Delete
                           </Label>
                         </FormGroup>
@@ -305,6 +325,33 @@ fetchReminder = id => {
                 </div>
     </div>
   
+    </div>
+        <div>
+                  {/** Nested Modal for Delete Warning popup **/}
+            <Modal
+            id="alertModalWrap"
+            active_id={this.props.id}
+            isOpen={this.state.warningModal}
+            toggle={this.toggleDeleteWarning}
+            >
+            <ModalBody id="alertModal">
+              Are you sure you want to delete {this.props.state}
+              ? This is NOT Reversible!
+            </ModalBody>
+            <ModalFooter id="alertModalFooter">
+              
+              <Button color="danger" onClick={this.onDelete}>
+                Yes!
+              </Button>
+              
+              <Button color="primary" onClick={this.toggleDeleteWarning}>
+                No!
+              </Button>
+
+            </ModalFooter>
+          </Modal>
+        </div>
+
     </div>
   );
 };
