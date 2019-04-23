@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import MessageModal from '../MessageModal/MessageModal';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input, Row, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, Form, Col } from 'reactstrap';
+import { Button, FormGroup, Label, Input, Form, Col } from 'reactstrap';
 import axios from 'axios';
 import '../Scheduler/TabMessageStyles.css';
 import '../global.css';
@@ -9,7 +9,7 @@ import './message.css';
 import { toast } from 'react-toastify';
 
 
-class NewGroupMessage extends React.Component {
+class NewGroupMessage extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -73,7 +73,7 @@ class NewGroupMessage extends React.Component {
         this.setState({
           message: {...this.state.message,  scheduled: event.target.checked }
         });
-        if (this.state.message.scheduled=true){
+        if (this.state.message.scheduled){
             this.toggleSuccess()
         }
 
@@ -84,7 +84,7 @@ class NewGroupMessage extends React.Component {
           message: {...this.state.message, draft: event.target.checked }
       });
 
-      if (this.state.message.draft=true){
+      if (this.state.message.draft){
         this.toggleSuccess()
         }
 
@@ -93,7 +93,7 @@ class NewGroupMessage extends React.Component {
         this.setState({
         message: {...this.state.message, template: event.target.checked }
        });
-       if (this.state.message.template=true){
+       if (this.state.message.template){
         this.toggleSuccess()
         }
        }
@@ -221,6 +221,7 @@ class NewGroupMessage extends React.Component {
     render() {
       
       return (
+        <section className="floating-card">
           <Form className="form-top">
             <FormGroup className="minor-padding" row>
                 <Label for="messageTitle" xs={12} md={2}>Title</Label>
@@ -228,7 +229,7 @@ class NewGroupMessage extends React.Component {
                 <Input type="textfield"
                 id="messageTitle"
                 onChange={this.onHandleChangeTitle}
-                placeholder="example: No class for the holiday"
+                placeholder="Example: No class for the holiday"
                 value={this.state.message.title}
                 name="title"
                 />
@@ -242,7 +243,7 @@ class NewGroupMessage extends React.Component {
                  <Input type="textarea"
                   id="messageText"
                   onChange={this.onHandleChangeBody}
-                  placeholder="example: We won't be having class for the holidays. Study notes from this week"
+                  placeholder="Example: We won't be having class for the holidays. Study notes from this week"
                   value={this.state.message.body}
                   name="body"
                 />
@@ -252,8 +253,8 @@ class NewGroupMessage extends React.Component {
              <FormGroup className="divider">
                 <Button  onClick = {this.onSubmit} >Send Now
                 </Button>
-                </FormGroup>
-            
+            </FormGroup>
+            <FormGroup className="floating-card-bottom">
                 <FormGroup check inline>
                 <Label check> 
                   <Input type="checkbox"  onClick={this.toggleSchedule}/>
@@ -276,8 +277,9 @@ class NewGroupMessage extends React.Component {
                 <Button color="primary" onClick = {this.createSavedReminder}>Save Selection</Button>
                 {/* <p>{this.state.success}</p> */}
                
-                
+                </FormGroup>
                 </Form>
+                </section>
   );
 };
 };
@@ -354,7 +356,7 @@ export default NewGroupMessage;
 //         this.setState({
 //           message: {...this.state.message,  scheduled: event.target.checked }
 //         });
-//         if (this.state.message.scheduled=true){
+//         if (this.state.message.scheduled=true){ // === ?
 //             this.toggleSuccess()
 //         }
 
@@ -365,7 +367,7 @@ export default NewGroupMessage;
 //           message: {...this.state.message, draft: event.target.checked }
 //       });
 
-//       if (this.state.message.draft=true){
+//       if (this.state.message.draft=true){ // === ?
 //         this.toggleSuccess()
 //         }
 
@@ -374,7 +376,7 @@ export default NewGroupMessage;
 //         this.setState({
 //         message: {...this.state.message, template: event.target.checked }
 //        });
-//        if (this.state.message.template=true){
+//        if (this.state.message.template=true){ // === ?
 //         this.toggleSuccess()
 //         }
 //        }
@@ -478,12 +480,12 @@ export default NewGroupMessage;
   
 //     render() {
       
-//       return (
-//         <div className="composer">  
-//         <div className="list">
-//         <div className="first_tab_card">
-//         <section className="first_tab_message" >
-//         <div className = "first_tab_messagedetails">
+    // return (
+    //   <div className="composer">  
+    //   <div className="list">
+    //   <div className="first_tab_card">
+    //   <section className="first_tab_message" >
+    //   <div className = "first_tab_messagedetails">
             
 //             <FormGroup>
 //                 <Label for="messageText">Write Title Here</Label>

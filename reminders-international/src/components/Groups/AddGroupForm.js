@@ -18,6 +18,7 @@ class AddGroupForm extends Component {
 
   addGroup = event => {
     event.preventDefault();
+    console.log("Add Group this.props.org_id", this.props.org_id)
     const { name } = this.state.groups
     const groupObj = {
       name: name,

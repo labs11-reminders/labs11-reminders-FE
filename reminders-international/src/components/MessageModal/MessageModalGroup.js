@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input, Row, Dropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap';
 
 import axios from 'axios';
 
-class MessageModalGroup extends React.Component {
+class MessageModalGroup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -210,7 +210,7 @@ class MessageModalGroup extends React.Component {
               <Input type="textfield"
               id="messageTitle"
               onChange={this.onHandleChange}
-              placeholder="example: No class for the holiday"
+              placeholder="Example: No class for the holiday"
               value={this.state.message.title}
               name="title"
               />
@@ -221,7 +221,7 @@ class MessageModalGroup extends React.Component {
                <Input type="textarea"
                 id="messageText"
                 onChange={this.onHandleChange}
-                placeholder="example: We won't be having class for the holidays. Study notes from this week"
+                placeholder="Example: We won't be having class for the holidays. Study notes from this week"
                 value={this.state.message.body}
                 name="body"
               />

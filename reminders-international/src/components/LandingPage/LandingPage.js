@@ -92,7 +92,7 @@ class LandingPage extends Component {
 
         <section className="aboutUs">
           <h2>What We Do</h2>
-          <div class="focusWrapper">
+          <div className="focusWrapper">
             <div className="focus">
               <img src="./images/mentorship.jpg" alt="Mentorship" />
               <h3>Mentorship</h3>
@@ -185,13 +185,13 @@ class LandingPage extends Component {
         <section className="footer">
           <div className="footerSocial">
             <a href="https://www.facebook.com" target="_blank">
-              <i class="fab fa-facebook-square fa-3x" />{' '}
+              <i className="fab fa-facebook-square fa-3x" />{' '}
             </a>
             <a href="https://www.linkedin.com" target="_blank">
-              <i href="#" class="fab fa-linkedin  fa-3x" />
+              <i href="#" className="fab fa-linkedin  fa-3x" />
             </a>
             <a href="https://www.twitter.com" target="_blank">
-              <i href="#" class="fab fa-twitter-square fa-3x" />
+              <i href="#" className="fab fa-twitter-square fa-3x" />
             </a>
           </div>
           <p>&copy; Reminders International - All Rights Reserved</p>

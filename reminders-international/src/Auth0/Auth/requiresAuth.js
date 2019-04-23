@@ -23,7 +23,7 @@ axios.interceptors.request.use(
 );
 
 export default function(Component) {
-    return class Authenticated extends React.Component {
+    return class Authenticated extends Component {
 
         render() {
             const token = localStorage.getItem('idToken');

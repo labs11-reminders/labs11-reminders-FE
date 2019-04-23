@@ -10,6 +10,7 @@ import {
   Modal,
   ModalBody,
   ModalFooter,
+  Col,
 } from 'reactstrap';
 import axios from 'axios';
 import './Group.css';
@@ -29,15 +30,17 @@ class Group extends Component {
     this.toggleAlert = this.toggleAlert.bind(this);
   }
 
-  getAllGroups = () => {
+  getGroupsFilteredByOrgId = () => {
+    console.log("this.state.groups", this.state.groups)
     axios
       .get(`${process.env.REACT_APP_BACKEND}/api/groups`, this.state.groups)
       .then(res => {
-        console.log('list of all groups', res.data);
+        console.log("this.state.groups", this.state.groups)
+        const groupsInOrg = res.data.filter(group =>  group.org_id === this.props.org_id)
         this.setState({
-          groups: res.data,
+          groups: [...groupsInOrg],
         });
-        console.log('getAllGroups this.state.groups', this.state.groups);
+        console.log('Groups By Org', this.state.groups);
       })
       .catch(err => {
         console.log(err);
@@ -51,29 +54,33 @@ class Group extends Component {
   }
 
   handleNext = e => {
-    this.state.group_id === null || this.state.group_id === 'Select your group'
+    !this.state.group_id || this.state.group_id === 'Select your group'
       ? this.toggleAlert()
       : this.props.handleGroup(this.state.group_id);
   };
 
   onHandleChange = event => {
-    console.log('event', event.target);
-    this.setState({ group_id: event.target.value });
+    const group_id = parseInt(event.target.value);
+    this.setState({ group_id });
   };
 
   componentDidMount() {
-    this.getAllGroups();
+    this.getGroupsFilteredByOrgId();
   }
 
   render() {
     console.log('Group render this.state', this.state);
+    console.log("PROPS", this.props)
     return (
       <Container className="groupsContainer">
         <h3 className="groupsTopBar">Looking to join a group? </h3>
         <Form className="groups-form">
-          <FormGroup className="groupInput">
+          <FormGroup lg={8}>
             <Label for="groupName" />
-            <Input
+            <Col className="groupInputCol"
+            md={{ offset: 1, size: 10}}
+            lg={{ offset: 2, size: 8}}>
+            <Input 
               type="select"
               name="name"
               id="groupName"
@@ -87,13 +94,15 @@ class Group extends Component {
                 </option>
               ))}
             </Input>
+            </Col>
             <Button className="groupBtn" onClick={this.handleNext}>
               Next
             </Button>
           </FormGroup>
           {/* <FormGroup> */}
-          {this.props.role === 2 ? (
-            <div />
+          {this.props.role === 2 ? 
+          (
+            <div></div>
           ) : (
             <div>
               <AddGroupForm
@@ -124,12 +133,3 @@ class Group extends Component {
 }
 
 export default Group;
-
-{
-  /* <FormGroup>
-              <AddGroupForm org_id={this.props.org_id} handleGroup={this.props.handleGroup}/>
-              </FormGroup> */
-}
-{
-  /* </FormGroup> */
-}

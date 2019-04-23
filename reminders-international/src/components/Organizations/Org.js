@@ -11,6 +11,7 @@ import {
   Modal,
   ModalBody,
   ModalFooter,
+  Col,
 } from 'reactstrap';
 import axios from 'axios';
 import './Org.css';
@@ -41,6 +42,7 @@ class Org extends Component {
       .catch(err => {
         console.log(err);
       });
+      console.log("HERE", this.state.orgs)
   };
 
   toggleAlert() {
@@ -50,14 +52,15 @@ class Org extends Component {
   }
 
   handleNext = e => {
-    this.state.org_id === null ||
+    !this.state.org_id ||
     this.state.org_id === 'Select your organization'
       ? this.toggleAlert()
       : this.props.handleOrg(this.state.org_id);
   };
 
   onHandleChange = event => {
-    this.setState({ org_id: event.target.value });
+    const org_id = parseInt(event.target.value);
+    this.setState({ org_id });
   };
 
   componentDidMount() {
@@ -66,17 +69,20 @@ class Org extends Component {
 
   render() {
     console.log('Org render this.state', this.state);
+    console.log("Role ID", this.props)
     return (
       <Container className="orgsContainer">
         <h3 className="orgsTopBar">What's the name of your organization?</h3>
-        <Form className="org-form">
-          <FormGroup>
+        <Form className="org-form" >
+          <FormGroup >
             <Label for="orgName" />
-            <Input
+            <Col className="orgInputCol" md={{ offset: 1, size: 10}}
+            lg={{ offset: 2, size: 8}}>
+            <Input 
               type="select"
               name="name"
               id="orgName"
-              value={this.state.orgs.name}
+              value={this.state.orgs.id}
               onChange={this.onHandleChange}
             >
               <option>Select your organization</option>
@@ -86,17 +92,18 @@ class Org extends Component {
                 </option>
               ))}
             </Input>
+            </Col>
             <Button className="orgBtn" onClick={this.handleNext}>
               Next
             </Button>
           </FormGroup>
 
           {this.props.role < 3 ? (
-            <div />
+            <div></div>
           ) : (
-            <>
+            <div>
               <AddOrgForm />
-            </>
+            </div>
           )}
         </Form>
 

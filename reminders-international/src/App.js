@@ -41,6 +41,7 @@ class App extends Component {
 
   render() {
     console.log('App Render', this.state);
+    console.log('App Render', this.props);
 
     return (
       <div className="App">
@@ -95,6 +96,7 @@ class App extends Component {
           exact
           path="/dashboard"
           render={props => <Dashboard {...props} auth={this.auth} />}
+          
         />
         {/* <Route exact path="/dashboard" auth={this.auth} component={Dashboard} /> */}
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Button,
   Modal,
@@ -11,7 +11,7 @@ import AddContactSearchBar from './AddContactsSearchBar.js';
 // import AddContactSearchTable from './AddContactsSearchTable.js';
 // import axios from 'axios';
 
-class AddContactModal extends React.Component {
+class AddContactModal extends Component {
   constructor(props) {
     super(props);
     this.state = {};
