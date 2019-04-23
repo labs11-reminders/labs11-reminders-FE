@@ -43,12 +43,12 @@ class App extends Component {
       <div className="App">
         <Route
           path="/"
-          render={props => <Auth0 {...props} auth={this.auth}  />}
+          render={props => <Auth0 auth={this.auth} {...props} />}
         />
         <Route
           exact
           path="/home"
-          render={props => <Home {...props} auth={this.auth}  />}
+          render={props => <Home auth={this.auth} {...props} />}
         />
         <Route
           exact
@@ -94,8 +94,7 @@ class App extends Component {
           render={props => <Dashboard {...props} auth={this.auth} />}
           
         />
-        {/* render={props => <Dashboard {...props} auth={this.auth}  />} */}
-        {/* <Route exact path="/dashboard" auth={this.auth} component={Dashboard} history={this.props.history}/> */}
+        {/* <Route exact path="/dashboard" auth={this.auth} component={Dashboard} /> */}
 
         <Route
           exact
@@ -125,7 +124,7 @@ class App extends Component {
         <Route
           exact
           path="/"
-          render={props => <LandingPage {...props} auth={this.auth}  />}
+          render={props => <LandingPage auth={this.auth} {...props} />}
         />
 
         {/* <Route exact path="/shedule-list" component={TemplateList} /> */}

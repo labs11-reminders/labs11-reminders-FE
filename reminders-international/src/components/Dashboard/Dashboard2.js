@@ -15,9 +15,18 @@ class Dashboard extends Component {
       activeGroupUsers: [],
       activeGroupReminders: [],
       org_id: null,
+      user_id: null,
+      role_id: null,
+      org: {},
+      loading: true,
+
     };
     this.setActiveGroup = this.setActiveGroup.bind(this);
     this.setActiveGroupName = this.setActiveGroupName.bind(this);
+    this.getOrgsById = this.getOrgsById.bind(this);
+    this.getGroupsByOrg = this.getGroupsByOrg.bind(this);
+    
+    
   }
 
   setGroup(group_id) {
@@ -51,18 +60,68 @@ class Dashboard extends Component {
       });
   };
 
-  getRemindersByGroup = () => {
+  getOrgsById(org_id){
+    if (!org_id) {org_id = this.state.org_id}
+    if (org_id) {
+      console.log("ORG_ID", org_id)
     axios
-      .post(`${process.env.REACT_APP_BACKEND}/api/groups/reminders/${this.state.activeGroup}`)
+      .get(`${process.env.REACT_APP_BACKEND}/api/orgs/${org_id}`)
       .then(res => {
-        console.log('List of all reminders', res.data);
         this.setState({
-          activeGroupReminders: res.data,
+          org: { 
+            ...res.data,
+          },
         });
       })
       .catch(err => {
-        console.log({ errMessage: 'Getting reminders call error', err });
+        console.log(err);
       });
+    }
+  };
+
+  getGroupsByOrg(org_id){
+    if (!org_id) {org_id = this.state.org_id}
+    if (org_id) {
+      console.log("ORG_ID FOR GROUPS", org_id)
+    }
+    axios
+      .get(`${process.env.REACT_APP_BACKEND}/api/orgs/${org_id}/groups`)
+      .then(res => {
+        console.log("RESSSSS Groups", res.data)
+        // const groupsInOrg = res.data.filter(group =>  group.org_id === this.props.org_id)
+        this.setState({
+          // groups: [...groupsInOrg]
+          groups: res.data,
+        });
+        console.log('Groups By Org', this.state.groups);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+      
+  };
+
+  setGroup = (group_id) => {
+    console.log('setting group');
+    this.setState({
+      group_id: group_id,
+    });
+  }
+
+  getRemindersByGroup = () => {
+    if (this.state.activeGroup) {
+      axios
+        .post(`${process.env.REACT_APP_BACKEND}/api/groups/reminders/${this.state.activeGroup}`)
+        .then(res => {
+          console.log('List of all reminders', res.data);
+          this.setState({
+            activeGroupReminders: res.data,
+          });
+        })
+        .catch(err => {
+          console.log({ errMessage: 'Getting reminders call error', err });
+        });
+    }
   }
 
   componentWillMount() {
@@ -78,6 +137,11 @@ class Dashboard extends Component {
 
   componentDidMount() {
     this.getGroups();
+    this.getGroupsByOrg();
+    this.getUsersByGroup();
+    // this.getGroupsFilteredByOrgId()
+    // this.getGroupsFilteredByOrgId()
+    // this.setActiveGroup();
   }
 
   setActiveGroup(id) {
@@ -101,10 +165,11 @@ class Dashboard extends Component {
   }
 
   getUsersByGroup = () => {
-    console.log(
-      'Dashboard fetching Users By Group',
-      this.state.activeGroup,
-    );
+    if (this.state.activeGroup) {
+      console.log(
+        'Dashboard fetching Users By Group',
+        this.state.activeGroup,
+      );
     axios
       .get(
         `${process.env.REACT_APP_BACKEND}/api/groups/${
@@ -121,10 +186,11 @@ class Dashboard extends Component {
       .catch(err => {
         console.log(err);
       });
+    }
   };
-
+// user_id
   render() {
-    console.log('Dashboard Render this', this.state, this.props);
+    console.log("DASHBOARD RENDER THIS.STATE", this.state)
     return (
       <>
         {/* This needs to remain {this.state.profile.nickname} in order to render correctly -Rachel */}
@@ -132,15 +198,12 @@ class Dashboard extends Component {
         {/* This checks to see if the auth0 profile is undefined 
         (which occurs when user token is expired) and then instead of an error message 
         the h5 is displayed and local storage is cleared so the nav changes to 'logout'. */}
-        
-
-        {this.state.profile === undefined ? (
+        {!this.state.profile ? (
           <div>
             {this.props.auth.logout()}
             <h5>Error displaying Page. Please Login!</h5>
           </div>
         ) : (
-
           <>
             
             <div className="mainContainer">
@@ -148,6 +211,12 @@ class Dashboard extends Component {
                 <>
                   <section className="sidebar">
                     <Sidebar
+                      user_id={this.state.user_id}
+                      role_id={this.state.role_id}
+                      org_id={this.state.org_id}
+                      org={this.state.org}
+                      getOrgsById={this.getOrgById}
+                      getGroupsByOrg={this.getGroupsByOrg}
                       setActiveGroup={this.setActiveGroup}
                       setActiveGroupName={this.setActiveGroupName}
                       getGroups={this.getGroups}
@@ -180,45 +249,3 @@ class Dashboard extends Component {
 }
 
 export default Dashboard;
-
-
-//   getOrgsById(org_id){
-//     if (!org_id) {org_id = this.state.org_id}
-//     if (org_id) {
-//       console.log("ORG_ID", org_id)
-//     axios
-//       .get(`${process.env.REACT_APP_BACKEND}/api/orgs/${org_id}`)
-//       .then(res => {
-//         this.setState({
-//           org: { 
-//             ...res.data,
-//           },
-//         });
-//       })
-//       .catch(err => {
-//         console.log(err);
-//       });
-//     }
-//   };
-
-//   getGroupsByOrg(org_id){
-//     if (!org_id) {org_id = this.state.org_id}
-//     if (org_id) {
-//       console.log("ORG_ID FOR GROUPS", org_id)
-//     }
-//     axios
-//       .get(`${process.env.REACT_APP_BACKEND}/api/orgs/${org_id}/groups`)
-//       .then(res => {
-//         console.log("RESSSSS Groups", res.data)
-//         // const groupsInOrg = res.data.filter(group =>  group.org_id === this.props.org_id)
-//         this.setState({
-//           // groups: [...groupsInOrg]
-//           groups: res.data,
-//         });
-//         console.log('Groups By Org', this.state.groups);
-//       })
-//       .catch(err => {
-//         console.log(err);
-//       });
-
-//   };

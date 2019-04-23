@@ -35,8 +35,7 @@ export default class Auth {
     this.renewSession = this.renewSession.bind(this);
     this.getProfile = this.getProfile.bind(this);
     this.getExpiryDate = this.getExpiryDate.bind(this);
-    // this.scheduleRenewal();
-    this.scheduleRenewal = this.scheduleRenewal.bind(this);
+    this.scheduleRenewal();
   }
 
   // checks the users database to see if the user has logged in to the site before

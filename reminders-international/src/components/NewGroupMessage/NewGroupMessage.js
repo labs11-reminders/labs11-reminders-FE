@@ -331,7 +331,7 @@ export default NewGroupMessage;
 //         this.setState({
 //           message: {...this.state.message,  scheduled: event.target.checked }
 //         });
-//         if (this.state.message.scheduled=true){
+//         if (this.state.message.scheduled=true){ // === ?
 //             this.toggleSuccess()
 //         }
 
@@ -342,7 +342,7 @@ export default NewGroupMessage;
 //           message: {...this.state.message, draft: event.target.checked }
 //       });
 
-//       if (this.state.message.draft=true){
+//       if (this.state.message.draft=true){ // === ?
 //         this.toggleSuccess()
 //         }
 
@@ -351,7 +351,7 @@ export default NewGroupMessage;
 //         this.setState({
 //         message: {...this.state.message, template: event.target.checked }
 //        });
-//        if (this.state.message.template=true){
+//        if (this.state.message.template=true){ // === ?
 //         this.toggleSuccess()
 //         }
 //        }
