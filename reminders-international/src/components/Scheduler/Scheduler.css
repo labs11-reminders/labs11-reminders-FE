@@ -1,3 +1,9 @@
+
+@media (max-width: 700px) {
+    #input {
+      max-width: 80%;
+    }
+}
 .scheduleMessageComposer {
   /* border-right: 1px solid #3a9cd8;
   border-left: 1px solid #3a9cd8;
@@ -344,8 +350,10 @@ div.scheduled-list-card.card div.createdFacts div.col-sm-auto.offset-sm-0  div.c
 /* DayPickerInput */
 
 .DayPickerInput {
-  display: inline-block;
+  /* display: inline-block; */
+  display: flex;
 }
+
 
 .DayPickerInput-OverlayWrapper {
   position: relative;
