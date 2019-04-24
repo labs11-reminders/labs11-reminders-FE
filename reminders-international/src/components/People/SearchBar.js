@@ -18,12 +18,12 @@ class SearchBar extends Component {
           query: this.search.value
         }, () => {
           if (this.state.query && this.state.query.length > 1) {
-            console.log('Are you searching')
+            console.log('Are you searching');
             
-            this.searchUsers();
-            // if (this.state.query.length % 2 === 0) {
-            //   this.searchUsers();
-            // }
+            
+            if (this.state.query.length % 2 === 0) {
+              this.searchUsers();
+            }
           } else {
             console.log('Not long enough');
             console.log(this.state.query);

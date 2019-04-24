@@ -107,7 +107,7 @@ class Dashboard extends Component {
     );
     axios
       .get(
-        `https://reminders-international.herokuapp.com/api/groups/${
+        `${process.env.REACT_APP_BACKEND}/api/groups/${
           this.state.activeGroup
         }/users`,
         this.state.activeGroupUsers,
@@ -115,6 +115,7 @@ class Dashboard extends Component {
       .then(res => {
         console.log(res, res.data.rows);
         this.setState({
+          // activeGroupUsers: res.data.rows,
           activeGroupUsers: res.data.rows,
         });
       })
@@ -165,6 +166,7 @@ class Dashboard extends Component {
                       activeGroupUsers={this.state.activeGroupUsers}
                       activeGroupReminders={this.state.activeGroupReminders}
                       profile={this.state.profile}
+                      history={this.props.history}
                     />
                   </section>
                 </>

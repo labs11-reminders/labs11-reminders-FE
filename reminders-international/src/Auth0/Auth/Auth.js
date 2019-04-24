@@ -160,6 +160,7 @@ export default class Auth {
             this.userProfile.phone = res.data.phone;
             this.userProfile.user_id = res.data.id;
             this.userProfile.nickname = res.data.name;
+            this.userProfile.email = res.data.email;
             console.log('User profile load complete.');
             console.log('User profile:', this.userProfile);
           })

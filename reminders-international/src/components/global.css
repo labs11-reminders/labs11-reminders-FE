@@ -16,6 +16,7 @@ button.btn.btn-primary {
     color:#389CD8;
   }
 
+
   a.create-group.nav-link {
   cursor: pointer;
   }
@@ -25,3 +26,4 @@ button.btn.btn-primary {
       max-width: 80%;
     }
   }
+
