@@ -465,6 +465,11 @@ div.tab-content {
     flex-direction: column;
     padding-bottom: 3%;
 }
+.userThumb {
+    width: 50%;
+    height: 50%;
+}
+
 
 .createGroup {
     display: flex;

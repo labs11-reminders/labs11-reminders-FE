@@ -17,9 +17,8 @@ export default class ScheduledMessageList extends Component {
         <div className="list">
             {this.props.group_reminders.map(group_reminder => { //change to scheduled reminders when whe have them 
               if (group_reminder.group_id === this.props.activeGroup && group_reminder.scheduled) {
+                if (group_reminder.sent == false){
                 return (
- 
-    
                       <ScheduledMessageCard
                       key={group_reminder.id}
                       id={group_reminder.id}
@@ -33,10 +32,9 @@ export default class ScheduledMessageList extends Component {
                       user_id={group_reminder.user_id}
                       scheduled={group_reminder.scheduled}
                       sent = {group_reminder.sent}
-                      />
-         
-       
-                )
+                     />
+                  )
+                }
               }
             })}
           </div>

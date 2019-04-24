@@ -358,8 +358,8 @@ class Sidebar extends Component {
             <Form className="createGroup" onSubmit={this.addGroup}>
               <div className="modalProfile">
                 <img
-                  src="https://i.imgur.com/HanMQyt.png" title="group"
-                  alt="philzcoffee's thumbnail"
+                  src="/static/media/network.0ca59318.png" title="group"
+                  alt="group thumbnail"
                   className="userThumb"
                 />
                 {/* <a href="#">edit icon</a> */}
