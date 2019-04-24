@@ -103,19 +103,19 @@ class Dashboard extends Component {
   getUsersByGroup = () => {
     console.log(
       'Dashboard fetching Users By Group',
-      this.state.activeGroup,
+      this.state.activeGroupUsers,
     );
     axios
       .get(
-        `${process.env.REACT_APP_BACKEND}/api/groups/${
+        `https://reminders-international.herokuapp.com/api/groups/${
           this.state.activeGroup
         }/users`,
         this.state.activeGroupUsers,
       )
       .then(res => {
-        console.log(res, res.data);
+        console.log(res, res.data.rows);
         this.setState({
-          activeGroupUsers: res.data,
+          activeGroupUsers: res.data.rows,
         });
       })
       .catch(err => {
