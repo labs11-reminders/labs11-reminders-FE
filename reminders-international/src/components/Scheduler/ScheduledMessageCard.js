@@ -286,7 +286,7 @@ fetchReminder = id => {
           <div className = "card-controls">
                       <Button color="link" onClick={this.toggleCal} > <strong>Edit Calendar</strong></Button>  
                         <Collapse isOpen={this.state.collapse}>
-                        <DayPickerInput classNameName="calendar"
+                        <DayPickerInput className="calendar"
                           onDayChange={this.onDatePicker}
                           onDayMouseEnter={this.onDatePicker}
                           formatDate={formatDate}

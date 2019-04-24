@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    border: 1px solid yellowgreen;
+    /* border: 1px solid yellowgreen; */
 }
 
 
@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
     padding:1%;
-    border: 1px solid yellowgreen;
+    /* border: 1px solid yellowgreen; */
 }
 
 
@@ -29,7 +29,7 @@
     flex-direction: column;
     padding: 15px;
     justify-content: flex-start;
-    border: 1px solid yellowgreen;
+    /* border: 1px solid yellowgreen; */
   }
 
 @media (max-width: 700px) {
@@ -37,26 +37,26 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    border: 1px solid yellowgreen;
+    /* border: 1px solid yellowgreen; */
   }
 }
 
 .schedule-card {
   flex-direction: row !important;
   display: flex;
-  border: 1px solid yellowgreen;
+  /* border: 1px solid yellowgreen; */
 }
 
 @media (max-width: 700px){
   .schedule-card {
     flex-direction: column !important;
     display: flex;
-    border: 1px solid yellowgreen;
+    /* border: 1px solid yellowgreen; */
   }
 
   .card-controls {
     width: 100%;
-    border: 1px solid yellowgreen;
+    /* border: 1px solid yellowgreen; */
   }
 }
 
@@ -72,7 +72,7 @@
 
 section .first_tab_message {
   height: 30vw;
-  border: 1px solid yellowgreen;
+  /* border: 1px solid yellowgreen; */
 }
 
 
@@ -89,8 +89,8 @@ section .first_tab_message {
 .first_tab_messagedetails Label {
   display: flex;
   justify-content:flex-start;
-  border: 1px solid yellowgreen;
-  background-color: red;
+  /* border: 1px solid yellowgreen;
+  background-color: red; */
 }
 
 .list .first_tab_card {
@@ -103,7 +103,7 @@ section .first_tab_message {
   flex-direction: row;
   padding: 15px;
   justify-content: flex-start;
-  border: 1px solid yellowgreen;
+  /* border: 1px solid yellowgreen; */
 }
 
 
@@ -121,7 +121,7 @@ section .first_tab_message {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border: 1px solid yellowgreen;
+  /* border: 1px solid yellowgreen; */
 }
 
 /* this is for the messages tab */
@@ -130,7 +130,7 @@ section .first_tab_message {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    border: 1px solid yellowgreen;
+    /* border: 1px solid yellowgreen; */
   }
 }
 
@@ -148,7 +148,7 @@ section .first_tab_message {
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-    border: 1px solid yellowgreen;
+    /* border: 1px solid yellowgreen; */
 }
 
 /* this is for scheduler and drafts tabs */
@@ -157,7 +157,7 @@ section .first_tab_message {
     
     display: flex;
     flex-direction: column;
-    border: 1px solid yellowgreen;
+    /* border: 1px solid yellowgreen; */
   }
 }
 
@@ -169,7 +169,7 @@ section .message
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  border: 1px solid yellowgreen;
+  /* border: 1px solid yellowgreen; */
 }
 
 section .messageoptions {
@@ -180,7 +180,7 @@ section .messageoptions {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    border: 1px solid yellowgreen;
+    /* border: 1px solid yellowgreen; */
 }
 
 @media (max-width: 700px) {
@@ -197,11 +197,11 @@ section .first_tab_messageoptions {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  border: 1px solid yellowgreen;
+  /* border: 1px solid yellowgreen; */
 }
 .card .messagedetails {
     border-start-end-radius: 5%;
-    margin: 1%;
+    margin: 0%;
     padding: 0;
     width: 100%;
     display: flex;
