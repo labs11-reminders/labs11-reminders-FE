@@ -440,12 +440,15 @@ div.tab-content {
     width: 100vw;
     position: absolute;
     top: 10%;
-    text-align: center
+    text-align: center;
+    
 }
 
 .modalBody {
     margin: 0 8%;
+    
 }
+
 
 .modalBody img {
     border: 1px solid #616568;
@@ -464,11 +467,10 @@ div.tab-content {
     justify-content: center;
     flex-direction: column;
     padding-bottom: 3%;
+    
+    
 }
-.userThumb {
-    width: 50%;
-    height: 50%;
-}
+
 
 
 .createGroup {
