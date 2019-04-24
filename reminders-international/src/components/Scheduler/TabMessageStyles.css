@@ -32,7 +32,7 @@
     /* border: 1px solid yellowgreen; */
   }
 
-@media (max-width: 700px) {
+@media (max-width: 1024px) {
   .list  {
     display: flex;
     flex-direction: column;
@@ -47,7 +47,7 @@
   /* border: 1px solid yellowgreen; */
 }
 
-@media (max-width: 700px){
+@media (max-width: 1024px){
   .schedule-card {
     flex-direction: column !important;
     display: flex;
@@ -125,7 +125,7 @@ section .first_tab_message {
 }
 
 /* this is for the messages tab */
-@media (max-width: 700px) {
+@media (max-width: 1024px) {
   .first_tab_card section {
     display: flex;
     flex-direction: row;
@@ -152,7 +152,7 @@ section .first_tab_message {
 }
 
 /* this is for scheduler and drafts tabs */
-@media (max-width: 700px) {
+@media (max-width: 1024px) {
   .card section {
     
     display: flex;
@@ -183,7 +183,7 @@ section .messageoptions {
     /* border: 1px solid yellowgreen; */
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1024px) {
   section .messageoptions {
     width: 100%;
   }
@@ -263,7 +263,7 @@ section .first_tab_messageoptions {
     flex-direction: row;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1024px) {
   .card .messagebody {
     display: flex;
     flex-direction: column;
