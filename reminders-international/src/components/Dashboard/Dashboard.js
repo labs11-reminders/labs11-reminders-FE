@@ -166,6 +166,7 @@ class Dashboard extends Component {
                       activeGroupUsers={this.state.activeGroupUsers}
                       activeGroupReminders={this.state.activeGroupReminders}
                       profile={this.state.profile}
+                      history={this.props.history}
                     />
                   </section>
                 </>
