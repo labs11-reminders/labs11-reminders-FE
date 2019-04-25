@@ -44,25 +44,25 @@ export default class Auth {
     this.auth0.client.userInfo(this.accessToken, (err, profile) => {
       if (profile) {
         // {
-          axios
-            .post(`${process.env.REACT_APP_BACKEND}/api/users/auth`, {
-              auth0_sub: profile.sub,
-            })
+        axios
+          .post(`${process.env.REACT_APP_BACKEND}/api/users/auth`, {
+            auth0_sub: profile.sub,
+          })
 
-            .then(res => {
-              if (res.data.length === 0) {
-                console.log('Signing up new user.');
-                history.replace('/signup');
-              } else {
-                console.log('Existing user signing in.');
-                history.replace('/dashboard');
-              }
-            })
-            .catch(err => {
-              console.log(err);
-              console.log({ message: 'Error verifying Auth0 login' });
-            });
-        }
+          .then(res => {
+            if (res.data.length === 0) {
+              console.log('Signing up new user.');
+              history.replace('/signup');
+            } else {
+              console.log('Existing user signing in.');
+              history.replace('/dashboard');
+            }
+          })
+          .catch(err => {
+            console.log(err);
+            console.log({ message: 'Error verifying Auth0 login' });
+          });
+      }
       // }
     });
   }

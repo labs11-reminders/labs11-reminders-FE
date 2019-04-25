@@ -57,6 +57,8 @@ class LandingPage extends Component {
   }
 
   render() {
+    console.log('Landing Render props', this.props);
+
     return (
       <div className="landingContainer">
         <UncontrolledCarousel
