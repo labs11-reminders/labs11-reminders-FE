@@ -118,31 +118,7 @@ componentDidMount() {
       .catch(error => console.log(error))
     }
 
-  
-  onDelete = (event) => { 
-    const id = this.props.id
-    console.log("ID", id)
-    // if (event.target.checked) {
-      axios
-      .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
-      .then(response => {
-          console.log("DELETE RESPONSE:", response.data)
-          this.setState({success_delete: 'Success! The message will go "poof!" as soon as you leave this tab',})
-          toast.info('Successfully deleted.', {
-            position: "top-center",
-            autoClose: 2500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            });
-      })
-      .catch(err => {
-          console.log(err);
-      })
-    // }
-    }
-        
+          
   editReminder = id => {
     console.log("editReminder ID", id)
     const editObj ={name: this.state.message.title, description: this.state.message.body};
@@ -157,19 +133,6 @@ componentDidMount() {
   }
 
     
-  deleteReminder = id => {
-    axios
-      .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
-      .then(response => {
-          console.log("DELETE RESPONSE:", response.data)
-          this.setState({ reminders: response.data, reminder: "" })
-          this.setState({success: 'Success!',})
-      })
-      .catch(err => {
-          console.log(err);
-      })
-  }
-
   dateConverter = date => {
     if (!date) {return `TBD`}
     date = date.split(/\W+/);
@@ -227,6 +190,8 @@ componentDidMount() {
           pauseOnHover: true,
           draggable: true,
           });
+          this.props.group_reminders_call();
+
       })
       .catch(err => {
         console.log(err);

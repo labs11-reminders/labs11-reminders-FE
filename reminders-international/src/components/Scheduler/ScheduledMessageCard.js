@@ -52,6 +52,8 @@ class ScheduledMessageCard extends Component{
   this.toggleScheduler = this.toggleScheduler.bind(this);
   this.toggleNested = this.toggleNested.bind(this);
   this.toggleSuccess = this.toggleSuccess.bind(this);
+  this.toggleRemove = this.toggleRemove.bind(this);
+
 }
 toggle() {
   this.setState(prevState => ({
@@ -223,28 +225,19 @@ fetchReminder = id => {
       .catch(error => console.log(error))
   }
 
-  deleteReminder = id => {
-    axios
-      .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
-      .then(response => {
-          console.log("DELETE RESPONSE:", response.data)
-          this.setState({ reminders: response.data, reminder: "" });
-      })
-      .catch(err => {
-          console.log(err);
-      })
-  }
 
-  onDelete = (event) => { 
-    const id = this.props.id
-    console.log("ID", id)
-    // if (event.target.checked) {
+    toggleRemove(event) {
+      console.log("DELETE", event.target)
+      const id = this.props.id
+      const editObj ={scheduled: false};
       axios
-      .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
-      .then(response => {
-          console.log("DELETE RESPONSE:", response.data)
+        .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
+        .then(response => {
+          console.log("PUT RESPONSE:", response.data)
+          this.setState({ message: response.data})
           this.setState({success_delete: 'Success! The message will go "poof!" as soon as you leave this tab',})
-          toast.info('Successfully deleted.', {
+          this.fetchReminder(id);
+          toast.info('Successfully removed from scheduled.', {
             position: "top-center",
             autoClose: 2500,
             hideProgressBar: false,
@@ -252,13 +245,14 @@ fetchReminder = id => {
             pauseOnHover: true,
             draggable: true,
             });
-          
-      })
-      .catch(err => {
+            this.props.group_reminders_call();
+        })
+        .catch(err => {
           console.log(err);
       })
-    
+  
     }
+  
       
 
   render(){
@@ -308,7 +302,7 @@ fetchReminder = id => {
                     </FormGroup>
                         <FormGroup>
                           {/* <Label inline check> */}
-                          <Button color="danger" onClick={this.onDelete}>Delete</Button>
+                          <Button color="danger" onClick={this.toggleRemove}>Delete</Button>
                             {/* <Input type="checkbox" onClick={this.onDelete} /> */}
                             {/* Delete */}
                           {/* </Label> */}

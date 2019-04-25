@@ -209,7 +209,16 @@ class NewGroupMessage extends Component {
               submitting: false
             });
           }
+          toast.info('Successfully sent message.', {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
           res.json()
+          
         })
         .catch(err => {
           console.log(err)
