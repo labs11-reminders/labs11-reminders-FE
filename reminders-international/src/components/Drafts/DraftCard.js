@@ -152,8 +152,10 @@ componentDidMount() {
   }
 
   dateConverter = date => {
+    console.log("DATE", date)
     if (!date) {return `TBD`}
     date = date.split(/\W+/);
+    console.log("############ date", date)
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
     let yr = date[0];
     let month = months[parseInt(date[1]) - 1];
