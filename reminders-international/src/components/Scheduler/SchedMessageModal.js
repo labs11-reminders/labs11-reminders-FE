@@ -56,7 +56,7 @@ class SchedMessageModal extends Component {
         this.setState(prevState => ({
         modal: !prevState.modal,
         }));
-    console.log("MODAL STATE",this.state)
+    console.log("MODAL STATE",this.state);
     }
 
 
@@ -110,8 +110,9 @@ class SchedMessageModal extends Component {
           success: 'Success!',
           reminders: { ...messageObj }
           });
-        this.toggle()
+        this.toggle();
       }
+      
     })
   .catch(err => {
       console.log(err);

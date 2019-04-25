@@ -487,6 +487,7 @@ class MainContent extends Component {
             groups={this.props.groups}
             activeGroupUsers={this.props.activeGroupUsers}
             activeGroupReminders={this.props.activeGroupReminders}
+            history={this.props.history}
           />
         </section>
       </div>
