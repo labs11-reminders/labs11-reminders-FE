@@ -105,7 +105,7 @@ export default class TabsSection extends Component {
           </NavItem>
 
         </Nav>
-        <TabContent activeTab={this.state.activeTab} activeGroup={this.props.activeGroup}>
+        <TabContent activeTab={this.state.activeTab} activeGroup={this.props.activeGroup} history={this.props.history}>
           
           <TabPane tabId="1">
             <Row>
@@ -142,7 +142,7 @@ export default class TabsSection extends Component {
               <div> 
               To create a new scheduled message, template, or a draft use the Messages tab 
               </div>
-                <DraftComposer activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}/>
+                <DraftComposer activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup} history={this.props.history}/>
               </Col>
             </Row>
           </TabPane>
