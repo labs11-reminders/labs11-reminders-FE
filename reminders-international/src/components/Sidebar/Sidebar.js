@@ -23,8 +23,8 @@ import SideTemplateCard from './SideTemplateCard';
 // import SideMessageInd from './SideMessageInd';
 import MessageModalInd from '../MessageModal/MessageModalInd';
 import ClickableCard from './ClickableCard';
-import '../Dashboard/Dashboard.css'
-
+import '../Dashboard/Dashboard.css';
+import '../global.css'
 class Sidebar extends Component {
   constructor(props) {
     super(props);
