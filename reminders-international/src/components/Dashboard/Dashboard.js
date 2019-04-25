@@ -111,7 +111,7 @@ class Dashboard extends Component {
     );
     axios
       .get(
-        `${process.env.REACT_APP_BACKEND}api/groups/${
+        `${process.env.REACT_APP_BACKEND}/api/groups/${
           this.state.activeGroup
         }/users`,
         this.state.activeGroupUsers,
