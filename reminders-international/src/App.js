@@ -28,7 +28,7 @@ import Home from './Home';
 
 import './App.css';
 
-toast.configure()
+toast.configure();
 
 class App extends Component {
   auth = new Auth();
@@ -40,8 +40,8 @@ class App extends Component {
   };
 
   render() {
-    console.log('App Render', this.state);
-    console.log('App Render', this.props);
+    console.log('App Render state', this.state);
+    console.log('App Render props', this.props);
 
     return (
       <div className="App">
@@ -96,7 +96,6 @@ class App extends Component {
           exact
           path="/dashboard"
           render={props => <Dashboard {...props} auth={this.auth} />}
-          
         />
         {/* <Route exact path="/dashboard" auth={this.auth} component={Dashboard} /> */}
 
@@ -106,8 +105,11 @@ class App extends Component {
           render={props => <NewGroupMessage {...props} />}
         />
 
-        
-        <Route exact path="/postsignup" render={props => <PostSignup {...props} />} />
+        <Route
+          exact
+          path="/postsignup"
+          render={props => <PostSignup {...props} />}
+        />
         <Route exact path="/people" render={props => <People {...props} />} />
 
         <Route exact path="/select-role" component={Roles} />

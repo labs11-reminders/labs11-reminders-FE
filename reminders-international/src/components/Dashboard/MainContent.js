@@ -236,19 +236,16 @@ class MainContent extends Component {
             <div className="grpName">
               <span>
                 <strong>
-                  {!this.props.activeGroup ? 
-                    (
-                      <p>Group Name</p>
-                    ) : 
-                    (
-                      this.props.groups.map(group => {
-                        console.log('Group.id', group.id, this.props.activeGroup,
-                        );
-                        if (this.props.activeGroup === group.id) {
-                          return group.name;
-                        }
-                      })
-                    )}
+                  {!this.props.activeGroup ? (
+                    <p>Group Name</p>
+                  ) : (
+                    this.props.groups.map(group => {
+                      console.log('Group.id', group.id, this.props.activeGroup);
+                      if (this.props.activeGroup === group.id) {
+                        return group.name;
+                      }
+                    })
+                  )}
                 </strong>
               </span>{' '}
               &nbsp;
