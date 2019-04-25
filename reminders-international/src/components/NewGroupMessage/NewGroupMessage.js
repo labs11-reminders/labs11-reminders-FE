@@ -173,7 +173,7 @@ class NewGroupMessage extends Component {
           .then(res => { 
             console.log(res, res.data) 
             this.setState({
-              message: { ...this.state.message, users:res.data, }
+              message: { ...this.state.message, users:res.data.rows, }
             });
         })
         .catch(err => {
