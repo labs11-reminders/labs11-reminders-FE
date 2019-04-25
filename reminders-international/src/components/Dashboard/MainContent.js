@@ -183,6 +183,7 @@ class MainContent extends Component {
                 editUserModal: !prevState.editUserModal,
               }));
             }
+            this.props.history.push('/postsignup');
           })
           .catch(err => {
             console.log(err);
@@ -307,7 +308,7 @@ class MainContent extends Component {
                   <Col sm={10}>
                     <Input
                       onChange={this.handleInputChange}
-                      placeholder="Name"
+                      placeholder={this.props.profile.nickname}
                       type="name"
                       value={this.state.name}
                       name="name"
@@ -321,7 +322,7 @@ class MainContent extends Component {
                   <Col sm={10}>
                     <Input
                       onChange={this.handleInputChange}
-                      placeholder="Email"
+                      placeholder={this.props.profile.email}
                       type="email"
                       value={this.state.email}
                       name="email"
@@ -335,7 +336,7 @@ class MainContent extends Component {
                   <Col sm={10}>
                     <Input
                       onChange={this.handleInputChange}
-                      placeholder="Phone"
+                      placeholder={this.props.profile.phone}
                       type="number"
                       value={this.state.phone}
                       name="phone"

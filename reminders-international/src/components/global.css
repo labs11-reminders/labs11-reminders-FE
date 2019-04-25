@@ -16,3 +16,14 @@ button.btn.btn-primary {
     color:#389CD8;
   }
 
+
+  a.create-group.nav-link {
+  cursor: pointer;
+  }
+
+  @media (max-width: 700px) {
+    input {
+      max-width: 80%;
+    }
+  }
+

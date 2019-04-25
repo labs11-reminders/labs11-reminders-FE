@@ -53,6 +53,7 @@ class TemplateCard extends Component {
   this.toggle = this.toggle.bind(this);
   this.toggleNested = this.toggleNested.bind(this);
   this.toggleSchedule = this.toggleSchedule.bind(this);
+  this.toggleRemove = this.toggleRemove.bind(this);
 }
 toggle() {
   this.setState(prevState => ({
@@ -206,6 +207,31 @@ componentDidMount() {
     })
 
   }
+  toggleRemove(event) {
+    console.log("DELETE", !event.target.checked)
+    const id = this.props.id
+    const editObj ={template: !event.target.checked,};
+    axios
+      .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
+      .then(response => {
+        console.log("PUT RESPONSE:", response.data)
+        this.setState({ message: response.data})
+        this.setState({success_delete: 'Success! The message will go "poof!" as soon as you leave this tab',})
+        this.fetchReminder(id);
+        toast.info('Successfully removed from templates.', {
+          position: "top-center",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          });
+      })
+      .catch(err => {
+        console.log(err);
+    })
+
+  }
 
    
     
@@ -244,7 +270,7 @@ componentDidMount() {
         </FormGroup>
            <FormGroup >
           <Label inline check>
-            <Input type="checkbox" onClick={this.onDelete} />{' '}
+            <Input type="checkbox" onClick={this.toggleRemove} />{' '}
             Delete
           </Label>
         </FormGroup>

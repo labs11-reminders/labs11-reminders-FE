@@ -103,7 +103,7 @@ class Dashboard extends Component {
   getUsersByGroup = () => {
     console.log(
       'Dashboard fetching Users By Group',
-      this.state.activeGroup,
+      this.state.activeGroupUsers,
     );
     axios
       .get(
@@ -113,9 +113,10 @@ class Dashboard extends Component {
         this.state.activeGroupUsers,
       )
       .then(res => {
-        console.log(res, res.data);
+        console.log(res, res.data.rows);
         this.setState({
-          activeGroupUsers: res.data,
+          // activeGroupUsers: res.data.rows,
+          activeGroupUsers: res.data.rows,
         });
       })
       .catch(err => {
@@ -165,6 +166,7 @@ class Dashboard extends Component {
                       activeGroupUsers={this.state.activeGroupUsers}
                       activeGroupReminders={this.state.activeGroupReminders}
                       profile={this.state.profile}
+                      history={this.props.history}
                     />
                   </section>
                 </>
