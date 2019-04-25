@@ -18,6 +18,7 @@ import {
   FormGroup,
   Label,
   Input,
+  Button,
   // Row,
   // Collapse
 
@@ -42,7 +43,7 @@ class TemplateCard extends Component {
         date: '',
         scheduled: true,
         template: true,
-        draft:false,
+        draft: false,
         sent: false, 
         group_id: ''
       },
@@ -121,7 +122,7 @@ componentDidMount() {
   onDelete = (event) => { 
     const id = this.props.id
     console.log("ID", id)
-    if (event.target.checked) {
+    // if (event.target.checked) {
       axios
       .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
       .then(response => {
@@ -139,7 +140,7 @@ componentDidMount() {
       .catch(err => {
           console.log(err);
       })
-    }
+    // }
     }
         
   editReminder = id => {
@@ -208,9 +209,9 @@ componentDidMount() {
 
   }
   toggleRemove(event) {
-    console.log("DELETE", !event.target.checked)
+    console.log("DELETE", event.target)
     const id = this.props.id
-    const editObj ={template: !event.target.checked,};
+    const editObj ={template: false};
     axios
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
@@ -269,10 +270,10 @@ componentDidMount() {
           </Label>
         </FormGroup>
            <FormGroup >
-          <Label inline check>
-            <Input type="checkbox" onClick={this.toggleRemove} />{' '}
-            Delete
-          </Label>
+          {/* <Label inline check> */}
+          <Button color="danger" onClick={this.toggleRemove}>Delete from Templates</Button>
+            {/* Delete
+          </Label> */}
         </FormGroup>
         <p>{this.state.success_delete}</p>
         {/* <p>{this.state.success}</p> */}

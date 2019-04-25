@@ -238,7 +238,7 @@ fetchReminder = id => {
   onDelete = (event) => { 
     const id = this.props.id
     console.log("ID", id)
-    if (event.target.checked) {
+    // if (event.target.checked) {
       axios
       .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
       .then(response => {
@@ -257,7 +257,7 @@ fetchReminder = id => {
       .catch(err => {
           console.log(err);
       })
-    }
+    
     }
       
 
@@ -307,10 +307,11 @@ fetchReminder = id => {
                       </Label>
                     </FormGroup>
                         <FormGroup>
-                          <Label inline check>
-                            <Input type="checkbox" onClick={this.onDelete} />
-                            Delete
-                          </Label>
+                          {/* <Label inline check> */}
+                          <Button color="danger" onClick={this.onDelete}>Delete</Button>
+                            {/* <Input type="checkbox" onClick={this.onDelete} /> */}
+                            {/* Delete */}
+                          {/* </Label> */}
                         </FormGroup>
                         <span><p>{this.state.success_delete}</p>
                         {/* <p>{this.state.success}</p> */}

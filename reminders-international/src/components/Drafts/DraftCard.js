@@ -5,7 +5,7 @@ import {
   FormGroup,
   Label,
   Input,
-
+  Button,
 } from 'reactstrap';
 import '../Scheduler/TabMessageStyles.css';
 import '../global.css';
@@ -26,7 +26,7 @@ class DraftCard extends Component {
         date: '',
         scheduled: true,
         template: true,
-        draft:false,
+        draft: false,
         sent: false, 
         group_id: ''
       },
@@ -190,13 +190,14 @@ componentDidMount() {
 
   }
   toggleRemove(event) {
-    console.log("DELETE", !event.target.checked)
+    console.log("DELETE", event)
     const id = this.props.id
-    const editObj ={draft: !event.target.checked,};
+    const editObj ={draft: false};
     axios
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
         console.log("PUT RESPONSE:", response.data)
+        // this.setState({ message: response.data})
         this.setState({ message: response.data})
         this.setState({success_delete: 'Success! The message will go "poof!" as soon as you leave this tab',})
         this.fetchReminder(id);
@@ -244,10 +245,10 @@ componentDidMount() {
             </Label>
           </FormGroup>
             <FormGroup>
-            <Label inline check>
-              <Input type="checkbox" onClick={this.toggleRemove} />{' '}
-              Delete
-            </Label>
+            {/* <Label inline check> */}
+            <Button color="danger" onClick={this.toggleRemove}>Delete from Drafts</Button>
+              {/* Delete
+            </Label> */}
           </FormGroup>
           <p>{this.state.success_delete}</p>
         {/* <p>{this.state.success}</p> */}
