@@ -38,7 +38,7 @@ class TemplateComposer extends Component {
         return (
           <div className="composer"> 
            
-            <TemplateList activeGroup={this.props.activeGroup} reminders={this.state.reminders}/>
+            <TemplateList activeGroup={this.props.activeGroup} reminders={this.state.reminders} group_reminders_call={this.getReminders}/>
            
           </div>
         );
