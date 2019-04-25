@@ -38,7 +38,7 @@ class DraftComposer extends Component {
         return (
           <div className="composer"> 
            
-            <DraftList activeGroup={this.props.activeGroup} reminders={this.state.reminders}/>
+            <DraftList activeGroup={this.props.activeGroup} reminders={this.state.reminders} group_reminders_call={this.getReminders}/>
             </div>
   );
   };

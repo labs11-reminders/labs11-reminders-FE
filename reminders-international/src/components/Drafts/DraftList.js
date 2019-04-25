@@ -22,6 +22,7 @@ export default class DraftList extends Component {
             return (
               
               <DraftCard
+              group_reminders_call={this.props.group_reminders_call}
               key={reminder.id}
               id={reminder.id}
               title={reminder.name}
