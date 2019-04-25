@@ -105,7 +105,7 @@ export default class TabsSection extends Component {
           </NavItem>
 
         </Nav>
-        <TabContent activeTab={this.state.activeTab} activeGroup={this.props.activeGroup} history={this.props.history}>
+        <TabContent activeTab={this.state.activeTab} activeGroup={this.props.activeGroup} history={this.props.history} getUsersByGroup_call={this.props.getUsersByGroup_call}>
           
           <TabPane tabId="1">
             <Row>
@@ -149,7 +149,7 @@ export default class TabsSection extends Component {
           <TabPane tabId="5">
             <Row>
               <Col sm="12">
-                <People activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup}  />
+                <People activeGroupUsers={this.props.activeGroupUsers} state={this.props.state} groups={this.props.groups} activeGroup={this.props.activeGroup} getUsersByGroup_call={this.props.getUsersByGroup_call}/>
               </Col>
             </Row>
           </TabPane>

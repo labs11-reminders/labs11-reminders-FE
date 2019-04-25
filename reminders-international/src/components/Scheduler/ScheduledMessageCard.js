@@ -289,7 +289,7 @@ fetchReminder = id => {
                       </Collapse>
                       <div className = "messagecheckboxes">
                           <FormGroup>
-                          <Label inline check>
+                          <Label inline="check">
                             <Input type="checkbox" onClick={this.toggleApprove} /> 
                             Approve
                           </Label>  
