@@ -20,6 +20,7 @@ export default class ScheduledMessageList extends Component {
                 if (group_reminder.sent == false){
                 return (
                       <ScheduledMessageCard
+                      group_reminders_call={this.props.group_reminders_call}
                       key={group_reminder.id}
                       id={group_reminder.id}
                       title={group_reminder.name}

@@ -45,7 +45,8 @@ class ScheduleMessageComposer extends Component {
           
             <ScheduledMessageList 
               activeGroup={this.props.activeGroup} 
-              group_reminders={this.state.group_reminders}/>
+              group_reminders={this.state.group_reminders}
+              group_reminders_call={this.getReminders}/>
               
           </div>
         );
