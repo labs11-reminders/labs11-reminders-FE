@@ -70,15 +70,17 @@ class LandingPage extends Component {
           <section className="topSection">
             <div className="leftSection">
               <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Quibusdam minima iste omnis odit cum saepe obcaecati hic
-                delectus deserunt rem? Lorem ipsum dolor, sit amet consectetur
-                adipisicing elit. Tenetur in, optio id dolor, libero rerum
-                inventore nam alias, voluptas beatae quod aliquam laudantium
-                quaerat. Temporibus iure amet quidem ullam modi!
+                With thousands of adult learners around the world, Reminders
+                International introduces convinience and dedication to business
+                training and mentorship. This App allows messages and reminders
+                to be scheduled and sent to any device via SMS or WhatsApp which
+                notifies clients of important information between training
+                sessions. Its scheduling feature allows messages to be scheduled
+                and sent at a later date reminding clients of assignments and
+                class schedules as well as eliminates travel barriers.
               </p>
               <Button color="primary" onClick={this.props.auth.login}>
-                Find Out More
+                Explore
               </Button>
             </div>
             <div className="rightSection">
@@ -97,27 +99,32 @@ class LandingPage extends Component {
               <img src="./images/mentorship.jpg" alt="Mentorship" />
               <h3>Mentorship</h3>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Asperiores iusto deserunt tempore pariatur aliquam aliquid est!
-                Totam quia reprehenderit expedita?
+                Whether you are exploring the idea of starting a business in
+                your area or you are currently participating in one, Reminders
+                International will hand you the resources to take your business
+                to the next level. Our Dedicated mentors are available
+                throughout your enrolment and after.
               </p>
             </div>
             <div className="focus">
               <img src="./images/elearning.png" alt="eLearning" />
               <h3>e-Learning</h3>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Asperiores iusto deserunt tempore pariatur aliquam aliquid est!
-                Totam quia reprehenderit expedita?
+                As technology advances, so does the need for the advancement of
+                traditional learning. At Reminders International, we pride
+                ourselves with industry leading technologies to bring motivation
+                into learning. By utilizing electronic technologies we are able
+                to impact even more learners around the world.
               </p>
             </div>
             <div className="focus">
               <img src="./images/calendar.jpg" alt="Calendar" />
               <h3>Organize</h3>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Asperiores iusto deserunt tempore pariatur aliquam aliquid est!
-                Totam quia reprehenderit expedita?
+                We know multitasking life and learning is a tough task to deal
+                with that is why Reminders International is structured to keep
+                you in the loop on matters that are important to your learning
+                so you never miss a deadline or worry about missing a class.
               </p>
             </div>
           </div>
@@ -132,7 +139,7 @@ class LandingPage extends Component {
         </section>
 
         <div className="missionWrapper">
-          <h2>Our Mission is to... Lorem ipsum dolor sit amet.</h2>
+          <h2>Our Mission</h2>
           <section className="mission">
             <div className="ourMission">
               <img src="./images/access.png" alt="Impact" />
@@ -153,6 +160,7 @@ class LandingPage extends Component {
         </div>
 
         <section className="ourTeamWrapper">
+          <h2>Developers</h2>
           <span className="ourTeam">
             <div className="team">
               <img src="./images/katie.png" alt="Katie Fitzpatrick" />
@@ -194,7 +202,7 @@ class LandingPage extends Component {
               <i href="#" className="fab fa-twitter-square fa-3x" />
             </a>
           </div>
-          <p>&copy; Reminders International - All Rights Reserved</p>
+          <p>&copy; 2019 Reminders International - All Rights Reserved</p>
         </section>
       </div>
     );
