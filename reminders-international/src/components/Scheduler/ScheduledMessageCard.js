@@ -272,7 +272,7 @@ fetchReminder = id => {
           <div className = "messagetitle">{this.props.title}</div> 
 
           <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
-            toggle={this.toggle}> </SchedMessageModal> 
+            toggle={this.toggle} group_reminders_call={this.props.group_reminders_call}> </SchedMessageModal> 
     
           </div>
           <div className = "card-body">

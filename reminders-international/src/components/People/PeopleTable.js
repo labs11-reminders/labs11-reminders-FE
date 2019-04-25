@@ -50,7 +50,7 @@ class PeopleTable extends Component {
         .then(res => { 
           console.log(res, res.data) 
           this.setState({
-              users: res.data.rows
+              users: res.data
           });
           console.log(this.state.users)
       })

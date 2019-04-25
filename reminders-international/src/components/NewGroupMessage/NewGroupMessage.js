@@ -169,7 +169,7 @@ class NewGroupMessage extends Component {
     
     fetchGroupUsers = id => {
         console.log("FETCHING USERS")
-        axios.get(`https://reminders-international.herokuapp.com/api/groups/${id}/users`, this.state.toggleDraft)
+        axios.get(`${process.env.REACT_APP_BACKEND}/api/groups/${id}/users`, this.state.toggleDraft)
           .then(res => { 
             console.log(res, res.data) 
             this.setState({
