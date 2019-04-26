@@ -39,7 +39,7 @@ class SearchTable extends Component {
             <tbody className="col-md">
                 
                 {this.props.users.map(user => 
-                    <RowElement key={user.id} value={user.id} user={user} group_id={this.props.group_id} show_add={true} />
+                    <RowElement key={user.id} value={user.id} user={user} group_id={this.props.group_id} show_add={true} getUsersByGroup_call={this.props.getUsersByGroup_call}/>
                 )}
             </tbody>
             </Table>

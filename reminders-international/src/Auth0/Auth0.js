@@ -24,12 +24,16 @@ class Auth0 extends Component {
     this.try('/signup');
   };
 
+  redirectDash() {
+    this.try('/dashboard');
+  }
+
   logoutBtn = () => {
     if (this.props.userProfile) {
-      return this.props.auth.userProfile.picture
+      return this.props.auth.userProfile.picture;
     }
     return `Log Out`;
-  }
+  };
 
   componentDidMount() {
     const { handleAuthentication } = this.props.auth;
@@ -48,18 +52,34 @@ class Auth0 extends Component {
     // const { isAuthenticated } = this.props.auth;
     console.log('THIS');
     console.log(this.props.auth);
+    console.log('Auth0 Render props', this.props);
+
     //console.log("debugging...");
     //console.log(this.props.auth);
     return (
       <div className="Nav">
         <Navbar className="siteNavBar" color="white">
-          <NavbarBrand color="light" href="/" >Reminders International</NavbarBrand>
+          <NavbarBrand color="light" href="/">
+            Reminders International
+          </NavbarBrand>
 
           {/* <Button
               color="primary"
               onClick={this.goSignUp}>
             Sign-up
           </Button> */}
+
+          {localStorage.getItem('isLoggedIn') &&
+          this.props.location.pathname === '/' ? (
+            <Button
+              id="dashBtn"
+              color="primary"
+              onClick={this.redirectDash.bind(this)}
+            >
+              Dashboard
+            </Button>
+          ) : null}
+
           {!localStorage.getItem('isLoggedIn') ? (
             <Button color="primary" onClick={this.login.bind(this)}>
               Sign Up or Log In

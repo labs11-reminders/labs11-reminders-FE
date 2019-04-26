@@ -172,7 +172,7 @@ class Sidebar extends Component {
           <img src={this.props.profile.picture} id="profilePicture" alt="first initial or icon" />
           <div id="profileName">
             {/* This needs to remain {this.props.profile.nickname} in order to render correctly. -Rachel */}
-            <span>Hello, {this.props.profile.nickname} </span>
+            <span>Hello, {this.props.profile.name} </span>
             </div>
         </section>
         <section className="orgSection cube">

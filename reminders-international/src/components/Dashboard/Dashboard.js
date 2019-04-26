@@ -53,7 +53,11 @@ class Dashboard extends Component {
 
   getRemindersByGroup = () => {
     axios
-      .post(`${process.env.REACT_APP_BACKEND}/api/groups/reminders/${this.state.activeGroup}`)
+      .post(
+        `${process.env.REACT_APP_BACKEND}/api/groups/reminders/${
+          this.state.activeGroup
+        }`,
+      )
       .then(res => {
         console.log('List of all reminders', res.data);
         this.setState({
@@ -63,7 +67,7 @@ class Dashboard extends Component {
       .catch(err => {
         console.log({ errMessage: 'Getting reminders call error', err });
       });
-  }
+  };
 
   componentWillMount() {
     const { userProfile, getProfile } = this.props.auth;
@@ -96,7 +100,7 @@ class Dashboard extends Component {
     if (this.state.activeGroupName !== groupName) {
       console.log('***ID***', groupName);
       this.setState({ activeGroupName: groupName });
-      console.log('ACTIVE', this.state.activeGroupName);
+      console.log('ACTIVE', this.state);
     }
   }
 
@@ -133,7 +137,6 @@ class Dashboard extends Component {
         {/* This checks to see if the auth0 profile is undefined 
         (which occurs when user token is expired) and then instead of an error message 
         the h5 is displayed and local storage is cleared so the nav changes to 'logout'. */}
-        
 
         {this.state.profile === undefined ? (
           <div>
@@ -141,9 +144,7 @@ class Dashboard extends Component {
             <h5>Error displaying Page. Please Login!</h5>
           </div>
         ) : (
-
           <>
-            
             <div className="mainContainer">
               {this.state.profile.name ? (
                 <>
@@ -167,6 +168,7 @@ class Dashboard extends Component {
                       activeGroupReminders={this.state.activeGroupReminders}
                       profile={this.state.profile}
                       history={this.props.history}
+                      getUsersByGroup_call={this.getUsersByGroup}
                     />
                   </section>
                 </>
@@ -183,7 +185,6 @@ class Dashboard extends Component {
 
 export default Dashboard;
 
-
 //   getOrgsById(org_id){
 //     if (!org_id) {org_id = this.state.org_id}
 //     if (org_id) {
@@ -192,7 +193,7 @@ export default Dashboard;
 //       .get(`${process.env.REACT_APP_BACKEND}/api/orgs/${org_id}`)
 //       .then(res => {
 //         this.setState({
-//           org: { 
+//           org: {
 //             ...res.data,
 //           },
 //         });

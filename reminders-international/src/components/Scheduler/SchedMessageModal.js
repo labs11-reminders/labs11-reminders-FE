@@ -51,12 +51,13 @@ class SchedMessageModal extends Component {
     }));
     }
   // TOGGLE TO OPEN MODEL
+
     toggle() {
         this.fetchReminder(this.props.id)
         this.setState(prevState => ({
         modal: !prevState.modal,
         }));
-    console.log("MODAL STATE",this.state)
+    console.log("MODAL STATE",this.state);
     }
 
 
@@ -91,7 +92,7 @@ class SchedMessageModal extends Component {
       } 
 
     createSavedReminder = () => { //connected to save button
-      
+    console.log("PASSING HANDLER",this.props.group_reminders_call)
     const { title, body, scheduled, draft, template, id } = this.state.message
     const messageObj = {
       name: title,
@@ -110,8 +111,13 @@ class SchedMessageModal extends Component {
           success: 'Success!',
           reminders: { ...messageObj }
           });
+
         this.toggle()
+        this.props.group_reminders_call()
+        
+
       }
+      
     })
   .catch(err => {
       console.log(err);
@@ -144,52 +150,7 @@ class SchedMessageModal extends Component {
     });
     }
 
-    toggleApprove(event) {
-      const id = this.props.id
-      const editObj ={approved:event.target.checked};
-      axios
-        .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
-        .then(response => {
-          console.log("PUT RESPONSE:", response.data)
-          this.setState({success: 'Success!', message: response.data})
-        })
-        .catch(error => console.log(error))
-        if (this.state.success){
-          this.toggleSuccess()
-        }
-      }
-  
-    onTemplate= (event) => { 
-    
-      const id = this.props.id
-      const editObj ={template:event.target.checked};
-      axios
-        .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
-        .then(response => {
-          console.log("PUT RESPONSE:", response.data)
-          this.setState({success: 'Success!', message: response.data})
-        })
-        .catch(error => console.log(error))
-        if (this.state.success){
-          this.toggleSuccess()
-        }
-      }
-      onDelete = (event) => { 
-        const id = this.props.id
-        console.log("ID", id)
-        if (event.target.checked) {
-          axios
-          .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
-          .then(response => {
-              console.log("DELETE RESPONSE:", response.data)
-              this.setState({success_delete: 'Success! The message will go "poof!" as soon as you leave this tab',})
-              
-          })
-          .catch(err => {
-              console.log(err);
-          })
-        }
-        }
+
 
  
 
@@ -230,7 +191,7 @@ class SchedMessageModal extends Component {
               <div className = "editbutton">
               <Button color="primary" onClick={this.createSavedReminder}>Save Edits</Button>
               
-              <p>{this.state.success}</p>
+            
               </div>
               </FormGroup>
               <FormGroup>

@@ -173,7 +173,7 @@ class NewGroupMessage extends Component {
           .then(res => { 
             console.log(res, res.data) 
             this.setState({
-              message: { ...this.state.message, users:res.data, }
+              message: { ...this.state.message, users:res.data.rows, }
             });
         })
         .catch(err => {
@@ -209,7 +209,16 @@ class NewGroupMessage extends Component {
               submitting: false
             });
           }
+          toast.info('Successfully sent message.', {
+            position: "top-center",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
           res.json()
+          
         })
         .catch(err => {
           console.log(err)

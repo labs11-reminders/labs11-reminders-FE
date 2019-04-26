@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import { Button } from 'reactstrap';
+import { toast } from 'react-toastify';
+
 
 class RowElement extends Component {
     constructor(props) {
@@ -16,7 +18,15 @@ class RowElement extends Component {
         console.log('Adding user:', this.props.user.id, 'to', this.props.group_id); 
         axios.post(`${process.env.REACT_APP_BACKEND}/api/groups/add/user`, {user_id: this.props.user.id, group_id: this.props.group_id})
         .then(res => {
-            window.location.reload();
+            this.props.getUsersByGroup_call();
+            toast.info('User added to group.', {
+                position: "top-center",
+                autoClose: 2500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+              });
         })
         .catch(err => {
             console.log(err);
@@ -27,7 +37,7 @@ class RowElement extends Component {
         console.log('Deleting user_id:', this.props.user.id, ' from group_id:', this.props.group_id);
         axios.post(`${process.env.REACT_APP_BACKEND}/api/groups/remove/user`, {user_id: this.props.user.id, group_id: this.props.group_id})
         .then(res => {
-            window.location.reload();
+            this.props.getUsersByGroup_call();
         })
         .catch(err => {
             console.log(err);

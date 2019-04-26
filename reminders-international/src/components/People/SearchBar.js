@@ -57,6 +57,7 @@ class SearchBar extends Component {
             this.setState({
                 users: res.data
             });
+          this.props.getUsersByGroup_call();
         })
         .catch(err => {
             console.log(err);
@@ -84,7 +85,7 @@ class SearchBar extends Component {
         {this.state.query < 2 ? (
           null
         ) : (
-          <SearchTable users={this.state.users} group_id={this.props.activeGroup} />
+          <SearchTable users={this.state.users} group_id={this.props.activeGroup} getUsersByGroup_call={this.props.getUsersByGroup_call}/>
         )}
         </>
         </div>

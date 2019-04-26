@@ -18,6 +18,7 @@ import {
   FormGroup,
   Label,
   Input,
+  Button,
   // Row,
   // Collapse
 
@@ -42,7 +43,7 @@ class TemplateCard extends Component {
         date: '',
         scheduled: true,
         template: true,
-        draft:false,
+        draft: false,
         sent: false, 
         group_id: ''
       },
@@ -117,31 +118,7 @@ componentDidMount() {
       .catch(error => console.log(error))
     }
 
-  
-  onDelete = (event) => { 
-    const id = this.props.id
-    console.log("ID", id)
-    if (event.target.checked) {
-      axios
-      .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
-      .then(response => {
-          console.log("DELETE RESPONSE:", response.data)
-          this.setState({success_delete: 'Success! The message will go "poof!" as soon as you leave this tab',})
-          toast.info('Successfully deleted.', {
-            position: "top-center",
-            autoClose: 2500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            });
-      })
-      .catch(err => {
-          console.log(err);
-      })
-    }
-    }
-        
+          
   editReminder = id => {
     console.log("editReminder ID", id)
     const editObj ={name: this.state.message.title, description: this.state.message.body};
@@ -156,19 +133,6 @@ componentDidMount() {
   }
 
     
-  deleteReminder = id => {
-    axios
-      .delete(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`)
-      .then(response => {
-          console.log("DELETE RESPONSE:", response.data)
-          this.setState({ reminders: response.data, reminder: "" })
-          this.setState({success: 'Success!',})
-      })
-      .catch(err => {
-          console.log(err);
-      })
-  }
-
   dateConverter = date => {
     if (!date) {return `TBD`}
     date = date.split(/\W+/);
@@ -208,9 +172,9 @@ componentDidMount() {
 
   }
   toggleRemove(event) {
-    console.log("DELETE", !event.target.checked)
+    console.log("DELETE", event.target)
     const id = this.props.id
-    const editObj ={template: !event.target.checked,};
+    const editObj ={template: false};
     axios
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
@@ -226,6 +190,8 @@ componentDidMount() {
           pauseOnHover: true,
           draggable: true,
           });
+          this.props.group_reminders_call();
+
       })
       .catch(err => {
         console.log(err);
@@ -250,7 +216,7 @@ componentDidMount() {
           <div className = "messagetitle">{this.props.title}</div> 
           
           <SchedMessageModal id={this.props.id} buttonLabel="Edit Group Message" isOpen={this.state.message}
-            toggle={this.toggle} > </SchedMessageModal> 
+            toggle={this.toggle} group_reminders_call={this.props.group_reminders_call}> </SchedMessageModal> 
           
           </div>
           <div className="card-body">
@@ -269,10 +235,10 @@ componentDidMount() {
           </Label>
         </FormGroup>
            <FormGroup >
-          <Label inline check>
-            <Input type="checkbox" onClick={this.toggleRemove} />{' '}
-            Delete
-          </Label>
+          {/* <Label inline check> */}
+          <Button color="danger" onClick={this.toggleRemove}>Delete from Templates</Button>
+            {/* Delete
+          </Label> */}
         </FormGroup>
         <p>{this.state.success_delete}</p>
         {/* <p>{this.state.success}</p> */}

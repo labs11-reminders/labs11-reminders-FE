@@ -24,6 +24,7 @@ export default class TemplateList extends Component {
               
               
               <TemplateCard 
+              group_reminders_call={this.props.group_reminders_call}
               key={reminder.id}
               id={reminder.id}
               title={reminder.name}

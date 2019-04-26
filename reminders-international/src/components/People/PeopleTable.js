@@ -83,7 +83,7 @@ class PeopleTable extends Component {
             <tbody className="col-md">
 
                 {this.props.activeGroupUsers.map(user => 
-                   <RowElement key={user.id} value={user.id} user={user} group_id={this.props.activeGroup} show_delete={true} /> 
+                   <RowElement key={user.id} value={user.id} user={user} group_id={this.props.activeGroup} show_delete={true} getUsersByGroup_call={this.props.getUsersByGroup_call}/> 
                 )}
                 
             </tbody>
