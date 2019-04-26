@@ -33,9 +33,53 @@ PostgreSQL will provide the data persistence not available when deploying with S
 #### Netlify - frontend
 #### Heroku - backend
 We choose these solutions because the team has the most experience with these tools. Deployment can often produce unforeseen bugs, taking more time than anticipated to address. Due to the time restraints on this project we decided these tools would best enable us to deliver a working solution to our client.
-
+#
 # Twilio
-
+### Twilio Account
+Sign up for a [Twilio account](https://www.twilio.com/)
+Apply for a Twilio phone number (Buy a Number)
+Add your own number to the Verified Caller IDs
+Retrieve your Twilio Account_SID and Auth_Token
+#### On the Backend in the .env, add :
+TWILIO_ACCOUNT_SID
+TWILIO_AUTH_TOKEN
+TWILIO_PHONE_NUMBER
+#### Dependencies and Setting up the Helper
+Dependencies include: express, body-parser, and express-pino-logger
+``` javascript
+const client = require('twilio')(
+  process.env.TWILIO_ACCOUT_SID,
+  process.env.TWILIO_AUTH_TOKEN
+);
+const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(pino);
+```
+#### API Call to Send a Message
+``` javascript
+app.post('/api/messages', (req, res) => {
+  res.header('Content-Type', 'application/json');
+  client.messages
+    .create({
+      from: process.env.TWILIO_PHONE_NUMBER,
+      to: req.body.to,
+      body: req.body.body
+    })
+    .then(() => {
+      res.send(JSON.stringify({ success: true }));
+    })
+    .catch(err => {
+      console.log(err);
+      res.send(JSON.stringify({ success: false }));
+    });
+});
+```
+#### Front End
+Create a fetch to using a POST method
+### Guided Demo
+[How to send an SMS from React with Twilio](https://www.twilio.com/blog/send-an-sms-react-twilio)
+#
 
 # Auth0
 The site is currently set up using a free Auth0 account. There are limitations on the free tier, such as a cap on active users, how many social connections you can use to authenticate (ie: Facebook, Google, etc), and whether or not you can import your own user database into the Auth0 system. The full list of differences can be found here: https://auth0.com/pricing#full-features
@@ -62,7 +106,7 @@ AUTH0_CLIENT_SECRET=YOUR_CLIENT_SECRET
 
 
 
-
+#
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
