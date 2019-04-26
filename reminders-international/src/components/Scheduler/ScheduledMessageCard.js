@@ -272,7 +272,7 @@ fetchReminder = id => {
           </div>
           <div className = "card-body">
             <div className = "messagebody"><strong> Message to be sent: </strong>&nbsp;{this.props.message}</div>
-            <div className = "messagebody">  <strong> {this.state.message.approved_text} on:</strong>  &nbsp;{this.dateConverter(this.state.date)}</div>
+            <div className = "messagebody">  <strong> {this.state.message.approved_text} on:</strong>  &nbsp;{this.dateConverter(this.props.date)}</div>
           </div>
           </div>
           
