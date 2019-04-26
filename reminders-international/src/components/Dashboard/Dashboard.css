@@ -16,8 +16,10 @@
     width: 21vw;
     position:fixed;
     left: 0;
-    top: 0%;
     z-index: 9;
+    overflow-y: scroll;
+    top: 0;
+    bottom: 0;
 
     /* background-color:  #F2F3F5; */
 }
@@ -471,7 +473,9 @@ div.tab-content {
     
 }
 
-
+#userThumbModel {
+    border: none;
+}
 
 .createGroup {
     display: flex;

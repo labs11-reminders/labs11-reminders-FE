@@ -71,7 +71,7 @@ class PeopleTable extends Component {
         return (
             <div>
             <Table className="table-hover">
-            <thead className="col-md table-primary">
+            <thead className="col-md table-primary" id="grey-thead">
               <tr className="grey">
                 
                 <th className="w-25">Name</th>

@@ -127,7 +127,7 @@ class MainContent extends Component {
   deleteGroup = () => {
     console.log(
       '************ GROUP DELETE***************',
-      this.props.state.activeGroup,
+      this.props.state.activeGroup, typeof this.props.state.activeGroup
     );
 
     axios

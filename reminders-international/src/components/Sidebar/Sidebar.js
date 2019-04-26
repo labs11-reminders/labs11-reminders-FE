@@ -84,7 +84,6 @@ class Sidebar extends Component {
   getAllOrgs = () => {
     axios
       .get(`${process.env.REACT_APP_BACKEND}/api/orgs`, this.state.orgs)
-      // axios.get("https://localhost:3333/api/orgs", this.state.orgs)
       .then(res => {
         this.setState({
           orgs: res.data,
@@ -104,7 +103,6 @@ class Sidebar extends Component {
               `${process.env.REACT_APP_BACKEND}/api/groups`,
               this.state.newGroup,
             )
-            // axios.post("https://localhost:3333/api/orgs", orgObj)
             .then(res => {
               if (res.status === 200 || res.status === 201) {
                 this.setState({ newGroup: { name: '', org_id: null } });
@@ -361,6 +359,7 @@ class Sidebar extends Component {
                   src="/static/media/network.0ca59318.png" title="group"
                   alt="group thumbnail"
                   className="userThumb"
+                  id="userThumbModel"
                 />
                 {/* <a href="#">edit icon</a> */}
                
