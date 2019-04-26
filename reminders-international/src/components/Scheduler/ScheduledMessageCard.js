@@ -206,8 +206,9 @@ fetchReminder = id => {
       .put(`${process.env.REACT_APP_BACKEND}/api/reminders/${id}`, editObj)
       .then(response => {
         console.log("PUT RESPONSE:", response.data)
-        this.setState({success: 'Success!', message: response.data})
-        this.fetchReminder(id);
+        this.setState({success: 'Success!', message: response.data});
+        this.props.group_reminders_call();
+        // this.fetchReminder(id);
       })
       .catch(error => console.log(error))
     }
