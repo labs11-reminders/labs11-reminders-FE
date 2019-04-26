@@ -361,6 +361,7 @@ class Sidebar extends Component {
                   src="/static/media/network.0ca59318.png" title="group"
                   alt="group thumbnail"
                   className="userThumb"
+                  id="userThumbModel"
                 />
                 {/* <a href="#">edit icon</a> */}
                

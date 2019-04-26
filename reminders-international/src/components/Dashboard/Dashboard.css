@@ -471,7 +471,9 @@ div.tab-content {
     
 }
 
-
+#userThumbModel {
+    border: none;
+}
 
 .createGroup {
     display: flex;

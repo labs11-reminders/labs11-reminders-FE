@@ -41,6 +41,7 @@ class SearchBar extends Component {
             });
         axios.post(`${process.env.REACT_APP_BACKEND}/api/users/search`, {search: this.state.query})
         .then(res => {
+          console.log("searchUsers res.data", res.data)
             this.setState({
                 users: res.data
             });

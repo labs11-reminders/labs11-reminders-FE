@@ -12,6 +12,7 @@
 
 
 .peopleHeader {
+    border: none;
     text-align: left;
     padding-bottom: 1%;
     padding-left: 1.5%;
@@ -24,4 +25,5 @@
 .grey {    
     background-color: #3c4141;
     color: white;
+    border: none;
 }
